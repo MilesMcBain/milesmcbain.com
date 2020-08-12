@@ -1,6 +1,56 @@
 [
   {
-    "path": "posts/2018-02-22-going-alt-rstats-with-vscode/",
+    "path": "posts/ropensci-onboarding2/",
+    "title": "Where is the value in package peer review? Reflection #2 on rOpenSci Onboarding",
+    "description": "How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-03-26",
+    "categories": [],
+    "preview": "posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg",
+    "last_modified": "2020-08-12T23:56:47+10:00",
+    "input_file": "where-is-the-value-in-package-peer-review.utf8.md"
+  },
+  {
+    "path": "posts/a-fully-dockerised-ghost-blog/",
+    "title": "A Fully Dockerised HTTPS Ghost Blog",
+    "description": "The installation documentation for Ghost is comprehensive, but beyond my skill as a system administrator to complete. Docker to the rescue!",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-03-08",
+    "categories": [],
+    "preview": "posts/a-fully-dockerised-ghost-blog/g1.png",
+    "last_modified": "2020-08-12T23:35:32+10:00",
+    "input_file": "a-fully-dockerised-ghost-blog.utf8.md",
+    "preview_width": 953,
+    "preview_height": 560
+  },
+  {
+    "path": "posts/ropensci-onboarding1/",
+    "title": "Waterslides vs Ivory Towers: Reflection #1 on rOpenSci Onboarding",
+    "description": "Onboarding is a waterslide. rOpenSci have created a rewarding and fun process that generates high quality R packages.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-03-06",
+    "categories": [],
+    "preview": "posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg",
+    "last_modified": "2020-08-12T23:32:57+10:00",
+    "input_file": "waterslides-vs-ivory-towers.utf8.md"
+  },
+  {
+    "path": "posts/alt-r-with-vscode/",
     "title": "Going Alt-RStats with VSCode",
     "description": "I never want to see another CSV that isn't rainbow!",
     "author": [
@@ -11,8 +61,8 @@
     ],
     "date": "2018-02-22",
     "categories": [],
-    "preview": "posts/2018-02-22-going-alt-rstats-with-vscode/hover_help2.gif",
-    "last_modified": "2020-08-12T22:00:52+10:00",
+    "preview": "posts/alt-r-with-vscode/hover_help2.gif",
+    "last_modified": "2020-08-12T22:46:16+10:00",
     "input_file": "going-alt-rstats-with-vscode.utf8.md"
   }
 ]

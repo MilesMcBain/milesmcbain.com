@@ -1,4 +1,4 @@
-name: "website_distill"
+name: "milesmcbain.xyz"
 title: "Before I Sleep"
 description: |
   Before I Sleep
@@ -10,3 +10,4 @@ navbar:
     - text: "About"
       href: about.html
 output: distill::distill_article
+base_url: https://milesmcbain.xyz
