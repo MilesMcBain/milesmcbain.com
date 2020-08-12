@@ -1,0 +1,18 @@
+[
+  {
+    "path": "posts/2018-02-22-going-alt-rstats-with-vscode/",
+    "title": "Going Alt-RStats with VSCode",
+    "description": "I never want to see another CSV that isn't rainbow!",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-02-22",
+    "categories": [],
+    "preview": "posts/2018-02-22-going-alt-rstats-with-vscode/hover_help2.gif",
+    "last_modified": "2020-08-12T22:00:52+10:00",
+    "input_file": "going-alt-rstats-with-vscode.utf8.md"
+  }
+]
