@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Before I Sleep</title>
+    <link>https://milesmcbain.xyz</link>
+    <atom:link href="https://milesmcbain.xyz/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Before I Sleep
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Sun, 25 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Where is the value in package peer review? Reflection #2 on rOpenSci Onboarding</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/ropensci-onboarding2</link>
+      <description>How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.</description>
+      <guid>https://milesmcbain.xyz/posts/ropensci-onboarding2</guid>
+      <pubDate>Sun, 25 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>A Fully Dockerised HTTPS Ghost Blog</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog</link>
+      <description>The installation documentation for Ghost is comprehensive, but beyond my skill as a system administrator to complete. Docker to the rescue!</description>
+      <guid>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog</guid>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog/g1.png" medium="image" type="image/png" width="953" height="560"/>
+    </item>
+    <item>
+      <title>Waterslides vs Ivory Towers: Reflection #1 on rOpenSci Onboarding</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/ropensci-onboarding1</link>
+      <description>Onboarding is a waterslide. rOpenSci have created a rewarding and fun process that generates high quality R packages.</description>
+      <guid>https://milesmcbain.xyz/posts/ropensci-onboarding1</guid>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Going Alt-RStats with VSCode</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/alt-r-with-vscode</link>
+      <description>I never want to see another CSV that isn't rainbow!</description>
+      <guid>https://milesmcbain.xyz/posts/alt-r-with-vscode</guid>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/alt-r-with-vscode/hover_help2.gif" medium="image" type="image/gif"/>
+    </item>
+  </channel>
+</rss>

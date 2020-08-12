@@ -1,0 +1,70 @@
+---
+title: "Waterslides vs Ivory Towers: Reflection #1 on rOpenSci Onboarding"
+description: |
+    Onboarding is a waterslide. rOpenSci have created a rewarding and fun process that generates high quality R packages.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2018-03-06
+output:
+  distill::distill_article:
+    self_contained: false
+preview: 640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+
+```{r}
+knitr::include_graphics("640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg")
+```
+
+Last week editor [Maëlle Salmon](http://www.masalmon.eu/) closed issue #139 on [ropensci/onboarding](https://github.com/ropensci/onboarding) and thus marked the end of 7 months of preening the Australian Antarctic Division's [`bowerbird`](https://github.com/ropensci/bowerbird). I take a sense of pride as a reviewer of this package. It was unquestionably improved by the onboarding process, and it was just a really great feeling to be a part of a process that: **A**. worked so well, and **B.** was a worthwhile use of volunteered time. 
+
+When I say '7 months' it makes the process sound grueling. It was not. I estimate I spent around 20 hours over that time. Far from feeling worn down, all I'm thinking right now is how much I want do it again!
+
+Which brings me to the first of a couple of reflections I plan to write on the Onboarding process.
+
+## Onboarding is a Waterslide
+
+As a reviewer, the Onboarding process feels like this:
+1. Initial excitement and trepidation when the editor invites you to review -> standing at the top
+3. A moment of blind panic when you first lay eyes on all that code -> taking the plunge 
+4. A receding sense of helplessness replaced by determination and enjoyment as your contribution grows -> surfing the tube
+5. Joy as the final ticks are given -> splashdown 
+6. Happiness, relief, satisfaction as the package goes live -> coming out in the wash
+7. A desire to do it again -> running to beat the queue.
+
+Maybe that analogy is a bit cute. But don't let that make you miss the point: rOpenSci have created a rewarding and fun process that generates high quality R packages. It's just like the [unconference](http://unconf18.ropensci.org/). It's addictive. It's a positive feedback loop that [improves both the packages](https://ropensci.org/blog/2017/08/22/visdat) and [the people](https://ropensci.org/blog/2017/08/22/first-package-review/) involved.
+
+The [issue pulse](https://github.com/ropensci/onboarding/pulse) speaks for itself. They have a steady stream of packages and reviewers knocking their door down. If some people tire of the fun, others arrive keen to take their place. The system is mostly run on *public* volunteer labour, so they are inclusive, and have scalability. Future availability of editors is the main bottleneck, but there are capable candidates either waiting in the wings or being nurtured in the rOpenSci community right now. 
+
+I think some people have the impression that onboarding is about this: ![A shiny GitHub badge](https://badges.ropensci.org/139_status.svg) 
+
+It is. But it's called Onboarding for a reason. Onboarded packages get added to a bona fide [R package repository](http://packages.ropensci.org/) (like CRAN or Bioconductor) maintained by rOpenSci. For me this is the really exciting thing - it's totally punk.
+
+```{r, fig.cap = "rOpenSci founders celebrate another package sucessfully onboarded"}
+knitr::include_graphics("Pussy-Riot.jpg")
+```
+
+## Overlooking the Ivory Tower
+
+```{r, fig.cap = "An unknown R developer awaits news of their CRAN submission"}
+knitr::include_graphics("citadel.png")
+```
+
+This rOpenSci repository is almost the perfect antithesis of what R has in CRAN. Where the process for getting added to rOpenSci is completely transparent, CRAN is notoriously opaque, inconsistent, and aloof. I could present you with evidence that CRAN's centralised Ivory Tower model is cracking under the current load, but I'll save that for a dedicated post. The other contrast I'll make is in package quality.
+
+Pick 5 random packages from CRAN's [task views](https://cran.r-project.org/web/views/). How many have at least one vignette? How many have a URL for a repository? How many have more than the bare minimum autogen manual mechanically describing functions? I reckon you'll get one or two best - and these are the hand picked cream of the crop. It's not that CRAN has slipped - it's that the bar has been lifted. RStudio, rOpenSci, and other new wave empathetic developers have seen to that.
+
+The rOpenSci model can never do the volume CRAN can with automation, but it is crushing it in terms of quality. All onboarded packages have a vignette, a repo, and made sense to at least three people from diverse backgrounds. Anyone can look up the public [Onboarding review](https://github.com/ropensci/onboarding/issues/139) to get additional insight into why a package works the way it does. ==An rOpenSci package is not just 'guaranteed to work' - it's guaranteed to be workable.== And that is something pretty darn valuable indeed.
+
+---------------------------
+
+*Keen to be a part of it? [Go here](https://ropensci.org/onboarding/) to regsiter as an rOpenSci reviewer.*
+
+*Header image credit: By Koala:Bear - https://www.flickr.com/photos/ohfuckkit/199410084/, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=11078509*
+

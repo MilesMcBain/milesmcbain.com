@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://milesmcbain.xyz/about.html</loc>
+    <lastmod>2020-08-12T21:20:09+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/</loc>
+    <lastmod>2020-08-12T21:20:09+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/posts/ropensci-onboarding2/</loc>
+    <lastmod>2020-08-12T23:56:47+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog/</loc>
+    <lastmod>2020-08-12T23:35:32+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/posts/ropensci-onboarding1/</loc>
+    <lastmod>2020-08-12T23:32:57+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/posts/alt-r-with-vscode/</loc>
+    <lastmod>2020-08-12T22:46:16+10:00</lastmod>
+  </url>
+</urlset>
