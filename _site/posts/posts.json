@@ -1,5 +1,303 @@
 [
   {
+    "path": "posts/an-okay-idea/",
+    "title": "Project as an R package: An okay idea",
+    "description": "The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2020-07-24",
+    "categories": [
+      "rstats",
+      "workflow",
+      "data science"
+    ],
+    "preview": "posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg",
+    "last_modified": "2020-08-14T00:11:28+10:00",
+    "input_file": "project_as_an_r_package.utf8.md"
+  },
+  {
+    "path": "posts/the-drake-post/",
+    "title": "Benefits of a function-based diet (The {drake} post)",
+    "description": "The {drake} post I've been threatening to make has landed. All 4000 words of it.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2020-04-30",
+    "categories": [
+      "rstats",
+      "productivity",
+      "workflow",
+      "reproducibility",
+      "debugging"
+    ],
+    "preview": "posts/the-drake-post/spinach_small.jpg",
+    "last_modified": "2020-08-14T00:05:58+10:00",
+    "input_file": "benefits_of_a_function_based_diet.utf8.md"
+  },
+  {
+    "path": "posts/recover/",
+    "title": "Stop() - breathe - recover()",
+    "description": "Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2019-07-28",
+    "categories": [
+      "rstats",
+      "debugging"
+    ],
+    "preview": "posts/recover/recover_vid.png",
+    "last_modified": "2020-08-13T23:58:34+10:00",
+    "input_file": "stop_breathe_recover.utf8.md",
+    "preview_width": 2552,
+    "preview_height": 1436
+  },
+  {
+    "path": "posts/hacking-r-library-paths/",
+    "title": "Hacking R's library paths",
+    "description": "If you've been tripped up by R's library paths in the past, or you just enjoy a good hack, you might appreciate this little trick",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2019-06-20",
+    "categories": [
+      "rstats",
+      "hacks"
+    ],
+    "preview": "posts/hacking-r-library-paths/Monkey-typing.jpg",
+    "last_modified": "2020-08-13T23:51:16+10:00",
+    "input_file": "hacking_r_library_paths.utf8.md"
+  },
+  {
+    "path": "posts/packrat-lite/",
+    "title": "A workflow for lightweight R dependency management",
+    "description": "Recently I proudly shared some code that was only weeks old and had maybe 40 dependencies... what could possibly go wrong right?",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2019-04-09",
+    "categories": [
+      "rstats",
+      "reproducibility"
+    ],
+    "preview": "posts/packrat-lite/nutria-1200457_1920.jpg",
+    "last_modified": "2020-08-13T23:41:00+10:00",
+    "input_file": "a_workflow_for_lightweight_r_dependency_management.utf8.md"
+  },
+  {
+    "path": "posts/for-loops/",
+    "title": "Horseman number for",
+    "description": "Two #rstats community personalities whom I very much admire have taken my name in vain in relation to for loops. What's up with that?",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2019-02-14",
+    "categories": [
+      "rstats",
+      "loops"
+    ],
+    "preview": "posts/for-loops/1024px-Apocalypse_vasnetsov.jpg",
+    "last_modified": "2020-08-13T23:35:01+10:00",
+    "input_file": "horseman_number_for.utf8.md"
+  },
+  {
+    "path": "posts/rstats-anti-pattern-row-wise/",
+    "title": "R anti-pattern: Row-wise modification of data in a loop",
+    "description": "The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-12-07",
+    "categories": [
+      "rstats",
+      "loops"
+    ],
+    "preview": "posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg",
+    "last_modified": "2020-08-13T23:22:04+10:00",
+    "input_file": "r_anti_pattern_rowise_modification_of_data_in_a_loop.utf8.md"
+  },
+  {
+    "path": "posts/the-roots-of-quotation/",
+    "title": "The Roots of Quotation",
+    "description": "In this post I use Lisp as a prop to have the quoting conversation from the start. It's a deep dive that will hopefully arrive at a deep understanding.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-07-26",
+    "categories": [
+      "rstats",
+      "lisp"
+    ],
+    "preview": "posts/the-roots-of-quotation/Quote---2-.jpg",
+    "last_modified": "2020-08-13T23:14:53+10:00",
+    "input_file": "the_roots_of_quotation.utf8.md"
+  },
+  {
+    "path": "posts/r2vr3-shading-meshes-in-webvr/",
+    "title": "R2VR: Shading Meshes in WebVR",
+    "description": "In this post I'll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-07-05",
+    "categories": [
+      "rstats",
+      "R2VR"
+    ],
+    "preview": "posts/r2vr3-shading-meshes-in-webvr/uluru_header.png",
+    "last_modified": "2020-08-13T23:13:58+10:00",
+    "input_file": "shading_meshes_in_webvr.utf8.md",
+    "preview_width": 1834,
+    "preview_height": 1058
+  },
+  {
+    "path": "posts/crushing-the-contact-details-file/",
+    "title": "Crushing the Contact Details file with #rstats",
+    "description": "It is a universal law that if you volunteer to help organise something, you will at some stage be issued with a flat text file of contact details.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-06-24",
+    "categories": [
+      "rstats",
+      "regex",
+      "productivity"
+    ],
+    "preview": "posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg",
+    "last_modified": "2020-08-13T23:09:57+10:00",
+    "input_file": "crushing-the-contact-details-file.utf8.md"
+  },
+  {
+    "path": "posts/r2vr2-rendering-meshes-in-webvr/",
+    "title": "R2VR: Rendering Meshes in WebVR",
+    "description": "How to render a 3D mesh of Uluru in WebVR using the A-Frame framework via R.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-05-29",
+    "categories": [
+      "rstats",
+      "R2VR"
+    ],
+    "preview": "posts/r2vr2-rendering-meshes-in-webvr/rock_opera.png",
+    "last_modified": "2020-08-13T23:07:44+10:00",
+    "input_file": "rendering_meshes_in_webvr.utf8.md",
+    "preview_width": 1921,
+    "preview_height": 1083
+  },
+  {
+    "path": "posts/solving-the-challenge-of-tidyeval/",
+    "title": "Solving the Challenge of Tidyeval",
+    "description": "Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-05-23",
+    "categories": [
+      "rstats",
+      "tidyverse",
+      "tidyeval"
+    ],
+    "preview": "posts/solving-the-challenge-of-tidyeval/9972796593_14695448e7_b.jpg",
+    "last_modified": "2020-08-13T23:11:19+10:00",
+    "input_file": "solving-the-challenge-of-tidyeval.utf8.md"
+  },
+  {
+    "path": "posts/2018-in-pursuit-of-productivity/",
+    "title": "2018: In Pursuit of Productivity",
+    "description": "2018 was probably my busiest year on record. I reflect on some of the productivity tools that got me through.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-05-23",
+    "categories": [
+      "productivity",
+      "software development"
+    ],
+    "preview": "posts/2018-in-pursuit-of-productivity/corn-flakes-1915632_1280.jpg",
+    "last_modified": "2020-08-13T23:28:10+10:00",
+    "input_file": "in_pursuit_of_productivity.utf8.md"
+  },
+  {
+    "path": "posts/how-to-survive-a-laptop-fire/",
+    "title": "How to Survive a Laptop Fire",
+    "description": "How bad would it be for your work if your laptop burned in a fire?",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-05-20",
+    "categories": [
+      "software development"
+    ],
+    "preview": "posts/how-to-survive-a-laptop-fire/Burned_laptop_secumem_11.jpg",
+    "last_modified": "2020-08-13T23:05:27+10:00",
+    "input_file": "how_to_survive_a_laptop_fire.utf8.md"
+  },
+  {
+    "path": "posts/r2v1-meshing-uluru-from-polygons-and-rasters/",
+    "title": "R2VR: Meshing Uluru From Polygons and Rasters",
+    "description": "In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-03-27",
+    "categories": [
+      "rstats",
+      "WebVR",
+      "R2VR",
+      "GIS"
+    ],
+    "preview": "posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg",
+    "last_modified": "2020-08-13T23:06:28+10:00",
+    "input_file": "meshing_uluru.utf8.md"
+  },
+  {
     "path": "posts/ropensci-onboarding2/",
     "title": "Where is the value in package peer review? Reflection #2 on rOpenSci Onboarding",
     "description": "How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.",
@@ -12,8 +310,8 @@
     "date": "2018-03-26",
     "categories": [],
     "preview": "posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg",
-    "last_modified": "2020-08-12T23:56:47+10:00",
-    "input_file": "where-is-the-value-in-package-peer-review.utf8.md"
+    "last_modified": "2020-08-13T19:38:55+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/a-fully-dockerised-ghost-blog/",
@@ -26,9 +324,12 @@
       }
     ],
     "date": "2018-03-08",
-    "categories": [],
+    "categories": [
+      "ghost",
+      "docker"
+    ],
     "preview": "posts/a-fully-dockerised-ghost-blog/g1.png",
-    "last_modified": "2020-08-12T23:35:32+10:00",
+    "last_modified": "2020-08-13T23:06:01+10:00",
     "input_file": "a-fully-dockerised-ghost-blog.utf8.md",
     "preview_width": 953,
     "preview_height": 560
@@ -47,7 +348,7 @@
     "categories": [],
     "preview": "posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg",
     "last_modified": "2020-08-12T23:32:57+10:00",
-    "input_file": "waterslides-vs-ivory-towers.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/alt-r-with-vscode/",
@@ -62,7 +363,7 @@
     "date": "2018-02-22",
     "categories": [],
     "preview": "posts/alt-r-with-vscode/hover_help2.gif",
-    "last_modified": "2020-08-12T22:46:16+10:00",
-    "input_file": "going-alt-rstats-with-vscode.utf8.md"
+    "last_modified": "2020-08-12T22:46:17+10:00",
+    "input_file": {}
   }
 ]

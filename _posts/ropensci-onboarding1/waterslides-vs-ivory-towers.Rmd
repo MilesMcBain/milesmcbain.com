@@ -10,6 +10,10 @@ output:
   distill::distill_article:
     self_contained: false
 preview: 640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg 
+categories:
+  - rstats
+  - open science
+  - rOpenSci
 ---
 
 ```{r setup, include=FALSE}

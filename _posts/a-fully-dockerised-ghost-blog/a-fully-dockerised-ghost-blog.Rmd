@@ -9,12 +9,18 @@ date: 2018-03-08
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - ghost
+  - docker
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       out.width = "100%")
 ```
+
+> Note: This blog is no longer built with Ghost, I've gone static with Distill. These instructions should still serve you well.
+
 Ghost is the blogging platform that powers this blog. You can pay for a hosted instance on [https://ghost.org/](https://ghost.org/), but as open source software, you can also self-host. The installation documentation for Ghost is comprehensive, but beyond my skill as a system administrator to complete. Luckily Docker allows hackers like me (and you!) to piggy back off the system admin skills of those far more knowledgeable. 
 
 This is the post I wish I had found when I spent a day hunting for the magic Docker image that would get me up and running with a self-hosted Ghost instance.

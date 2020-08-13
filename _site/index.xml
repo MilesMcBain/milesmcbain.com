@@ -7,14 +7,186 @@
     <description>Before I Sleep
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 25 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Project as an R package: An okay idea</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/an-okay-idea</link>
+      <description>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</description>
+      <category>rstats</category>
+      <category>workflow</category>
+      <category>data science</category>
+      <guid>https://milesmcbain.xyz/posts/an-okay-idea</guid>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Benefits of a function-based diet (The {drake} post)</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/the-drake-post</link>
+      <description>The {drake} post I've been threatening to make has landed. All 4000 words of it.</description>
+      <category>rstats</category>
+      <category>productivity</category>
+      <category>workflow</category>
+      <category>reproducibility</category>
+      <category>debugging</category>
+      <guid>https://milesmcbain.xyz/posts/the-drake-post</guid>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/the-drake-post/spinach_small.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Stop() - breathe - recover()</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/recover</link>
+      <description>Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.</description>
+      <category>rstats</category>
+      <category>debugging</category>
+      <guid>https://milesmcbain.xyz/posts/recover</guid>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/recover/recover_vid.png" medium="image" type="image/png" width="2552" height="1436"/>
+    </item>
+    <item>
+      <title>Hacking R's library paths</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/hacking-r-library-paths</link>
+      <description>If you've been tripped up by R's library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</description>
+      <category>rstats</category>
+      <category>hacks</category>
+      <guid>https://milesmcbain.xyz/posts/hacking-r-library-paths</guid>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/hacking-r-library-paths/Monkey-typing.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>A workflow for lightweight R dependency management</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/packrat-lite</link>
+      <description>Recently I proudly shared some code that was only weeks old and had maybe 40 dependencies... what could possibly go wrong right?</description>
+      <category>rstats</category>
+      <category>reproducibility</category>
+      <guid>https://milesmcbain.xyz/posts/packrat-lite</guid>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/packrat-lite/nutria-1200457_1920.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Horseman number for</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/for-loops</link>
+      <description>Two #rstats community personalities whom I very much admire have taken my name in vain in relation to for loops. What's up with that?</description>
+      <category>rstats</category>
+      <category>loops</category>
+      <guid>https://milesmcbain.xyz/posts/for-loops</guid>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/for-loops/1024px-Apocalypse_vasnetsov.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>R anti-pattern: Row-wise modification of data in a loop</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/rstats-anti-pattern-row-wise</link>
+      <description>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</description>
+      <category>rstats</category>
+      <category>loops</category>
+      <guid>https://milesmcbain.xyz/posts/rstats-anti-pattern-row-wise</guid>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>The Roots of Quotation</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/the-roots-of-quotation</link>
+      <description>In this post I use Lisp as a prop to have the quoting conversation from the start. It's a deep dive that will hopefully arrive at a deep understanding.</description>
+      <category>rstats</category>
+      <category>lisp</category>
+      <guid>https://milesmcbain.xyz/posts/the-roots-of-quotation</guid>
+      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/the-roots-of-quotation/Quote---2-.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>R2VR: Shading Meshes in WebVR</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr</link>
+      <description>In this post I'll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.</description>
+      <category>rstats</category>
+      <category>R2VR</category>
+      <guid>https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr</guid>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/uluru_header.png" medium="image" type="image/png" width="1834" height="1058"/>
+    </item>
+    <item>
+      <title>Crushing the Contact Details file with #rstats</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/crushing-the-contact-details-file</link>
+      <description>It is a universal law that if you volunteer to help organise something, you will at some stage be issued with a flat text file of contact details.</description>
+      <category>rstats</category>
+      <category>regex</category>
+      <category>productivity</category>
+      <guid>https://milesmcbain.xyz/posts/crushing-the-contact-details-file</guid>
+      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>R2VR: Rendering Meshes in WebVR</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/r2vr2-rendering-meshes-in-webvr</link>
+      <description>How to render a 3D mesh of Uluru in WebVR using the A-Frame framework via R.</description>
+      <category>rstats</category>
+      <category>R2VR</category>
+      <guid>https://milesmcbain.xyz/posts/r2vr2-rendering-meshes-in-webvr</guid>
+      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/r2vr2-rendering-meshes-in-webvr/rock_opera.png" medium="image" type="image/png" width="1921" height="1083"/>
+    </item>
+    <item>
+      <title>Solving the Challenge of Tidyeval</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval</link>
+      <description>Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...</description>
+      <category>rstats</category>
+      <category>tidyverse</category>
+      <category>tidyeval</category>
+      <guid>https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval</guid>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval/9972796593_14695448e7_b.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>2018: In Pursuit of Productivity</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/2018-in-pursuit-of-productivity</link>
+      <description>2018 was probably my busiest year on record. I reflect on some of the productivity tools that got me through.</description>
+      <category>productivity</category>
+      <category>software development</category>
+      <guid>https://milesmcbain.xyz/posts/2018-in-pursuit-of-productivity</guid>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/2018-in-pursuit-of-productivity/corn-flakes-1915632_1280.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>How to Survive a Laptop Fire</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/how-to-survive-a-laptop-fire</link>
+      <description>How bad would it be for your work if your laptop burned in a fire?</description>
+      <category>software development</category>
+      <guid>https://milesmcbain.xyz/posts/how-to-survive-a-laptop-fire</guid>
+      <pubDate>Sun, 20 May 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/how-to-survive-a-laptop-fire/Burned_laptop_secumem_11.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>R2VR: Meshing Uluru From Polygons and Rasters</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters</link>
+      <description>In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.</description>
+      <category>rstats</category>
+      <category>WebVR</category>
+      <category>R2VR</category>
+      <category>GIS</category>
+      <guid>https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters</guid>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Where is the value in package peer review? Reflection #2 on rOpenSci Onboarding</title>
       <dc:creator>Miles McBain</dc:creator>
       <link>https://milesmcbain.xyz/posts/ropensci-onboarding2</link>
       <description>How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.</description>
       <guid>https://milesmcbain.xyz/posts/ropensci-onboarding2</guid>
-      <pubDate>Sun, 25 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       <media:content url="https://milesmcbain.xyz/posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -22,6 +194,8 @@
       <dc:creator>Miles McBain</dc:creator>
       <link>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog</link>
       <description>The installation documentation for Ghost is comprehensive, but beyond my skill as a system administrator to complete. Docker to the rescue!</description>
+      <category>ghost</category>
+      <category>docker</category>
       <guid>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog</guid>
       <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
       <media:content url="https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog/g1.png" medium="image" type="image/png" width="953" height="560"/>
