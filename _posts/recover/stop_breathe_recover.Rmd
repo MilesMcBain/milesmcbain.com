@@ -1,0 +1,44 @@
+---
+title: "Stop() - breathe - recover()"
+description: |
+    Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2019-07-28
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - debugging
+preview: recover_vid.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.
+
+I haven't been this excited to share something with #rstats for a while - so trust me - this is a technique worth knowing.  Especially if you subscribe to the [tidyverse's nested everything-in-a-tibble modelling workflow](https://www.youtube.com/watch?v=go5Au01Jrvs). When I'm manipulating list columns of tibbles and models I've found I'm that much farther from the context I need to understand errors. Getting that to context has previously been a labor intensive and demotivating task. Not so with `recover`! Just watch go the video! Come back here after for some post script comments.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M5n_2jmdJ_8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+# P.S.
+As you saw, `recover` makes debugging complex errors easier by placing all the information you need to debug it at your finger tips. It. Is. Awesome! But it's also just one tool in a full debugging arsenal. I certainly don't have it enabled always. You'll see pretty quickly how frustrating that is. Despite R's reputation, most of the time an error message alone is enough for me to figure out what went wrong (with some help from Dr. Google). 
+
+At the end of the video I said you'll need other techniques to tackle issues in your program logic that don't result in an error. For those I highly recommend Kara Woo's RStudio::conf 2019 talk: [Box plots: a case study in debugging and perseverance](https://resources.rstudio.com/rstudio-conf-2019/box-plots-a-case-study-in-debugging-and-perseverance) where, among other things, she demonstrates nimble usage of `debugonce`. That's another favourite debugging function of mine. ^[Using a lot of `debugonce` has made me realise how important program structure and style is to having debuggable code. I don't think you can go past Jenny Bryan's UseR 2018 talk: [Code Smells and Feels](https://github.com/jennybc/code-smells-and-feels) for an approachable introduction to ideas along those lines.]
+
+The code used in my examples can be found at: https://github.com/milesmcbain/recover_demo
+
+## Related Techniques
+
+RStudio has something like `recover`: the 're-run with debug' link that appears alongside error messages in the console. And although this lets you browse the entire stack of code and variables, as far as I can see it doesn't let you choose a frame and execute code within its context (like I did in my second example).
+
+Breakpoints are something that I have moved away from over time, despite having used them heavily with other programming languages prior to using R. I am not fully sure why this is, although I think they're just generally less useful when you have a strong REPL like R.
+
+# A Thankyou Owed
+
+I think a strong debugger is often a draw card that drives people to IDEs, so having these tools available within any R session opens up the playing field for different R editing setups. It really is amazing to have a tool like `recover` available within any R REPL. Hats off and thankyou to the R-Core team and contributors!
+

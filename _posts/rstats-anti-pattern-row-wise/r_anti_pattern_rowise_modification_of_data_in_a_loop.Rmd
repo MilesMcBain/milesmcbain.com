@@ -1,0 +1,135 @@
+---
+title: "R anti-pattern: Row-wise modification of data in a loop"
+description: |
+    The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2018-12-07
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - loops
+preview: El_Diablo_Roller_Coaster.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("El_Diablo_Roller_Coaster.jpg")
+```
+
+The purpose of this post is to document something we'll call the *Row-wise modification of data in a loop R anti-pattern*. This anti-pattern is a trap for programmers coming to R from many other programming languages. Hopefully this post will help you understand it and avoid it.
+
+## The pattern
+
+Suppose you have some operation you want to perform on every row in a column, saving the results in the original column. You've heard about some fancy packages to do this, but why bother when a simple loop will do the trick? Someone said that loops are no longer slow in R, right?
+
+Let's assume you have this data and you want update each value of `df$a`. As an example we'll just do a simple conversion:
+
+```R
+mtcars
+library(tibble)
+library(microbenchmark)
+
+df <- data.frame(
+  a = runif(1000),
+  b = runif(1000)
+)
+
+## crack out the loop!
+for (i in nrow(df[, 1])) {
+    df[i,1] <- df[i,1] * 180/pi
+}
+```
+
+The key feature of the anti-pattern is that a `data.frame` column, in this case `df[, 1]` is being modified many times in sequence - once for each row.
+
+## A new challenger appears
+
+A colleague who has been using R for some time, sees your code over your shoulder and lets out some tut tuts. "You really should use lapply or map for that." he says.
+
+Really? Shouldn't they take about the same time? lapply and map must be just a loop under the hood! You decide to benchmark the suggestion:
+
+```
+microbenchmark(
+  for (i in nrow(df[, 1])) {
+    df[i,1] <- df[i,1] * 180/pi
+  },
+  df$a <- lapply(df$a, function(val) val * 180/pi))
+  
+>
+Unit: milliseconds
+expr                min       lq     mean    median
+for (...            11.794536 12.17966 15.64883 12.682777
+df$a <- lapply(...  1.883315  1.97313  2.59433  2.067858
+       uq      max neval
+ 16.30356 50.23415   100
+  2.35720 15.98660   100
+```
+
+Wow. `lapply` was 8x faster!
+
+## What is going on
+
+At this point you might be getting mad at the person that told you that loops aren't slow - but it's not their fault. Loops are not the problem here - it is the way R manages memory. In this case R is doing some extra work it doesn't need to do, and we can demonstrate it using tools from the `pryr` package.
+
+Let's consider the first five iterations of the loop, and print out the address of the column being modified, using `inspect(df[, 1])`, each time:
+
+```
+library(pryr)
+
+for (i in 1:5) {
+  df[i,1] <- df[i,1] * 180/pi
+  print(inspect(df[, 1]))
+}
+
+>
+<REALSXP 0x117c6f40>
+<REALSXP 0x117c98c0>
+<REALSXP 0x1ae1dec0>
+<REALSXP 0x1ae1fe40>
+<REALSXP 0x2446cc60>
+```
+
+What we observe is that at the end of each iteration, the column has a new address in memory. ==Now the only way that this can happen is if the entire column is copied to the new location, every single time it is modified.==
+
+With loops that modify multiple columns, there is a copying cost associated with each column, each iteration. For large datasets this can easily cause processing time blowouts.
+
+By contrast, the `lapply` construct only modifies the column once, all in one go. So it does not pay any penalty associated with copies induced by repeated assignments to the column.
+
+## Why it is going on
+
+I said before this copying was extra work R didn't need to do - let's explore that quickly. R is clever in one way in that it can share identical columns between dataframes to save memory. This is covered in some detail in [Advanced R](https://adv-r.hadley.nz/names-values.html#copy-on-modify). 
+
+So whenever a column is modified it is copied, in case that column was a column referred to by another dataframe. But this seems kind of dumb in the case where there is only one dataframe that uses that column - which is what we had in our example. It should be possible, by counting references to a column, to know when copying is required and when in-place modification is okay. [Apparently this is coming in future versions of R](https://adv-r.hadley.nz/names-values.html#copy-on-modify).
+
+## Not quite the end of the story
+
+Amongst the commotion and exclaiming at this revelation your supervisor approaches to see what is happening. She looks at the code briefly, blinks, and says "That's nice but you really could do that in one line, like this". She scribbles out this R code onto an important document on your desk:
+
+```
+df$a <- df$a * 180/pi
+```
+
+And instantly you know she's right. You don't even need to run the benchmark to know it's going to crush the alternatives. Here you learned an important lesson: in R often the fastest iteration construct is no iteration at all. Taking advantage of the internally vectorised nature of R's base functions and operators is the way to go where possible. I had a great lesson in this watching [Jenny Bryan's webinar on row-oriented workflows](https://resources.rstudio.com/webinars/thinking-inside-the-box-you-can-do-that-inside-a-data-frame-april-jenny-bryan) which I thoroughly recommend.
+
+## Summary
+
+Anywhere you encounter a dataframe (or `tibble`) being modified row-wise in a loop is an opportunity to improve run time significantly. I once found something like this written by a teammate and we got the run time down from around 6 hours to around 20 minutes by changing to another approach. Ofcourse thesedays most people are using `dplyr` or `data.table` to do this kind of work, so you're only likely to encounter it in legacy code or code written by people who are new to R.
+
+One final comment: this anti-pattern is fine where the run time is not a concern - i,e, the dataset is small. Never let benchmark bullies intimidate you into changing code that works, due to *notional* time constraints.
+
+----
+
+*With thanks to the #rstats twitter crowd who chimed in on [this twitter thread](https://twitter.com/MilesMcBain/status/1070565789827133442) in particular @groundwalkergmb and @ThomasMailund who provided code examples on which I based the one in this post.*
+
+*Header Image credit:
+By Ryan9270144, 11/5/2015, CC-BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:El_Diablo_Roller_Coaster.jpg*

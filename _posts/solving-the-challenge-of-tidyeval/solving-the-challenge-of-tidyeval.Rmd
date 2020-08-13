@@ -1,0 +1,102 @@
+---
+title: "Solving the Challenge of Tidyeval"
+description: |
+    Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2018-05-23
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - tidyverse
+  - tidyeval
+preview: 9972796593_14695448e7_b.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("9972796593_14695448e7_b.jpg")
+```
+
+> This dplyr code sure is working great! Now to wrap it up in a nice function to keep things clean and modular... oh fuck! The arguments aren't interpreted correctly... that's right. That tidyeval business. Let's google 'programming with dplyr' - Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it... shit shit shit! Why is this not working?! Okay okay, I'll read it top to bottom AGAIN. 'Quote'? 'Closure'? 'Quosure'?  ARGH I don't care, tell me how to MAKE THIS WORK! 
+> 
+>  -- Me, Every 3 months.
+
+It's well known that the R community at large finds tidyeval challenging. To get a feel for the sentiment just check out the [tidyeval tag on the RStudio Community Forum](https://community.rstudio.com/search?q=tidyeval). In this post I discuss why tidyeval is challenging, and what we might be able do about it. 
+
+## Not your average tidyverse package
+
+An overarching theme in R's `tidyverse` is reducing the user's cognitive load by creating functional APIs that align closely to the tasks the user needs to perform. The convention is to name functions using carefully chosen natural language verbs that allow the user to intuitively discover the function they need to manipulate their data using code completion mechanisms. There is no expectation that the user should read all the documentation up front before trying to use the API - indeed it's common to see *tidyverts* [tweeting or blogging joyously](https://twitter.com/pkqstr/status/977636512866041856) about new tidyverse functions they 'just discovered'. ^[Just searching '#tidyverse discovered' on Twitter is a thing to behold.]
+
+`rlang` - the package that powers tidyeval - is a very different animal. It does not conform to these conventions. This pretty much sums up the problem:
+
+```
+library(purrr)
+library(magrittr)
+library(rlang)
+
+rlang_namespace <- ls("package:rlang")
+length(rlang_namespace)
+# [1] 429
+
+keep(rlang_namespace, ~nchar(.x) <= 7)
+#  [1] ":="      "!!"      "!!!"     "%@%"     "%|%"     "%||%"    "abort"  
+#  [8] "are_na"  "as_box"  "as_env"  "as_list" "bytes"   "call_fn" "call2"  
+# [15] "chr"     "chr_len" "cnd"     "cpl"     "cpl_len" "dbl"     "dbl_len"
+# [22] "dots_n"  "enexpr"  "enexprs" "enquo"   "enquos"  "ensym"   "ensyms" 
+# [29] "env"     "env_get" "env_has" "exiting" "expr"    "exprs"   "f_env"  
+# [36] "f_env<-" "f_label" "f_lhs"   "f_lhs<-" "f_name"  "f_rhs"   "f_rhs<-"
+# [43] "f_text"  "flatten" "fn_body" "fn_env"  "fn_fmls" "get_env" "inform" 
+# [50] "inplace" "int"     "int_len" "invoke"  "is_box"  "is_call" "is_env" 
+# [57] "is_expr" "is_lang" "is_list" "is_na"   "is_node" "is_null" "is_raw" 
+# [64] "is_true" "lang"    "lang_fn" "lgl"     "lgl_len" "list2"   "ll"     
+# [71] "locally" "modify"  "na_chr"  "na_cpl"  "na_dbl"  "na_int"  "na_lgl" 
+# [78] "names2"  "new_box" "new_cnd" "new_raw" "node"    "ns_env"  "pkg_env"
+# [85] "prepend" "qq_show" "quo"     "quos"    "raw_len" "seq2"    "set_env"
+# [92] "splice"  "squash"  "string"  "sym"     "syms"    "type_of" "unbox"  
+# [99] "UQ"      "UQE"     "UQS"     "warn" 
+```
+
+There are a whopping 429 objects/functions in the rlang namespace! Around quarter of which favour this terse, abbreviated style of function naming. Now a good chunk of the functions do use classic tidyverse `verb_object` style, however if you read through the *[Programming With dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html)* vignette you'll find all the tidyeval functions presented, bar one, come from that list above.
+
+I suspect the reason for this minimalism is that the user has to nest `rlang` functions and operators within their classic `dplyr` code to use them. `%>%` can't be used to help keep things readable. So `rlang` seems to have been designed to fade into the background as much as possible.
+
+This results in a user experience that is quite apart from your average tidyverse package. The user almost certainly needs to consult the documentation upfront to identify the abbreviation that needs to be invoked in this huge namespace.
+
+## Not for your average tidyverse user
+
+The problem is it's not as simple as go to the documentation -> find the function -> get the job done. A lot of space in 'Programming with dplyr' and [other communications on the topic](https://www.youtube.com/watch?v=nERXS3ssntw) is dedicated to trying to explain the concepts of metaprogramming. This raises the question of who is tidyeval really for?
+
+Does your average *data* scientist looking to make their code more readable or accessible by building functions, really need to grok metaprogramming concepts like *quoting*, *clousures*, *quosures*, *environments*, *abstract syntax trees*, and *overscoping*? These terms refer to *computer* science literature, and specifically the LISP family of languages. They have historical significance, but I would argue they are not particularly great names for the concepts they embody. 'quote' especially, because it clashes with the process of writing a literal character vector, i.e. `'this'` - something most tidyverse users do every day.
+
+The choice to frame tidyeval in *computer* science terms presents a big problem: it means to onboard your average tidyverse-using data scientist, you have to teach them computer science. This supposes they have both the time and desire to be taught computer science/metaprogramming when all they really wanted to do was put their code in a function! I think this is the source of a lot of the bewilderment and frustration with the approach taken in *Programming With dplyr*: Users just don't expect to need a computer science lecture to get this type of task done.^[As it happens, my bachelor's degree was in computer science and I still find tidyeval bewildering.]
+
+## Making tidyeval more tidyverse
+
+Let's keep in mind: It is *design* decisions taken in `dplyr` and `ggplot2` that have driven the need for tidyeval^[Although I think it might have been the problems with naming plot elements in `ggvis` that really started us down this path.]. It is not at all given that a data scientist needs to take on metaprogramming concepts to write a function that encapsulates manipulating or plotting tidy data. 
+
+So the question I am considering is: Can we bend this powerful and feature rich metaprogramming framework provided by `rlang` in such a way, so that an API more empathic toward the majority of tidyverse users emerges? Is there a flavour of tidyeval that can feel like it was designed for *me*, like the rest of the tidyverse?
+
+My hypothesis is that this should be possible to do, using `rlang` as a platform, without writing much code at all! I am not here to tell you I have solved it, but I have made a start on a more tidyverse tidyeval.
+
+I've written [a package called `friendlyeval`](https://github.com/MilesMcBain/friendlyeval) that reduces the namespace of `rlang` down to 5 functions and 3 operators. The *Programming With dplyr* vignette has been distilled down to about a quarter of the length, and rewritten using task-focused language that tries to reference the data science context. You won't find any mention of quosures, environments, quoting, or abstract syntax trees etc.
+
+The 'killer' feature is that `friendlyeval` code can be automatically converted to `rlang` code using an included RStudio addin. Importantly this means: 
+1. You don't have to have production code depend on something not maintained RStudio developers.
+2. Your friends don't have to know you took the easy route.
+
+## Help Wanted
+
+I'm really keen for collaborators on this 'compatibility layer' idea. Naming things is hard! And that's pretty much the central challenge of this whole thing. I haven't even considered `ggplot2` and I feel the chance of me getting it right on my own is pretty low. Feedback is going to give this idea legs, so please throw ideas at me over in the GitHub issues. Thanks for reading!
+
+----------
+
+*Header Image credit:
+By Robson#, CC BY 2.0, [https://www.flickr.com/photos/_robson_/9972796593/in/photostream/](https://www.flickr.com/photos/_robson_/9972796593/in/photostream/)*
