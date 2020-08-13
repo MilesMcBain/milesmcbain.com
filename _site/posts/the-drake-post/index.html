@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>Before I Sleep: Benefits of a function-based diet (The {drake} post)</title>
+
+<meta property="description" itemprop="description" content="The {drake} post I&#39;ve been threatening to make has landed. All 4000 words of it."/>
+
+<link rel="canonical" href="https://milesmcbain.xyz/posts/the-drake-post/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2020-04-30"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-04-30"/>
+<meta name="article:author" content="Miles McBain"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Before I Sleep: Benefits of a function-based diet (The {drake} post)"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="The {drake} post I&#39;ve been threatening to make has landed. All 4000 words of it."/>
+<meta property="og:url" content="https://milesmcbain.xyz/posts/the-drake-post/"/>
+<meta property="og:image" content="https://milesmcbain.xyz/posts/the-drake-post/spinach_small.jpg"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Before I Sleep"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Before I Sleep: Benefits of a function-based diet (The {drake} post)"/>
+<meta property="twitter:description" content="The {drake} post I&#39;ve been threatening to make has landed. All 4000 words of it."/>
+<meta property="twitter:url" content="https://milesmcbain.xyz/posts/the-drake-post/"/>
+<meta property="twitter:image" content="https://milesmcbain.xyz/posts/the-drake-post/spinach_small.jpg"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="Before I Sleep: Benefits of a function-based diet (The {drake} post)"/>
+<meta name="citation_fulltext_html_url" content="https://milesmcbain.xyz/posts/the-drake-post/"/>
+<meta name="citation_online_date" content="2020/04/30"/>
+<meta name="citation_publication_date" content="2020/04/30"/>
+<meta name="citation_author" content="Miles McBain"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Benefits of a function-based diet (The {drake} post)"]},{"type":"character","attributes":{},"value":["The {drake} post I've been threatening to make has landed. All 4000 words of it."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["2020-04-30"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["rstats","productivity","workflow","reproducibility","debugging"]},{"type":"character","attributes":{},"value":["spinach_small.jpg"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/the-drake-post/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/the-drake-post/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["benefits_of_a_function_based_diet_files/bowser-1.9.3/bowser.min.js","benefits_of_a_function_based_diet_files/distill-2.2.21/template.v2.js","benefits_of_a_function_based_diet_files/header-attrs-2.3/header-attrs.js","benefits_of_a_function_based_diet_files/jquery-1.11.3/jquery.min.js","benefits_of_a_function_based_diet_files/webcomponents-2.0.0/webcomponents.js","spinach_small.jpg"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+d-code {
+  overflow-x: auto !important;
+}
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+
+d-code {
+  overflow-x: visible !important;
+}
+
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Benefits of a function-based diet (The {drake} post)","description":"The {drake} post I've been threatening to make has landed. All 4000 words of it.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-04-30T00:00:00.000+10:00","citationText":"McBain, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Before I Sleep</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Benefits of a function-based diet (The {drake} post)</h1>
+<p><p>The {drake} post I’ve been threatening to make has landed. All 4000 words of it.</p></p>
+</div>
+
+<div class="d-byline">
+  Miles McBain <a href="https://milesmcbain.xyz" class="uri">https://milesmcbain.xyz</a> 
+  
+<br/>2020-04-30
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="spinach_small.jpg" width="100%" /></p>
+</div>
+<blockquote>
+<p>Heads up! This post assumes elementary knowledge of what <code>{drake}</code> does. If you’re at all hazy watch <a href="https://books.ropensci.org/drake/index.html#short-version">this excellent short video</a> (5:48).</p>
+</blockquote>
+<p>A benefit of joining a fledgling Data Science team is that you get to shape the team culture and workflow. So when I joined QFES Futures just over a year ago I was keen to take the opportunity to try to steer us away from some of practices that I have seen make data science collaboration difficult in the past.</p>
+<p>One of my main early catch cries was “reproducibility!”. But in this context I wanted that to mean more than just being able to blindly run eachother’s code and archive the same output. I want us to be able to reproduce the understanding of how the work is answering relevant questions. Apart from affording a degree of rigour, this has the benefit of reproducing skills across the team. Skills siloing leading to role “lock-in” is a path to collective unhappiness in my experience. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>So now we get to the R package <code>drake</code>. Initially I was attracted to it as an easier alternative to <code>make</code>. Why would I want <code>make</code>? There were 2 main reasons:</p>
+<ol type="1">
+<li><p>Pretty much all our projects involve hitting enterprise databases with SQL queries to pull large volumes of data. This places two things in tension: For reproducibility’s sake you want to be running your data science pipeline end-to-end as often as possible. But for the sake of not being a jerk on a shared platform, you don’t want to be regularly fetching the exact same data you’ve received prior. I wanted caching, but with minimal explicit cache management.</p></li>
+<li><p>The second thing I was craving was some common scaffolding we could use to structure and orchestrate our data science pipelines. Over the years I’ve tried a lot of the different R project templating tools out there. I’ve realised I don’t enjoy those that get too intricate with their folder structures. Inevitably you hit something that doesn’t neatly fit the schema.</p></li>
+</ol>
+<p>Happily I found <code>drake</code> had a lot to offer in both respects. And then some.</p>
+<p>One type of question that emerges repeatedly in discussion with the <code>drake</code>-curious is something like “When does it become worth it to use drake?” or “I only do X type of work, will drake help me?”</p>
+<p>My take is this:</p>
+<p>Approaches to data science pipelines using <code>drake</code> are valuable on projects large and small because they help you move faster by: * avoiding unnecessary computation time * eliminating common classes of bugs associated with interactive development * providing easy-to-use debugging access-panels * facilitating comprehensible project and code structure</p>
+<p>BUT. It’s not like you get all this for free just by using <code>drake</code>. You get nudges in the right direction. It is still up to you to establish a workflow that will fully convey these benefits. And I think this is where people are getting stuck - taking the first steps.</p>
+<p>So with the rest of this post I’m trying to offer you an on-ramp by outlining my team’s current <code>drake</code> workflow. It is the result of many iterations over a year of <code>#rstats</code> data science project work and I hope it serves you well.</p>
+<h1 id="fundamental-principles">Fundamental Principles</h1>
+<p>A problem my team has is that our workload can get choppy on short notice. Working for emergency services is by definition working through extreme and hence potentially unforeseen events. The media and politicians add their own spice to this mix lest thing get boring.</p>
+<p>Complexity does not survive in this environment. People need to be able to context switch between different analysis projects quickly, and workflow artifacts need to be zero-overhead to create, otherwise there simply ‘won’t be time’ to do the things that save us time.</p>
+<p>The underlying principles of our workflow are a response to this environment:</p>
+<ol type="1">
+<li>We automate workflow tasks behind one line function calls. Very much inspired by <code>{devtools}</code> and <code>{usethis}</code>.</li>
+<li>We use active countermeasures to ward off common bugs that can derail something due on short notice.</li>
+<li>We try to write ‘self-documenting’ code in our <code>drake</code> plans, with an emphasis object/function names that articulate their role in the pipeline.</li>
+</ol>
+<p>I’ve put as much of this as possible in a package called <a href="https://github.com/milesmcbain/dflow"><code>{dflow}</code></a> that helps create projects that follow our workflow.</p>
+<h1 id="initial-project-structure">Initial Project Structure</h1>
+<p>We call <code>dflow::use_dflow()</code> to create starter projects that have this structure:</p>
+<pre><code>
+.
+├── .env
+├── R
+│   └── plan.R
+├── _drake.R
+└── packages.R
+</code></pre>
+<p>It’s a simple flat structure that sets up the machinery for <code>drake::r_make()</code>. <code>r_make()</code> is a variant of <code>make()</code> that runs your pipeline described in <code>plan.R</code> within it’s own self contained R session. This is important because you want to avoid running your pipeline in an environment that contains things that have accumulated there during interactive development. Some of these objects might be stale - old function definitions for example - and this can lead to bugs or failure to reproduce results on a teammate’s computer.</p>
+<p><code>r_make()</code> looks for a file called <code>_drake.R</code> which has the role of sourcing all your functions, making all the <code>library()</code> calls, and otherwise setting up any objects the pipeline needs to run. The final thing it does is return your plan and associated config to be run by the <code>drake</code> machinery.</p>
+<p>The other files <code>packages.R</code>, and <code>.env</code> are about declaring dependencies and setting useful environment variables. They come populated with some stuff in them that I will return to later.</p>
+<h1 id="mature-project-structure">Mature Project Structure</h1>
+<p>Below is a more mature example that shows how things can evolve. Apart from <code>R</code>, <code>doc</code> is effectively the only standard one of these, since we use a function called <code>dflow::use_rmd()</code> that creates RMarkdown files in it. The other folders may not appear, or may appear under different names, depending on what the project is trying to do, and lead author’s taste.</p>
+<pre><code>
+.
+├── .env
+├── .gitignore
+├── R
+│   ├── assign_crew.R
+│   ├── assign_stations_to_hexes.R
+│   ├── fetch_geoscience_data.R
+│   ├── get_block_data.R
+│   ├── get_crewnum_19.R
+│   ├── get_hexes.R
+│   ├── get_oms_responses.R
+│   ├── get_population_data.R
+│   ├── get_qld_sa1s.R
+│   ├── get_stations.R
+│   ├── intersect_population_hexes.R
+│   ├── knn_prediction.R
+│   ├── knn_prediction_future.R
+│   ├── plan.R
+│   ├── read_geoscience_data.R
+│   ├── summarise_hex_response_times.R
+│   ├── summarise_hex_structure_fires_future.R
+│   ├── summarise_hexes.R
+│   ├── tag_hexes.R
+│   └── tag_responses.R
+├── README.md
+├── _drake.R
+├── doc
+│   └── analysis.Rmd
+├── input
+│   └── qgso_sa1_pop.rds
+├── packages.R
+└── sql
+    ├── get_h3_remoteness_areas.sql
+    ├── get_hexes.sql
+    └── get_oms_responses.sql</code></pre>
+<p>Notice how all the R files seem to be about doing one specific thing, and they’re all lumped in together under the <code>R</code> folder. This might feel weird if you’re used to a more traditional folder-based approach e.g. <code>./00_load/</code>, <code>./01_wrangle/</code>, <code>./02_model/</code>. The difference is that the bulk of the project structure is provided by the <code>plan.R</code> file. To make that structure coherent it is useful to have functions named after specific steps. We have a convention one of these functions per file. This has advantages I will discuss very soon.</p>
+<h1 id="plan-conventions">Plan conventions</h1>
+<p>Here is a slightly stripped back<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> version of the plan.R file that corresponds to that project structure:</p>
+<pre><code>
+the_plan &lt;-
+  drake_plan(
+    start_date = as_datetime(&quot;2018-01-01&quot;),
+    end_date = as_datetime(&quot;2020-01-01&quot;) - seconds(1),
+
+    # spatial block is H3
+    h3_resolution = 6,
+    hexes = get_hexes(h3_resolution),
+
+    stations = get_stations(),
+
+    crews = get_crewnum_19(),
+
+    h3_geoscience_res6_source = fetch_geoscience_data(),
+
+    h3_geoscience_res6 = read_geoscience_data(h3_geoscience_res6_source),
+
+    qld_sa1s = get_qld_sa1s(),
+
+    future_pop = get_population_data(),
+
+    hex_populations = intersect_population_hexes(future_pop,
+                                                 qld_sa1s,
+                                                 hexes),
+
+    oms_responses = get_oms_responses(start_date, end_date),
+
+    tagged_oms_responses = tag_responses(oms_responses, hexes),
+
+    ## Structure Fires
+    hex_summary = summarise_hexes(
+      hexes,
+      h3_geoscience_res6,
+      tagged_oms_responses,
+      hex_populations
+    ),
+
+    hex_predictions = knn_prediction(hex_summary),
+
+    report = target(
+      command = {
+        rmarkdown::render(knitr_in(&quot;doc/analysis.Rmd&quot;))
+        file_out(&quot;doc/analysis.html&quot;)
+      }
+    )
+  )</code></pre>
+<p>It’s all function calls. There is no explicit code for data wrangling, modelling, or plotting present in the plan. We try to keep the plan as close as possible to a high level description of what is happening. I wouldn’t expect you to fully follow what is going on, there’s a lot of assumed team context, but hopefully you can make out:</p>
+<ul>
+<li>data acquisition steps with function names like <code>get_*</code>, <code>fetch_*</code>, <code>read_*</code></li>
+<li>data wrangling steps: <code>intersect_population_hexes</code>, <code>tag_responses</code></li>
+<li>a modelling step: <code>knn_prediction</code></li>
+<li>a report built from <code>analysis.Rmd</code></li>
+</ul>
+<p>The long and specific function names contextualise the processes they contain.</p>
+<p>Would you have guessed this project has had 3 people contributing code to it? That explains the slightly different choices of verbage in function names etc. Despite this it has maintained coherency.</p>
+<p>The plan also induces structure that can help navigate and understand it. Let’s say we’re interested in what this <code>hexes</code> target is about and we want to see how it is defined. Our convention all but guarantees there will be a file, <code>./R/get_hexes.R</code>, that corresponds to the <code>get_hexes(h3_resolution)</code> function call.</p>
+<p>We could navigate to that file in our file browser. Or we could use the ‘jump to definition’ shortcut available in most IDEs/editors<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<h1 id="function-conventions">Function Conventions</h1>
+<p>Our convention is to match function argument names in the definition to the names of dependent plan targets where possible<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. For example the definition of <code>summarise_hexes</code> looks like this:</p>
+<pre><code>
+#&#39; summarise_hexes
+#&#39;
+#&#39; @param hexes 
+#&#39; @param h3_geoscience_res6 
+#&#39; @param tagged_oms_responses 
+#&#39; @param hex_populations 
+#&#39;
+#&#39; @return hex_summary
+#&#39; @export
+#&#39;
+#&#39; @author Miles McBain
+summarise_hexes &lt;- function(hexes,
+                            h3_geoscience_res6,
+                            tagged_oms_responses,
+                            hex_populations) {
+...
+# convert all to tibbles and select columns
+# cascading left_join() calls
+...
+
+}</code></pre>
+<p>with all the argument names mirroring targets in the plan.</p>
+<p>This convention speeds up the process of setting up suitable input values for interactive development of the function code, since we can read them directly out of drake’s cache! If you’re using RStudio, you have an addin provided by <code>drake</code> called “loadd target at cursor” which will load the target under the cursor into your global environment <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. This makes starting from a fresh session, jumping to some code, and getting set up to edit quite fast. Here’s a gif<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
+<figure>
+<img src="/content/images/2020/04/drake_cache2.gif" alt="" /><figcaption>Jump to source, loadd targets at cursor, run code.</figcaption>
+</figure>
+<p>Functions are usually short, not much more than a screenfull of code. This maximises the effectiveness of the cache as a development accelerator. For example: if you combine a database query followed by some hectic wrangling into one target, you’ll be re-running the query every time you fine tune your wrangling. You’re better off splitting them into two functions so that the query only gets run once and cached.</p>
+<h2 id="automated-function-templating">Automated function templating</h2>
+<p>Writing lots of these functions in individual files can get tedious, so I’ve automated this process. The <a href="https://github.com/milesmcbain/fnmate"><code>{fnmate}</code></a> package allows you to call functions into existence in a conventionally named file, just by writing a call to that hypothetical function:</p>
+<figure>
+<img src="/content/images/2020/04/fnmate-1.gif" alt="" /><figcaption>fnmate-1</figcaption>
+</figure>
+<p>Beware. This gets addictive and there’s no way back. I use it many times daily.</p>
+<h1 id="rmarkdown-conventions">RMarkdown Conventions</h1>
+<p>We’ll often have multiple outputs knitted from RMarkdown files. A report and a companion slide deck has been a favourite combo, or perhaps reports for peers vs reports for stakeholders.</p>
+<p>In this scenario it made sense to promote objects like maps and plots that are shared across documents to plan targets. So it’s common to see stuff like this in our plans:</p>
+<pre><code>
+the_plan &lt;- 
+  drake_plan(
+    ...
+    
+    coverage_map = create_coverage_map(isochrones, escad_incidents),
+    
+    daily_work_series_plot = create_daily_work_series_plot(escad_incidents,   incident_categories)
+    
+    ...
+    
+    report = target(
+      command = {
+        rmarkdown::render(knitr_in(&quot;doc/analysis.Rmd&quot;))
+        file_out(&quot;doc/analysis.html&quot;)
+      }
+    )
+
+  )</code></pre>
+<p>Where these targets are <code>{mapdeck}</code> and <code>{ggplot}</code> objects respectively. The RMarkdown then becomes extremely simple:</p>
+<pre><code>
+...
+
+## 14 minute travel isochrone
+
+\```{r, echo = FALSE, out.width = 100%}
+readd(coverage_map)
+\```
+</code></pre>
+<p>Where <code>drake::readd</code> pulls <code>coverage_map</code> from the cache into the rendering environment. It also signifies to <code>drake</code> that <code>report</code> has a dependency on <code>coverage_map</code>.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>And as a general consequence our RMarkdown documents have far less R code in them than I had become used to. Rendering completes in seconds and rarely errors.</p>
+<p>When we do include R code beyond reading targets from the cache, our principle is to keep it directly related to the presentation rather than computation of results.</p>
+<p>It’s been interesting to see how niggles I have with Rmd and notebooks in general have evaporated under these conventions. Do you ever feel when looking at the source of an Rmd that the narrative of the text and the narrative of the code are out of sync somehow? This approach may release that tension for you.</p>
+<h1 id="debugging-the-pipeline">Debugging the pipeline</h1>
+<p>When something goes badly wrong and errors, <code>drake</code> will give you the stack trace and the name the target on which the error occurred. From that you know which function to jump into so debugging from there becomes:</p>
+<ol type="1">
+<li><p>load and inspect targets the function takes as inputs from the cache e.g. using <code>loadd(target_name)</code> or the ‘loadd target at cursor’ addin.</p></li>
+<li><p>Play debug detective, e.g. :</p>
+<ul>
+<li>Check the input conforms to your assumptions
+<ul>
+<li>jump to THAT target’s function if no</li>
+</ul></li>
+<li>Inspect intermediate results</li>
+<li>Explain the problem to a duck</li>
+</ul></li>
+</ol>
+<p>After a fair bit of this I’ve come to appreciate how having these tightly focused functional units of pipeline logic that interface with eachother in regular ways helps you narrow in on a problem quickly.</p>
+<p><code>drake</code> provides some tools that can help with debugging but they’re not compatible with <code>r_make()</code>, since you need your REPL R session and the plan evaluation session to be one and the same. You can still use them though, just make sure you do so in a fresh R session. The workflow would be:</p>
+<ol type="1">
+<li><code>source("_drake.R")</code></li>
+<li><code>drake_debug(target = target_that_failed, plan = the_plan)</code></li>
+</ol>
+<p>And you’ll be immediately dropped into an interactive debugging session of the target function as if you had called <code>debugOnce</code> on it<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. I rarely do this though, most of the time the first approach gets me there.</p>
+<h1 id="active-countermeasures">Active Countermeasures</h1>
+<p>Here’s where we return to the <code>packages.R</code> and <code>.env</code>:</p>
+<p><code>packages.R</code> ships with:</p>
+<pre><code>
+library(conflicted)
+library(dotenv)
+library(drake)</code></pre>
+<p>and here’s <code>.env</code>:</p>
+<pre><code>
+_R_CHECK_LENGTH_1_LOGIC2_=verbose
+_R_CHECK_LENGTH_1_CONDITION_=true</code></pre>
+<p>Now let’s talk about what’s driving this.</p>
+<h2 id="avoiding-conflicts-with-conflicted">Avoiding conflicts with {conflicted}</h2>
+<p><a href="https://github.com/r-lib/conflicted"><code>{conflicted}</code></a> makes sure you avoid the particularly insidious class of R bugs that arise from function masking in packages. That is: when two or more packages provide functions of the same name, the package you call <code>library()</code> on last has its function end up in your namespace. Change the order of your library calls, change the way your code functions. Yikes.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>My team tend to pull many different kinds of data together in our analyses. 20 or so library calls is in <code>packages.R</code> is not that uncommon. So there’s been plenty of scope for this issue to arise and hours have been lost. One of the things I despise about this bug is that the error messages you get are dumbfounding. Things you’re sure should work just suddenly don’t. It’s the kind of thing that makes you get all superstitious and fall back to turning it on and off again.</p>
+<p><code>conflicted</code> will mean a few extra lines in the packages.R file of the form:</p>
+<pre><code>
+conflicted::conflict_prefer(&quot;filter&quot;, &quot;dplyr&quot;)</code></pre>
+<p>And yes doing that for <code>filter</code> every time you use it for the first time does get old. But it’s a tiny price to pay for never losing hours to this issue again.</p>
+<h2 id="making-r-stricter-with-env-vars">Making R stricter with env vars</h2>
+<p>The only thing the <code>{dotenv}</code> package does is load the environment variables specified in the <code>.env</code> file. We prefer this to way to using an <code>.Renviron</code> file in the project root, since that would mask the user’s local <code>.Revniron</code> in their profile. <code>.env</code> is also a cross language standard for doing this.</p>
+<p>The payload of the <code>.env</code> file are two R options that we’re turning on - this is what they do:</p>
+<p><code>_R_CHECK_LENGTH_1_LOGIC2=verbose</code> makes the usage of ‘scalar’ logic operators like <code>&amp;&amp;</code> and <code>||</code> with vectors longer than 1 element an error and includes tracing information. Why? Compare these expressions and their output:</p>
+<pre class="r"><code>
+library(tibble)
+library(dplyr)
+mtcars &lt;- as_tibble(mtcars)
+nrow(mtcars)
+
+# [1] 32
+
+mtcars %&gt;%
+filter(gear &gt;= 4 || am == 1) %&gt;% 
+nrow()
+
+# [1] 32
+
+mtcars %&gt;%
+filter(gear &gt;= 4 | am == 1) %&gt;%
+nrow()
+
+# [1] 17
+
+Sys.setenv(`_R_CHECK_LENGTH_1_LOGIC2_`=&quot;verbose&quot;)
+mtcars %&gt;%
+filter(gear &gt; 4 &amp;&amp; am == 1)
+
+# ----------- FAILURE REPORT -------------- 
+# --- failure: length &gt; 1 in coercion to logical ---
+# --- srcref --- 
+# : 
+# --- package (from environment) --- 
+# package:dplyr
+# --- call from context --- 
+# NULL
+# --- call from argument --- 
+# gear &gt; 4 &amp;&amp; am == 1
+# --- R stacktrace ---
+# ...</code></pre>
+<p>See <a href="https://github.com/HenrikBengtsson/Wishlist-for-R/issues/48">this issue</a> for some exposition on what is happening.</p>
+<p>So the variations read very similarly. They probably sound the same in your head, and yet the results! You may be confident you’ll never make this mistake. But how confident are you in spotting it in someone else’s code as a deadline looms?</p>
+<p><code>_R_CHECK_LENGTH_1_CONDITION_=true</code> changes a warning that would normally be thrown by trying to use an <code>if</code> statement with length &gt; 1 vector into an error. E.g.</p>
+<pre><code>
+if(c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;)
+
+# [1] &quot;Doin&#39; stuff&quot;
+# Warning message:
+# In if (c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;) :
+#   the condition has length &gt; 1 and only the first element will be used
+
+Sys.setenv(`_R_CHECK_LENGTH_1_CONDITION_`=&quot;true&quot;)
+if(c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;)
+
+## Error in if (c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;) : 
+##  the condition has length &gt; 1</code></pre>
+<p>The rationale here is that upgrading the warning to an error forces us to fail early and hard. We don’t want to spot something like this after we’ve let the pipeline run for an hour, cache or no cache.</p>
+<p>As a general principle, failing early and hard plays really nicely with <code>drake</code> since the processing up to the point of failure is not wasted. This idea can be extended from warnings to coding in assertions about input targets where appropriate.</p>
+<h1 id="complementary-tools-for-reproducibility">Complementary tools for reproducibility</h1>
+<p>Just briefly I want to discuss managing versions of R package dependencies. We have two approaches that are employed depending on the durability of the project. Spoiler: neither of them involve Docker - we haven’t had the need yet.</p>
+<h2 id="for-long-lived-projects">For long lived projects</h2>
+<p>For things we want to be able to return to in months and years from now we use a kind of lighter-weight wrapper for RStudio’s <code>{renv}</code> called <a href="https://www.github.com/milesmcbain/capsule"><code>{capsule}</code></a>. The idea behind <code>capsule</code> is that since we execute our pipeline in an isolated environment, it is that package environment and that environment only that needs to be clearly specified. A user’s interactive development environment does not need to be described and locked down in the same way.</p>
+<p>In practice this side-steps a lot of awkwardness under <code>renv</code> that comes with trialling packages in development you quickly decide not to use, and accessing packages that are convenient for development but not required for the pipeline to run.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p>Using <code>capusle</code> we can: * capture a description of the package environment set up by <code>packages.R</code> with <code>capsule::create()</code> * run a pipeline inside an environment that matches the description with <code>capsule::run_callr(function() drake::r_make())</code></p>
+<h2 id="for-short-lived-projects">For short lived projects</h2>
+<p>Recently we’ve evolved a different approach for things that are perhaps more time sensitive and at the same time more disposable. Think maps to respond to queries from ranking officials etc.</p>
+<p>We use a packaged called <a href="https://github.com/anthonynorth/using"><code>{using}</code></a> to map out any critical version dependencies in the <code>packages.R</code>. Instead of yelling to someone “This’ll only work with the dev version of mapdeck” as you email them a link to a gist or repo, you can write:</p>
+<pre><code>
+using(mapdeck, min_version = &quot;0.3.2003&quot;, repo = &quot;https://github.com/SymbolixAU/mapdeck&quot;)</code></pre>
+<p>And as a nicety the user is prompted to install if the dependency is not satisfied.</p>
+<p>A driver for this is long compilation times for development versions of various packages that make building a complete environment using <code>capsule</code> a bit annoying for time sensitive things that will only be thrown away. <a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<h1 id="but-will-it-scale">“But will it scale?”</h1>
+<p>We’ve had as many as four data scientists contributing simultaneously to projects in this style. My sense from hanging out with you all online is that this is actually above average. One unexpected benefit of the one-function-per-file convention is that space is created for collaborators to make contributions without tripping over eachother.</p>
+<p>I can count the git merge conflicts we’ve had on one hand. They all happened in the plan file as that’s now the one place you can really step on someone. Conflicts in this file are not too bad to resolve since the code is so high level - just a list of targets and function calls.</p>
+<p>Scaling to a large code base is not something I can comment on. We’ve probably done a few thousand lines of code at peak. I’ve heard that lots of code can challenge <code>drake</code> as it parses all it all to detect dependencies. This feels like a surmountable problem. Don’t let it hold you back.</p>
+<p>On the other end of things I don’t think there actually is a project size too small. Many of the discussed benefits still apply and overhead is low thanks to automations. I’ve used this workflow a few times to create <a href="https://github.com/milesmcbain/covid19">pipelines that output a single plot image</a>. Even on a tiny project there’s something to be said for sticking to conventions to avoid bogging down in new decisions.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>If you’ve had some programming education you may recognise a key philosophy of this approach as <em>encapsulation</em>. That’s the breaking of machinery into pieces, hiding it away behind descriptive labels, and clear interfaces. Encapsulation done well allows us to reason about a complex data science pipeline on different abstraction levels as necessary without getting overloaded.</p>
+<p>When you combine that encapsulation with a <code>drake</code>’s cache and dependency sniffing smarts, you get the ability to hone in on bugs extremely quickly. You also minimise the cost of having had them, since you reuse as much prior processing as possible in a principled way that guarantees reproducibility.</p>
+<p>Using functions for the structure they can provide is different to the dominant way they are pitched in our community, as tools to avoid “repeating yourself”. In this context, I would change a popular maxim slightly to say:</p>
+<blockquote>
+<p>If there’s a piece of code you’ve had to <strong>comprehend</strong> three or more times, consider writing a function (and choosing a good descriptive name).</p>
+</blockquote>
+<p>Doing this well still involves much art. Don’t worry if you’re not ready for the rest of the fucking owl yet. Building comfort with writing functions by forcing yourself to do it more often would be a great stepping stone to a workflow like this.</p>
+<h1 id="the-end">The end</h1>
+<p>Thanks for reading. My objective here hasn’t been to sell you on my tools and my workflow. Although they are there to be used and I welcome your feedback.</p>
+<p>I’m offering what I have for you to reflect on, adapt, and remix in the context of your own working styles, team dynamics, and coding preferences. I think workflows that <em>work</em> can’t be established any other way.</p>
+<h1 id="with-thanks-to">With thanks to</h1>
+<p><a href="https://twitter.com/nj_tierney">Nick Tierney</a> for a thoughtful draft review of this post.</p>
+<p>My colleagues, who have been on this journey with me for the last year, and among them especially <a href="https://github.com/anthonynorth">Anthony North</a>.</p>
+<p><a href="https://ropensci.org/">rOpensci</a>, and all <code>drake</code>’s contributors but especially <a href="https://github.com/wlandau">Will Landau</a> who is without a doubt the most responsive R package maintainer on the internet.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>I think I was first exposed to these kinds of ideas when I read this <em>Scaling Knowledge at AirBnB</em> blog post way back in 2016. Still worth a read now: <a href="https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091" class="uri">https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>full plan <a href="https://gist.github.com/MilesMcBain/0a834f54320dd7e6e4a558589bd920d4">here</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>F2 or Control + Mouse1 in RStudio<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>This may be not possible when using the more fancy dynamic target mechanisms, but we rarely use these.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>I’ve bound ‘loadd target at cursor’ to a keyboard shortcut here. It’s a simple matter to do this for VSCode or Emacs, ping me if you want an example.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Okay some sleight of hand here. You’d need to have loaded the library calls first. I have a shortcut setup to do <code>source("./packages.R")</code><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Yes. Incredibly <code>drake</code> parses the code inside your RMarkdown and registers them as dependencies of the <a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>Since your target functions are just regular R functions you can already use <code>debugOnce</code> on them.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>As people seem to enjoy pointing out, <a href="https://developer.r-project.org/Blog/public/2019/03/19/managing-search-path-conflicts/">this functionality was added to base R since 3.6</a>. Conflicted is still the superior choice in my opinion. It’s documentation is more coherent, and it let’s you take a lazy, function by function approach, addressing conflicts only if they actually arise in your code.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p><code>{mapview}, {datapasta}, {styler}, {lintr}, {languageserver}, {fnmate}</code> are all examples.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>One could argue that in a time sensitive situation we need the protection of the <code>capsule</code> approach more than ever. I have a lot of sympathy for that argument.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">McBain (2020, April 30). Before I Sleep: Benefits of a function-based diet (The {drake} post). Retrieved from https://milesmcbain.xyz/posts/the-drake-post/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{mcbain2020benefits,
+  author = {McBain, Miles},
+  title = {Before I Sleep: Benefits of a function-based diet (The {drake} post)},
+  url = {https://milesmcbain.xyz/posts/the-drake-post/},
+  year = {2020}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

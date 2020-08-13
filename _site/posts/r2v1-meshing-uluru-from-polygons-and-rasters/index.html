@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters</title>
+
+<meta property="description" itemprop="description" content="In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data."/>
+
+<link rel="canonical" href="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2018-03-27"/>
+<meta property="article:created" itemprop="dateCreated" content="2018-03-27"/>
+<meta name="article:author" content="Miles McBain"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data."/>
+<meta property="og:url" content="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"/>
+<meta property="og:image" content="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Before I Sleep"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters"/>
+<meta property="twitter:description" content="In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data."/>
+<meta property="twitter:url" content="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"/>
+<meta property="twitter:image" content="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters"/>
+<meta name="citation_fulltext_html_url" content="https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"/>
+<meta name="citation_online_date" content="2018/03/27"/>
+<meta name="citation_publication_date" content="2018/03/27"/>
+<meta name="citation_author" content="Miles McBain"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R2VR: Meshing Uluru From Polygons and Rasters"]},{"type":"character","attributes":{},"value":["In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["2018-03-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["1200px-Uluru1_2003-11-21.jpg"]},{"type":"character","attributes":{},"value":["rstats","WebVR","R2VR","GIS"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["1200px-Uluru1_2003-11-21.jpg","csiro_acems_qut_aad.png","triangulated_bbox.png","uluru_backside.png","uluru_contours.png","uluru_raster_overlap-1.png","uluru_tri_2500.png","ulurumesh.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+d-code {
+  overflow-x: auto !important;
+}
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+
+d-code {
+  overflow-x: visible !important;
+}
+
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"R2VR: Meshing Uluru From Polygons and Rasters","description":"In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2018-03-27T00:00:00.000+10:00","citationText":"McBain, 2018"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Before I Sleep</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>R2VR: Meshing Uluru From Polygons and Rasters</h1>
+<p><p>In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.</p></p>
+</div>
+
+<div class="d-byline">
+  Miles McBain <a href="https://milesmcbain.xyz" class="uri">https://milesmcbain.xyz</a> 
+  
+<br/>2018-03-27
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="1200px-Uluru1_2003-11-21.jpg" width="100%" /></p>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>In this post I describe using R to make a 3D mesh of <a href="https://en.wikipedia.org/wiki/Uluru">Uluru</a> from publicly available spatial data. In a future post I will detail how to place 3D meshes of this form in a WebVR scene. The types of data you can use, transformations you need to perform, and issues that require consideration are discussed.</p>
+<p>This is intended to be a example you can adapt for you own purposes. All code and data in this post is available in <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh">this GitHub repository</a>.</p>
+<p>The end goal of this post is a triangulated mesh of x,y,z vertices:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="ulurumesh.png" alt="A preview of an Uluru mesh created with rgl" width="100%" />
+<p class="caption">
+Figure 1: A preview of an Uluru mesh created with rgl
+</p>
+</div>
+</div>
+<p>Each triangular section forms a ‘face’ that can be shaded with interesting colours or textures, perhaps derived from data. In the world of 3D graphics meshes are built from either quadrilaterals or triangles, but since I am targeting WebVR in particular, the choice is made for me: The underlying three.js framework only <a href="https://github.com/mrdoob/three.js/issues/11655">uses triangles</a>.</p>
+<h1 id="data">Data</h1>
+<p>Typically you will have some combination of shapefiles and raster data available. Shapefiles can describe 2D outlines of features as well as their 3D topology via stacked outlines - aka contours. Raster data are often a more useful for adding the third spatial dimension, since they are a common format for Digital Elevation Models (DEMs). I’ve found these tend to provide elevation information at finer resolution.</p>
+<p>For this example I’ll use: * Shapefiles containing contours for Uluru, provided by Geoscience Australia, from <a href="https://data.gov.au/fr/dataset/uluru-ayers-rock-1-250-000-gis-dataset">data.gov.au</a> * A DEM raster image, exported from Geoscience Australia’s <a href="http://www.ga.gov.au/elvis/">Elevation Information System (ELVIS)</a>.</p>
+<p>The <code>sf</code> and <code>raster</code> packages provide the ability to read and manipulate these spatial data. For an introduction to <code>sf</code> I highly recommend the <a href="https://www.jessesadler.com/post/gis-with-r-intro/">blog of Jesse Sadler</a>.</p>
+<h2 id="shapes">Shapes</h2>
+<p>The contour shapefiles are distributed as part of a GIS dataset containing a dizzying array of features of the Uluru-Kata Tjuta National Park.</p>
+<p>Contours can give us elevation, but in this example I am just using them to get an outline. For reasons that will soon become clear, in this case this turns out to be a slightly flawed approach, however I am confident it is worthwhile examining the method for its applicability to meshing complex arbitrary shapes.</p>
+<p>I start by loading the shapefiles into R using the <code>sf</code> package, filtering the contour data down to Uluru using a bounding box, before finally finding the outer-most contour. This gives me a 2D outline I can project into 3D.</p>
+<pre class="r"><code>
+library(sf)
+library(raster)
+library(tidyverse)
+
+# Contours from all over Uluru-Kata Tjuta National Park                    
+uluru_kata_shape &lt;- 
+read_sf(&quot;./data/GEODATA_TOPO250K_TILE_DATA/G5208/Shapefiles/Elevation/g5208_contours.shx&quot;)
+
+# Make a bounding box to focus in on Uluru
+# mymaps.google.com is a handy tool for determining bounding boxes.
+uluru_bbox_poly &lt;- 
+  st_bbox(c(ymin = -25.39521, 
+            ymax = -25.2922, 
+            xmax = 131.09814, 
+            xmin = 130.97454), 
+            crs = st_crs(&quot;+proj=longlat +ellps=WGS84&quot;)) %&gt;%
+    st_as_sfc() 
+    # An sf bbox is not geometry... this converts it :S
+
+# Filter map countours to those comprising Uluru
+uluru_contours &lt;- 
+    filter(uluru_kata_shape, 
+           as.vector(
+             st_contains(uluru_bbox_poly, 
+                        uluru_kata_shape$geometry, 
+                        sparse = FALSE)
+           ))
+
+# Find the outer contour by finding the one with the highest longitude
+uluru_outline &lt;- 
+  uluru_contours %&gt;%
+  mutate(max_y = map_dbl(geometry,
+                         ~max(as.matrix(.)[,1]) )) %&gt;% 
+  arrange(desc(max_y)) %&gt;% 
+  filter(row_number() == 1)
+
+  plot(uluru_contours[&quot;FEATTYPE&quot;], 
+    main = &quot;Uluru Elevation Contours&quot;)
+  plot(uluru_outline[&quot;FEATTYPE&quot;], 
+    main = &quot;Outline Contour&quot;)</code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="uluru_contours.png" alt="Plot otuputs of contours and outline" width="100%" />
+<p class="caption">
+Figure 2: Plot otuputs of contours and outline
+</p>
+</div>
+</div>
+<p>We’re nearly done here, but for one small issue. Looking closely at <code>uluru_outline</code> I found:</p>
+<pre><code>
+r$&gt; uluru_outline$geometry
+
+Geometry set for 1 feature
+geometry type:  MULTILINESTRING
+dimension:      XY
+bbox:           xmin: 131.0233 ymin: -25.353 xmax: 131.0512 ymax: -25.33646
+epsg (SRID):    NA
+proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+MULTILINESTRING ((131.0233 -25.34388, 131.0233 ...</code></pre>
+<p>We have a <code>MULTILINESTRING</code> geometry which as the name suggests is a collection of lines, rather than a shape. There’s not a sensible way to interpret a set of lines as the basis for a triangular mesh - unless those lines form a closed ring, in which case they can be recast as a polygon.</p>
+<p>The raw data show the points on the lines do indeed start and end in the same position, forming a closed ring:</p>
+<pre><code>
+r$&gt; as.matrix(uluru_outline$geometry[[1]])
+
+           [,1]      [,2]
+  [1,] 131.0233 -25.34388
+  [2,] 131.0233 -25.34345
+  [3,] 131.0234 -25.34324
+  ...
+  [97,] 131.0242 -25.34556
+  [98,] 131.0241 -25.34524
+  [99,] 131.0233 -25.34388</code></pre>
+<p>So you’d think there would be a nice simple way to cast from <code>MULTLINESTRING</code> to <code>POLYGON</code>, but unfortunately at the time of writing this is the best I could do:</p>
+<pre class="r"><code>
+uluru_outline_poly &lt;- 
+  uluru_outline %&gt;%
+  st_geometry() %&gt;%
+  pluck(1) %&gt;%
+  as.matrix() %&gt;%
+  list() %&gt;%
+  list() %&gt;%
+  st_multipolygon() %&gt;%
+  st_sfc()
+
+# When we create a new geometry we need to set CRS. 
+st_crs(uluru_outline_poly) &lt;- st_crs(uluru_contours)</code></pre>
+<p>Notice I chose <code>MULTIPOLYGON</code> over <code>POLYGON</code>. This simple convenience, because I have a triangulation function I will apply later that expects a <code>MULTIPOLYGON</code> argument. The result:</p>
+<pre><code>
+r$&gt; uluru_outline_poly
+
+Geometry set for 1 feature
+geometry type:  MULTIPOLYGON
+dimension:      XY
+bbox:           xmin: 131.0233 ymin: -25.353 xmax: 131.0512 ym
+ax: -25.33646
+epsg (SRID):    NA
+proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+MULTIPOLYGON (((131.0233 -25.34388, 131.0233 -2...</code></pre>
+<h2 id="rasters">Rasters</h2>
+<p>The method <code>raster::raster()</code> reliably reads raster data in a variety of formats. NetCDF, GeoTIFF, plain images, etc are all handled without fuss. After reading an elevation raster in, I decided it would be a good idea to check the Uluru shape overlaid it sensibly using a plot.</p>
+<p>Before I can make the plot in the code below, I have to convert (reproject) the shape to the same coordinate reference system (CRS) as the raster. A shape is usually much less data than a raster, and can be reprojected losslessly whereas a raster relies on interpolation methods. For these reasons reprojecting the shape is preferable to the raster.</p>
+<pre class="r"><code>
+nt_raster &lt;- raster(&quot;./data/ELVIS_CLIP.tif&quot;)
+
+# sanity check - do these overlap?
+# convert uluru_outline_poly to raster CRS
+
+uluru_outline_poly &lt;-
+  st_transform(uluru_outline_poly, crs(nt_raster)@projargs)
+
+# plot and overlap
+plot(nt_raster, main=&quot;Uluru outline over elevation raster&quot;)
+lines(as(uluru_outline_poly, &#39;Spatial&#39;))</code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="uluru_raster_overlap-1.png" alt="My outline fit is far from perfect!" width="100%" />
+<p class="caption">
+Figure 3: My outline fit is far from perfect!
+</p>
+</div>
+</div>
+<p>In this case the fit doesn’t look perfect and we’ll see the result of that below. Perhaps I’ve made some critical mistake, but my current thinking is this is part of life when combining independent spatial data sets. A position in space cannot be measured without error! Perhaps a GIS pro would undertake some kind of alignment/registration step at this point. I’d love to hear about an automated way to do this in R.</p>
+<h1 id="triangulating-a-shape">Triangulating A Shape</h1>
+<p>Once you have an outline of a shape, and some elevation data, the next step is to triangulate the shape - cover it with small triangles. The vertices of the triangles will have coordinates in 2 dimensions, a third elevation dimension can then be added to create the mesh.</p>
+<p>There are a variety of fast algorithms available for triangulating polygons but not all are suitable for creating meshes. Keeping in mind our end goal of shading the mesh using data - we need an algorithm that can deliver a set of triangles of a similar size and shape.</p>
+<p>Perhaps the most famous algorithm is <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation</a> which maximises the minimum interior angle of all triangles. This is great because it avoids degenerate ‘slivers’ with tiny width. But in its simplest form Delaunay doesn’t care about creating triangles of a regular size. Most critically, it also doesn’t fully respect the polygon outline since it works over the convex hull of points. You can experiment with plain Delaunay in <code>sf</code> since it is available using <code>st_triangulate()</code>.</p>
+<p>Instead I’ll use the Constrained Delaunay Triangulation algorithm provided in the <a href="https://github.com/davidcsterratt/RTriangle"><code>RTriangle</code></a> package. Using this approach I can specify additional constraints including: * Line segments that must be included as part of the border, interior detail, and interior holes. * The maximum size of triangles.</p>
+<p>I have <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh/blob/master/helpers/sf_to_trimesh.R">written a convenient wrapper</a>, <code>sf_to_trimesh()</code> for RTriangle that works with <code>sf</code> geometry containing a single <code>MULTIPOLYGON</code>. If you have an <code>sf</code> geometry containing many polygons you can merge them into a multipolygon, using <code>st_union()</code> or <code>st_combine()</code> - see <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh/blob/master/examples/meshing_polygons_nc.R">this example</a>.</p>
+<p>Something to take into consideration at this point is the CRS of your shape. If it is in latitude and longitude, your flat mesh will be expressed in lat-lon as well. Usually elevation data will be expressed in meters so the difference of scale is problematic. I already converted the CRS of the <code>uluru_outline_poly</code> to the CRS of the raster to check for overlay fit above.</p>
+<p><code>sf_to_trimesh</code> can be supplied with a number of triangles, <code>n_tris</code>. This is the number of triangles that you wish to fit inside the bounding box of the shape - not the shape itself. It exists to help you determine a reasonable density of triangles. With respect to triangle density - go for thousands! The resolution needs to be fine-grained enough for the elevation features to be discernible and shading applied later on to reflect the data source.</p>
+<pre class="r"><code>
+uluru_trimesh &lt;- sf_to_tri_mesh(uluru_outline_poly, 2500)
+plot(uluru_trimesh)</code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="uluru_tri_2500.png" alt="A flat triangular mesh appears" width="100%" />
+<p class="caption">
+Figure 4: A flat triangular mesh appears
+</p>
+</div>
+</div>
+<p>Looking deeper into the data returned by the triangulation we have:</p>
+<pre><code>
+r$&gt; str(uluru_trimesh)
+
+List of 12
+ $ P : num [1:1199, 1:2] -398761 -398762 -398747 -398653 -398605 ...
+ $ PB: int [1:1199, 1] 1 1 1 1 1 1 1 1 1 1 ...
+ $ PA: num[1:1199, 0 ]
+ $ T : int [1:2275, 1:3] 672 526 145 135 468 283 688 83 318 1153 ...
+ $ S : int [1:121, 1:2] 1 2 4 4 5 6 8 9 9 10 ...
+ $ SB: int [1:121, 1] 1 1 1 1 1 1 1 1 1 1 ...
+ $ E : int [1:3473, 1:2] 672 653 656 526 445 64 145 285 284 135 ...
+ $ EB: int [1:3473, 1] 0 0 0 0 0 0 0 0 0 0 ...
+ $ VP: num [1:2275, 1:2] -397618 -397377 -398090 -398248 -398054 ...
+ $ VE: int [1:3473, 1:2] 1 1 1 2 2 2 3 3 3 4 ...
+ $ VN: num [1:2275, </code></pre>
+<p>Our main interest is in <code>P</code>: a 2 column matrix of unique vertices, and <code>T</code>: a 3 column matrix of vertex indices in <code>P</code>. Each row in <code>T</code> represents a triangle by 3 vertex indices. This is an important concept when moving to VR, so I’ll try to make it concrete for you with some code that obtains the 3 vertices of the first triangle in <code>T</code>:</p>
+<pre><code>
+r$&gt; first_tri_vertex_indices &lt;- uluru_trimesh$T[1,]
+
+r$&gt; first_tri_vertex_indices
+
+[1] 672 653 656
+
+r$&gt; first_tri_vertices &lt;- 
+  uluru_trimesh$P[first_tri_vertex_indices,]
+
+r$&gt; first_tri_vertices
+
+          [,1]      [,2]
+[1,] -397651.6 -43319.01
+[2,] -397589.4 -43325.02
+[3,] -397623.9 -43263.00</code></pre>
+<p>This kind of idea is quite prevalent in 3D graphics. Textures and colours are described in similar ways, i.e. with indices into unique data arrays. More information on the other data can be found in the the <code>RTriangle</code> documentation.</p>
+<h1 id="adding-raster-elevation">Adding Raster Elevation</h1>
+<p>The vertices in <code>P</code> can be promoted to 3 dimensions by adding a third column to the matrix that represents the elevation. To do this the elevation is extracted from the raster for each vertex:</p>
+<pre class="r"><code>
+uluru_elev &lt;- 
+  raster::extract(nt_raster, uluru_trimesh$P[,1:2])
+uluru_trimesh$P &lt;- 
+  cbind(uluru_trimesh$P, uluru_elev)</code></pre>
+<p>I used <code>rgl</code> to preview my handiwork by passing <code>P</code> and <code>T</code> reshaped slightly to suit <code>rgl</code>:</p>
+<pre><code>
+library(rgl)
+rgl.clear()
+bg3d(&quot;white&quot;)
+  wire3d(
+    tmesh3d(
+     vertices = t(asHomogeneous(uluru_trimesh$P)), 
+     indices = array(t(uluru_trimesh$T))
+    )
+  )
+rglwidget()</code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="uluru_backside.png" alt="Backside of the mesh from the introduction" width="100%" />
+<p class="caption">
+Figure 5: Backside of the mesh from the introduction
+</p>
+</div>
+</div>
+<p>When run locally, you’ll get live 3D render of the mesh you can rotate and zoom. Unfortunately the backside of the mesh is not nearly as tidy as the front. It seems as though it doesn’t drop down to the same level. This <strong>should</strong> be a certainty, given the outline contour was originally intended to represent structure on the same elevation. The sub-perfect alignment of the data sets really shows here.</p>
+<p>Depending on usecase this could be a problem. I give an alternative for cases like this below.</p>
+<h1 id="triangulating-a-raster">Triangulating A Raster</h1>
+<p>The workflow I’ve explored was predicated on the need to create a mesh from a specific outline shape. But in some cases there is no specific shape: * You have a large geography you want to place someone in, inside VR - A VR ‘tile’. * You had a specific shape and it didn’t work out 😉 .</p>
+<p>A simple approach to using elevation raster data with no specific shape is:</p>
+<ol type="1">
+<li>Create a spatial bounding box around the area to be meshed</li>
+<li>Triangulate the bounding box</li>
+<li>Add elevation to the triangles.</li>
+</ol>
+<pre class="r"><code>
+source(&quot;./helpers/bbox_to_multipoly.R&quot;)
+uluru_contours_bbox &lt;- 
+  st_bbox(uluru_outline_poly)
+uluru_extent &lt;- 
+  bbox_to_multipoly(uluru_contours_bbox, 
+                    st_crs(uluru_outline_poly))
+ul_extent_trimesh &lt;- 
+  sf_to_trimesh(uluru_extent, 2500)
+ul_extent_elev &lt;- 
+  raster::extract(nt_raster, ul_extent_trimesh$P[,1:2])
+ul_extent_trimesh$P &lt;- 
+  cbind(ul_extent_trimesh$P, ul_extent_elev)
+
+rgl.clear()
+bg3d(&quot;white&quot;)
+  wire3d(
+    tmesh3d(vertices = t(asHomogeneous(ul_extent_trimesh$P)), 
+            indices = array(t(ul_extent_trimesh$T))
+    )
+  )
+rglwidget()  </code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="triangulated_bbox.png" alt="An Alternative Mesh of Uluru" width="100%" />
+<p class="caption">
+Figure 6: An Alternative Mesh of Uluru
+</p>
+</div>
+</div>
+<p>In this view the Uluru is less recognisable. Applying materials and shading could make it much more life-like.</p>
+<h1 id="alternatives-watch-this-space">Alternatives (watch this space)</h1>
+<p>Senior wizards in the R Spatial community are currently working toward a generalised form for high dimensional spatial data for use with plugable tools ala the tidy <code>tibble</code> and the <code>tidyverse</code>. There are a couple of projects of interest that can simplify the kind of work demonstrated here.</p>
+<p><a href="https://github.com/hypertidy/silicate"><code>silicate</code></a> provides the underlying data model with lots of useful converters from <code>sf</code> and other spatial forms.</p>
+<p><a href="https://github.com/hypertidy/anglr"><code>anglr</code></a> builds on top of <code>silicate</code> to provide a streamlined workflow for creating 3D visualisations using <code>rgl</code>. It’s worth checking out the README example.</p>
+<p>My initial forays into this space used these tools, but at the moment they are not stable enough to be included in a guide like this. Definitely worth keeping an eye on.</p>
+<h1 id="up-next">Up Next</h1>
+<p>In my next post in this series I’ll take you through what it takes to push meshes of this type into VR. Hint: Not much. The mesh form returned by <code>sf_to_trimesh()</code> is quite close to what is needed there.</p>
+<hr />
+<p><em>Work described here is part of a project funded by ACEMS in partnership with CSIRO Data 61, at Queensland University of Technology. Specialist support has been provided in-kind by the Australian Antarctic Division.</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="csiro_acems_qut_aad.png" width="100%" /></p>
+</div>
+<p><em>Header image credit: By Maurus Blank - Own work, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=1177350" class="uri">https://commons.wikimedia.org/w/index.php?curid=1177350</a></em></p>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">McBain (2018, March 27). Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters. Retrieved from https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{mcbain2018r2vr:,
+  author = {McBain, Miles},
+  title = {Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters},
+  url = {https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/},
+  year = {2018}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

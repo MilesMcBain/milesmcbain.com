@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>Before I Sleep: R2VR: Shading Meshes in WebVR</title>
+
+<meta property="description" itemprop="description" content="In this post I&#39;ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture."/>
+
+<link rel="canonical" href="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2018-07-05"/>
+<meta property="article:created" itemprop="dateCreated" content="2018-07-05"/>
+<meta name="article:author" content="Miles McBain"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Before I Sleep: R2VR: Shading Meshes in WebVR"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="In this post I&#39;ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture."/>
+<meta property="og:url" content="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"/>
+<meta property="og:image" content="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/uluru_header.png"/>
+<meta property="og:image:width" content="1834"/>
+<meta property="og:image:height" content="1058"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Before I Sleep"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Before I Sleep: R2VR: Shading Meshes in WebVR"/>
+<meta property="twitter:description" content="In this post I&#39;ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture."/>
+<meta property="twitter:url" content="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"/>
+<meta property="twitter:image" content="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/uluru_header.png"/>
+<meta property="twitter:image:width" content="1834"/>
+<meta property="twitter:image:height" content="1058"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="Before I Sleep: R2VR: Shading Meshes in WebVR"/>
+<meta name="citation_fulltext_html_url" content="https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"/>
+<meta name="citation_online_date" content="2018/07/05"/>
+<meta name="citation_publication_date" content="2018/07/05"/>
+<meta name="citation_author" content="Miles McBain"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R2VR: Shading Meshes in WebVR"]},{"type":"character","attributes":{},"value":["In this post I'll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["2018-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["rstats","R2VR"]},{"type":"character","attributes":{},"value":["uluru_header.png"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["acp_3d-1.png","aframe-inspector.png","csiro_acems_qut_aad.png","shading_meshes_in_webvr_files/bowser-1.9.3/bowser.min.js","shading_meshes_in_webvr_files/distill-2.2.21/template.v2.js","shading_meshes_in_webvr_files/header-attrs-2.3/header-attrs.js","shading_meshes_in_webvr_files/jquery-1.11.3/jquery.min.js","shading_meshes_in_webvr_files/webcomponents-2.0.0/webcomponents.js","textured_uluru.png","uluru_header.png","uluru_righted.png","uluru_smooth.png","uluru_sunset.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+d-code {
+  overflow-x: auto !important;
+}
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+
+d-code {
+  overflow-x: visible !important;
+}
+
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"R2VR: Shading Meshes in WebVR","description":"In this post I'll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2018-07-05T00:00:00.000+10:00","citationText":"McBain, 2018"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Before I Sleep</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>R2VR: Shading Meshes in WebVR</h1>
+<p><p>In this post I’ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.</p></p>
+</div>
+
+<div class="d-byline">
+  Miles McBain <a href="https://milesmcbain.xyz" class="uri">https://milesmcbain.xyz</a> 
+  
+<br/>2018-07-05
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="uluru_header.png" width="100%" /></p>
+</div>
+<p>In the previous post in this series I introduced <a href="https://aframe.io/">A-Frame</a>, <a href="https://github.com/MilesMcBain/r2vr"><code>r2vr</code></a>, and demonstrated how to render a mesh in WebVR using #rstats. In this post I’ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.</p>
+<p>Along the way we’ll talk about smoothing, lighting, and tweaking workflow with the A-Frame inspector.</p>
+<h1 id="shading">Shading</h1>
+<p>The last post left off at this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="uluru_righted.png" alt="The 'peach puddle' example" width="100%" />
+<p class="caption">
+Figure 1: The ‘peach puddle’ example
+</p>
+</div>
+</div>
+<p>An iconic Australian landmark looking a little off-colour. There are several ways to improve this, and the first way we will consider is shading using a raster layer. This is quite useful if you have raster layers that describe distributions of variables of interest like say, vegetation cover. Indeed this is what is happening here in this map, from the introductory post to this series:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="acp_3d-1.png" alt="Elevation, vegetation, and water in WebVR" width="100%" />
+<p class="caption">
+Figure 2: Elevation, vegetation, and water in WebVR
+</p>
+</div>
+</div>
+<p>In this picture you can make out the triangular resolution of the underlying mesh, but notice that the colours transition smoothly, within an individual mesh face. One way to do this would be with a texture, but that would need to be quite a large high-resolution image. Instead, this has been achieved using a run-time procedure called ‘vertex shading’. The idea is that instead of suppling a texture, we supply a colour value for each mesh vertex, and the user’s graphics card does a smooth interpolation between them.</p>
+<p>Since Uluru doesn’t have much going on in terms of vegetation, I decided to use the original elevation raster as colour source as well. So the Uluru mesh will be coloured according to height. It sounds boring, but the results look quite arty if I do say so myself.</p>
+<p>I’ll omit the code we’ve discussed previously, but complete prerequisite code is present in the <a href="https://github.com/MilesMcBain/r2vr2_meshes_in_webvr">companion respository</a> for this post. Here’s the breakdown of how we can shade the mesh, assuming it is called <code>uluru_bbox_trimesh</code>:</p>
+<h3 id="setup">Setup</h3>
+<pre class="r"><code>
+## install latest r2vr using devtools
+## install_github(&#39;milesmcbain/r2vr&#39;)
+
+library(raster)
+library(scico)
+library(r2vr)
+library(tidyverse)
+
+## load JSON conversion helper function
+source(&quot;./helpers/trimesh_to_threejson.R&quot;)
+
+## load colour palette index helper function.
+source(&quot;./helpers/colour_from_scale.R&quot;)
+
+## load vertex to face colour conversion
+source(&quot;./helpers/vertex_to_face_colours.R&quot;)</code></pre>
+<h3 id="extract-raster-data">Extract raster data</h3>
+<p>In this case we already have this data in <code>uluru_bbox_trimesh$P[,3]</code>, so this code is just for demonstration, to show what to do if using a new raster that isn’t height.</p>
+<pre class="r"><code>
+## Extract data from raster for each vertex (x,y) coord.
+colouring_raster_data &lt;-
+  raster::extract(nt_raster, uluru_bbox_trimesh$P[, 1:2])</code></pre>
+<h3 id="apply-colour-palette">Apply colour palette</h3>
+<p>We’re taking a vapourwave colour scheme from the ‘tokyo’ palette in Thomas Lin Pedersen’s <a href="https://github.com/thomasp85/scico"><code>scico</code></a> package. I’ve written a couple of helpers for arranging the colour data. <code>vec_pal_colours()</code> will take: * a numeric vector of values * a colour palette function * a number of colours and return:<br />
+* a vector of colours as integers * and a vector of indexes into the colour vector for each numeric value.</p>
+<p>Here we again run into the idea of using an index wherever possible to compress data structures that is common in 3D programming. Note the ‘trick’ of using <code>purrr::partial</code> to fill in the <code>palette</code> argument of <code>scico()</code>, so it can be blindly applied with just the number of colours argument.</p>
+<p>A second helper, <code>vertex_to_face_colours()</code>, is used to reshape the list of colour indexes: The 3D JSON format needed for WebVR wants a colour mapping per vertex per face, <code>vec_pal_colours()</code> only created a colour mapping per vertex. The helper takes the list of vertex colour indicies and the list of face vertex indices from <code>uluru_bbox_trimesh$T</code> and returns a 3 column matrix of face colour indicies, each column representing a vertex (1, 2, and 3), and each row representing a complete triangular face.</p>
+<pre class="r"><code>
+## Choose a palette function to transform to colours
+n_colours &lt;- 256
+palette_function &lt;-
+  purrr::partial(scico, palette = &quot;tokyo&quot;)
+ 
+## Generate colours
+vertex_colour_data &lt;-
+  vec_pal_colours(colouring_raster_data, palette_function,
+                    n_colours, zero_index = TRUE)
+                    
+str(vertex_colour_data)
+# List of 2
+# $ colours: num [1:256] 1641779 1773107 1969716 2035765 2101303 ...
+# $ indexes: num [1:8913] 9 9 5 8 246 9 7 19 8 11 ...
+
+face_colours &lt;-
+  vertex_to_face_colours(vertex_colour_data$indexes,
+                         uluru_bbox_trimesh$T)
+                         
+ str(face_colours)
+ # num [1:17619, 1:3] 9 8 9 9 9 8 30 237 26 9 ...                      </code></pre>
+<h3 id="generate-mesh-json">Generate Mesh JSON</h3>
+<p>To generate the JSON we supply the list of all colours we want to use, and the face-wise vertex indicies into that list, as extra arguments to the <code>trimesh_to_threejson()</code> function we used in the previous post.</p>
+<pre class="r"><code>
+## Generate a shaded model JSON
+mesh_json &lt;-
+  trimesh_to_threejson(vertices = uluru_bbox_trimesh$P,
+                       face_vertices = uluru_bbox_trimesh$T,
+                       colours = vertex_colour_data$colours,
+                       face_vertex_colours = face_colours)
+
+## write JSON
+write_file(mesh_json, &quot;./data/uluru_mesh.json&quot;)</code></pre>
+<h3 id="render-in-webvr">Render in WebVR</h3>
+<p>We create an asset to hold the JSON and a JSON model entity as per the previous peach puddle example. A couple of new entities are on display after that. We create a slightly more dramatic black backdrop entity in <code>sky</code>, and then add an entity that makes keyboard and mouse control slightly more convenient.</p>
+<pre class="r"><code>
+## Render in VR
+## Bigger than our previous &#39;puddle&#39;:
+scale_factor &lt;- 0.01 
+
+uluru_json &lt;-
+  a_asset(id = &quot;uluru&quot;,
+          src = &quot;./data/uluru_mesh.json&quot;)
+
+uluru &lt;-
+  a_json_model(src_asset = uluru_json,
+               scale = scale_factor * c(1, 1, 1),
+               position = c(0, 0 + height_correction * scale_factor, -15),
+               rotation = c(-90, 180, 0)
+               )
+
+sky &lt;- a_entity(tag = &quot;sky&quot;,
+                color = &quot;#000000&quot;)
+
+controls &lt;- a_pc_control_camera()
+
+aframe_scene &lt;-
+  a_scene(template = &quot;empty&quot;,
+          title = &quot;Uluru Mesh&quot;,
+          description = &quot;An A-Frame scene of Uluru&quot;,
+          children = list(uluru, sky, controls))
+
+aframe_scene$serve()
+browseURL(&quot;http://127.0.0.1:8080&quot;)
+
+## don&#39;t forget to:
+aframe_scene$stop()</code></pre>
+<p>Resulting in:</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+<p><iframe src="https://glitch.com/embed/#!/embed/plucky-pencil?path=index.html&previewSize=100" alt="plucky-pencil on glitch" style="height: 100%; width: 100%; border: 0;"></iframe></p>
+</div>
+<p>Fullscreen link: <a href="https://plucky-pencil.glitch.me/" class="uri">https://plucky-pencil.glitch.me/</a></p>
+<h2 id="smoothing">Smoothing</h2>
+<p>Our mesh looks pretty ‘jaggy’ but precisely this low-poly look is kind of hip right now in WebVR land. If you don’t care about being hip, you can ask the user’s browser to compute a set of normal vectors for each vertex that their graphics card will use to interpolate a smooth 3D surface (so called ‘vertex normals’). Rendering smooth things is more computationally costly so use with caution. It is worth noting that these vectors are just estimated from the normal vectors of surrounding faces. So they can produce a result that departs from the ‘true’ object shape. Doing this in <code>r2vr</code> is just one extra argument to <code>a_json_model()</code>:</p>
+<pre class="r"><code>
+## Smooth using vertex normals
+uluru_smooth &lt;-
+  a_json_model(src_asset = uluru_json,
+               mesh_smooth = TRUE,
+               scale = scale_factor * c(1, 1, 1),
+               position = c(0, 0 + height_correction * scale_factor, -15),
+               rotation = c(-90, 180, 0))
+
+aframe_scene2 &lt;-
+  a_scene(template = &quot;empty&quot;,
+          title = &quot;Uluru Mesh&quot;,
+          description = &quot;An A-Frame scene of Uluru&quot;,
+          children = list(uluru_smooth, sky, controls))
+
+aframe_scene2$serve()
+
+## don&#39;t forget to:
+aframe_scene2$stop()</code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="uluru_smooth.png" alt="Smoooooooth" width="100%" />
+<p class="caption">
+Figure 3: Smoooooooth
+</p>
+</div>
+</div>
+<h1 id="texturing">Texturing</h1>
+<p>If you’re still reading, I’m guessing you’re here for this. The gif I posted of this example to Twitter got some attention - Thankyou all for the encouraging words!</p>
+<p>I’m only going to summarise this, because in truth I’m not convniced I fully appreciate it. The code to fetch the satellite tile and calculate the all important texture coordinates was gifted to me by the amazing <a href="https://github.com/mdsumner">Michael Sumner</a>.</p>
+<p>It fetches a satellite tile from Mapbox using the <code>slippymath</code> package, and then does a dance of normalising our mesh vertex coordinates to range between 0 and 1, based on where they fall within the satellite image extent. In 3D graphics, texture coordinates (called UVs) always fall in the interval [0,1]. The conversion to an image pixel coordinate is made at run-time by graphics hardware.</p>
+<p>Once the texture coordinates are obtained, generating the JSON for the 3D model is again a straight call to <code>trimesh_to_threejson()</code>, but for one minor complication: When we pass a texture file to be referred to in a model, we have to keep in mind that its path needs to be expressed relative to the model location, not our own current working directory - If you think about this it is really the only way models + textures could be portable. Below are the two tranches of code to generate a textured mesh and render it in WebVR, making use of entities we already created.</p>
+<h2 id="build-textured-mesh">Build textured mesh</h2>
+<p>We’re taking advantage of <code>slippmymath</code> to conveniently fetch <a href="https://www.mapbox.com/">Mapbox</a> satellite imagery. If you reproduce this, be wary of terms of use.</p>
+<pre class="r"><code>
+library(fs)
+library(slippymath)
+library(curl)
+library(glue)
+
+## Fetch a tile from mapbox calculate the tiles with slippymath
+uluru_tiles &lt;- bb_to_tg(uluru_bbox, max_tiles = 40)
+
+mapbox_query_string &lt;-
+  paste0(&quot;https://api.mapbox.com/v4/mapbox.satellite/{zoom}/{x}/{y}.jpg90&quot;,
+         &quot;?access_token=&quot;,
+         Sys.getenv(&quot;MAPBOX_API_KEY&quot;))
+
+images &lt;-
+  pmap(uluru_tiles$tiles,
+       function(x, y, zoom){
+         outfile &lt;- glue(&quot;{x}_{y}.jpg&quot;)
+         curl_download(url = glue(mapbox_query_string),
+                       destfile = outfile) 
+         outfile 
+       },
+       zoom = uluru_tiles$zoom)
+
+## composite images with slippymath
+uluru_raster &lt;- tg_composite(uluru_tiles, images)
+
+## Crop the image
+uluru_raster &lt;- raster_crop_bbox(uluru_raster, uluru_bbox)
+
+## write to PNG (that&#39;s the only way we can texture map)
+texfile &lt;- &quot;./data/uluru_satellite.png&quot;
+raster_to_png(uluru_raster, texfile)
+
+## calculate the trimesh x and y in 0 - 1 space for texture coordinates
+## using r2vr.gis::range_scale
+xym &lt;- uluru_bbox_trimesh$P[,1:2]
+
+xyim &lt;- apply(xym, 2, range_scale)
+## This works because the image and the mesh have the same area and the area is
+## relatively small, so the won&#39;t be much opportunity for the texture to be
+## distorted by difference in projection.
+
+
+## generate JSON containing texture
+## pass just the name of the texture file so rendering process will look in the
+## same directory as JSON model
+uluru_tex_json &lt;-
+  trimesh_to_threejson(vertices = uluru_bbox_trimesh$P,
+                       face_vertices = uluru_bbox_trimesh$T,
+                       vertex_uvs = xyim,
+                       texture_file = fs::path_file(texfile)
+                       )
+
+## write JSON file
+readr::write_file(uluru_tex_json, &quot;./data/uluru_tex.json&quot;)</code></pre>
+<h2 id="render-in-webvr-1">Render in WebVR</h2>
+<p>Smoothing the mesh is good idea when applying a texture. Notice how we wrap the model and associated texture up in a single asset object.</p>
+<p><em>Note this example used Google map data, prior to them locking down their tile API</em></p>
+<pre class="r"><code>
+## The JSON references the satellite png file so it needs to be 
+## included in &#39;parts&#39; so R can serve it.
+uluru_tex &lt;- a_asset(src = &quot;./data/uluru_tex.json&quot;,
+                     id = &quot;uluru_tex&quot;,
+                     parts = &quot;./data/uluru_satellite.png&quot;)
+
+uluru &lt;-
+  a_json_model(src_asset = uluru_tex,
+               mesh_smooth = TRUE,
+               scale = scale_factor * c(1, 1, 1),
+               position = c(0, 0 + height_correction * scale_factor, -15),
+               rotation = c(-90, 180, 0))
+
+aframe_scene3 &lt;-
+  a_scene(template = &quot;empty&quot;,
+          title = &quot;Uluru Mesh&quot;,
+          description = &quot;An A-Frame scene of Uluru&quot;,
+          children = list(uluru, sky, controls))
+
+aframe_scene3$serve()
+
+## don&#39;t forget to:
+aframe_scene3$stop()</code></pre>
+<p>The result:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="textured_uluru.png" alt="Map texture: Google, (c) 2018, CNES / Airbus, DigitalGlobe, Landsat / Copernicus" width="100%" />
+<p class="caption">
+Figure 4: Map texture: Google, (c) 2018, CNES / Airbus, DigitalGlobe, Landsat / Copernicus
+</p>
+</div>
+</div>
+<h1 id="lighting">Lighting</h1>
+<p>One of the things you’ll quickly realise when playing around in VR is that lighting can have a huge impact on the mood of your scene. For example here’s an attempt at a sunrise/sunset vibe, created entirely by tweaking the colour, intensity, and position components of the two default lights:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="uluru_sunset.png" alt="Sunrise on the rock" width="100%" />
+<p class="caption">
+Figure 5: Sunrise on the rock
+</p>
+</div>
+</div>
+<p>Longer shadows etc are needed to fully carry it off, but for something I whipped up in a few minutes of playing around it’s okay. The point I wanted to make here is that this type of creative task would be an absolute chore to do by repeatedly editing code and re-serving your A-Frame scene - and the good news is you don’t have to.</p>
+<h2 id="using-the-a-frame-inspector">Using the A-Frame Inspector</h2>
+<p>A-Frame has something called the ‘A-Frame Inspector’ that allows you to add, remove, and tweak entity configuration whilst viewing the results live. It really is freaking awesome for creative tweak-sessions. Once you find something that looks great, it’s just a matter of translating that config back to your code, there’s even a helpful facility to copy entity config as HTML, which has a close mapping to <code>r2vr</code> syntax. Access the inspector in any scene with the keys <code>ctrl</code> + <code>alt</code> + <code>i</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="aframe-inspector.png" alt="Go go gadget lights!" width="100%" />
+<p class="caption">
+Figure 6: Go go gadget lights!
+</p>
+</div>
+</div>
+<p>Note that the default lights (1 directional, 1 ambient) are injected into the scene automatically if none are configured. When you configure your own light entities, be sure to consider mixing multiple types like this for best results.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We covered a lot of ground here, but hopefully you’re starting to get a feel for the power placed at your finger tips by this tool. I’ve started little gallery of my experiments on the <a href="https://github.com/milesmcbain/r2vr"><code>r2vr</code> repo page</a> that may inspire you to try something, and if you do I’d love to hear about it.</p>
+<p>I’m under no illusions that the code presented here requires a significant degree of technical knowledge to fully appreciate. The great thing about this framework is it is highly composable, and my belief is this will mitigate this issue as the tool matures. For example, it might make sense to abstract all the helper methods floating around for generating model JSON into an <code>a_*</code> function that takes all the pieces and returns an model entity with the compiled JSON asset attached. This would be pretty simple to do, but I’m hesitant to optimise the higher level API without more dog-fooding and more feedback.</p>
+<p>Speaking of feedback - I’ll have a poster in the Wednesday session at UseR!2018 next week. Feel free to chat to me about this or anything else :)</p>
+<h2 id="next-up">Next up</h2>
+<p>Next up I’ll be discussing how to annotate meshes using WebVR elements. There’ll be some species distrubution data I’ll plot over a mesh and experiment with ways of presenting distribution model predictions made in R.</p>
+<hr />
+<p><em>Work described here is part of a project funded by ACEMS in partnership with CSIRO Data 61, at Queensland University of Technology. Specialist support has been provided in-kind by the Australian Antarctic Division.</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="csiro_acems_qut_aad.png" width="100%" /></p>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">McBain (2018, July 5). Before I Sleep: R2VR: Shading Meshes in WebVR. Retrieved from https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{mcbain2018r2vr:,
+  author = {McBain, Miles},
+  title = {Before I Sleep: R2VR: Shading Meshes in WebVR},
+  url = {https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/},
+  year = {2018}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
