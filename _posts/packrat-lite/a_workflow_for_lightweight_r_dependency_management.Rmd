@@ -1,0 +1,237 @@
+---
+title: "A workflow for lightweight R dependency management"
+description: |
+    Recently I proudly shared some code that was only weeks old and had maybe 40 dependencies... what could possibly go wrong right?
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2019-04-09
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - reproducibility
+preview: nutria-1200457_1920.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("nutria-1200457_1920.jpg")
+```
+A couple of weeks ago I proudly shared a `drake` pipeline with a colleague along with some basic instructions: "Install R -> clone this repo -> install these packages -> run this file". The code was only weeks old, had maybe 40 recursive dependencies and used only CRAN versions... what could possibly go wrong right?
+
+Well let me tell you it was a catastrophic failure. My colleague is new to R, and I cringed and fretted for his user experience as the code basically blew up on the launchpad, spewing alien error messages the likes of which I had never seen. 
+
+As I dug into his `sessionInfo()` it turned out he had installed Microsoft R Open, which runs an R version and CRAN package versions that are quite behind the current releases. This was somewhat of a relief, but my eyes were now fully opened to what can happen when dependencies are not stated in explicit enough detail. ^[To add insult to injury my colleague is a JS developer with some fairly mad skillz and I proceeded to get schooled on `npm` and how he had just effortlessly deployed a custom-built front end of our geospatial models to production that had over *1500 package dependencies*]
+
+I decided to research dependency management in R for something simple and light that could provide a foolproof end user experience i.e. 'a button' or a one-liner could be run once the repo had been cloned to set up an environment with the exact same package versions I had used in development. I tried: `checkpoint`, `jetpack`, and `packrat` and eventually settled on `packrat`. The rest of this post describes my `packrat` workflow and some of the issues with the other two packages.
+
+## A lightweight packrat workflow
+
+`packrat` was the last thing I tried because I had already tried it a long time ago and found it a struggle - it seemed to want me to place all the source code of all my dependencies under version control(!!!). From reading around online this seems like a common experience - the packrat API is a bit confusing, much of it seems geared toward enterprise-level dependency management, rather than project-level.
+
+It turns out the kind of workflow I was looking for is possible, but you have to deviate from the default options and workflow advertised in the documentation. Here I describe the workflow I used to create [this example repo](https://github.com/milesmcbain/packrat_demo).
+
+### Initialise packrat
+
+In this step we initialise a project-local library which will automatically have packrat installed into it. Crucially we instruct `packrat` to update our `.gitignore` so that the library itself excluded from our repository.
+
+```
+packrat::init(infer.dependencies = FALSE,
+              options = list(
+                vcs.ignore.lib = TRUE,
+                vcs.ignore.src = TRUE
+              ))
+
+# Initializing packrat project in directory:
+# - "~/repos/packrat_demo"
+#
+# Adding these packages to packrat:
+#            _      
+#    packrat   0.5.0
+#
+# Fetching sources for packrat (0.5.0) ... OK (CRAN current)
+# Snapshot written to '/home/miles/repos/packrat_demo/packrat/packrat.lock'
+# Installing packrat (0.5.0) ... 
+#	OK (built source)
+# Initialization complete!
+# Unloading packages in user library:
+# - rmarkdown, lubridate, dplyr, readr, drake, ggplot2
+# Packrat mode on. Using library in directory:
+# - "~/repos/packrat_demo/packrat/lib"
+
+```
+
+### install.packages
+
+Next we install our packages into local library as we normally would with `install.packages()`. Why did we not let `packrat` do this for us? Installing many libraries at once can take a longish time and can occasionally throw errors we would like to know about or prompts we would like to answer. It's also a nice check to confirm that our dependencies are really what we think they are - i.e. we don't have stray `lib::` or `library(lib)` calls hiding in the code somewhere.
+
+```
+install.packages(c('drake', 'readr', 'dplyr', 'lubridate', 'rmarkdown', 'ggplot2'))
+
+# ... installation guff ...
+
+```
+
+At this point we should test our code to make sure it runs without missing dependency errors.
+
+### Snapshot library
+
+In this step we create a metadata file, `packrat.lock`, that records our R version and all the versions of the packages in our project-local library. This is the thing we will check into our git repo so that others can regenerate our environment on their end when they clone it.
+
+```
+packrat::snapshot(ignore.stale = TRUE, 
+                  snapshot.sources = FALSE,
+                  infer.dependencies = FALSE)
+
+## Adding these packages to packrat:
+##                  _         
+##     BH             1.69.0-1
+##     R6             2.4.0   
+##     RColorBrewer   1.1-2   
+##     Rcpp           1.0.1   
+##     assertthat     0.2.1   
+##     backports      1.1.3   
+##     base64enc      0.1-3   
+##     base64url      1.4     
+##     cli            1.1.0   
+##     clipr          0.5.0   
+##     colorspace     1.4-1   
+##     crayon         1.3.4   
+##     digest         0.6.18  
+##     dplyr          0.8.0.1 
+##     drake          7.1.0   
+##     evaluate       0.13    
+##     fansi          0.4.0   
+##     ggplot2        3.1.1   
+##     glue           1.3.1   
+##     gtable         0.3.0   
+##     highr          0.8     
+##     hms            0.4.2   
+##     htmltools      0.3.6   
+##     igraph         1.2.4   
+##     jsonlite       1.6     
+##     knitr          1.22    
+##     labeling       0.3     
+##     lazyeval       0.2.2   
+##     lubridate      1.7.4   
+##     magrittr       1.5     
+##     markdown       0.9     
+##     mime           0.6     
+##     munsell        0.5.0   
+##     pillar         1.3.1   
+##     pkgconfig      2.0.2   
+##     plogr          0.2.0   
+##     plyr           1.8.4   
+##     purrr          0.3.2   
+##     readr          1.3.1   
+##     reshape2       1.4.3   
+##     rlang          0.3.4   
+##     rmarkdown      1.12    
+##     scales         1.0.0   
+##     storr          1.2.1   
+##     stringi        1.4.3   
+##     stringr        1.4.0   
+##     tibble         2.1.1   
+##     tidyselect     0.2.5   
+##     tinytex        0.11    
+##     utf8           1.1.4   
+##     viridisLite    0.3.0   
+##     withr          2.1.2   
+##     xfun           0.6     
+##     yaml           2.2.0   
+
+## Snapshot written to '/home/miles/repos/packrat_demo/packrat/packrat.lock'
+```
+
+In case you are wondering this is a complete list of _recursive dependencies_ - our dependencies' dependencies.
+
+The reason for the non-default argument choices is as follows:
+  * `ignore.stale` stops `packrat` from second guessing the us. We are saying just make a metadata file from the local library as it is right now, irrespective of what it looked like in the past.
+  * `snapshot.sources` stops `packrat` downloading the source files for all our dependencies. We're trusting CRAN to keep these available.
+  * `infer.depenencies` is as in the previous step. We are in control and being explicit about what our dependencies are using `install.packages`.
+
+### Commit and push snapshot
+
+`packrat` has created/updated a number of files for us:
+* `.gitignore` has had entries added to ignore the packages in the project-local library.
+* `./packrat/packrat.lock` records versions of R and all the packages in the local library.
+* `./packrat/packrat.opt` records our options choices. 
+* `./.Rprofile` will initialise the `packrat` local library for a user starting an R session in this project. If they've just cloned it will be empty.
+* `./packrat/init.R` is an automation script pointed to by `.Rprofile`
+
+Interestingly, of these only `packrat.lock` is strictly required. A user can restore the project library given only this file. The other files make it a slightly smoother process, in that restoration is a single function call instead of two - but this comes at the cost of some potentially surprising automation.
+
+I'm trying to keep my workflow lightweight so I only commit `./packrat/packrat.lock`. I add the others to my `.gitignore` - and make sure that is also committed.
+
+### Restoring from a fresh clone
+
+Assuming you committed `packrat.lock`, the local library can be restored with two function calls after opening an R session in a freshly cloned project directory:
+
+```
+> packrat::restore()
+# Installing BH (1.69.0-1) ... 
+#	OK (built source)
+# Installing R6 (2.4.0) ... 
+#	OK (built source)
+# Installing RColorBrewer (1.1-2) ... 
+#	OK (built source)
+# Installing Rcpp (1.0.1) ... 
+#	OK (built source)
+# Installing assertthat (0.2.1) ... 
+#	OK (built source)
+# Installing backports (1.1.3) ... 
+#	OK (built source)
+# Installing base64enc (0.1-3) ... 
+#	OK (built source)
+# Installing clipr (0.5.0) ... 
+#	OK (built source)
+# ...
+
+> packrat::init(infer.dependencies = FALSE,
+              options = list(
+                vcs.ignore.lib = TRUE,
+                vcs.ignore.src = TRUE
+              ))
+# Initializing packrat project in directory:
+# - "~/repos/packrat_demo"
+# Initialization complete!
+# Packrat mode on. Using library in directory:
+# - "~/repos/packrat_demo/packrat/lib"            
+```
+
+If it's not clear, `packrat::restore()` downloads the libraries to `./packrat` and `packrat::init()` points our project there to look for it's dependencies.
+
+I prefer to wrap these two up into a single file, `setup.R`, that the end user is instructed to `source` in the repo README. Obviously they need to have `packrat` installed to run that code, but I think the normal R error mechanisms that will trigger if they don't should be clear enough to see them through.
+
+### Updating the library
+
+As development progresses you will likely make changes to your project-local library. Remember to create a new snapshot and push the `packrat.lock` periodically. 
+
+## What about wrapping packrat?
+
+Initially I thought about wrapping up this workflow with a nicer API in a new package, maybe called `slackrat` or something, but then I remembered hearing that RStudio were working on a sequel to `packrat`: [`renv`](https://github.com/rstudio/renv) and it seems like they are proposing a very similar workflow. I am guessing this `renv` is a little ways off. We'll see if I break in the meantime.
+
+## Packrat alternatives
+
+`jetpack` looked really interesting and I had high hopes, but it is a bit new and rough around the edges for me.
+* I did like that it uses a DESCRIPTION file to store package dependencies.
+* I didn't like that it uses a different set of commands to install packages instead of `install.packages`.
+* It gives very little feedback while working so I couldn't tell if it had hung or not when using its install functions.
+* It has extremely scant documentation.
+
+`checkpoint` was the first thing I tried and it sort of worked, but the problem is that it needs to be included in the project source to do its magic - and that magic needs to happen every time the project runs. So what I found was it clashes with `drake`, since in that workflow what you want to be doing is calling `make()` frequently to take advantage of the cache, but `checkpoint` would spend a significant amount of time searching through all the project files for dependencies each time `make()` is called. It just slowed the flow too much.
+
+## Conclusion
+
+Despite some awkwardness I found `packrat` still to be the best option for lightweight dependency management for R projects. Hopefully with `pak` and `renv` in development we'll see something similar but much less janky available soon. Good luck making your projects reproducible!
+
+-----
+
+_Header Image Credit:
+Image by Nadine Doerlé from Pixabay_

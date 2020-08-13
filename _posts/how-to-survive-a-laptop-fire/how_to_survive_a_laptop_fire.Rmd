@@ -1,0 +1,117 @@
+---
+title: "How to Survive a Laptop Fire"
+description: |
+    How bad would it be for your work if your laptop burned in a fire?
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2018-05-20
+output:
+  distill::distill_article:
+    self_contained: false
+preview: Burned_laptop_secumem_11.jpg
+categories:
+  - software development
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("Burned_laptop_secumem_11.jpg")
+```
+Over the last few years I've evolved a cloud-centric workflow that allows me to work more or less seamlessly across multiple projects, computers, and operating systems. This post is about the principles, software and services I use to make that work.
+
+Often when I'm ~~advocating~~ evangelising about working in this way I ask people something to the effect of =='How bad would it be for your work if your laptop burned in a fire?'==^[One important way to avoid this is to stop hardcoding your local file paths in your code. Just ask Jenny Bryan.] - Alot of the responses I get tend to focus on personal data - 'Well I do backup on Dropbox!', 'I use Googledrive', etc. But I argue personal data loss is really just part of the pain you'd experience. What about your Applications? Software libraries? Just how hard would it be to recover a working environment that would allow you to carry on?^[I once witnessed an amazing example of this at [rOpenSci Ozunconf16](https://ropensci.org/blog/2016/06/16/au-unconf/). As keystrokes were flying in some intensise pair programming, a fresh flat white coffee was emptied on to [Jeff Hanson's](https://github.com/jeffreyhanson) laptop. I swear without missing a beat he flipped the laptop upside down to drain, then immediately ignored it, moved to his buddy's laptop, pulled the repo, and carried on typing. When I think about being robust to loss of computer, Jeff's complete lack of concern is the bar to which I aspire.]
+
+# Survival skills
+
+## Use free software where possible
+
+Apart from the obvious benefit of not costing anything, free software has the added advantage that you'll always be able to access it. It's pretty common to get access to proprietary stuff through one's workplace, but I don't enjoy the idea that I could lose access to a tool I depend on if I changed jobs or budget cut was handed down.
+
+Another great benefit of free software is others can freely reuse and reproduce your work if you release it publicly.
+
+## Use cloud tools
+
+The only local software I absolutely need is Chromium or Chrome. This gives me quite a lot of freedom in terms of devices I can do work from. This is because:
+* Lastpass manages all my passwords
+* I use Outlook/Gmail web interfaces for work/personal email 
+* I use Goodle Docs for all simple documents, sheets, or quick slide decks
+* I store all my photos in Google Photos
+* I stream my music from Google Music
+* I store all my data and files in Google Drive
+* I host all my projects on GitHub.
+* I blog from a web interface hosted on this site.
+* I host RStudio server on my website - really handy when giving talks!
+
+Ofcourse I don't only use cloud tools. I develop software and analyse data on my local machine since it costs less than hosting a powerful enough server.
+
+## Keep Local file system disposable
+
+Everything on my local hard-disk is disposable. Indeed this month I am on my third clean install of Linux - but that's a story for another post. Keeping the system disposable is closely linked with keeping it simple. 
+
+To keep things simple, every time I get a new system I create two folders: 
+1. `~/repos` that holds the cloned git repositories of all the projects I am working on. 
+2. `~/code` that holds random code I create that is not associated with a project. This is strictly limited to disposable things, like examples or exercises. If a code snippet becomes useful, I make it into a GitHub gist.
+
+I use the standard folders like `~/Downloads`, `~/Images` etc, but again everything in them is disposable.
+
+Simplicity is also ensured by only using software that can be installed using a package manager. This means zero manual configuration for most of my applications. There are a handful of helpful bash scripts hosted on GitHub that I clone to `~/bin`. I have configuration for my desktop setup and my text editor hosted on GitHub as well.
+
+So getting a new system ready to be productive is a case of installing some software using the package manager and cloning a few GitHub repos. In theory this could done with a single command, but I am not that hardcore - yet!
+
+## Use GitHub for all projects
+
+[GitHub](https://www.github.com) is a place to host version controlled projects. It's not the only choice, other popular choices are [GitLab](https://www.gitlab.com) and [BitBucket](https://www.bitbucket.com). The main reason to choose GitHub is that everyone else is there, so it's where collaboration happens.
+
+I use 'project' pretty loosely. Things I keep there inlcude:
+* Data analysis documents
+* Software projects
+* Slides for talks (when using markdown)
+* Learning/Study repositories of notes and examples.
+
+There's this kind of ritual I go through now when I decide to do some new work where I create and name the GitHub repo. It's become a habit to the point where not doing this creates mild anxiety.
+
+One point I should make: I commit my work frequently in small increments. In a regular work day I'll push to Github a couple of times. This is important for the 'version control' aspect, which although not strictly required for laptop fire survival, is pretty damn handy.
+
+## Keep data in the cloud
+
+Quite often a project will have an associated dataset. The decision about where to store this usually comes down to size. For datasets up to tens of Mb I usually store them in the GitHub repo. I store larger data in my Google Drive (I have a large amount of drive storage that came with a Chromebook I bough a few years ago).
+
+There is a `/repodata` folder in my Google Drive that contains folders that match the names of GitHub Projects. For GitHub projects that use this datastore, I check in a script, usually called `fetch_data.R` that pulls the data down to the appropriate place in the local repo. I have created some tooling around this to recursively download Google Drive folders and even generate the `fetch_data` script for me from a Google Drive URL link. This is cool, but could be slicker still. My plan is to eventually move this stuff out of my personal `mmmisc` R package and into a proper package of it's own.
+
+# Associated Pros and Cons
+
+## + Work from anything anywhere
+
+Occasionally when stuck without a computer I have been able to get critical tasks done with makeshift workstations. I once used RStudio server on my phone to knit an Rmd file from hospital waiting room and felt like a total badass.
+
+## + Collaborate easily
+
+Having everything online has been amazing for opening up collaboration avenues. I can always immediately provide someone with a link to anything I've produced. Sometimes down to a specific line of code that implements the subject of discussion. Since I work in public GitHub repositories as much as possible, I occasionally get interest from interesting people I would never have encountered otherwise.
+
+## - Dependent on services staying up
+
+Every once in a blue moon GitHub, or Google, or something else big goes down briefly. At least a lot of other people are hurting when this happens - so I tend to jump on slack on and ride it out in the company of friends, like it were a cyclone. The inconvenience of this has only been ever been minor.
+
+## - Dependent on internet access
+
+A big glaring flaw with this setup is that while I'm immune to fire, my kryptonite is now lack of internet access. This does mean I feel the anxiety produced by crappy conference/hotel wifi particularly hard! The last time I traveled (In the US) I purchased a sim card with a bunch of data so I could work in uninterrupted in my usual way, hot-spotting to my phone. That was a success.
+
+## - Security risk
+
+The other thing that may be giving some of you hives is the security risk of having your life's work online. I take this pretty seriously. I have Lastpass generate long random passwords and I use Two-Factor Authentication (2FA) for my Google, Lastpass, and GitHub accounts. In the case of Lastpass and GitHub, this is a physical [Yubikey](https://www.yubico.com/). My phone provides 2FA for Google so I have to keep that secure as well.
+
+## Overall
+
+Clearly I find on the balance, doing things this way is worthwile. It meshes nicely with other values I hold relating to openess and reproducibilty. Having a simple system also frees me from regular worry at the expense of ocassional anxiety caused by things listed as cons.
+
+-----------------------------------
+
+*Thanks for reading! I'd love to hear about any tips or hacks you have for making working this way easier.*
+
+*Header Image Credit: 
+By secumem - secumem, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=5878118*

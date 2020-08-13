@@ -1,0 +1,261 @@
+---
+title: "Project as an R package: An okay idea"
+description: |
+    The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2020-07-24
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - workflow
+  - data science
+preview: corrugated-cardboard-3853506_1280.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("corrugated-cardboard-3853506_1280.jpg")
+```
+
+This post is about an okay idea: structuring your R data analysis projects as packages. 
+
+I say an "okay idea" because I've heard good points made by R community members I respect, and I agree with some of them - BUT ultimately I don't think those points add up to a payoff that makes it a "good idea" for most teams in an industry context. 
+
+There are quite a number of resources that list the pros of this way of working, and I will briefly summarise those before I examine the cons. I'll discuss: 
+
+* double handling of metadata
+* <button type="artifact">pointless artifacts</button>
+* milesmcbain.xyz::added milesmcbain.yxz::noise
+* duplication of metadata
+
+# Pros
+
+The primary argument is usually that by structuring your project as an R package you gain access to a plethora of automations and facilities that are going to make your life better.
+
+You get `{devtools}` and `{usethis}` for populating for speeding up menial development tasks including:
+  * `devtools::load_all()` to populate your global environment with the most recent versions of your functions
+  * `usethis::use_package()` to declare a dependency.
+
+The R CMD check routine can run on your project which will find things that do not comply with CRAN policy .e.g:
+    * undeclared dependencies
+    * incomplete function documentation
+
+You get a well paved on-ramp to continuous integration services on GitHub to run automated test reports on your project code after pushing each commit.
+
+You can wield the `DESCRIPTION` file, which:
+  * can make your work more easily searchable
+  * clearly documents the authors/copyright holders and helps make your work citable (via `citation()`)
+  * documents your dependencies
+
+If you install your project package onto a system it automatically installs dependencies defined in the `DESCRIPTION` file.
+
+You're forced to put all your work in functions which hopefully triggers thought processes about composability and reuse.
+
+## Further reading
+
+The first place I encountered the project as package idea was when I heard about [_Research Compendia_](https://peerj.com/preprints/3192.pdf) and I believe it was through following [rOpensci](https://twitter.com/ropensci) and [Ben Marwick](https://twitter.com/benmarwick) online.
+
+It is notable that prominent proposals for the structure of a Research Compendium deviate significantly from that of a standard R package, for example: https://github.com/ropensci/rrrpkg. Ben Marwick has even created [distinct devtools-like tooling](https://github.com/benmarwick/rrtools) for Research Compendia. 
+
+[David Neuzerling](https://twitter.com/mdneuzerling/status/1284976213509849088) just wrote an excellent overview of the case for project as a package in his post [_Data Science Workflows_](https://mdneuzerling.com/post/data-science-workflows/).
+
+# Cons
+And now for the main event...
+
+## Double handling of metadata
+
+The machine readable metadata in the DESCRIPTION file makes a lot of sense for something going to CRAN or some other deep storage archive. If you're not actually releasing the project to public storage though some things become redundant.
+
+Let's assume you use git for your project version control and host on GitHub. GitHub is your "deep storage", and that means:
+
+* The `Authors` of the project are already tracked and displayed on GitHub
+* `Title` and `Description` are made redundant by your README
+* `URL` and `BugReports` are useless because that's the GitHub repo you work out of.
+* `Version` can be a git tag (GitHub release) ^[which you were probably doing anyway since it facilitates: `devtools::install_github("milesmcbain/slippymath@0.3.1)`]
+
+`Imports`, `Depends`, and `Suggests` describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn't on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.^[Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough].
+
+To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies^[AND your dependencies dependencies dependencies...]. To do this you use a lockfile or a dockerfile or both. Let's say you use a lockfile created with `{renv}`. You now have a second place in your project repository that lists R package dependencies and version numbers. 
+
+What's worse is that these two statements of version dependence can easily become out of sync. This happens since lockfiles are typically generated by an automated snapshot process that examines your environment, while your DESCRIPTION is updated manually. Lockfiles obsolete dependencies in DESCRIPTION.
+
+## Pointless artifacts
+
+Pointless artifacts are things that must exist for your project to be a valid package by CRAN's policies but serve no purpose for a project that isn't going to be publicly released on CRAN.
+
+The most absurd pointless artifact for never-to-be released software is a license. You'll need to declare an open source license acceptable to CRAN or R CMD check will throw an error in your continuous integration reports.
+
+Also in this category are the paths you must use for your files. Documents that are to be built by your project go in `./vignettes`. Report? It's a vignette. Slide deck? That's a vignette. Flexdashboard? That's vignette too. What isn't a vignette? Someone may well ask. 
+
+Alternatively you could bury your documents in `/inst/docs`, since the `inst` folder is fair game, or you could introduce an `.Rbuildignore` file to indicate to R CMD check that a simple `./docs` should not be cause for alarm. The `.Rbuildignore` file is the pointless artifact in this case.
+
+## Added noise
+
+Every function call made in an R package that is not part of the base language needs to be tied to an appropriate namespace. The community has settled on the noisiest but most flexible approach to do this as standard, using the `::` operator.
+
+I dug up a real snippet of code from a recent project to demonstrate the difference.
+
+Here's the standard for project as a package:
+
+```r
+  plot_data <- daily_work %>%
+    dplyr::filter(IncidentTypeCategory %in% incident_type_categories) %>%
+    # determine ordering for category factor
+    dplyr::group_by(IncidentTypeCategory) %>%
+    dplyr::mutate(total_hours = sum(hours)) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      month = tsibble::yearmonth(floor_date(date, "month")),
+      category = forcats::fct_reorder(
+        IncidentTypeCategory,
+        total_hours,
+        .desc = TRUE
+      )
+    ) %>%
+    dplyr::group_by(month, category) %>%
+    dplyr::summarise(hours = sum(hours)) %>%
+    dplyr::ungroup() %>%
+    tsibble::as_tsibble(index = month, key = "category") %>%
+    tsibble::fill_gaps(hours = 0)
+
+  ggplot2::ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
+    ggplot2::geom_path() +
+    ggplot2::scale_x_date() +
+    ggplot2::expand_limits(y = 0) +
+    ggplot2::facet_wrap(
+      ~category,
+      ncol = 1,
+      scales = "free_y"
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(
+      title = "QFES monthly vehicle hours",
+      y = "vehicle hours"
+    ) +
+    ggplot2::geom_smooth(se = FALSE, linetype = "dashed")
+```
+
+and here's what my team actually had:
+
+```r
+  plot_data <- daily_work %>%
+    filter(IncidentTypeCategory %in% incident_type_categories) %>%
+    # determine ordering for category factor
+    group_by(IncidentTypeCategory) %>%
+    mutate(total_hours = sum(hours)) %>%
+    ungroup() %>%
+    mutate(
+      month = yearmonth(floor_date(date, "month")),
+      category = fct_reorder(
+        IncidentTypeCategory,
+        total_hours,
+        .desc = TRUE
+      )
+    ) %>%
+    group_by(month, category) %>%
+    summarise(hours = sum(hours)) %>%
+    ungroup() %>%
+    as_tsibble(index = month, key = "category") %>%
+    tsibble::fill_gaps(hours = 0)
+
+  ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
+    geom_path() +
+    scale_x_date() +
+    expand_limits(y = 0) +
+    facet_wrap(
+      ~category,
+      ncol = 1,
+      scales = "free_y"
+    ) +
+    theme_minimal() +
+    labs(
+      title = "QFES monthly vehicle hours",
+      y = "vehicle hours"
+    ) +
+    geom_smooth(se = FALSE, linetype = "dashed")
+```
+
+Note how we had `tsibble::fill_gaps` even in the second example even though we didn't need to. This is sometimes done as a kindness for the reader when using lesser known functions. 
+
+I find reading from a `%>%` down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style `dplyr` flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.^[Speaking of `%>%`, you'll have noticed we don't have to do `magrittr::%>%` everywhere that is used. It is declared via `importFrom(magrittr,"%>%")` in the package's `NAMESPACE` file. `NAMESPACE` is arguably pointless artifact if the project as a package is never installed.]
+
+Surprisingly you must also use `::` to prefix functions from core namespaces that are loaded automatically by R. So that means `stats::`, `utils::`, and `tools::` etc with accompanying declarations in the `DESCRIPTION` file. A lot of commonly used functions are held in the core packages and I am regularly tripped up in package development trying to use functions without namespace prefixes that I thought were in the base language.
+
+Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like `EPSG_WEB_MERCATOR <- 3857` so later in my code I can do `st_transform(sf_object, EPSG_WEB_MERCATOR)` instead of having the magic number `3857` appear from the ether.^[Global _variables_ are dangerous. Global _constants_ are useful communication tools.] 
+
+To do this in a package project I must introduce this odd looking side-effect function into my code:
+
+```r
+globalVariables(c("EPSG_WEB_MERCATOR"), "my_package")
+WEBMERCATOR_EPSG <- 3857
+```
+
+# Dissecting the killer features
+From what fans of the project as a package workflow have said to me, the two killer features are:
+
+1. Having an easily installable artifact that will install its own dependencies
+2. Easy on-ramp to automated testing on GitHub continuous integration services.
+
+With respect to 1. I've already debunked the dependencies aspect - making your project a package is not a robust form of dependency management^[And if you don't have proper dependency management, you are the dependency management!]. On sharing, I'd argue `git clone https://github.com/my_org/my_project` is a pretty nice way to share a project, equivalent to `install_github("my_org/my_project")`.
+
+Thinking about 2: Automated testing is great, and the package ecosystem has a nicely paved flow consisting of just a couple of `{usethis}` calls. But your automated tests are run within RMD check which adds overhead and a whole basket of compliance requirements that are pointless. 
+
+I think people are missing the fact the that there is nothing spooky about the way `{testthat}` works. There is a function called `testthat::test_dir` that runs a folder of `testthat` tests in an environment that is setup by `testthat.R` . You could change a couple of lines in the [GitHub action for CMD check](https://github.com/r-lib/actions/tree/master/examples), swapping `rcmdcheck::rcmdcheck` for `testthat::test_dir` and you have your automated testing without the tyranny of the CMD check and R package structure. 
+
+# Weighing the cons
+Okay so here's where I go full subjective and get to the heart of why project as a package upsets me.
+
+As data scientists we work in a field where there are very few objectively right outcomes. It doesn't matter how we wrote our code, or how many unit tests it has, or even if our models converged^[Since misspecified models can converge to an answer that is not well founded.]. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.
+
+And the key word is _convincing_. It's not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers^[With possible peers including our future selves in 3-6 months time.].
+
+So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else ^[And I'm lucky enough to work with some people that share this view.].
+
+The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend. 
+
+People have said: "Yes but once you know how to make packages it actually makes things clearer". I find this an inhumane response on a number of levels. It steepens the learning curve before collaborators can become contributors. This is cruel if there are less convoluted options that would suffice. 
+
+My response to advocates of project as a package is: ==You're wasting precious time making the wrong packages.== 
+
+Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren't you packaging tools that create the smooth `{devtools}`/`{usethis}` style experience for your own domain?^[There are many examples of R developers doing this. Some prominent examples to consider are: [{workflowr}](https://jdblischak.github.io/workflowr/index.html), [{rrpkg}](https://github.com/benmarwick/rrtools), [{orderly}](https://www.vaccineimpact.org/orderly/articles/orderly.html). I have made my own efforts public as discussed in my previous blog post. ] 
+
+No really. Why. Aren't. You. Doing. That?
+
+You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind^[To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.]. Your domain, done in your style, under your rules.
+
+# Conclusions, caveats, concessions
+My aim here has been to provide some balance to a discussion that felt a bit one sided. I fully accept that I have but one vantage point and others will evaluate the tradeoffs project as package makes differently from theirs.
+
+For my peers slugging away in industry data science roles, my argument essentially boils down to: 
+
+The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as 'pros', most can be realised under alternative workflows^[If you like writing functions you owe it to yourself to give `{drake}` a look.]. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.
+
+I am more convinced of the R package approach for reproducible research objects. Although they may not be going to CRAN, they fully expect to be archived. In this case the DESCRIPTION file has more value. It also makes sense to adhere to a really common standard, since if the domain shifts over a very long period of time, it may actually aid comprehension of the work to be in a more general standard form.
+
+# Where to next
+
+When I step back and look at what's going on here I am [reminded of this very lucid article shared by Hadley Wickham](https://www.gwern.net/Holy-wars) [on Twitter](https://twitter.com/hadleywickham/status/1280340931657564160) recently. The article talks about the phenomenon of 'bitrot' and 'bitcreep' which are reciprocal software phenomena. In R, our collective tooling has seen significant _bitcreep_ toward package development due to the amount and quality of developers who depend on these tools.
+
+Conversely tools that break the package development paradigm for projects are succeptible to _bitrot_ since they have fewer developers and everything that comes with that is its own self-reinforcing disincentive to users and future developers.
+
+The way I see to combat this is with modularity. With small easy to maintain tools that we can compose to build our domain specific workflows. An example would be some kind of `{testthis}` package that encapsulates how to set up a project for automated testing with `{testthat}` sans CMD check. Another example might be a package that does something similar for linting.
+
+# With thanks to
+The following #rstats community members who responded for my callout for feedback on Twitter, each opening my eyes to a different aspect of projects as packages:
+* [Raphaël Simon](https://twitter.com/RplSmn)
+* [Edwin Thoen](https://twitter.com/edwin_thoen)
+* [Jon Harmon](https://twitter.com/JonTheGeek)
+
+Nick Tierney and Dean Machiori for being a sounding board for some of my agruments.
+
+My team at QFES for being on board with putting clarity above all else, especially Anthony North.
+
+

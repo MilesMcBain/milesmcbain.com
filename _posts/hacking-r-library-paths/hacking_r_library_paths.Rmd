@@ -1,0 +1,90 @@
+---
+title: "Hacking R's library paths"
+description: |
+    If you've been tripped up by R's library paths in the past, or you just enjoy a good hack, you might appreciate this little trick
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2019-06-20
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - hacks
+preview: Monkey-typing.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%")
+```
+
+```{r}
+knitr::include_graphics("Monkey-typing.jpg")
+```
+If you've been tripped up by R's library paths in the past, or you just enjoy a good hack, you might appreciate this little trick I discovered today. Here's an alternate to `.libPaths()` that will let you set your R library paths to precisely whatever you choose, whenever you like^[Unbelievably `libPaths()` doesn't let you remove your system or site library from the search path.]:
+
+```r
+set_lib_paths <- function(lib_vec) {
+
+  lib_vec <- normalizePath(lib_vec, mustWork = TRUE)
+
+  shim_fun <- .libPaths
+  shim_env <- new.env(parent = environment(shim_fun))
+  shim_env$.Library <- character()
+  shim_env$.Library.site <- character()
+
+  environment(shim_fun) <- shim_env
+  shim_fun(lib_vec)
+
+}
+
+> .libPaths()
+[1] "/home/miles/R/x86_64-pc-linux-gnu-library/3.6"
+[2] "/usr/local/lib/R/site-library"                
+[3] "/usr/lib/R/site-library"                      
+[4] "/usr/lib/R/library"    
+
+> set_lib_paths("~/code/library")
+> .libPaths()
+[1] "/home/miles/code/library"
+```
+
+This code is inspired by some I found in the source of [Gabe Becker's `switchr` package](https://github.com/gmbecker/switchr/blob/682e0fe56ab1f3340856ff106767683058862c13/R/methods.R#L467). It looks a little cryptic, but when you figure out what's going on it's really quite exciting. 
+
+So let's break it down:
+
+According to the help of `.libPaths()` (which is a pretty 'classic' base R help file): 
+> 
+> If called with argument ‘new’, the library search path is set to the
+> existing directories in ‘unique(c(new, .Library.site, .Library))’
+> and this is returned.  If given no argument, a character vector
+> with the currently active library trees is returned.
+
+Which is to say `.libPaths(new)` will prepend your library paths, `.Library` and `.Library.site`, with whatever `new` contains. `.Library` and `.Library.site` are just regular R objects though. You can look up their values by typing them into your console. E.g. On my PC here:
+
+```r
+> .Library
+[1] "/usr/lib/R/library"
+```
+
+So you might think (like I did), oh cool I can just overwrite these! Alas no. They don't appear in a regular environment e.g.:
+
+```
+> environment(.Library)
+NULL
+```
+
+And while you can assign to them, it doesn't affect the behaviour of `.libPaths()`. So we can deduce that `.libPaths()` must have access to some other environment that contains the versions of these objects it references.
+
+On this assumption, what this function does is take a copy of the `.libPaths()` function and inject a shim environment between the copy and its original parent environment. Into the shim environment it injects new objects named `.Library` and `.Library.site` which are set to empty character vectors.
+
+These injected objects mask the true versions that reside somewhere up the environment chain that we can't easily reach. So when the code in our copy of `.libPaths()` goes reaching for these objects it will find our empty copies first and its behaviour will now be to set our library paths to `c(new, character(0), character(0))` ...PHWARH!^[Importantly since we inserted our shim environment like a link into the existing chain, the `.libPaths()` code can still access any other objects it needs in higher scopes. Also the original `.libPaths()` works as normal]
+
+Beyond this function, which could be incredibly useful in workshop/classroom settings, I'm quite taken with the environment shim technique. It'll be interesting to see what fun havok it can wreak with other people's package code. Can it facilitate a kind of [monkey-patching](https://en.wikipedia.org/wiki/Monkey_patch) of unexported functions? We'll see. Let me know if you use it for something gnarly!
+
+-----
+
+_Header Image Credit: 
+New York Zoological Society, Public domain_
