@@ -7,3 +7,5 @@ description: |
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+This is the personal blog of Miles McBain coming to you from Brisbane, Queensland, Australia.

@@ -17,7 +17,7 @@
     ],
     "preview": "posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg",
     "last_modified": "2020-08-14T00:11:28+10:00",
-    "input_file": "project_as_an_r_package.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/the-drake-post/",
@@ -39,7 +39,7 @@
     ],
     "preview": "posts/the-drake-post/spinach_small.jpg",
     "last_modified": "2020-08-14T00:05:58+10:00",
-    "input_file": "benefits_of_a_function_based_diet.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/recover/",
@@ -57,8 +57,8 @@
       "debugging"
     ],
     "preview": "posts/recover/recover_vid.png",
-    "last_modified": "2020-08-13T23:58:34+10:00",
-    "input_file": "stop_breathe_recover.utf8.md",
+    "last_modified": "2020-08-13T23:58:35+10:00",
+    "input_file": {},
     "preview_width": 2552,
     "preview_height": 1436
   },
@@ -78,8 +78,8 @@
       "hacks"
     ],
     "preview": "posts/hacking-r-library-paths/Monkey-typing.jpg",
-    "last_modified": "2020-08-13T23:51:16+10:00",
-    "input_file": "hacking_r_library_paths.utf8.md"
+    "last_modified": "2020-08-13T23:51:17+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/packrat-lite/",
@@ -97,8 +97,8 @@
       "reproducibility"
     ],
     "preview": "posts/packrat-lite/nutria-1200457_1920.jpg",
-    "last_modified": "2020-08-13T23:41:00+10:00",
-    "input_file": "a_workflow_for_lightweight_r_dependency_management.utf8.md"
+    "last_modified": "2020-08-13T23:41:01+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/for-loops/",
@@ -117,7 +117,7 @@
     ],
     "preview": "posts/for-loops/1024px-Apocalypse_vasnetsov.jpg",
     "last_modified": "2020-08-13T23:35:01+10:00",
-    "input_file": "horseman_number_for.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/rstats-anti-pattern-row-wise/",
@@ -135,8 +135,8 @@
       "loops"
     ],
     "preview": "posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg",
-    "last_modified": "2020-08-13T23:22:04+10:00",
-    "input_file": "r_anti_pattern_rowise_modification_of_data_in_a_loop.utf8.md"
+    "last_modified": "2020-08-13T23:22:05+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/the-roots-of-quotation/",
@@ -155,7 +155,7 @@
     ],
     "preview": "posts/the-roots-of-quotation/Quote---2-.jpg",
     "last_modified": "2020-08-13T23:14:53+10:00",
-    "input_file": "the_roots_of_quotation.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/r2vr3-shading-meshes-in-webvr/",
@@ -174,7 +174,7 @@
     ],
     "preview": "posts/r2vr3-shading-meshes-in-webvr/uluru_header.png",
     "last_modified": "2020-08-13T23:13:58+10:00",
-    "input_file": "shading_meshes_in_webvr.utf8.md",
+    "input_file": {},
     "preview_width": 1834,
     "preview_height": 1058
   },
@@ -196,7 +196,7 @@
     ],
     "preview": "posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg",
     "last_modified": "2020-08-13T23:09:57+10:00",
-    "input_file": "crushing-the-contact-details-file.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/r2vr2-rendering-meshes-in-webvr/",
@@ -215,29 +215,9 @@
     ],
     "preview": "posts/r2vr2-rendering-meshes-in-webvr/rock_opera.png",
     "last_modified": "2020-08-13T23:07:44+10:00",
-    "input_file": "rendering_meshes_in_webvr.utf8.md",
+    "input_file": {},
     "preview_width": 1921,
     "preview_height": 1083
-  },
-  {
-    "path": "posts/solving-the-challenge-of-tidyeval/",
-    "title": "Solving the Challenge of Tidyeval",
-    "description": "Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...",
-    "author": [
-      {
-        "name": "Miles McBain",
-        "url": "https://milesmcbain.xyz"
-      }
-    ],
-    "date": "2018-05-23",
-    "categories": [
-      "rstats",
-      "tidyverse",
-      "tidyeval"
-    ],
-    "preview": "posts/solving-the-challenge-of-tidyeval/9972796593_14695448e7_b.jpg",
-    "last_modified": "2020-08-13T23:11:19+10:00",
-    "input_file": "solving-the-challenge-of-tidyeval.utf8.md"
   },
   {
     "path": "posts/2018-in-pursuit-of-productivity/",
@@ -256,7 +236,27 @@
     ],
     "preview": "posts/2018-in-pursuit-of-productivity/corn-flakes-1915632_1280.jpg",
     "last_modified": "2020-08-13T23:28:10+10:00",
-    "input_file": "in_pursuit_of_productivity.utf8.md"
+    "input_file": {}
+  },
+  {
+    "path": "posts/solving-the-challenge-of-tidyeval/",
+    "title": "Solving the Challenge of Tidyeval",
+    "description": "Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...",
+    "author": [
+      {
+        "name": "Miles McBain",
+        "url": "https://milesmcbain.xyz"
+      }
+    ],
+    "date": "2018-05-23",
+    "categories": [
+      "rstats",
+      "tidyverse",
+      "tidyeval"
+    ],
+    "preview": "posts/solving-the-challenge-of-tidyeval/9972796593_14695448e7_b.jpg",
+    "last_modified": "2020-08-13T23:11:20+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/how-to-survive-a-laptop-fire/",
@@ -273,8 +273,8 @@
       "software development"
     ],
     "preview": "posts/how-to-survive-a-laptop-fire/Burned_laptop_secumem_11.jpg",
-    "last_modified": "2020-08-13T23:05:27+10:00",
-    "input_file": "how_to_survive_a_laptop_fire.utf8.md"
+    "last_modified": "2020-08-15T22:53:26+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/r2v1-meshing-uluru-from-polygons-and-rasters/",
@@ -295,7 +295,7 @@
     ],
     "preview": "posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg",
     "last_modified": "2020-08-13T23:06:28+10:00",
-    "input_file": "meshing_uluru.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/ropensci-onboarding2/",
@@ -330,7 +330,7 @@
     ],
     "preview": "posts/a-fully-dockerised-ghost-blog/g1.png",
     "last_modified": "2020-08-13T23:06:01+10:00",
-    "input_file": "a-fully-dockerised-ghost-blog.utf8.md",
+    "input_file": {},
     "preview_width": 953,
     "preview_height": 560
   },

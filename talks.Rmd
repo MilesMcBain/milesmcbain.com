@@ -1,0 +1,15 @@
+---
+title: "Talks"
+description: |
+  Presentations given by me
+---
+
+
+* [That Feeling of Workflowing](https://github.com/MilesMcBain/nycr_meetup_talk), New York Open Statistical Programming Meetup, August 2020
+* [So Hot Right Now: Data Science at Queensland Fire and Emergency Services](https://docs.google.com/presentation/d/1dl6EF1X_UqBWFE-2ySkvs0YOpK52Dlass3KE4a04SLE/edit?usp=sharing), WOMBAT, November 2019
+* [Our Colours of Magic: The open sourcery of fantastic R packages](https://github.com/MilesMcBain/rstudioconf_talk), RStudio::conf, January 2019
+* [Making an Impact With Software Publishing](https://docs.google.com/presentation/d/1GLrOyRBymzPhgcRiPjNJXRdCv5ChXp4Ytctds5WbDag/edit), QUT BRAG, May 2018
+* [A High Level Overview of Low Level Computing](https://docs.google.com/presentation/d/1fCR7PVYWQxD036-xR-hnJpTvuFfHHuRNEpY0iejEJZI/edit?usp=sharing), QUT BRAG, December 2017
+* [This Thing Called GitHub](https://github.com/MilesMcBain/burgr_20170913_github/blob/master/github.Rmd), BURGr, September 2017
+* [Discovering R Packages](https://github.com/MilesMcBain/burgr_package_discovery/blob/master/discovering_R_packages.Rmd), BURGr, April 2017
+* [Big Data as a Discipline](https://github.com/MilesMcBain/AMSI_2017_MSBD_Talk/blob/master/BDaaD.Rmd), AMSI Summer School, January 2017

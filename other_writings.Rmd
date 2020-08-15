@@ -1,0 +1,12 @@
+---
+title: "Other Writings"
+description: |
+  Things I've posted elsewhere
+---
+
+* [Combining Australian Census data with the Same Sex Marriage Postal Survey in R (Medium)](https://medium.com/@miles.mcbain/combining-australian-census-data-with-the-same-sex-marriage-postal-survey-in-r-39d9b2082249)
+* [Tidying the Australian Same Sex Marriage Postal Survey Data with R (Medium)](https://medium.com/@miles.mcbain/tidying-the-australian-same-sex-marriage-postal-survey-data-with-r-5d35cea07962)
+* [Australia Unconference (rOpenSci)](https://ropensci.org/blog/2016/06/16/au-unconf/)
+* [Launching webrockets at runconf17 (rOpenSci)](https://ropensci.org/blog/2017/07/05/webrockets/)
+* [R Has No Primitives (One weiRd tip)](http://bragqut.github.io/2016/05/26/milesmcbain-rnoprimitives/)
+* [What the shist()? (One weiRd tip)](http://bragqut.github.io/2016/02/24/milesmcbain-shistogram/)

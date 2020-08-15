@@ -4,9 +4,16 @@ description: |
   Before I Sleep
 output_dir: "_site"
 navbar:
+  logo:
+    image: images/i_like_turtles_bis.png
+    href: https://milesmcbain.xyz
   right:
     - text: "Home"
       href: index.html
+    - text: "Talks"
+      href: talks.html
+    - text: "Other writings"
+      href: other_writings.html
     - text: "About"
       href: about.html
 output: distill::distill_article

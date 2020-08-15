@@ -2,11 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://milesmcbain.xyz/about.html</loc>
-    <lastmod>2020-08-12T21:20:09+10:00</lastmod>
+    <lastmod>2020-08-15T23:18:22+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/</loc>
-    <lastmod>2020-08-12T21:20:09+10:00</lastmod>
+    <lastmod>2020-08-15T23:25:42+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/other_writings.html</loc>
+    <lastmod>2020-08-15T22:57:47+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.xyz/talks.html</loc>
+    <lastmod>2020-08-15T22:54:53+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/an-okay-idea/</loc>
@@ -18,15 +26,15 @@
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/recover/</loc>
-    <lastmod>2020-08-13T23:58:34+10:00</lastmod>
+    <lastmod>2020-08-13T23:58:35+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/hacking-r-library-paths/</loc>
-    <lastmod>2020-08-13T23:51:16+10:00</lastmod>
+    <lastmod>2020-08-13T23:51:17+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/packrat-lite/</loc>
-    <lastmod>2020-08-13T23:41:00+10:00</lastmod>
+    <lastmod>2020-08-13T23:41:01+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/for-loops/</loc>
@@ -34,7 +42,7 @@
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/rstats-anti-pattern-row-wise/</loc>
-    <lastmod>2020-08-13T23:22:04+10:00</lastmod>
+    <lastmod>2020-08-13T23:22:05+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/the-roots-of-quotation/</loc>
@@ -53,16 +61,16 @@
     <lastmod>2020-08-13T23:07:44+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval/</loc>
-    <lastmod>2020-08-13T23:11:19+10:00</lastmod>
-  </url>
-  <url>
     <loc>https://milesmcbain.xyz/posts/2018-in-pursuit-of-productivity/</loc>
     <lastmod>2020-08-13T23:28:10+10:00</lastmod>
   </url>
   <url>
+    <loc>https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval/</loc>
+    <lastmod>2020-08-13T23:11:20+10:00</lastmod>
+  </url>
+  <url>
     <loc>https://milesmcbain.xyz/posts/how-to-survive-a-laptop-fire/</loc>
-    <lastmod>2020-08-13T23:05:27+10:00</lastmod>
+    <lastmod>2020-08-15T22:53:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/</loc>
