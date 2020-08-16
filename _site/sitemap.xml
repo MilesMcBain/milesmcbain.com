@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://milesmcbain.xyz/about.html</loc>
+    <loc>https://milesmcbain.com/about.html</loc>
     <lastmod>2020-08-16T21:25:57+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/</loc>
+    <loc>https://milesmcbain.com/</loc>
     <lastmod>2020-08-15T23:25:42+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/other_writings.html</loc>
+    <loc>https://milesmcbain.com/other_writings.html</loc>
     <lastmod>2020-08-15T22:57:47+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/talks.html</loc>
+    <loc>https://milesmcbain.com/talks.html</loc>
     <lastmod>2020-08-15T22:54:53+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/an-okay-idea/</loc>
+    <loc>https://milesmcbain.com/posts/an-okay-idea/</loc>
     <lastmod>2020-08-14T00:11:28+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/the-drake-post/</loc>
+    <loc>https://milesmcbain.com/posts/the-drake-post/</loc>
     <lastmod>2020-08-14T00:05:58+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/recover/</loc>
+    <loc>https://milesmcbain.com/posts/recover/</loc>
     <lastmod>2020-08-13T23:58:35+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/hacking-r-library-paths/</loc>
+    <loc>https://milesmcbain.com/posts/hacking-r-library-paths/</loc>
     <lastmod>2020-08-16T22:17:08+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/packrat-lite/</loc>
+    <loc>https://milesmcbain.com/posts/packrat-lite/</loc>
     <lastmod>2020-08-13T23:41:01+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/for-loops/</loc>
+    <loc>https://milesmcbain.com/posts/for-loops/</loc>
     <lastmod>2020-08-16T22:15:36+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/rstats-anti-pattern-row-wise/</loc>
+    <loc>https://milesmcbain.com/posts/rstats-anti-pattern-row-wise/</loc>
     <lastmod>2020-08-16T22:14:30+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/the-roots-of-quotation/</loc>
+    <loc>https://milesmcbain.com/posts/the-roots-of-quotation/</loc>
     <lastmod>2020-08-13T23:14:53+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/r2vr3-shading-meshes-in-webvr/</loc>
+    <loc>https://milesmcbain.com/posts/r2vr3-shading-meshes-in-webvr/</loc>
     <lastmod>2020-08-13T23:13:58+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/crushing-the-contact-details-file/</loc>
+    <loc>https://milesmcbain.com/posts/crushing-the-contact-details-file/</loc>
     <lastmod>2020-08-13T23:09:57+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/r2vr2-rendering-meshes-in-webvr/</loc>
+    <loc>https://milesmcbain.com/posts/r2vr2-rendering-meshes-in-webvr/</loc>
     <lastmod>2020-08-13T23:07:44+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/2018-in-pursuit-of-productivity/</loc>
+    <loc>https://milesmcbain.com/posts/2018-in-pursuit-of-productivity/</loc>
     <lastmod>2020-08-16T22:11:13+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/solving-the-challenge-of-tidyeval/</loc>
+    <loc>https://milesmcbain.com/posts/solving-the-challenge-of-tidyeval/</loc>
     <lastmod>2020-08-13T23:11:20+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/how-to-survive-a-laptop-fire/</loc>
+    <loc>https://milesmcbain.com/posts/how-to-survive-a-laptop-fire/</loc>
     <lastmod>2020-08-16T22:09:35+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/r2v1-meshing-uluru-from-polygons-and-rasters/</loc>
+    <loc>https://milesmcbain.com/posts/r2v1-meshing-uluru-from-polygons-and-rasters/</loc>
     <lastmod>2020-08-13T23:06:28+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/ropensci-onboarding2/</loc>
+    <loc>https://milesmcbain.com/posts/ropensci-onboarding2/</loc>
     <lastmod>2020-08-16T22:09:15+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog/</loc>
+    <loc>https://milesmcbain.com/posts/a-fully-dockerised-ghost-blog/</loc>
     <lastmod>2020-08-13T23:06:01+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/ropensci-onboarding1/</loc>
+    <loc>https://milesmcbain.com/posts/ropensci-onboarding1/</loc>
     <lastmod>2020-08-16T22:08:51+10:00</lastmod>
   </url>
   <url>
-    <loc>https://milesmcbain.xyz/posts/alt-r-with-vscode/</loc>
+    <loc>https://milesmcbain.com/posts/alt-r-with-vscode/</loc>
     <lastmod>2020-08-12T22:46:17+10:00</lastmod>
   </url>
 </urlset>
