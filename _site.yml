@@ -16,6 +16,8 @@ navbar:
       href: other_writings.html
     - text: "About"
       href: about.html
+    - icon: fa fa-rss
+      href: index.xml
 output:
   distill::distill_article:
     css: mmstyle.css
