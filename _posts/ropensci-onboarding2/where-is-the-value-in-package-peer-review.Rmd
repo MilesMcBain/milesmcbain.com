@@ -38,7 +38,7 @@ As I've read the growing number of reflective posts by other Onboarding reviewer
 
 I shared these initial butterflies. `bowerbird`'s code base was quite large on the first submission. The code embedded a lot of domain specific API knowledge. It was disorientating and I felt like I was thrashing around stumbling onto issues without undertaking a systematic survey.
 
-Probably recalling Mara's experience, I eventually honed in on the idea that ==to do a good job, all I had to do was identify things that would hold bowerbird back from being a widely-used and popular package. And the best way to identify these was from the "user's" perspective.==
+Probably recalling Mara's experience, I eventually honed in on the idea that to do a good job, all I had to do was identify things that would hold bowerbird back from being a widely-used and popular package. And the best way to identify these was from the "user's" perspective.
 
 That perspective implied the systematic process that I was seeking. So I started from the typical user entry points - README, vignettes, examples in help files. I went through them and tried to use the functions as suggested to download bulk repository data (`bowerbird`'s usecase). I had success! I uncovered quite a few idiosyncrasies in its API and documentation that created a bumpy ride for a new user. The authors were very good about acknowledging and fixing these.
 

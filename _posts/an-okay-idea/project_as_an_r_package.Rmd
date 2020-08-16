@@ -41,16 +41,19 @@ There are quite a number of resources that list the pros of this way of working,
 The primary argument is usually that by structuring your project as an R package you gain access to a plethora of automations and facilities that are going to make your life better.
 
 You get `{devtools}` and `{usethis}` for populating for speeding up menial development tasks including:
+
   * `devtools::load_all()` to populate your global environment with the most recent versions of your functions
   * `usethis::use_package()` to declare a dependency.
 
 The R CMD check routine can run on your project which will find things that do not comply with CRAN policy .e.g:
-    * undeclared dependencies
-    * incomplete function documentation
+
+  * undeclared dependencies
+  * incomplete function documentation
 
 You get a well paved on-ramp to continuous integration services on GitHub to run automated test reports on your project code after pushing each commit.
 
 You can wield the `DESCRIPTION` file, which:
+
   * can make your work more easily searchable
   * clearly documents the authors/copyright holders and helps make your work citable (via `citation()`)
   * documents your dependencies
@@ -68,6 +71,7 @@ It is notable that prominent proposals for the structure of a Research Compendiu
 [David Neuzerling](https://twitter.com/mdneuzerling/status/1284976213509849088) just wrote an excellent overview of the case for project as a package in his post [_Data Science Workflows_](https://mdneuzerling.com/post/data-science-workflows/).
 
 # Cons
+
 And now for the main event...
 
 ## Double handling of metadata
@@ -199,6 +203,7 @@ WEBMERCATOR_EPSG <- 3857
 ```
 
 # Dissecting the killer features
+
 From what fans of the project as a package workflow have said to me, the two killer features are:
 
 1. Having an easily installable artifact that will install its own dependencies
@@ -211,6 +216,7 @@ Thinking about 2: Automated testing is great, and the package ecosystem has a ni
 I think people are missing the fact the that there is nothing spooky about the way `{testthat}` works. There is a function called `testthat::test_dir` that runs a folder of `testthat` tests in an environment that is setup by `testthat.R` . You could change a couple of lines in the [GitHub action for CMD check](https://github.com/r-lib/actions/tree/master/examples), swapping `rcmdcheck::rcmdcheck` for `testthat::test_dir` and you have your automated testing without the tyranny of the CMD check and R package structure. 
 
 # Weighing the cons
+
 Okay so here's where I go full subjective and get to the heart of why project as a package upsets me.
 
 As data scientists we work in a field where there are very few objectively right outcomes. It doesn't matter how we wrote our code, or how many unit tests it has, or even if our models converged^[Since misspecified models can converge to an answer that is not well founded.]. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.
@@ -232,6 +238,7 @@ No really. Why. Aren't. You. Doing. That?
 You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind^[To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.]. Your domain, done in your style, under your rules.
 
 # Conclusions, caveats, concessions
+
 My aim here has been to provide some balance to a discussion that felt a bit one sided. I fully accept that I have but one vantage point and others will evaluate the tradeoffs project as package makes differently from theirs.
 
 For my peers slugging away in industry data science roles, my argument essentially boils down to: 
@@ -249,7 +256,9 @@ Conversely tools that break the package development paradigm for projects are su
 The way I see to combat this is with modularity. With small easy to maintain tools that we can compose to build our domain specific workflows. An example would be some kind of `{testthis}` package that encapsulates how to set up a project for automated testing with `{testthat}` sans CMD check. Another example might be a package that does something similar for linting.
 
 # With thanks to
+
 The following #rstats community members who responded for my callout for feedback on Twitter, each opening my eyes to a different aspect of projects as packages:
+
 * [Raphaël Simon](https://twitter.com/RplSmn)
 * [Edwin Thoen](https://twitter.com/edwin_thoen)
 * [Jon Harmon](https://twitter.com/JonTheGeek)

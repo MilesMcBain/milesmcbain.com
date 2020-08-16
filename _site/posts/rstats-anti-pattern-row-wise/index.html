@@ -61,7 +61,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["El_Diablo_Roller_Coaster.jpg"]}
+  {"type":"character","attributes":{},"value":["El_Diablo_Roller_Coaster.jpg","r_anti_pattern_rowise_modification_of_data_in_a_loop_files/bowser-1.9.3/bowser.min.js","r_anti_pattern_rowise_modification_of_data_in_a_loop_files/distill-2.2.21/template.v2.js","r_anti_pattern_rowise_modification_of_data_in_a_loop_files/header-attrs-2.3/header-attrs.js","r_anti_pattern_rowise_modification_of_data_in_a_loop_files/jquery-1.11.3/jquery.min.js","r_anti_pattern_rowise_modification_of_data_in_a_loop_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1286,7 +1286,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1396,7 +1395,7 @@ html, body, p {
 
 <div class="d-title">
 <h1>R anti-pattern: Row-wise modification of data in a loop</h1>
-<p><p>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</p></p>
+<p>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</p>
 </div>
 
 <div class="d-byline">
@@ -1431,7 +1430,7 @@ for (i in nrow(df[, 1])) {
 <h2 id="a-new-challenger-appears">A new challenger appears</h2>
 <p>A colleague who has been using R for some time, sees your code over your shoulder and lets out some tut tuts. “You really should use lapply or map for that.” he says.</p>
 <p>Really? Shouldn’t they take about the same time? lapply and map must be just a loop under the hood! You decide to benchmark the suggestion:</p>
-<pre><code>
+<pre class="r"><code>
 microbenchmark(
   for (i in nrow(df[, 1])) {
     df[i,1] &lt;- df[i,1] * 180/pi
@@ -1450,7 +1449,7 @@ df$a &lt;- lapply(...  1.883315  1.97313  2.59433  2.067858
 <h2 id="what-is-going-on">What is going on</h2>
 <p>At this point you might be getting mad at the person that told you that loops aren’t slow - but it’s not their fault. Loops are not the problem here - it is the way R manages memory. In this case R is doing some extra work it doesn’t need to do, and we can demonstrate it using tools from the <code>pryr</code> package.</p>
 <p>Let’s consider the first five iterations of the loop, and print out the address of the column being modified, using <code>inspect(df[, 1])</code>, each time:</p>
-<pre><code>
+<pre class="r"><code>
 library(pryr)
 
 for (i in 1:5) {
@@ -1472,7 +1471,7 @@ for (i in 1:5) {
 <p>So whenever a column is modified it is copied, in case that column was a column referred to by another dataframe. But this seems kind of dumb in the case where there is only one dataframe that uses that column - which is what we had in our example. It should be possible, by counting references to a column, to know when copying is required and when in-place modification is okay. <a href="https://adv-r.hadley.nz/names-values.html#copy-on-modify">Apparently this is coming in future versions of R</a>.</p>
 <h2 id="not-quite-the-end-of-the-story">Not quite the end of the story</h2>
 <p>Amongst the commotion and exclaiming at this revelation your supervisor approaches to see what is happening. She looks at the code briefly, blinks, and says “That’s nice but you really could do that in one line, like this”. She scribbles out this R code onto an important document on your desk:</p>
-<pre><code>
+<pre class="r"><code>
 df$a &lt;- df$a * 180/pi</code></pre>
 <p>And instantly you know she’s right. You don’t even need to run the benchmark to know it’s going to crush the alternatives. Here you learned an important lesson: in R often the fastest iteration construct is no iteration at all. Taking advantage of the internally vectorised nature of R’s base functions and operators is the way to go where possible. I had a great lesson in this watching <a href="https://resources.rstudio.com/webinars/thinking-inside-the-box-you-can-do-that-inside-a-data-frame-april-jenny-bryan">Jenny Bryan’s webinar on row-oriented workflows</a> which I thoroughly recommend.</p>
 <h2 id="summary">Summary</h2>

@@ -56,6 +56,7 @@ This code is inspired by some I found in the source of [Gabe Becker's `switchr` 
 So let's break it down:
 
 According to the help of `.libPaths()` (which is a pretty 'classic' base R help file): 
+
 > 
 > If called with argument ‘new’, the library search path is set to the
 > existing directories in ‘unique(c(new, .Library.site, .Library))’
@@ -71,7 +72,7 @@ Which is to say `.libPaths(new)` will prepend your library paths, `.Library` and
 
 So you might think (like I did), oh cool I can just overwrite these! Alas no. They don't appear in a regular environment e.g.:
 
-```
+```r
 > environment(.Library)
 NULL
 ```

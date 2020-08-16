@@ -78,7 +78,7 @@
       "hacks"
     ],
     "preview": "posts/hacking-r-library-paths/Monkey-typing.jpg",
-    "last_modified": "2020-08-13T23:51:17+10:00",
+    "last_modified": "2020-08-16T22:17:08+10:00",
     "input_file": {}
   },
   {
@@ -116,7 +116,7 @@
       "loops"
     ],
     "preview": "posts/for-loops/1024px-Apocalypse_vasnetsov.jpg",
-    "last_modified": "2020-08-13T23:35:01+10:00",
+    "last_modified": "2020-08-16T22:15:36+10:00",
     "input_file": {}
   },
   {
@@ -135,7 +135,7 @@
       "loops"
     ],
     "preview": "posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg",
-    "last_modified": "2020-08-13T23:22:05+10:00",
+    "last_modified": "2020-08-16T22:14:30+10:00",
     "input_file": {}
   },
   {
@@ -235,7 +235,7 @@
       "software development"
     ],
     "preview": "posts/2018-in-pursuit-of-productivity/corn-flakes-1915632_1280.jpg",
-    "last_modified": "2020-08-13T23:28:10+10:00",
+    "last_modified": "2020-08-16T22:11:13+10:00",
     "input_file": {}
   },
   {
@@ -273,7 +273,7 @@
       "software development"
     ],
     "preview": "posts/how-to-survive-a-laptop-fire/Burned_laptop_secumem_11.jpg",
-    "last_modified": "2020-08-15T22:53:26+10:00",
+    "last_modified": "2020-08-16T22:09:35+10:00",
     "input_file": {}
   },
   {
@@ -308,9 +308,13 @@
       }
     ],
     "date": "2018-03-26",
-    "categories": [],
+    "categories": [
+      "rstats",
+      "rOpenSci",
+      "open science"
+    ],
     "preview": "posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg",
-    "last_modified": "2020-08-13T19:38:55+10:00",
+    "last_modified": "2020-08-16T22:09:15+10:00",
     "input_file": {}
   },
   {
@@ -345,9 +349,13 @@
       }
     ],
     "date": "2018-03-06",
-    "categories": [],
+    "categories": [
+      "rstats",
+      "open science",
+      "rOpenSci"
+    ],
     "preview": "posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg",
-    "last_modified": "2020-08-12T23:32:57+10:00",
+    "last_modified": "2020-08-16T22:08:51+10:00",
     "input_file": {}
   },
   {

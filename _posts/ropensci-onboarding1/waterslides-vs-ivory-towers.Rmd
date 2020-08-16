@@ -64,7 +64,7 @@ This rOpenSci repository is almost the perfect antithesis of what R has in CRAN.
 
 Pick 5 random packages from CRAN's [task views](https://cran.r-project.org/web/views/). How many have at least one vignette? How many have a URL for a repository? How many have more than the bare minimum autogen manual mechanically describing functions? I reckon you'll get one or two best - and these are the hand picked cream of the crop. It's not that CRAN has slipped - it's that the bar has been lifted. RStudio, rOpenSci, and other new wave empathetic developers have seen to that.
 
-The rOpenSci model can never do the volume CRAN can with automation, but it is crushing it in terms of quality. All onboarded packages have a vignette, a repo, and made sense to at least three people from diverse backgrounds. Anyone can look up the public [Onboarding review](https://github.com/ropensci/onboarding/issues/139) to get additional insight into why a package works the way it does. ==An rOpenSci package is not just 'guaranteed to work' - it's guaranteed to be workable.== And that is something pretty darn valuable indeed.
+The rOpenSci model can never do the volume CRAN can with automation, but it is crushing it in terms of quality. All onboarded packages have a vignette, a repo, and made sense to at least three people from diverse backgrounds. Anyone can look up the public [Onboarding review](https://github.com/ropensci/onboarding/issues/139) to get additional insight into why a package works the way it does. An rOpenSci package is not just 'guaranteed to work' - it's guaranteed to be workable. And that is something pretty darn valuable indeed.
 
 ---------------------------
 

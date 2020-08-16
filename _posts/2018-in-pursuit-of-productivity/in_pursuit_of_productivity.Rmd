@@ -30,6 +30,7 @@ This was also the year I learned what burnout looks like - my episode happened s
 I spent a lot of this past year feeling frustrated with my progress as deadlines loomed. Just now I counted up the number of 'line in the sand' deadlines I met this year, and for me, it's pretty high:
 
 I count:
+
 * Machine Learning workshop @ ABS
 * R Foundation summit
 * UseR
@@ -63,6 +64,7 @@ I don't even know where to start with Lucy's post [One Year to Dissertate](https
 It's had an impact on me - to the point where I'd say the things I took from it are what got me through the last leg of 2018. You should just go read it. It's this interesting mix of simple tools arranged in a simple system - but the combination feels so sophisticated and clever.
 
 I wasn't preparing a dissertation, but the things I found in the section on planning worked just as well for the various workshops I had to prepare. Immediately useful were: 
+
 * The time-boxed sessions for eliciting project tasks which you prioritise and assign real deadlines. 
 * Making weekly plans with tasks drawn onto your week.
 * Dedicating time to revisit both above.
@@ -98,6 +100,7 @@ Now this is where things get qutie nerdy. My new confidence with typing kicked o
 The frustrating thing you'll quickly find if you head down this path is that a lot of the applications you use will have their own unique keyboard shortcut conventions. There's just too much to memorise. So over the past year I've been gradually replacing or configuring my applications so they all use a single control scheme - and that control scheme is inspired by `vim`.
 
 I think I'd better do a separate post on the rationale and the details, but here's a tour:
+
 * I control my desktop and its windows using a tiling window manager called [`i3`](https://i3wm.org/). Window arrangement uses vim inspired keys (h,j,k,l).
 * I write code using [Spacemacs](http://spacemacs.org/), which among other things, places a vim control scheme over Emacs (and ESS for R).
 * I control my Chromium browser using an extension called ['Vimium C'](https://chrome.google.com/webstore/detail/vimium-c/hfjbmagddngcpeloejdejnfgbamkjaeg?hl=en) that implements an amazingly faithful vim control scheme for a browser.^[I made a fallback mode in `i3` where I can operate my mouse pointer using vim keys for websites that force the issue - yes I am aware how crazy this sounds.]

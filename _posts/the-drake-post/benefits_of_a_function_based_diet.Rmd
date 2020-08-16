@@ -48,8 +48,10 @@ One type of question that emerges repeatedly in discussion with the `drake`-curi
 My take is this:
 
 Approaches to data science pipelines using `drake` are valuable on projects large and small because they help you move faster by:
+
   * avoiding unnecessary computation time
   * eliminating common classes of bugs associated with interactive development
+
   * providing easy-to-use debugging access-panels
   * facilitating comprehensible project and code structure
 
@@ -74,6 +76,7 @@ The underlying principles of our workflow are a response to this environment:
 I've put as much of this as possible in a package called [`{dflow}`](https://github.com/milesmcbain/dflow) that helps create projects that follow our workflow.
 
 # Initial Project Structure
+
 We call `dflow::use_dflow()` to create starter projects that have this structure:
 
 ```
@@ -138,9 +141,10 @@ Below is a more mature example that shows how things can evolve. Apart from `R`,
 Notice how all the R files seem to be about doing one specific thing, and they're all lumped in together under the `R` folder. This might feel weird if you're used to a more traditional folder-based approach e.g. `./00_load/`, `./01_wrangle/`, `./02_model/`. The difference is that the bulk of the project structure is provided by the `plan.R` file. To make that structure coherent it is useful to have functions named after specific steps. We have a convention one of these functions per file. This has advantages I will discuss very soon.
 
 # Plan conventions
+
 Here is a slightly stripped back^[full plan [here](https://gist.github.com/MilesMcBain/0a834f54320dd7e6e4a558589bd920d4)] version of the plan.R file that corresponds to that project structure:
 
-```
+```r
 the_plan <-
   drake_plan(
     start_date = as_datetime("2018-01-01"),
@@ -255,8 +259,7 @@ We'll often have multiple outputs knitted from RMarkdown files. A report and a c
 
 In this scenario it made sense to promote objects like maps and plots that are shared across documents to plan targets. So it's common to see stuff like this in our plans:
 
-```
-
+```r
 the_plan <- 
   drake_plan(
     ...
@@ -300,6 +303,7 @@ It's been interesting to see how niggles I have with Rmd and notebooks in genera
 
 
 # Debugging the pipeline
+
 When something goes badly wrong and errors, `drake` will give you the stack trace and the name the target on which the error occurred. From that you know which function to jump into so debugging from there becomes:
 
 1. load and inspect targets the function takes as inputs from the cache e.g. using `loadd(target_name)` or the 'loadd target at cursor' addin.
@@ -324,7 +328,7 @@ Here's where we return to the `packages.R` and `.env`:
 
 `packages.R` ships with:
 
-```
+```r
 library(conflicted)
 library(dotenv)
 library(drake)
@@ -436,6 +440,7 @@ For things we want to be able to return to in months and years from now we use a
 In practice this side-steps a lot of awkwardness under `renv` that comes with  trialling packages in development you quickly decide not to use, and accessing packages that are convenient for development but not required for the pipeline to run.^[`{mapview}, {datapasta}, {styler}, {lintr}, {languageserver}, {fnmate}` are all examples.]
 
 Using `capusle` we can:
+
 * capture a description of the package environment set up by `packages.R` with `capsule::create()`
 * run a pipeline inside an environment that matches the description with `capsule::run_callr(function() drake::r_make())`
 
@@ -464,6 +469,7 @@ Scaling to a large code base is not something I can comment on. We've probably d
 On the other end of things I don't think there actually is a project size too small. Many of the discussed benefits still apply and overhead is low thanks to automations. I've used this workflow a few times to create [pipelines that output a single plot image](https://github.com/milesmcbain/covid19). Even on a tiny project there's something to be said for sticking to conventions to avoid bogging down in new decisions. 
 
 # Conclusion
+
 If you've had some programming education you may recognise a key philosophy of this approach as _encapsulation_. That's the breaking of machinery into pieces, hiding it away behind descriptive labels, and clear interfaces. Encapsulation done well allows us to reason about a complex data science pipeline on different abstraction levels as necessary without getting overloaded.
 
 When you combine that encapsulation with a `drake`'s cache and dependency sniffing smarts, you get the ability to hone in on bugs extremely quickly. You also minimise the cost of having had them, since you reuse as much prior processing as possible in a principled way that guarantees reproducibility.
@@ -475,11 +481,13 @@ Using functions for the structure they can provide is different to the dominant 
 Doing this well still involves much art. Don't worry if you're not ready for the rest of the fucking owl yet. Building comfort with writing functions by forcing yourself to do it more often would be a great stepping stone to a workflow like this.
 
 # The end
+
 Thanks for reading. My objective here hasn't been to sell you on my tools and my workflow. Although they are there to be used and I welcome your feedback.
 
 I'm offering what I have for you to reflect on, adapt, and remix in the context of your own working styles, team dynamics, and coding preferences. I think workflows that _work_ can't be established any other way. 
 
 # With thanks to
+
 [Nick Tierney](https://twitter.com/nj_tierney) for a thoughtful draft review of this post.
 
 My colleagues, who have been on this journey with me for the last year, and among them especially [Anthony North](https://github.com/anthonynorth).

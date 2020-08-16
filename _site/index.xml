@@ -185,6 +185,9 @@
       <dc:creator>Miles McBain</dc:creator>
       <link>https://milesmcbain.xyz/posts/ropensci-onboarding2</link>
       <description>How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.</description>
+      <category>rstats</category>
+      <category>rOpenSci</category>
+      <category>open science</category>
       <guid>https://milesmcbain.xyz/posts/ropensci-onboarding2</guid>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       <media:content url="https://milesmcbain.xyz/posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg" medium="image" type="image/jpeg"/>
@@ -205,6 +208,9 @@
       <dc:creator>Miles McBain</dc:creator>
       <link>https://milesmcbain.xyz/posts/ropensci-onboarding1</link>
       <description>Onboarding is a waterslide. rOpenSci have created a rewarding and fun process that generates high quality R packages.</description>
+      <category>rstats</category>
+      <category>open science</category>
+      <category>rOpenSci</category>
       <guid>https://milesmcbain.xyz/posts/ropensci-onboarding1</guid>
       <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
       <media:content url="https://milesmcbain.xyz/posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg" medium="image" type="image/jpeg"/>

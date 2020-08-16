@@ -61,7 +61,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Monkey-typing.jpg"]}
+  {"type":"character","attributes":{},"value":["hacking_r_library_paths_files/bowser-1.9.3/bowser.min.js","hacking_r_library_paths_files/distill-2.2.21/template.v2.js","hacking_r_library_paths_files/header-attrs-2.3/header-attrs.js","hacking_r_library_paths_files/jquery-1.11.3/jquery.min.js","hacking_r_library_paths_files/webcomponents-2.0.0/webcomponents.js","Monkey-typing.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1286,7 +1286,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1396,7 +1395,7 @@ html, body, p {
 
 <div class="d-title">
 <h1>Hacking R’s library paths</h1>
-<p><p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</p></p>
+<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</p>
 </div>
 
 <div class="d-byline">
@@ -1409,7 +1408,7 @@ html, body, p {
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="Monkey-typing.jpg" width="100%" /></p>
 </div>
-<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick I discovered today. Here’s an alternate to <code>.libPaths()</code> that will let you set your R library paths to precisely whatever you choose, whenever you like<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick I discovered today. Here’s an alternate to <code>.libPaths()</code> that will let you set your R library paths to precisely whatever you choose, whenever you like<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
 <pre class="r"><code>
 set_lib_paths &lt;- function(lib_vec) {
 
@@ -1436,26 +1435,29 @@ set_lib_paths &lt;- function(lib_vec) {
 [1] &quot;/home/miles/code/library&quot;</code></pre>
 <p>This code is inspired by some I found in the source of <a href="https://github.com/gmbecker/switchr/blob/682e0fe56ab1f3340856ff106767683058862c13/R/methods.R#L467">Gabe Becker’s <code>switchr</code> package</a>. It looks a little cryptic, but when you figure out what’s going on it’s really quite exciting.</p>
 <p>So let’s break it down:</p>
-<p>According to the help of <code>.libPaths()</code> (which is a pretty ‘classic’ base R help file): &gt; &gt; If called with argument ‘new’, the library search path is set to the &gt; existing directories in ‘unique(c(new, .Library.site, .Library))’ &gt; and this is returned. If given no argument, a character vector &gt; with the currently active library trees is returned.</p>
+<p>According to the help of <code>.libPaths()</code> (which is a pretty ‘classic’ base R help file):</p>
+<blockquote>
+<p>If called with argument ‘new’, the library search path is set to the existing directories in ‘unique(c(new, .Library.site, .Library))’ and this is returned. If given no argument, a character vector with the currently active library trees is returned.</p>
+</blockquote>
 <p>Which is to say <code>.libPaths(new)</code> will prepend your library paths, <code>.Library</code> and <code>.Library.site</code>, with whatever <code>new</code> contains. <code>.Library</code> and <code>.Library.site</code> are just regular R objects though. You can look up their values by typing them into your console. E.g. On my PC here:</p>
 <pre class="r"><code>
 &gt; .Library
 [1] &quot;/usr/lib/R/library&quot;</code></pre>
 <p>So you might think (like I did), oh cool I can just overwrite these! Alas no. They don’t appear in a regular environment e.g.:</p>
-<pre><code>
+<pre class="r"><code>
 &gt; environment(.Library)
 NULL</code></pre>
 <p>And while you can assign to them, it doesn’t affect the behaviour of <code>.libPaths()</code>. So we can deduce that <code>.libPaths()</code> must have access to some other environment that contains the versions of these objects it references.</p>
 <p>On this assumption, what this function does is take a copy of the <code>.libPaths()</code> function and inject a shim environment between the copy and its original parent environment. Into the shim environment it injects new objects named <code>.Library</code> and <code>.Library.site</code> which are set to empty character vectors.</p>
-<p>These injected objects mask the true versions that reside somewhere up the environment chain that we can’t easily reach. So when the code in our copy of <code>.libPaths()</code> goes reaching for these objects it will find our empty copies first and its behaviour will now be to set our library paths to <code>c(new, character(0), character(0))</code> …PHWARH!<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>These injected objects mask the true versions that reside somewhere up the environment chain that we can’t easily reach. So when the code in our copy of <code>.libPaths()</code> goes reaching for these objects it will find our empty copies first and its behaviour will now be to set our library paths to <code>c(new, character(0), character(0))</code> …PHWARH!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Beyond this function, which could be incredibly useful in workshop/classroom settings, I’m quite taken with the environment shim technique. It’ll be interesting to see what fun havok it can wreak with other people’s package code. Can it facilitate a kind of <a href="https://en.wikipedia.org/wiki/Monkey_patch">monkey-patching</a> of unexported functions? We’ll see. Let me know if you use it for something gnarly!</p>
 <hr />
 <p><em>Header Image Credit: New York Zoological Society, Public domain</em></p>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Unbelievably <code>libPaths()</code> doesn’t let you remove your system or site library from the search path.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Importantly since we inserted our shim environment like a link into the existing chain, the <code>.libPaths()</code> code can still access any other objects it needs in higher scopes. Also the original <code>.libPaths()</code> works as normal<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Unbelievably <code>libPaths()</code> doesn’t let you remove your system or site library from the search path.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Importantly since we inserted our shim environment like a link into the existing chain, the <code>.libPaths()</code> code can still access any other objects it needs in higher scopes. Also the original <code>.libPaths()</code> works as normal<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

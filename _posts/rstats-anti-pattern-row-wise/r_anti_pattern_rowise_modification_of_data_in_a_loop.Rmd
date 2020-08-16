@@ -33,7 +33,7 @@ Suppose you have some operation you want to perform on every row in a column, sa
 
 Let's assume you have this data and you want update each value of `df$a`. As an example we'll just do a simple conversion:
 
-```R
+```r
 mtcars
 library(tibble)
 library(microbenchmark)
@@ -57,7 +57,7 @@ A colleague who has been using R for some time, sees your code over your shoulde
 
 Really? Shouldn't they take about the same time? lapply and map must be just a loop under the hood! You decide to benchmark the suggestion:
 
-```
+```r
 microbenchmark(
   for (i in nrow(df[, 1])) {
     df[i,1] <- df[i,1] * 180/pi
@@ -82,7 +82,7 @@ At this point you might be getting mad at the person that told you that loops ar
 
 Let's consider the first five iterations of the loop, and print out the address of the column being modified, using `inspect(df[, 1])`, each time:
 
-```
+```r
 library(pryr)
 
 for (i in 1:5) {
@@ -114,7 +114,7 @@ So whenever a column is modified it is copied, in case that column was a column 
 
 Amongst the commotion and exclaiming at this revelation your supervisor approaches to see what is happening. She looks at the code briefly, blinks, and says "That's nice but you really could do that in one line, like this". She scribbles out this R code onto an important document on your desk:
 
-```
+```r
 df$a <- df$a * 180/pi
 ```
 
