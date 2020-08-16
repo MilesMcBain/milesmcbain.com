@@ -1,0 +1,60 @@
+/* Import fonts from Google's API */
+@import url('https://fonts.googleapis.com/css2?family=Cardo');
+@import url('https://fonts.googleapis.com/css2?family=Alata');
+
+
+
+.distill-site-nav {
+    font-family: 'Alata', sans-serif;
+    color: #000;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.distill-site-header {
+    font-family: 'Alata', sans-serif;
+    color: #000;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.distill-site-nav a:hover {
+    color: #ff00ff;
+}
+
+.categories li > a:hover {
+    color: #00ff00;
+    border-bottom: 1px #00ff00;
+}
+
+p a:hover  {
+    color: #00ff00;
+}
+
+/* Change appearance of headers */
+h1, h2, h3, h4, h5 {
+    font-family: 'Alata', sans-serif;
+    font-weight: 700;
+}
+
+/* Use specific font in the body of the text */
+html, body, p {
+    
+    font-family: 'Cardo', serif;
+    font-weight: 200;
+    line-height: 1.3; 
+    font-size: 1.075em;
+    font-style: normal;
+    
+}
+
+.posts-list .description p {
+    font-family: 'Cardo', serif !important;
+    color: gray !important;
+}
+
+.posts-list .description h2 {
+    font-family: 'Alata', sans-serif !important;
+}
