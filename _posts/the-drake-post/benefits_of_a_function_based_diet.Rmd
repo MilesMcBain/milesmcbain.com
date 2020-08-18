@@ -63,9 +63,9 @@ So with the rest of this post I'm trying to offer you an on-ramp by outlining my
 
 # Fundamental Principles
 
-A problem my team has is that our workload can get choppy on short notice. Working for emergency services is by definition working through extreme and hence potentially unforeseen events. The media and politicians add their own spice to this mix lest thing get boring. 
+A problem my team has is that our workload can get choppy on short notice. Working for emergency services is by definition working through extreme and hence potentially unforeseen events. The media and politicians add their own spice to this mix lest thing get boring.
 
-Complexity does not survive in this environment. People need to be able to context switch between different analysis projects quickly, and workflow artifacts need to be zero-overhead to create, otherwise there simply 'won't be time' to do the things that save us time. 
+Complexity does not survive in this environment. People need to be able to context switch between different analysis projects quickly, and workflow artifacts need to be zero-overhead to create, otherwise there simply 'won't be time' to do the things that save us time.
 
 The underlying principles of our workflow are a response to this environment:
 
@@ -210,15 +210,15 @@ We could navigate to that file in our file browser. Or we could use the 'jump to
 
 # Function Conventions
 
-Our convention is to match function argument names in the definition to the names of dependent plan targets where possible^[This may be not possible when using the more fancy dynamic target mechanisms, but we rarely use these.]. For example the definition of `summarise_hexes` looks like this: 
+Our convention is to match function argument names in the definition to the names of dependent plan targets where possible^[This may be not possible when using the more fancy dynamic target mechanisms, but we rarely use these.]. For example the definition of `summarise_hexes` looks like this:
 
-```
+```r
 #' summarise_hexes
 #'
-#' @param hexes 
-#' @param h3_geoscience_res6 
-#' @param tagged_oms_responses 
-#' @param hex_populations 
+#' @param hexes
+#' @param h3_geoscience_res6
+#' @param tagged_oms_responses
+#' @param hex_populations
 #'
 #' @return hex_summary
 #' @export
@@ -240,7 +240,9 @@ with all the argument names mirroring targets in the plan.
 
 This convention speeds up the process of setting up suitable input values for interactive development of the function code, since we can read them directly out of drake's cache! If you're using RStudio, you have an addin provided by `drake` called "loadd target at cursor" which will load the target under the cursor into your global environment ^[I've bound 'loadd target at cursor' to a keyboard shortcut here. It's a simple matter to do this for VSCode or Emacs, ping me if you want an example.]. This makes starting from a fresh session, jumping to some code, and getting set up to edit quite fast. Here's a gif^[Okay some sleight of hand here. You'd need to have loaded the library calls first. I have a shortcut setup to do `source("./packages.R")`]:
 
-![Jump to source, loadd targets at cursor, run code.](/content/images/2020/04/drake_cache2.gif)
+```{r, fig.cap = "Jump to source, loadd targets at cursor, run code."}
+knitr::include_graphics("drake_cache2.gif")
+```
 
 Functions are usually short, not much more than a screenfull of code. This maximises the effectiveness of the cache as a development accelerator. For example: if you combine a database query followed by some hectic wrangling into one target, you'll be re-running the query every time you fine tune your wrangling. You're better off splitting them into two functions so that the query only gets run once and cached.
 
@@ -248,7 +250,10 @@ Functions are usually short, not much more than a screenfull of code. This maxim
 
 Writing lots of these functions in individual files can get tedious, so I've automated this process. The [`{fnmate}`](https://github.com/milesmcbain/fnmate) package allows you to call functions into existence in a conventionally named file, just by writing a call to that hypothetical function:
 
-![fnmate-1](/content/images/2020/04/fnmate-1.gif)
+```{r, fig.cap = "{fnmate} in use in RStudio"}
+knitr::include_graphics("fnmate-1.gif")
+```
+
 
 Beware. This gets addictive and there's no way back. I use it many times daily.
 
@@ -260,16 +265,16 @@ We'll often have multiple outputs knitted from RMarkdown files. A report and a c
 In this scenario it made sense to promote objects like maps and plots that are shared across documents to plan targets. So it's common to see stuff like this in our plans:
 
 ```r
-the_plan <- 
+the_plan <-
   drake_plan(
     ...
-    
+
     coverage_map = create_coverage_map(isochrones, escad_incidents),
-    
+
     daily_work_series_plot = create_daily_work_series_plot(escad_incidents,   incident_categories)
-    
+
     ...
-    
+
     report = target(
       command = {
         rmarkdown::render(knitr_in("doc/analysis.Rmd"))
@@ -291,13 +296,14 @@ Where these targets are `{mapdeck}` and `{ggplot}` objects respectively. The RMa
 readd(coverage_map)
 \```
 
+...
 ```
 
-Where `drake::readd` pulls `coverage_map` from the cache into the rendering environment. It also signifies to `drake` that `report` has a dependency on `coverage_map`.^[Yes. Incredibly `drake` parses the code inside your RMarkdown and registers them as dependencies of the ]
+Where `drake::readd` pulls `coverage_map` from the cache into the rendering environment. It also signifies to `drake` that `report` has a dependency on `coverage_map`.^[Yes. Incredibly `drake` parses the code inside your RMarkdown and registers them as dependencies of the plan.]
 
-And as a general consequence our RMarkdown documents have far less R code in them than I had become used to. Rendering completes in seconds and rarely errors. 
+And as a general consequence our RMarkdown documents have far less R code in them than I had become used to. Rendering completes in seconds and rarely errors.
 
-When we do include R code beyond reading targets from the cache, our principle is to keep it directly related to the presentation rather than computation of results. 
+When we do include R code beyond reading targets from the cache, our principle is to keep it directly related to the presentation rather than computation of results.
 
 It's been interesting to see how niggles I have with Rmd and notebooks in general have evaporated under these conventions. Do you ever feel when looking at the source of an Rmd that the narrative of the text and the narrative of the code are out of sync somehow? This approach may release that tension for you.
 
@@ -309,7 +315,8 @@ When something goes badly wrong and errors, `drake` will give you the stack trac
 1. load and inspect targets the function takes as inputs from the cache e.g. using `loadd(target_name)` or the 'loadd target at cursor' addin.
 
 2. Play debug detective, e.g. :
-    - Check the input conforms to your assumptions 
+
+    - Check the input conforms to your assumptions
       - jump to THAT target's function if no
     - Inspect intermediate results
     - Explain the problem to a duck
@@ -321,7 +328,7 @@ After a fair bit of this I've come to appreciate how having these tightly focuse
 1. `source("_drake.R")`
 2. `drake_debug(target = target_that_failed, plan = the_plan)`
 
-And you'll be immediately dropped into an interactive debugging session of the target function as if you had called `debugOnce` on it^[Since your target functions are just regular R functions you can already use `debugOnce` on them.]. I rarely do this though, most of the time the first approach gets me there. 
+And you'll be immediately dropped into an interactive debugging session of the target function as if you had called `debugOnce` on it^[Since your target functions are just regular R functions you can already use `debugOnce` on them.]. I rarely do this though, most of the time the first approach gets me there.
 
 # Active Countermeasures
 Here's where we return to the `packages.R` and `.env`:
@@ -355,7 +362,7 @@ My team tend to pull many different kinds of data together in our analyses.  20 
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
-And yes doing that for `filter` every time you use it for the first time does get old. But it's a tiny price to pay for never losing hours to this issue again. 
+And yes doing that for `filter` every time you use it for the first time does get old. But it's a tiny price to pay for never losing hours to this issue again.
 
 
 ## Making R stricter with env vars
@@ -375,7 +382,7 @@ nrow(mtcars)
 # [1] 32
 
 mtcars %>%
-filter(gear >= 4 || am == 1) %>% 
+filter(gear >= 4 || am == 1) %>%
 nrow()
 
 # [1] 32
@@ -390,15 +397,15 @@ Sys.setenv(`_R_CHECK_LENGTH_1_LOGIC2_`="verbose")
 mtcars %>%
 filter(gear > 4 && am == 1)
 
-# ----------- FAILURE REPORT -------------- 
+# ----------- FAILURE REPORT --------------
 # --- failure: length > 1 in coercion to logical ---
-# --- srcref --- 
-# : 
-# --- package (from environment) --- 
+# --- srcref ---
+# :
+# --- package (from environment) ---
 # package:dplyr
-# --- call from context --- 
+# --- call from context ---
 # NULL
-# --- call from argument --- 
+# --- call from argument ---
 # gear > 4 && am == 1
 # --- R stacktrace ---
 # ...
@@ -421,7 +428,7 @@ if(c(TRUE, FALSE)) print("Doin' stuff")
 Sys.setenv(`_R_CHECK_LENGTH_1_CONDITION_`="true")
 if(c(TRUE, FALSE)) print("Doin' stuff")
 
-## Error in if (c(TRUE, FALSE)) print("Doin' stuff") : 
+## Error in if (c(TRUE, FALSE)) print("Doin' stuff") :
 ##  the condition has length > 1
 ```
 
@@ -435,7 +442,7 @@ Just briefly I want to discuss managing versions of R package dependencies. We h
 
 ## For long lived projects
 
-For things we want to be able to return to in months and years from now we use a kind of lighter-weight wrapper for RStudio's `{renv}` called [`{capsule}`](https://www.github.com/milesmcbain/capsule). The idea behind `capsule` is that since we execute our pipeline in an isolated environment, it is that package environment and that environment only that needs to be clearly specified. A user's interactive development environment does not need to be described and locked down in the same way. 
+For things we want to be able to return to in months and years from now we use a kind of lighter-weight wrapper for RStudio's `{renv}` called [`{capsule}`](https://www.github.com/milesmcbain/capsule). The idea behind `capsule` is that since we execute our pipeline in an isolated environment, it is that package environment and that environment only that needs to be clearly specified. A user's interactive development environment does not need to be described and locked down in the same way.
 
 In practice this side-steps a lot of awkwardness under `renv` that comes with  trialling packages in development you quickly decide not to use, and accessing packages that are convenient for development but not required for the pipeline to run.^[`{mapview}, {datapasta}, {styler}, {lintr}, {languageserver}, {fnmate}` are all examples.]
 
@@ -450,7 +457,7 @@ Recently we've evolved a different approach for things that are perhaps more tim
 
 We use a packaged called [`{using}`](https://github.com/anthonynorth/using) to map out any critical version dependencies in the `packages.R`. Instead of yelling to someone "This'll only work with the dev version of mapdeck" as you email them a link to a gist or repo, you can write:
 
-```
+```r
 using(mapdeck, min_version = "0.3.2003", repo = "https://github.com/SymbolixAU/mapdeck")
 ```
 
@@ -460,13 +467,13 @@ A driver for this is long compilation times for development versions of various 
 
 # "But will it scale?"
 
-We've had as many as four data scientists contributing simultaneously to projects in this style. My sense from hanging out with you all online is that this is actually above average. One unexpected benefit of the one-function-per-file convention is that space is created for collaborators to make contributions without tripping over eachother. 
+We've had as many as four data scientists contributing simultaneously to projects in this style. My sense from hanging out with you all online is that this is actually above average. One unexpected benefit of the one-function-per-file convention is that space is created for collaborators to make contributions without tripping over eachother.
 
 I can count the git merge conflicts we've had on one hand. They all happened in the plan file as that's now the one place you can really step on someone. Conflicts in this file are not too bad to resolve since the code is so high level - just a list of targets and function calls.
 
 Scaling to a large code base is not something I can comment on. We've probably done a few thousand lines of code at peak. I've heard that lots of code can challenge `drake` as it parses all it all to detect dependencies. This feels like a surmountable problem. Don't let it hold you back.
 
-On the other end of things I don't think there actually is a project size too small. Many of the discussed benefits still apply and overhead is low thanks to automations. I've used this workflow a few times to create [pipelines that output a single plot image](https://github.com/milesmcbain/covid19). Even on a tiny project there's something to be said for sticking to conventions to avoid bogging down in new decisions. 
+On the other end of things I don't think there actually is a project size too small. Many of the discussed benefits still apply and overhead is low thanks to automations. I've used this workflow a few times to create [pipelines that output a single plot image](https://github.com/milesmcbain/covid19). Even on a tiny project there's something to be said for sticking to conventions to avoid bogging down in new decisions.
 
 # Conclusion
 
@@ -484,7 +491,7 @@ Doing this well still involves much art. Don't worry if you're not ready for the
 
 Thanks for reading. My objective here hasn't been to sell you on my tools and my workflow. Although they are there to be used and I welcome your feedback.
 
-I'm offering what I have for you to reflect on, adapt, and remix in the context of your own working styles, team dynamics, and coding preferences. I think workflows that _work_ can't be established any other way. 
+I'm offering what I have for you to reflect on, adapt, and remix in the context of your own working styles, team dynamics, and coding preferences. I think workflows that _work_ can't be established any other way.
 
 # With thanks to
 

@@ -58,3 +58,12 @@ html, body, p {
 .posts-list .description h2 {
     font-family: 'Alata', sans-serif !important;
 }
+
+d-appendix {
+    color: rgb(0, 0, 0) !important;
+}
+
+li::marker {
+    font-weight: 700;
+    font-size: 1.125em;
+}

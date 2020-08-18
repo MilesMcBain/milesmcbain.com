@@ -17,7 +17,7 @@
     ],
     "preview": "posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg",
     "last_modified": "2020-08-16T23:06:47+10:00",
-    "input_file": "project_as_an_r_package.utf8.md"
+    "input_file": {}
   },
   {
     "path": "posts/the-drake-post/",
@@ -38,8 +38,8 @@
       "debugging"
     ],
     "preview": "posts/the-drake-post/spinach_small.jpg",
-    "last_modified": "2020-08-16T23:09:04+10:00",
-    "input_file": "benefits_of_a_function_based_diet.utf8.md"
+    "last_modified": "2020-08-18T20:05:00+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/recover/",

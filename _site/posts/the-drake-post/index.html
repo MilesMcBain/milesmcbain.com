@@ -61,7 +61,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["benefits_of_a_function_based_diet_files/bowser-1.9.3/bowser.min.js","benefits_of_a_function_based_diet_files/distill-2.2.21/template.v2.js","benefits_of_a_function_based_diet_files/header-attrs-2.3/header-attrs.js","benefits_of_a_function_based_diet_files/jquery-1.11.3/jquery.min.js","benefits_of_a_function_based_diet_files/webcomponents-2.0.0/webcomponents.js","spinach_small.jpg"]}
+  {"type":"character","attributes":{},"value":["benefits_of_a_function_based_diet_files/bowser-1.9.3/bowser.min.js","benefits_of_a_function_based_diet_files/distill-2.2.21/template.v2.js","benefits_of_a_function_based_diet_files/header-attrs-2.3/header-attrs.js","benefits_of_a_function_based_diet_files/jquery-1.11.3/jquery.min.js","benefits_of_a_function_based_diet_files/webcomponents-2.0.0/webcomponents.js","drake_cache2.gif","fnmate-1.gif","spinach_small.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1353,6 +1353,15 @@ html, body, p {
     font-family: 'Alata', sans-serif !important;
 }
 
+d-appendix {
+    color: rgb(0, 0, 0) !important;
+}
+
+li::marker {
+    font-weight: 700;
+    font-size: 1.125em;
+}
+
 </style>
 <!--/radix_placeholder_site_in_header-->
 
@@ -1554,13 +1563,13 @@ the_plan &lt;-
 <p>We could navigate to that file in our file browser. Or we could use the ‘jump to definition’ shortcut available in most IDEs/editors<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <h1 id="function-conventions">Function Conventions</h1>
 <p>Our convention is to match function argument names in the definition to the names of dependent plan targets where possible<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. For example the definition of <code>summarise_hexes</code> looks like this:</p>
-<pre><code>
+<pre class="r"><code>
 #&#39; summarise_hexes
 #&#39;
-#&#39; @param hexes 
-#&#39; @param h3_geoscience_res6 
-#&#39; @param tagged_oms_responses 
-#&#39; @param hex_populations 
+#&#39; @param hexes
+#&#39; @param h3_geoscience_res6
+#&#39; @param tagged_oms_responses
+#&#39; @param hex_populations
 #&#39;
 #&#39; @return hex_summary
 #&#39; @export
@@ -1578,30 +1587,40 @@ summarise_hexes &lt;- function(hexes,
 }</code></pre>
 <p>with all the argument names mirroring targets in the plan.</p>
 <p>This convention speeds up the process of setting up suitable input values for interactive development of the function code, since we can read them directly out of drake’s cache! If you’re using RStudio, you have an addin provided by <code>drake</code> called “loadd target at cursor” which will load the target under the cursor into your global environment <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. This makes starting from a fresh session, jumping to some code, and getting set up to edit quite fast. Here’s a gif<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>:</p>
-<figure>
-<img src="/content/images/2020/04/drake_cache2.gif" alt="Jump to source, loadd targets at cursor, run code." /><figcaption>Jump to source, loadd targets at cursor, run code.</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="drake_cache2.gif" alt="Jump to source, loadd targets at cursor, run code." width="100%" />
+<p class="caption">
+Figure 1: Jump to source, loadd targets at cursor, run code.
+</p>
+</div>
+</div>
 <p>Functions are usually short, not much more than a screenfull of code. This maximises the effectiveness of the cache as a development accelerator. For example: if you combine a database query followed by some hectic wrangling into one target, you’ll be re-running the query every time you fine tune your wrangling. You’re better off splitting them into two functions so that the query only gets run once and cached.</p>
 <h2 id="automated-function-templating">Automated function templating</h2>
 <p>Writing lots of these functions in individual files can get tedious, so I’ve automated this process. The <a href="https://github.com/milesmcbain/fnmate"><code>{fnmate}</code></a> package allows you to call functions into existence in a conventionally named file, just by writing a call to that hypothetical function:</p>
-<figure>
-<img src="/content/images/2020/04/fnmate-1.gif" alt="fnmate-1" /><figcaption>fnmate-1</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="fnmate-1.gif" alt="{fnmate} in use in RStudio" width="100%" />
+<p class="caption">
+Figure 2: {fnmate} in use in RStudio
+</p>
+</div>
+</div>
 <p>Beware. This gets addictive and there’s no way back. I use it many times daily.</p>
 <h1 id="rmarkdown-conventions">RMarkdown Conventions</h1>
 <p>We’ll often have multiple outputs knitted from RMarkdown files. A report and a companion slide deck has been a favourite combo, or perhaps reports for peers vs reports for stakeholders.</p>
 <p>In this scenario it made sense to promote objects like maps and plots that are shared across documents to plan targets. So it’s common to see stuff like this in our plans:</p>
 <pre class="r"><code>
-the_plan &lt;- 
+the_plan &lt;-
   drake_plan(
     ...
-    
+
     coverage_map = create_coverage_map(isochrones, escad_incidents),
-    
+
     daily_work_series_plot = create_daily_work_series_plot(escad_incidents,   incident_categories)
-    
+
     ...
-    
+
     report = target(
       command = {
         rmarkdown::render(knitr_in(&quot;doc/analysis.Rmd&quot;))
@@ -1619,7 +1638,8 @@ the_plan &lt;-
 \```{r, echo = FALSE, out.width = 100%}
 readd(coverage_map)
 \```
-</code></pre>
+
+...</code></pre>
 <p>Where <code>drake::readd</code> pulls <code>coverage_map</code> from the cache into the rendering environment. It also signifies to <code>drake</code> that <code>report</code> has a dependency on <code>coverage_map</code>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <p>And as a general consequence our RMarkdown documents have far less R code in them than I had become used to. Rendering completes in seconds and rarely errors.</p>
 <p>When we do include R code beyond reading targets from the cache, our principle is to keep it directly related to the presentation rather than computation of results.</p>
@@ -1628,7 +1648,7 @@ readd(coverage_map)
 <p>When something goes badly wrong and errors, <code>drake</code> will give you the stack trace and the name the target on which the error occurred. From that you know which function to jump into so debugging from there becomes:</p>
 <ol type="1">
 <li><p>load and inspect targets the function takes as inputs from the cache e.g. using <code>loadd(target_name)</code> or the ‘loadd target at cursor’ addin.</p></li>
-<li>Play debug detective, e.g. :
+<li><p>Play debug detective, e.g. :</p>
 <ul>
 <li>Check the input conforms to your assumptions
 <ul>
@@ -1677,7 +1697,7 @@ nrow(mtcars)
 # [1] 32
 
 mtcars %&gt;%
-filter(gear &gt;= 4 || am == 1) %&gt;% 
+filter(gear &gt;= 4 || am == 1) %&gt;%
 nrow()
 
 # [1] 32
@@ -1692,15 +1712,15 @@ Sys.setenv(`_R_CHECK_LENGTH_1_LOGIC2_`=&quot;verbose&quot;)
 mtcars %&gt;%
 filter(gear &gt; 4 &amp;&amp; am == 1)
 
-# ----------- FAILURE REPORT -------------- 
+# ----------- FAILURE REPORT --------------
 # --- failure: length &gt; 1 in coercion to logical ---
-# --- srcref --- 
-# : 
-# --- package (from environment) --- 
+# --- srcref ---
+# :
+# --- package (from environment) ---
 # package:dplyr
-# --- call from context --- 
+# --- call from context ---
 # NULL
-# --- call from argument --- 
+# --- call from argument ---
 # gear &gt; 4 &amp;&amp; am == 1
 # --- R stacktrace ---
 # ...</code></pre>
@@ -1718,7 +1738,7 @@ if(c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;)
 Sys.setenv(`_R_CHECK_LENGTH_1_CONDITION_`=&quot;true&quot;)
 if(c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;)
 
-## Error in if (c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;) : 
+## Error in if (c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;) :
 ##  the condition has length &gt; 1</code></pre>
 <p>The rationale here is that upgrading the warning to an error forces us to fail early and hard. We don’t want to spot something like this after we’ve let the pipeline run for an hour, cache or no cache.</p>
 <p>As a general principle, failing early and hard plays really nicely with <code>drake</code> since the processing up to the point of failure is not wasted. This idea can be extended from warnings to coding in assertions about input targets where appropriate.</p>
@@ -1735,7 +1755,7 @@ if(c(TRUE, FALSE)) print(&quot;Doin&#39; stuff&quot;)
 <h2 id="for-short-lived-projects">For short lived projects</h2>
 <p>Recently we’ve evolved a different approach for things that are perhaps more time sensitive and at the same time more disposable. Think maps to respond to queries from ranking officials etc.</p>
 <p>We use a packaged called <a href="https://github.com/anthonynorth/using"><code>{using}</code></a> to map out any critical version dependencies in the <code>packages.R</code>. Instead of yelling to someone “This’ll only work with the dev version of mapdeck” as you email them a link to a gist or repo, you can write:</p>
-<pre><code>
+<pre class="r"><code>
 using(mapdeck, min_version = &quot;0.3.2003&quot;, repo = &quot;https://github.com/SymbolixAU/mapdeck&quot;)</code></pre>
 <p>And as a nicety the user is prompted to install if the dependency is not satisfied.</p>
 <p>A driver for this is long compilation times for development versions of various packages that make building a complete environment using <code>capsule</code> a bit annoying for time sensitive things that will only be thrown away. <a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
@@ -1768,7 +1788,7 @@ using(mapdeck, min_version = &quot;0.3.2003&quot;, repo = &quot;https://github.c
 <li id="fn4"><p>This may be not possible when using the more fancy dynamic target mechanisms, but we rarely use these.<a href="#fnref4" class="footnote-back">↩</a></p></li>
 <li id="fn5"><p>I’ve bound ‘loadd target at cursor’ to a keyboard shortcut here. It’s a simple matter to do this for VSCode or Emacs, ping me if you want an example.<a href="#fnref5" class="footnote-back">↩</a></p></li>
 <li id="fn6"><p>Okay some sleight of hand here. You’d need to have loaded the library calls first. I have a shortcut setup to do <code>source("./packages.R")</code><a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>Yes. Incredibly <code>drake</code> parses the code inside your RMarkdown and registers them as dependencies of the <a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Yes. Incredibly <code>drake</code> parses the code inside your RMarkdown and registers them as dependencies of the plan.<a href="#fnref7" class="footnote-back">↩</a></p></li>
 <li id="fn8"><p>Since your target functions are just regular R functions you can already use <code>debugOnce</code> on them.<a href="#fnref8" class="footnote-back">↩</a></p></li>
 <li id="fn9"><p>As people seem to enjoy pointing out, <a href="https://developer.r-project.org/Blog/public/2019/03/19/managing-search-path-conflicts/">this functionality was added to base R since 3.6</a>. Conflicted is still the superior choice in my opinion. It’s documentation is more coherent, and it let’s you take a lazy, function by function approach, addressing conflicts only if they actually arise in your code.<a href="#fnref9" class="footnote-back">↩</a></p></li>
 <li id="fn10"><p><code>{mapview}, {datapasta}, {styler}, {lintr}, {languageserver}, {fnmate}</code> are all examples.<a href="#fnref10" class="footnote-back">↩</a></p></li>
