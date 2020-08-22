@@ -6,6 +6,11 @@
     <atom:link href="https://milesmcbain.com/index.xml" rel="self" type="application/rss+xml"/>
     <description>Before I Sleep
 </description>
+    <image>
+      <title>Before I Sleep</title>
+      <url>https://milesmcbain.com/images/favicon.ico</url>
+      <link>https://milesmcbain.com</link>
+    </image>
     <generator>Distill</generator>
     <lastBuildDate>Fri, 24 Jul 2020 00:00:00 +0000</lastBuildDate>
     <item>

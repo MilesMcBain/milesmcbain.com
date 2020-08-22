@@ -22,3 +22,12 @@ output:
   distill::distill_article:
     css: mmstyle.css
 base_url: https://milesmcbain.com
+repository_url: https://www.github.com/milesmcbain/website_distill
+favicon: images/favicon.ico
+creative_commons: CC BY
+twitter:
+  site: "@milesmcbain"
+collections:
+  posts:
+    disqus:
+      shortname: milesmcbainxyz
