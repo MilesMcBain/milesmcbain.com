@@ -65,7 +65,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["1024px-Apocalypse_vasnetsov.jpg","horseman_number_for_files/bowser-1.9.3/bowser.min.js","horseman_number_for_files/distill-2.2.21/template.v2.js","horseman_number_for_files/header-attrs-2.3/header-attrs.js","horseman_number_for_files/jquery-1.11.3/jquery.min.js","horseman_number_for_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["1024px-Apocalypse_vasnetsov.jpg","horseman_number_for_files/bowser-1.9.3/bowser.min.js","horseman_number_for_files/distill-2.2.21/template.v2.js","horseman_number_for_files/header-attrs-2.3/header-attrs.js","horseman_number_for_files/jquery-1.11.3/jquery.min.js","horseman_number_for_files/webcomponents-2.0.0/webcomponents.js","vector_maxtrix_mult.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1447,7 +1447,11 @@ li::marker {
 <li><code>seq_along()</code> is pretty robust but has the same issue with <code>NA</code>.</li>
 <li><code>nrow()</code> is good but for multi-dimensional only.</li>
 </ul>
-<p>But wait there’s more! To use loops efficiently in R you need to have awareness of how your data structures will behave in memory when acted on by your loop: * You need to declare some storage for the loop results before the loop body otherwise you will fall into the <a href="https://privefl.github.io/blog/why-loops-are-slow-in-r/">growing a data structure R anti-pattern</a>. * You do not want to use for loops to modify dataframe rows. It will be horrifically slow - this is the <a href="https://milesmcbain.xyz/rstats-anti-pattern-row-wise/">row-wise modification of data in a loop R anti-pattern</a></p>
+<p>But wait there’s more! To use loops efficiently in R you need to have awareness of how your data structures will behave in memory when acted on by your loop:</p>
+<ul>
+<li>You need to declare some storage for the loop results before the loop body otherwise you will fall into the <a href="https://privefl.github.io/blog/why-loops-are-slow-in-r/">growing a data structure R anti-pattern</a>.</li>
+<li>You do not want to use for loops to modify dataframe rows. It will be horrifically slow - this is the <a href="https://milesmcbain.xyz/rstats-anti-pattern-row-wise/">row-wise modification of data in a loop R anti-pattern</a></li>
+</ul>
 <p>So here we see something that many people consider should be one of the first things taught in a programming curriculum is a dead set minefield in R. R developers before us have been kind enough to write us some functions to concrete over much of this danger. It makes sense to me to use them.</p>
 <h2 id="the-tragedy-of-decompilation">The tragedy of decompilation</h2>
 <p>A strong theme of some of the programming reading I have been doing recently is the importance of strategies to manage the complexity of your code for finishing projects and maintaining them<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The major tool you have to do this is the ability to create abstractions. I’ve found trying to get better at this to be extremely challenging, but the creative process feels like it could be one of the most enjoyable aspects of programming for me.</p>
@@ -1456,9 +1460,14 @@ li::marker {
 <p>This means that when someone else, or you in the future, reads the solution, decompilation artifacts can be mistaken as important to the algorithm. An example decompilation artifact is the sequentiality constraint inherent in a loop - is this important or could the iteration happen in parallel? It’s not clear without tracing through all the looped steps carefully.</p>
 <h3 id="example-the-great-linear-algebra-farce">Example: The great linear algebra farce</h3>
 <p>I am anticipating skepticism on this last point because loops have a way of getting into our heads. So I’ve picked a related example outside computer science to try to drive this home. I am guessing there are a great many of you out there like me, who received explicit direct instruction in linear algebra topics in high school mathematics. You may have learned a textbook definition of matrix-vector multiplication like this:</p>
-<figure>
-<img src="/content/images/2019/02/mat_mult.jpg" alt="Textbook definiton of matrix-vector multiplication" /><figcaption>Textbook definiton of matrix-vector multiplication</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="vector_maxtrix_mult.jpg" alt="Textbook definition of matrix-vector multiplication" width="100%" />
+<p class="caption">
+Figure 1: Textbook definition of matrix-vector multiplication
+</p>
+</div>
+</div>
 <p>Not fully comprehending what this is saying, you were then probably trained to perform a mechanical iterative process involving multiplying then adding lines of corresponding numbers in sequence. And this mechanistic low-level view may still be how you understand matrix-vector multiplication today. The mechanical process would have certainly come in handy in solving those exam questions. But there’s also a very good chance, that you - like me, were deprived of any appreciation of the higher level thinking that gave rise to the matrix abstraction and was decompiled into the mechanical process involving primitive arithmetic.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <p>The higher level thinking is that the matrix represents a transformation function that stretches and rotates the vector in space. I didn’t encounter this view of things until I took introductory computer graphics at university. And even then I didn’t fully appreciate the power of matrices as geometric abstractions until I watched <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">3Blue1Brown’s amazing youtube series: The Essence of Linear Algebra</a>. Once you understand this, you can calculate the multiplication by hand in slightly different and more memorable way that follows from geometric interpretation.</p>
 <p>My understanding is that we owe much to MIT Professor Gilbert Strang for revolutionising the way modern linear algebra is taught - with a renewed emphasis on the geometry that matrices and vectors abstract. <a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/">His lecture videos</a> are similarly thrilling to 3Blue1Brown’s although a bit more of a time investment.</p>

@@ -60,6 +60,7 @@ In R `for` loops are particularly challenging to get right. For starters there's
 * `nrow()` is good but for multi-dimensional only.
 
 But wait there's more! To use loops efficiently in R you need to have awareness of how your data structures will behave in memory when acted on by your loop:
+
 * You need to declare some storage for the loop results before the loop body otherwise you will fall into the [growing a data structure R anti-pattern](https://privefl.github.io/blog/why-loops-are-slow-in-r/).
 * You do not want to use for loops to modify dataframe rows. It will be horrifically slow - this is the [row-wise modification of data in a loop R anti-pattern](https://milesmcbain.xyz/rstats-anti-pattern-row-wise/)
 
@@ -79,7 +80,9 @@ This means that when someone else, or you in the future, reads the solution, dec
 
 I am anticipating skepticism on this last point because loops have a way of getting into our heads. So I've picked a related example outside computer science to try to drive this home. I am guessing there are a great many of you out there like me, who received explicit direct instruction in linear algebra topics in high school mathematics. You may have learned a textbook definition of matrix-vector multiplication like this:
 
-![Textbook definiton of matrix-vector multiplication](/content/images/2019/02/mat_mult.jpg)
+```{r, fig.cap = "Textbook definition of matrix-vector multiplication"}
+knitr::include_graphics("./vector_maxtrix_mult.jpg")
+```
 
 Not fully comprehending what this is saying, you were then probably trained to perform a mechanical iterative process involving multiplying then adding lines of corresponding numbers in sequence. And this mechanistic low-level view may still be how you understand matrix-vector multiplication today. The mechanical process would have certainly come in handy in solving those exam questions. But there's also a very good chance, that you - like me, were deprived of any appreciation of the higher level thinking that gave rise to the matrix abstraction and was decompiled into the mechanical process involving primitive arithmetic.^[A mechanical process that feels awfully like two nested for loops.]. 
 
