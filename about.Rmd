@@ -1,7 +1,5 @@
 ---
 title: "About this blog"
-description: |
-  Some additional details about the blog
 ---
 
 ```{r setup, include=FALSE}
@@ -14,3 +12,4 @@ Find me online:
 
   - `r fontawesome::fa("twitter")` [`@milesmcbain`](https://www.twitter.com/milesmcbain)
   - `r fontawesome::fa("github")` [`@milesmcbain`](https://www.github.com/milesmcbain)
+  - [`micro.blog/mliesmcbain`](https://micro.blog/milesmcbain)

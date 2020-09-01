@@ -10,6 +10,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "micro.blog"
+      href: https://milesmcbain.micro.blog
     - text: "Talks"
       href: talks.html
     - text: "Other writings"
