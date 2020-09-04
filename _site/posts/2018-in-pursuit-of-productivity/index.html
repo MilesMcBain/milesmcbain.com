@@ -1295,6 +1295,33 @@ document.addEventListener('DOMContentLoaded', function() {
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!/posts/.test(location.pathname)) {
+      return;
+    }
+
+    var script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "milesmcbain/milesmcbain.com");
+    script.setAttribute("issue-term", "og:title");
+    script.setAttribute("crossorigin", "anonymous");
+
+    /* wait for article to load, append script to article element */
+    var observer = new MutationObserver(function (mutations, observer) {
+      var article = document.querySelector("d-article");
+      if (article) {
+        observer.disconnect();
+        /* HACK: article scroll */
+        article.setAttribute("style", "overflow-y: hidden");
+        article.appendChild(script);
+      }
+    });
+
+    observer.observe(document.body, { childList: true });
+  });
+</script>
+
 <style type="text/css">
 /* Import fonts from Google's API */
 @import url('https://fonts.googleapis.com/css2?family=Cardo');
@@ -1486,7 +1513,8 @@ li::marker {
 <p>This year my resolution for my work is for less crunchy, more smooth. I’m changing jobs at the beginning of February and I hope to bring some of the planning tools I learned from Lucy in from the start, so that I never reach the peak workloads of 2018. Consequently I am looking forward to more worry free weekends with the family!</p>
 <p>Also, I don’t think I am quite done with this ‘make everything vim’ idea. :P</p>
 <hr />
-<p><em>Your mileage with productivity techniques mentioned here may vary, I am far, far from a guru.</em> <em>Header image is CC0 from <a href="https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/" class="uri">https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/</a></em></p>
+<p><em>Your mileage with productivity techniques mentioned here may vary, I am far, far from a guru.</em></p>
+<p><em>Header image is CC0 from <a href="https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/" class="uri">https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/</a></em></p>
 <section class="footnotes">
 <hr />
 <ol>
@@ -1497,29 +1525,6 @@ li::marker {
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
-<div class="article-footer">
-  <p class="social_footer">
-    <span class="disqus-comments">
-      <i class="fas fa-comments"></i>
-      &nbsp;
-      <span class="disqus-comment-count" data-disqus-identifier="posts/2018-in-pursuit-of-productivity/">Comment on this article</span>
-    </span>
-  </p>
-  <script id="dsq-count-scr" src="https://milesmcbainxyz.disqus.com/count.js" async></script>
-  <div id="disqus_thread" class="hidden"></div>
-  <script>
-var disqus_config = function () {
-  this.page.url = 'https://milesmcbain.com/posts/2018-in-pursuit-of-productivity/';
-  this.page.identifier = 'posts/2018-in-pursuit-of-productivity/';
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://milesmcbainxyz.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-</script>
-</div>
 <!--/radix_placeholder_article_footer-->
 </div>
 

@@ -1294,12 +1294,38 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!/posts/.test(location.pathname)) {
+      return;
+    }
+
+    var script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "milesmcbain/milesmcbain.com");
+    script.setAttribute("issue-term", "og:title");
+    script.setAttribute("crossorigin", "anonymous");
+
+    /* wait for article to load, append script to article element */
+    var observer = new MutationObserver(function (mutations, observer) {
+      var article = document.querySelector("d-article");
+      if (article) {
+        observer.disconnect();
+        /* HACK: article scroll */
+        article.setAttribute("style", "overflow-y: hidden");
+        article.appendChild(script);
+      }
+    });
+
+    observer.observe(document.body, { childList: true });
+  });
+</script>
+
 <style type="text/css">
 /* Import fonts from Google's API */
 @import url('https://fonts.googleapis.com/css2?family=Cardo');
@@ -1414,7 +1440,7 @@ li::marker {
 
 <div class="d-title">
 <h1>Stop() - breathe - recover()</h1>
-<p><p>Over the last couple of months a debugging technique involving an R function called <code>recover</code> has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I’ve made where I demonstrate my <code>recover</code> approach on two examples.</p></p>
+<p>Over the last couple of months a debugging technique involving an R function called <code>recover</code> has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I’ve made where I demonstrate my <code>recover</code> approach on two examples.</p>
 </div>
 
 <div class="d-byline">
@@ -1430,43 +1456,21 @@ li::marker {
 </iframe>
 <h1 id="p.s.">P.S.</h1>
 <p>As you saw, <code>recover</code> makes debugging complex errors easier by placing all the information you need to debug it at your finger tips. It. Is. Awesome! But it’s also just one tool in a full debugging arsenal. I certainly don’t have it enabled always. You’ll see pretty quickly how frustrating that is. Despite R’s reputation, most of the time an error message alone is enough for me to figure out what went wrong (with some help from Dr. Google).</p>
-<p>At the end of the video I said you’ll need other techniques to tackle issues in your program logic that don’t result in an error. For those I highly recommend Kara Woo’s RStudio::conf 2019 talk: <a href="https://resources.rstudio.com/rstudio-conf-2019/box-plots-a-case-study-in-debugging-and-perseverance">Box plots: a case study in debugging and perseverance</a> where, among other things, she demonstrates nimble usage of <code>debugonce</code>. That’s another favourite debugging function of mine. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>At the end of the video I said you’ll need other techniques to tackle issues in your program logic that don’t result in an error. For those I highly recommend Kara Woo’s RStudio::conf 2019 talk: <a href="https://resources.rstudio.com/rstudio-conf-2019/box-plots-a-case-study-in-debugging-and-perseverance">Box plots: a case study in debugging and perseverance</a> where, among other things, she demonstrates nimble usage of <code>debugonce</code>. That’s another favourite debugging function of mine. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>The code used in my examples can be found at: <a href="https://github.com/milesmcbain/recover_demo" class="uri">https://github.com/milesmcbain/recover_demo</a></p>
 <h2 id="related-techniques">Related Techniques</h2>
 <p>RStudio has something like <code>recover</code>: the ‘re-run with debug’ link that appears alongside error messages in the console. And although this lets you browse the entire stack of code and variables, as far as I can see it doesn’t let you choose a frame and execute code within its context (like I did in my second example).</p>
 <p>Breakpoints are something that I have moved away from over time, despite having used them heavily with other programming languages prior to using R. I am not fully sure why this is, although I think they’re just generally less useful when you have a strong REPL like R.</p>
 <h1 id="a-thankyou-owed">A Thankyou Owed</h1>
 <p>I think a strong debugger is often a draw card that drives people to IDEs, so having these tools available within any R session opens up the playing field for different R editing setups. It really is amazing to have a tool like <code>recover</code> available within any R REPL. Hats off and thankyou to the R-Core team and contributors!</p>
-<section class="footnotes" role="doc-endnotes">
+<hr />
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Using a lot of <code>debugonce</code> has made me realise how important program structure and style is to having debuggable code. I don’t think you can go past Jenny Bryan’s UseR 2018 talk: <a href="https://github.com/jennybc/code-smells-and-feels">Code Smells and Feels</a> for an approachable introduction to ideas along those lines.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Using a lot of <code>debugonce</code> has made me realise how important program structure and style is to having debuggable code. I don’t think you can go past Jenny Bryan’s UseR 2018 talk: <a href="https://github.com/jennybc/code-smells-and-feels">Code Smells and Feels</a> for an approachable introduction to ideas along those lines.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
-<div class="article-footer">
-  <p class="social_footer">
-    <span class="disqus-comments">
-      <i class="fas fa-comments"></i>
-      &nbsp;
-      <span class="disqus-comment-count" data-disqus-identifier="posts/recover/">Comment on this article</span>
-    </span>
-  </p>
-  <script id="dsq-count-scr" src="https://milesmcbainxyz.disqus.com/count.js" async></script>
-  <div id="disqus_thread" class="hidden"></div>
-  <script>
-var disqus_config = function () {
-  this.page.url = 'https://milesmcbain.com/posts/recover/';
-  this.page.identifier = 'posts/recover/';
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://milesmcbainxyz.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-</script>
-</div>
 <!--/radix_placeholder_article_footer-->
 </div>
 

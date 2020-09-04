@@ -42,3 +42,4 @@ Breakpoints are something that I have moved away from over time, despite having 
 
 I think a strong debugger is often a draw card that drives people to IDEs, so having these tools available within any R session opens up the playing field for different R editing setups. It really is amazing to have a tool like `recover` available within any R REPL. Hats off and thankyou to the R-Core team and contributors!
 
+-----

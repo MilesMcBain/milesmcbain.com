@@ -500,3 +500,5 @@ I'm offering what I have for you to reflect on, adapt, and remix in the context 
 My colleagues, who have been on this journey with me for the last year, and among them especially [Anthony North](https://github.com/anthonynorth).
 
 [rOpensci](https://ropensci.org/), and all `drake`'s contributors but especially [Will Landau](https://github.com/wlandau) who is without a doubt the most responsive R package maintainer on the internet.
+
+-----

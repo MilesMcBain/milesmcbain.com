@@ -122,4 +122,6 @@ Also, I don't think I am quite done with this 'make everything vim' idea. :P
 -----
 
 *Your mileage with productivity techniques mentioned here may vary, I am far, far from a guru.*
+
 *Header image is CC0 from https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/*
+

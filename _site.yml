@@ -31,7 +31,3 @@ favicon: images/favicon.ico
 creative_commons: CC BY
 twitter:
   site: "@milesmcbain"
-collections:
-  posts:
-    disqus:
-      # shortname: milesmcbainxyz
