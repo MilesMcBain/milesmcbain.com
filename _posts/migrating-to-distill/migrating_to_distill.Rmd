@@ -1,0 +1,70 @@
+---
+title: "So you want to migrate your blog to Distill"
+description: |
+    There were things learned migrating to distill
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 2020-04-30
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rstats
+  - blogging
+draft: true
+---
+
+This is a post about why I migrated my blog to
+[{distill}](https://rstudio.github.io/distill/blog.html) and the things I
+learned doing it. If you're thinking of migrating your own blog, you may find
+some handy info like How to setup up:
+
+* redirects from your old site urls using Netlify
+* [utteranc.es](http://utteranc.es) comments
+* automatic image optimisation
+
+# Why Distill?
+
+Before this I was [self-hosting
+Ghost](https://milesmcbain.xyz/posts/a-fully-dockerised-ghost-blog/). That
+worked great for several years. My blog never troubled me with maintenance, and I
+could log in from anywhere and bash a post out in the browser quick smart.
+
+Over time things became less good. The Ghost blogging product became less usable^[From my perspective. They seem to be targeting people who need rich content like magazines and new sites.] as they moved away from their original markdown format. I didn't have my content in GitHub with literally everything else and that was starting to annoy me. People were asking me where to make PRs to fix mistakes and I had no answer. Backups were a bit of a chore.
+
+It felt like it was time to go to a static site hosted on GitHub, as is the style of our time. I looked into the Blogdown-Netlify setup but I was really put off by a couple of things:
+
+* The breadth of things one needs to read get to grips with Hugo
+  seems pretty epic. It's not a one Sunday arvo from your couch kind of deal.
+* I was not at all comfortable trusting Netlify to render my site, having had a
+  bad experience with GitHub forcing Jekyll updates on my first ever site and
+  making it unusable.
+
+I wanted simplicity, and I wanted full control of the rendering, so that I can
+update my software on my own terms. Distill was on my radar, but I hadn't seen a really nice looking Distill site until I encountered Thomas Mock's [http://themockup.blog](http://themockup.blog). When he released a post that [outlined precisely how simple getting started is](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/) I was pretty much done for.
+
+
+# Before jumping
+
+Here's some stuff you might want to consider before jumping.
+
+## Do you have a markdown compatibility issue?
+
+There are many markdown standards. Distill uses a flavour of markdown that is
+not that common. If you have posts written in markdown or R markdown you might
+want to check that the burden of making your existing markdown compatible is not
+excessively high.
+
+For me it was good because Ghost also used the same footnote markdown. So all my
+footnotes just worked. I lost the ability to do markdown highlights and had to remove all the enclosing `==` markdown. A small annoyance.
+
+## Do you care about keeping your comments?
+
+My old site used Disqus for comment threads, which I made an attempt to migrate using their migration tools. If you have set up redirects for your pages, you can use their crawler service to rediscover all the correct urls for threads. I'll explain redirects in a minute. 
+
+The migration attempt appeared to work at first and then failed, and now I think I have lost all comments^[If you ever commented, know it was read and appreciated]. I am pretty sure this is related somehow to me adding a second domain to my site, I now have a .xyz and .com^[I got the .com because Twitter started blocking my .xyz, but that's another story.].
+
+I wasn't that sad to lose Disqus in the end. They track your users and automatically opt you in to a bunch of data sharing stuff that feels a bit murky.
+
+# 
