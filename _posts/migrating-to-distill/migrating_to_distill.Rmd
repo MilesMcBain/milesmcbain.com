@@ -36,7 +36,7 @@ Over time things became less good. The Ghost blogging product became less usable
 It felt like it was time to go to a static site hosted on GitHub, as is the style of our time. I looked into the Blogdown-Netlify setup but I was really put off by a couple of things:
 
 * The breadth of things one needs to read get to grips with Hugo
-  seems pretty epic. It's not a one Sunday arvo from your couch kind of deal.
+  seems pretty epic. It's not a one Sunday from your couch kind of deal.
 * I was not at all comfortable trusting Netlify to render my site, having had a
   bad experience with GitHub forcing Jekyll updates on my first ever site and
   making it unusable.
