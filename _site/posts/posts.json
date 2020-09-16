@@ -42,27 +42,6 @@
     "input_file": {}
   },
   {
-    "path": "posts/making-errors/recover/",
-    "title": "Stop() - breathe - recover()",
-    "description": "Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.",
-    "author": [
-      {
-        "name": "Miles McBain",
-        "url": "https://milesmcbain.xyz"
-      }
-    ],
-    "date": "2019-07-28",
-    "categories": [
-      "rstats",
-      "debugging"
-    ],
-    "preview": "posts/making-errors/recover/recover_vid.png",
-    "last_modified": "2020-09-04T21:46:11+10:00",
-    "input_file": {},
-    "preview_width": 893,
-    "preview_height": 503
-  },
-  {
     "path": "posts/recover/",
     "title": "Stop() - breathe - recover()",
     "description": "Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.",
