@@ -1,0 +1,123 @@
+---
+title: "Adding RStudio Addins to VSCode"
+description: |
+  A short description of the post.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 10-18-2020
+output:
+  distill::distill_article:
+    self_contained: false
+draft: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+I recently completed a project to add RStudio addins to the [Visual Studio Code R extension](). This is post is about the why and the how of it.
+
+# But Why?
+
+Most people who follow me online know that I use [Spacemacs and ESS]() to write R. A few things changed recently that made VSCode radically more appealing to me at work, where I am forced to use Windows:
+
+1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](). ^[Thanks to the [Jack of Someaa YouTube channel]()].
+2. The whole 2020 and working from home thing has meant my team have been using VSCode's slick [Live share feature]() to do real-time remote pair programming and debugging. It's shockingly good.
+
+So I started experimenting to see how close I could make VSpaceCode feel to my
+Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: [`fnamte`]()
+
+To use `fnmate` your editor needs to interface with your R session to pass back
+the context of your document around your cursor. R does the magic once it has
+that context. 
+
+Emacs and RStudio facilitate this in different ways, but ultimately they both allow you execute code on data taken from the text editor and shove the result of that into an R function called in your R session. ^[In Emacs that code is Lisp. In RStudio it's R.]
+
+VSCode was without this ability. So I thought that to implement a binding for my beloved `fnmate` my options were:
+
+* Write my own VSCode extension - having to redo work already in the R extension, relating to interfacing with the R process in terminal.
+* Get a binding for `fnmate` merged into the R extension.
+
+And I guess I was mulling over what unsatisfying options these were when I
+realised that what the VSCode R extension really needed was something like the
+RStudio API - HOLD ON. Can I port the RStudio API? Can I make all RStudio addins (and `fnamte`) work with VSCode with no changes to their code?! I think I know how to do it!
+
+It was like as soon as the lightning bolt struck I knew I was not going to be able to stop myself from doing this.
+
+# Greenlights
+
+I was pretty jazzed about the idea and it occurred to me that it was so good
+that I was probably not the first person to think of it. A GitHub search
+revealed that my intuition was correct: In May of 2020, VSCode-R extension
+maintainer [Andrew Craig]() had created an issue discussing the possibility. 
+
+When I read through the discussion I saw that it had kind of stalled out because
+the maintainers were worried about RStudio's reaction and legal issues. They'd resolved to contact RStudio before making any moves.
+
+The implementation I had in mind side stepped of their initial legal concerns,
+and I was pretty confident that the RStudio team I knew, the great people that I
+had met, would not be bothered by the idea.
+
+I offered to contribute and was invited to start working on the idea.^[I'd made one PR for a small feature to the VSCode-R extension in the past, so I think that helped in this regard.] Once I had a proof of concept - 1 working API call - I decided to email the authors of `{rstudioapi}` to let them know what we were planning to do.
+
+The RStudio response was all class. You can see for yourself in the [issue thread](https://github.com/Ikuyadeu/vscode-R/issues/302). JJ Allaire wrote back with encouraging words, a heads up on future API directions, and an offer to talk about the API. Kevin Ushey did likewise, filling out some more detail on future plans, and invited questions and feedback on the API. When I did have a question about the API, Kevin answered it quickly.
+
+This is RStudio walking the walk of being a company that works in the
+community's interests. Diversity is good. Friendly competition is good. It's
+really impressive stuff, and it's a part of this story that I really wanted to
+share, because it meant I could really dive into the work unencumbered by worry
+about how it would be received.
+
+# The how
+
+## The humane punching of ducks
+
+Now we get to some fun stuff. How is it that I can call: `rstudioapi::getActiveDocumentContext()` from within an R session in VSCode and get back the context of my VSCode active text editor window?
+
+The trick is one that is often used the testing context, there it's known as
+'mocking'. In other context it can be called ['duck punching' or 'monkey
+patching'](https://en.wikipedia.org/wiki/Monkey_patch):
+
+Within your VSCode sessions only, I've replaced the definition of the
+`getActiveDocumentContext` function in the `rstudioapi` name space, with code
+that talks to VSCode instead of RStudio. The incredible thing about this to me,
+is that even though it feels a bit dodgy, everything you could want to have to
+do it is built into the R language.
+
+The first piece is a function called `assignInNamespace` which allows us to do this:
+
+```{r, echo = TRUE}
+assignInNamespace("getActiveDocumentContext",
+                  function(...) {
+                    print("Duck punch!"),
+                  },
+                  "rstudioapi"
+                  )
+```
+
+Calling `rstudioapi::getActiveDocumentContext()` would now return "Duck punch!".
+
+The second piece allows us to make that assignment happen, immediately after the `rstudioapi` namespace gets loaded into your R session, whenever, if ever, that may be. It's a function called `setHook`:
+
+```{r}
+rstudioapi_hook <- function() {
+  print("running your rstudioapi_hook...")
+  assignInNamespace("getActiveDocumentContext",
+                    function(...) {
+                      print("Duck punch!"),
+                    },
+                    "rstudioapi"
+                    )
+}
+
+setHook(packageEvent("rstudioapi", "onLoad"), rstudioapi_hook)
+
+rstudioapi::getActiveDocumentContext()
+```
+
+This is really nice since it means if the user never uses the `rstudioapi` we
+never do anything spooky. It's also really handy to be able to patch the API
+functions selectively, since it allows us to keep `rstudioapi` functions that
+don't talk to the IDE unchanged, e.g. `rstudioapi::is.document_range`
