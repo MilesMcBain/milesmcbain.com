@@ -21,7 +21,9 @@ I recently completed a project to add RStudio addins to the [Visual Studio Code 
 
 # But Why?
 
-Most people who follow me online know that I use [Spacemacs and ESS]() to write R. A few things changed recently that made VSCode radically more appealing to me at work, where I am forced to use Windows:
+Most people who follow me online know that I use [Spacemacs and ESS]() to write
+R. A few things changed recently that made VSCode radically more appealing to me
+at work, where I am forced to use Windows:
 
 1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](). ^[Thanks to the [Jack of Someaa YouTube channel]()].
 2. The whole 2020 and working from home thing has meant my team have been using VSCode's slick [Live share feature]() to do real-time remote pair programming and debugging. It's shockingly good.
@@ -33,36 +35,47 @@ To use `fnmate` your editor needs to interface with your R session to pass back
 the context of your document around your cursor. R does the magic once it has
 that context. 
 
-Emacs and RStudio facilitate this in different ways, but ultimately they both allow you execute code on data taken from the text editor and shove the result of that into an R function called in your R session. ^[In Emacs that code is Lisp. In RStudio it's R.]
+Emacs and RStudio facilitate this in different ways, but ultimately they both
+allow you execute code on data taken from the text editor and shove the result
+of that into an R function called in your R session. ^[In Emacs that code is
+Lisp. In RStudio it's R.]
 
-VSCode was without this ability. So I thought that to implement a binding for my beloved `fnmate` my options were:
+VSCode was without this ability. So I thought that to implement a binding for my
+beloved `fnmate` my options were:
 
 * Write my own VSCode extension - having to redo work already in the R extension, relating to interfacing with the R process in terminal.
 * Get a binding for `fnmate` merged into the R extension.
 
 And I guess I was mulling over what unsatisfying options these were when I
 realised that what the VSCode R extension really needed was something like the
-RStudio API - HOLD ON. Can I port the RStudio API? Can I make all RStudio addins (and `fnamte`) work with VSCode with no changes to their code?! I think I know how to do it!
+RStudio API - HOLD ON. Can I port the RStudio API? Can I make `datapasta` and
+other popular addins work with VSCode with no changes to their code?! I think I know how to do this!
 
 It was like as soon as the lightning bolt struck I knew I was not going to be able to stop myself from doing this.
 
 # Greenlights
 
 I was pretty jazzed about the idea and it occurred to me that it was so good
-that I was probably not the first person to think of it. A GitHub search
+that I was probably not the first person to have it. A GitHub search
 revealed that my intuition was correct: In May of 2020, VSCode-R extension
 maintainer [Andrew Craig]() had created an issue discussing the possibility. 
 
 When I read through the discussion I saw that it had kind of stalled out because
-the maintainers were worried about RStudio's reaction and legal issues. They'd resolved to contact RStudio before making any moves.
+the maintainers were worried about RStudio's reaction and legal issues. They'd
+resolved to contact RStudio before making any moves.
 
 The implementation I had in mind side stepped of their initial legal concerns,
 and I was pretty confident that the RStudio team I knew, the great people that I
-had met, would not be bothered by the idea.
+had met, would not be bothered.
 
 I offered to contribute and was invited to start working on the idea.^[I'd made one PR for a small feature to the VSCode-R extension in the past, so I think that helped in this regard.] Once I had a proof of concept - 1 working API call - I decided to email the authors of `{rstudioapi}` to let them know what we were planning to do.
 
-The RStudio response was all class. You can see for yourself in the [issue thread](https://github.com/Ikuyadeu/vscode-R/issues/302). JJ Allaire wrote back with encouraging words, a heads up on future API directions, and an offer to talk about the API. Kevin Ushey did likewise, filling out some more detail on future plans, and invited questions and feedback on the API. When I did have a question about the API, Kevin answered it quickly.
+The RStudio response was all class. You can see for yourself in the [issue
+thread](https://github.com/Ikuyadeu/vscode-R/issues/302). JJ Allaire wrote back
+with encouraging words, a heads up on future API directions, and an offer to
+talk about the API. Kevin Ushey did likewise, filling out some more detail on
+future plans, and invited questions and feedback on the API. When I did have a
+question about the API, Kevin answered it quickly.
 
 This is RStudio walking the walk of being a company that works in the
 community's interests. Diversity is good. Friendly competition is good. It's
@@ -91,7 +104,7 @@ The first piece is a function called `assignInNamespace` which allows us to do t
 ```{r, echo = TRUE}
 assignInNamespace("getActiveDocumentContext",
                   function(...) {
-                    print("Duck punch!"),
+                    print("Duck punch!")
                   },
                   "rstudioapi"
                   )
@@ -106,7 +119,7 @@ rstudioapi_hook <- function() {
   print("running your rstudioapi_hook...")
   assignInNamespace("getActiveDocumentContext",
                     function(...) {
-                      print("Duck punch!"),
+                      print("Duck punch!")
                     },
                     "rstudioapi"
                     )
@@ -118,6 +131,54 @@ rstudioapi::getActiveDocumentContext()
 ```
 
 This is really nice since it means if the user never uses the `rstudioapi` we
-never do anything spooky. It's also really handy to be able to patch the API
-functions selectively, since it allows us to keep `rstudioapi` functions that
-don't talk to the IDE unchanged, e.g. `rstudioapi::is.document_range`
+never do anything spooky. It's also handy to be able to patch the API functions
+selectively, since it allows us to keep `rstudioapi` functions that don't talk
+to the IDE unchanged, e.g. `rstudioapi::is.document_range`, and we can call
+those in our adapted versions.
+
+## VSCode-R communications
+
+The VSCode-R extension already implemented a one-way communication channel
+between the user's R session and VSCode for signalling custom rendering
+behaviour of plots, shiny apps, web pages etc. So my main challenge was to
+implement the return protocol so that VSCode could send data back to the R
+session in response to `rstudioapi` requests. This had to be written in
+Typescript using the VSCode API.
+
+The way in which the communications worked was quite interesting to me - I guess
+I assumed it would be some kind of fancy web socket protocol. Actually it's
+pretty lofi, based on files. It worked like this:
+
+1. On startup VSCode R sessions creates two files `request.log` and
+   `request.lock`. In VSCode/Typescript land a file watcher process is attached
+   to the lock file that triggers a callback function whenever the lock file is
+   updated.
+2. In the R session, a request for VSCode is made by writing some JSON to the
+   `request.log` and then writing the current timestamp to the `request.lock`.
+3. In VSCode the callback for the lock file update fires and confirms that the
+   timestamp indicates a new message, and fires the JSON off to a request
+   router.
+4. A request router is just a fancy name for a giant switch statement that
+   examines the JSON and decides what functions to call.
+
+My implementation for the return path copied ideas. Once you make an
+`rstudioapi` call from R, the R sessions blocks, checking a `response.lock` file
+every 100ms until an update appears and response data is read from
+`response.log`.
+
+One mistake I made initially was that I thought some API calls might be able to
+be asynchronous, for example inserting text into a document - it seems like it
+could done without a response back to R. But I soon learned in testing that
+there are addins out there that blast the `rstudioapi` with a stream of function
+calls ^[Thankyou `{remedy}` and `{sinew}` ;)], and I needed to make sure the all
+changes in VSCode had been applied before I allowed a new request to be written,
+otherwise request data might be overwritten without being handled.
+
+
+# Lessons Learned
+
+
+
+# And then I broke library(tidyverse)
+
+So I was feeling pretty happy, 5 weeks worth of spare evenings had amounted to something that felt pretty close to the native RStudio experience for all the popular addins accoring to #rstats twitter users
