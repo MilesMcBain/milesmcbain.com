@@ -12,7 +12,19 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 24 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Adding RStudio Addins to VSCode</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/adding-addins-to-vscode</link>
+      <description>Technical details and select highlights of my project to bring RStudio addins to VSCode.</description>
+      <category>rstats</category>
+      <category>vscode</category>
+      <category>rstudio</category>
+      <guid>https://milesmcbain.com/posts/adding-addins-to-vscode</guid>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.com/posts/adding-addins-to-vscode/vscode_addins.png" medium="image" type="image/png" width="2274" height="1396"/>
+    </item>
     <item>
       <title>Project as an R package: An okay idea</title>
       <dc:creator>Miles McBain</dc:creator>

@@ -1,15 +1,21 @@
 ---
 title: "Adding RStudio Addins to VSCode"
 description: |
-  A short description of the post.
+  Technical details and select highlights of my project to bring RStudio addins to VSCode.
 author:
   - name: Miles McBain
     url: https://milesmcbain.xyz
-date: 10-18-2020
+date: 2020-10-22
 output:
   distill::distill_article:
     self_contained: false
-draft: true
+    toc: true
+    toc_depth: 2
+categories:
+  - rstats
+  - vscode
+  - rstudio
+preview: vscode_addins.png
 ---
 
 
@@ -17,19 +23,27 @@ draft: true
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-I recently completed a project to add RStudio addins to the [Visual Studio Code R extension](). This is post is about the why and the how of it.
+```{r}
+knitr::include_graphics("vscode_addins.png")
+```
 
-# But Why?
+I recently completed a project to add RStudio addins to the [Visual Studio Code
+R extension](https://github.com/Ikuyadeu/vscode-R). In this post I explain the
+technical sleight of hand that makes this work, and share some of my select
+highlights from the project.
 
-Most people who follow me online know that I use [Spacemacs and ESS]() to write
+# But why?
+
+Most people who follow me online know that I use [Spacemacs and ESS](https://github.com/MilesMcBain/spacemacs_cfg) to write
 R. A few things changed recently that made VSCode radically more appealing to me
 at work, where I am forced to use Windows:
 
-1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](). ^[Thanks to the [Jack of Someaa YouTube channel]()].
-2. The whole 2020 and working from home thing has meant my team have been using VSCode's slick [Live share feature]() to do real-time remote pair programming and debugging. It's shockingly good.
+1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](). ^[Thanks to the [Jack of Some YouTube channel](https://www.youtube.com/c/jackofsome)].
+2. The whole 2020 and working from home thing has meant my team have been using VSCode's slick [Live share feature](https://visualstudio.microsoft.com/services/live-share/) to do real-time remote pair programming and debugging. It's shockingly good.
+3. My team has just been dipping our toes into AWS and VSCode facilitates wonderfully seamless [remote development over ssh](https://code.visualstudio.com/docs/remote/remote-overview).
 
 So I started experimenting to see how close I could make VSpaceCode feel to my
-Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: [`fnamte`]()
+Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: [`fnamte`](https://github.com/milesmcbain/fnmate)
 
 To use `fnmate` your editor needs to interface with your R session to pass back
 the context of your document around your cursor. R does the magic once it has
@@ -49,17 +63,18 @@ beloved `fnmate` my options were:
 
 And I guess I was mulling over what unsatisfying options these were when I
 realised that what the VSCode R extension really needed was something like the
-RStudio API - HOLD ON. Can I port the RStudio API? Can I make `datapasta` and
-other popular addins work with VSCode with no changes to their code?! I think I know how to do this!
+RStudio API - HOLD ON. Can I port the RStudio API? Can I make `fnmate`,
+`datapasta` and other popular addins work with VSCode with no changes to their
+code?! I think I know how to do this!
 
 It was like as soon as the lightning bolt struck I knew I was not going to be able to stop myself from doing this.
 
-# Greenlights
+# Green lights
 
 I was pretty jazzed about the idea and it occurred to me that it was so good
 that I was probably not the first person to have it. A GitHub search
 revealed that my intuition was correct: In May of 2020, VSCode-R extension
-maintainer [Andrew Craig]() had created an issue discussing the possibility. 
+maintainer [Andrew Craig](https://github.com/andycraig) had created an issue discussing the possibility. 
 
 When I read through the discussion I saw that it had kind of stalled out because
 the maintainers were worried about RStudio's reaction and legal issues. They'd
@@ -88,7 +103,9 @@ about how it would be received.
 
 ## The humane punching of ducks
 
-Now we get to some fun stuff. How is it that I can call: `rstudioapi::getActiveDocumentContext()` from within an R session in VSCode and get back the context of my VSCode active text editor window?
+Now we get to some fun stuff. How is it that I can call:
+`rstudioapi::getActiveDocumentContext()` from within an R session in VSCode and
+get back the context of my VSCode active text editor window?
 
 The trick is one that is often used the testing context, there it's known as
 'mocking'. In other context it can be called ['duck punching' or 'monkey
@@ -102,7 +119,7 @@ do it is built into the R language.
 
 The first piece is a function called `assignInNamespace` which allows us to do this:
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 assignInNamespace("getActiveDocumentContext",
                   function(...) {
                     print("Duck punch!")
@@ -115,9 +132,9 @@ Calling `rstudioapi::getActiveDocumentContext()` would now return "Duck punch!".
 
 The second piece allows us to make that assignment happen, immediately after the `rstudioapi` namespace gets loaded into your R session, whenever, if ever, that may be. It's a function called `setHook`:
 
-```{r}
-rstudioapi_hook <- function() {
-  print("running your rstudioapi_hook...")
+```{r, echo = TRUE}
+rstudioapi_hook <- function(pkgname, pkgpath) {
+  print("Running your package onLoad hook...")
   assignInNamespace("getActiveDocumentContext",
                     function(...) {
                       print("Duck punch!")
@@ -131,11 +148,16 @@ setHook(packageEvent("rstudioapi", "onLoad"), rstudioapi_hook)
 rstudioapi::getActiveDocumentContext()
 ```
 
-This is really nice since it means if the user never uses the `rstudioapi` we
-never do anything spooky. It's also handy to be able to patch the API functions
-selectively, since it allows us to keep `rstudioapi` functions that don't talk
-to the IDE unchanged, e.g. `rstudioapi::is.document_range`, and we can call
-those in our adapted versions.
+So we're asking R to only perform the duck punching if the user actually loads
+the `{rstudioapi}` namespace, which will happen when any function in it is
+called ^[Or they do `library(rstudioapi)` - but this is discouraged by the
+`{rstudioapi}` documentation and doesn't make heaps of sense]. So if the user
+never calls the API we never do anything spooky.
+
+It's also handy to be able to patch the API functions selectively, since it
+allows us to keep `rstudioapi` functions that don't talk to the IDE unchanged,
+e.g. `rstudioapi::is.document_range`, and we can call those in our adapted
+versions.
 
 ## VSCode-R communications
 
@@ -171,32 +193,75 @@ One mistake I made initially was that I thought some API calls might be able to
 be asynchronous, for example inserting text into a document - it seems like it
 could done without a response back to R. But I soon learned in testing that
 there are addins out there that blast the `rstudioapi` with a stream of function
-calls ^[Thankyou `{remedy}` and `{sinew}` ;)], and I needed to make sure the all
+calls ^[Thanks `{remedy}` and `{sinew}` ;)], and I needed to make sure the all
 changes in VSCode had been applied before I allowed a new request to be written,
 otherwise request data might be overwritten without being handled.
 
 
 # Challenges
 
+## Lack of specificity
+
+By far the biggest challenge was trying to make VSCode behave exactly as per RStudio. Part of the issue is that the two applications have fundamentally different models.
+
+In VSCode for instance, terminals and text editors are different things. You
+have an active text editor and an active terminal, determining which one of
+those things has the user's focus is not a facility provided by the API. 
+
+RStudio, on the other hand, lets you treat everything as a 'document', and you
+can easily the context of the active document that has the user's focus.
+
+But the hardest bit really is that while both APIs have reasonable documentation
+for the average end user, it suddenly seems lacking when you're trying to make
+one program behave exactly like another - only a small portion of each program's
+behavioural extent is documented. There was a lot of experimentation and
+probing at the limits of each application's conventions to establish what it could handle.
+
+I want to give special mention to `rstudioapi::insertText()` which is quite
+possibly the most loosely specified function I have ever encountered. It was my
+nemeses on this project. This is the function signature:
+
+```
+insertText <- function (location, text, id = NULL) {
+
+}
+```
+
+Insert `text` at `location` in document specified by `id` or active document.
+But this simplicity belies incredible complexity lurking beneath:
+
+* `location` can be:
+  - a position object - (row, column)
+  - a range object - (row, column) to (row, column)
+  - a length 2 numeric vector - (cast to position)
+  - a length 4 numeric vector - (cast to range)
+  - a mixed list containing any or all of above
+  - the text to be inserted if `text` is not supplied. e.g. Allowing calls like `insertText("some text")` to work.
+* `text` can be length 1 or `length(location)`
+* Numeric elements allowed in `location` are all integers in the range `[-Inf, Inf]`! These need to be resolved to actual possible locations further down the line.
+
+Phew! There are a couple of hundred lines dedicated to emulating this function
+and its' aliases alone.
+
 ## Typescript workflow
 
-Typescript is a statically typed Javascript-a-like that compiles to Javascipt. I
+Typescript is a statically typed Javascript-a-like that compiles to Javascript. I
 quite enjoy the language, but I found working without a REPL to be
 excruciatingly slow initially.
 
 I was going:
   
-  * write code
-  * compile and build extension
-  * test extension
-  * repeat
+  1. write code
+  2. compile and build extension
+  3. test extension
+  4. repeat
   
 And the compilation/build time, and repetitive nature of setting up state for a test was a drag. A couple of things I discovered:
 
   * If you put a breakpoint inside a function you are developing you can get to
     something like a REPL pretty quickly by doing your development in debug
     mode. You have the entire application's state available in an object called
-    `vscode_1` that you can tinker with.
+    `vscode_1` that you can tinker with in the debug console.
   * By stopping fighting the type checker, and refactoring code that didn't play
     nicely with it, I found the strong linting and hover help capability of
     VSCode gave me enough context to work without the safety net of the REPL.
@@ -205,11 +270,11 @@ And the compilation/build time, and repetitive nature of setting up state for a 
 ## Merging a large PR
 
 The maintainers of the VSCode-R extension have quite high standards for the
-code. [Kun Ren]() gives unrelentingly thorough code reviews, which are actually
-a really valuable thing that I haven't had a lot of in my software-writing
-career. It felt a little like a session with a code personal trainer. I
-realised I had been lazy in parts, or there were nicer ways of doing things that
-weren't as complex as I had estimated.
+code. [Kun Ren](https://renkun.me/about/) gives unrelentingly thorough code
+reviews, which are actually a really valuable thing that I haven't had a lot of
+in my software-writing career. It felt a little like a session with a code
+personal trainer. I realised I had been lazy in parts, or there were nicer ways
+of doing things that weren't as complex as I had estimated.
 
 I was quite sympathetic to this process. Asking people to take on 1000 lines of
 potential technical debt is a big deal. We're playing catch with a loaded
@@ -221,11 +286,12 @@ foot-gun - whatever precautions the catcher wants to take have to be respected.
 It turned out that much to my embarrassment the foot-gun went off pretty much
 immediately!
 
-When repository owner [Yuki Ueda] creates a release, it automatically flows
-through to VSCode users the next time they open VSCode. The PR was merged in the
-afternoon and in the evening I logged into my work machine to catch up on a task
-from a few hours earlier. My code fell in a heap at `library(tidyverse)` with an
-error that was painfully familiar, since I coded the message myself:
+When repository owner [Yuki Ueda](https://github.com/Ikuyadeu) creates a
+release, it automatically flows through to VSCode users the next time they open
+VSCode. The PR was merged in the afternoon and in the evening I logged into my
+work machine to catch up on a task from a few hours earlier. My code fell in a
+heap at `library(tidyverse)` with an error that was painfully familiar, since I
+coded the message myself:
 
 ```
 error: This `{rstudioapi}` function is not currenlty implemented for VSCode.
@@ -236,11 +302,13 @@ Ubuntu and couldn't. Ken Ren couldn't reproduce it on Mac OS either. It seemed
 we had missed some Windows specific behaviour which I was the first to encounter
 on my Windows work machine.
 
-In the midst of this, a colleague of mine who is studying messaged me to let me know the bug had sent someone in his study group into a panic and he had bailed them out with a fork of the extension. I felt terrible!
+In the midst of this, a colleague of mine who is studying and uses R, messaged
+me to let me know the bug had sent someone in his study group into a panic and
+he had bailed them out with a fork of the extension. I felt terrible!
 
 Over the next couple of hours we worked out the issues and implemented a fix. We
 also made the `{rstudioapi}` emulation in VSCode opt-in for now with an option
-that must be set: `options(vsc.rstudioapi = TRUE)` in case there are any other
+that must be set: `options(vsc.rstudioapi = TRUE)` - in case there are any other
 big showstoppers we haven't seen yet. 
 
 In retrospect the option would have been a good idea from the start, I did think
@@ -250,7 +318,7 @@ The bug itself is was quite interesting to me. When a user does
 `library(tidyverse)` for the first time in a session there is an on-attach hook
 that runs that prints a familiar _fancy_ looking message:
 
-```
+```{r, eval = FALSE}
 library(tidyverse)
 ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
 ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
@@ -281,3 +349,14 @@ get the version or assert a specific version. This worked well for the dozen or 
 There was no way around VSCode pretending to have an RStudio version for now to get `tidyverse` working. We shall see if this creates any issues. 
 
 # Conclusion
+
+So that's been the highs and lows of this project. Certainly I learned a lot,
+and I thank the maintainers of the VSCode-R extension (Yuki, Kun, and Andy) for
+the opportunity, and JJ and Kevin from RStudio for their support.
+
+Just today I used `fnmate` numerous times on an instance in AWS I had connected
+to using VSCode-over-SSH. I never actually tested this specific case, but VSCode
+is geared such that the remote development case is not something an extension
+author has to care that much about. Extremely satisfying!
+
+---

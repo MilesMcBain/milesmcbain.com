@@ -1532,213 +1532,6 @@
 <!--/radix_placeholder_site_before_body-->
 <!--radix_placeholder_article_listing-->
 
-<style type="text/css">
-
-/* Styles for listing layout (hide title) */
-.layout-listing d-title, .layout-listing .d-title {
-  display: none;
-}
-
-/* Styles for posts lists (not auto-injected) */
-
-
-.posts-with-sidebar {
-  padding-left: 45px;
-  padding-right: 45px;
-}
-
-.posts-list .description h2,
-.posts-list .description p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-}
-
-.posts-list .description h2 {
-  font-weight: 700;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.posts-list h2.post-tag {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 12px;
-}
-.posts-list {
-  margin-top: 60px;
-  margin-bottom: 24px;
-}
-
-.posts-list .post-preview {
-  text-decoration: none;
-  overflow: hidden;
-  display: block;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 24px 0;
-}
-
-.post-preview-last {
-  border-bottom: none !important;
-}
-
-.posts-list .posts-list-caption {
-  grid-column: screen;
-  font-weight: 400;
-}
-
-.posts-list .post-preview h2 {
-  margin: 0 0 6px 0;
-  line-height: 1.2em;
-  font-style: normal;
-  font-size: 24px;
-}
-
-.posts-list .post-preview p {
-  margin: 0 0 12px 0;
-  line-height: 1.4em;
-  font-size: 16px;
-}
-
-.posts-list .post-preview .thumbnail {
-  box-sizing: border-box;
-  margin-bottom: 24px;
-  position: relative;
-  max-width: 500px;
-}
-.posts-list .post-preview img {
-  width: 100%;
-  display: block;
-}
-
-.posts-list .metadata {
-  font-size: 12px;
-  line-height: 1.4em;
-  margin-bottom: 18px;
-}
-
-.posts-list .metadata > * {
-  display: inline-block;
-}
-
-.posts-list .metadata .publishedDate {
-  margin-right: 2em;
-}
-
-.posts-list .metadata .dt-tags {
-  display: block;
-  margin-top: 1em;
-  margin-right: 2em;
-}
-
-.posts-list .dt-tags .dt-tag {
-  display: inline-block;
-  color: rgba(0,0,0,0.67);
-  padding: 0em 0.3em;
-  margin-right: 0.2em;
-  margin-bottom: 0.4em;
-  font-size: 80%;
-  border: 1px solid rgba(0,0,0,0.4);
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.posts-list img {
-  opacity: 1;
-}
-
-.posts-list img[data-src] {
-  opacity: 0;
-}
-
-.posts-more {
-  clear: both;
-}
-
-
-.posts-sidebar {
-  font-size: 16px;
-}
-
-.posts-sidebar h3 {
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.sidebar-section {
-  margin-bottom: 30px;
-}
-
-.categories ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.categories li {
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 0;
-}
-
-.categories li>a {
-  border-bottom: none;
-}
-
-.categories li>a:hover {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-}
-
-.categories .active {
-  font-weight: 600;
-}
-
-.categories .category-count {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-
-@media(min-width: 768px) {
-  .posts-list .post-preview h2 {
-    font-size: 26px;
-  }
-  .posts-list .post-preview .thumbnail {
-    float: right;
-    width: 35%;
-    margin-bottom: 0;
-  }
-  .posts-list .post-preview .description {
-    float: left;
-    width: 45%;
-  }
-  .posts-list .post-preview .metadata {
-    float: left;
-    width: 15%;
-    margin-top: 8px;
-  }
-  .posts-list .post-preview p {
-    margin: 0 0 12px 0;
-    line-height: 1.5em;
-    font-size: 16px;
-  }
-  .posts-with-sidebar .posts-list {
-    float: left;
-    width: 72%;
-  }
-  .posts-with-sidebar .posts-sidebar {
-    float: right;
-    width: 20%;
-    margin-top: 60px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-}
-
-.downlevel .posts-list .post-preview {
-  color: inherit;
-}
-
-</style>
 
 <script type="application/javascript">
 
@@ -1790,16 +1583,16 @@ function init_posts_list() {
     set_posts_visible($('.posts-list').children('a'), false);
 
     // if we have a hash filter
-    if (window.location.hash) {
+    if (window.location.hash && window.location.hash.startsWith("#category:")) {
 
       // mark posts that match the category visible
-      var page_category = window.location.hash.replace("#", "");
+      var page_category = window.location.hash.replace(/^#category:/, "");
       var posts = $('.post-metadata').map(function(idx, script) {
         var metadata = $.parseJSON($(script).html());
         var post = null;
         $.each(metadata.categories, function(idx, category) {
           category = category.replace(/ /g,"_");
-          if (category == page_category) {
+          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
             post = $(script).parent().get();
             return false;
           }
@@ -1813,7 +1606,10 @@ function init_posts_list() {
 
       // update the list_caption
       var list_caption = $('.posts-list-caption');
-      list_caption.text('Category: ' + page_category);
+      var caption = (page_category || '').toLowerCase() === "articles"
+        ? list_caption.attr('data-caption')
+        : ('Category: ' + page_category.replace(/_/g," "));
+      list_caption.text(caption);
 
     } else {
 
@@ -1841,7 +1637,7 @@ function init_posts_list() {
 
   // click handling for tags
   $('.dt-tag').click(function(ev) {
-    window.location.hash = '#' + $(this).text().replace(/ /g, "_");
+    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
     return false;
   })
 
@@ -1869,14 +1665,33 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Posts">Posts</h1>
+<a href="posts/adding-addins-to-vscode/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["rstats","vscode","rstudio"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 21, 2020</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/adding-addins-to-vscode/vscode_addins.png"/>
+</div>
+<div class="description">
+<h2>Adding RStudio Addins to VSCode</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">vscode</div>
+<div class="dt-tag">rstudio</div>
+</div>
+<p>Technical details and select highlights of my project to bring RStudio addins to VSCode.</p>
+</div>
+</a>
 <a href="posts/an-okay-idea/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["rstats","workflow","data science"]}</script>
 <div class="metadata">
 <div class="publishedDate">July 24, 2020</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">workflow</div>
-<div class="dt-tag">data science</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -1884,6 +1699,11 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Project as an R package: An okay idea</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">workflow</div>
+<div class="dt-tag">data science</div>
+</div>
 <p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p>
 </div>
 </a>
@@ -1891,12 +1711,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","productivity","workflow","reproducibility","debugging"]}</script>
 <div class="metadata">
 <div class="publishedDate">April 30, 2020</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">productivity</div>
-<div class="dt-tag">workflow</div>
-<div class="dt-tag">reproducibility</div>
-<div class="dt-tag">debugging</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -1904,6 +1720,13 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Benefits of a function-based diet (The {drake} post)</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">productivity</div>
+<div class="dt-tag">workflow</div>
+<div class="dt-tag">reproducibility</div>
+<div class="dt-tag">debugging</div>
+</div>
 <p>The {drake} post I've been threatening to make has landed. All 4000 words of it.</p>
 </div>
 </a>
@@ -1911,9 +1734,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","debugging"]}</script>
 <div class="metadata">
 <div class="publishedDate">July 28, 2019</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">debugging</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -1921,6 +1743,10 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Stop() - breathe - recover()</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">debugging</div>
+</div>
 <p>Over the last couple of months a debugging technique involving an R function called `recover` has transformed my approach dealing with errors in R code. This post is an introduction to a ~20min video I've made where I demonstrate my `recover` approach on two examples.</p>
 </div>
 </a>
@@ -1928,9 +1754,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","hacks"]}</script>
 <div class="metadata">
 <div class="publishedDate">June 20, 2019</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">hacks</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -1938,6 +1763,10 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Hacking R's library paths</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">hacks</div>
+</div>
 <p>If you've been tripped up by R's library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</p>
 </div>
 </a>
@@ -1945,16 +1774,19 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","reproducibility"]}</script>
 <div class="metadata">
 <div class="publishedDate">April 9, 2019</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/packrat-lite/nutria-1200457_1920.jpg"/>
+</div>
+<div class="description">
+<h2>A workflow for lightweight R dependency management</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">reproducibility</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/packrat-lite/nutria-1200457_1920.jpg"/>
-</div>
-<div class="description">
-<h2>A workflow for lightweight R dependency management</h2>
 <p>Recently I proudly shared some code that was only weeks old and had maybe 40 dependencies... what could possibly go wrong right?</p>
 </div>
 </a>
@@ -1962,16 +1794,19 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","loops"]}</script>
 <div class="metadata">
 <div class="publishedDate">Feb. 14, 2019</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/for-loops/1024px-Apocalypse_vasnetsov.jpg"/>
+</div>
+<div class="description">
+<h2>Horseman number for</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">loops</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/for-loops/1024px-Apocalypse_vasnetsov.jpg"/>
-</div>
-<div class="description">
-<h2>Horseman number for</h2>
 <p>Two #rstats community personalities whom I very much admire have taken my name in vain in relation to for loops. What's up with that?</p>
 </div>
 </a>
@@ -1979,16 +1814,19 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","loops"]}</script>
 <div class="metadata">
 <div class="publishedDate">Dec. 7, 2018</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg"/>
+</div>
+<div class="description">
+<h2>R anti-pattern: Row-wise modification of data in a loop</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">loops</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg"/>
-</div>
-<div class="description">
-<h2>R anti-pattern: Row-wise modification of data in a loop</h2>
 <p>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</p>
 </div>
 </a>
@@ -1996,16 +1834,19 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","lisp"]}</script>
 <div class="metadata">
 <div class="publishedDate">July 26, 2018</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/the-roots-of-quotation/Quote---2-.jpg"/>
+</div>
+<div class="description">
+<h2>The Roots of Quotation</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">lisp</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/the-roots-of-quotation/Quote---2-.jpg"/>
-</div>
-<div class="description">
-<h2>The Roots of Quotation</h2>
 <p>In this post I use Lisp as a prop to have the quoting conversation from the start. It's a deep dive that will hopefully arrive at a deep understanding.</p>
 </div>
 </a>
@@ -2013,16 +1854,19 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","R2VR"]}</script>
 <div class="metadata">
 <div class="publishedDate">July 5, 2018</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/r2vr3-shading-meshes-in-webvr/uluru_header.png"/>
+</div>
+<div class="description">
+<h2>R2VR: Shading Meshes in WebVR</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">R2VR</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/r2vr3-shading-meshes-in-webvr/uluru_header.png"/>
-</div>
-<div class="description">
-<h2>R2VR: Shading Meshes in WebVR</h2>
 <p>In this post I'll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.</p>
 </div>
 </a>
@@ -2030,17 +1874,20 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","regex","productivity"]}</script>
 <div class="metadata">
 <div class="publishedDate">June 24, 2018</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg"/>
+</div>
+<div class="description">
+<h2>Crushing the Contact Details file with #rstats</h2>
 <div class="dt-tags">
 <div class="dt-tag">rstats</div>
 <div class="dt-tag">regex</div>
 <div class="dt-tag">productivity</div>
 </div>
-</div>
-<div class="thumbnail">
-<img src="posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg"/>
-</div>
-<div class="description">
-<h2>Crushing the Contact Details file with #rstats</h2>
 <p>It is a universal law that if you volunteer to help organise something, you will at some stage be issued with a flat text file of contact details.</p>
 </div>
 </a>
@@ -2048,9 +1895,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","R2VR"]}</script>
 <div class="metadata">
 <div class="publishedDate">May 29, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">R2VR</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2058,6 +1904,10 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>R2VR: Rendering Meshes in WebVR</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">R2VR</div>
+</div>
 <p>How to render a 3D mesh of Uluru in WebVR using the A-Frame framework via R.</p>
 </div>
 </a>
@@ -2065,9 +1915,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["productivity","software development"]}</script>
 <div class="metadata">
 <div class="publishedDate">May 23, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">productivity</div>
-<div class="dt-tag">software development</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2075,6 +1924,10 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>2018: In Pursuit of Productivity</h2>
+<div class="dt-tags">
+<div class="dt-tag">productivity</div>
+<div class="dt-tag">software development</div>
+</div>
 <p>2018 was probably my busiest year on record. I reflect on some of the productivity tools that got me through.</p>
 </div>
 </a>
@@ -2082,10 +1935,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","tidyverse","tidyeval"]}</script>
 <div class="metadata">
 <div class="publishedDate">May 23, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">tidyverse</div>
-<div class="dt-tag">tidyeval</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2093,6 +1944,11 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Solving the Challenge of Tidyeval</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">tidyverse</div>
+<div class="dt-tag">tidyeval</div>
+</div>
 <p>Ok here's the vignette... scroll scroll scroll... now I just quo... no wait enquo, no wait sym? Ahhh! equos that has to be it...</p>
 </div>
 </a>
@@ -2100,8 +1956,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["software development"]}</script>
 <div class="metadata">
 <div class="publishedDate">May 20, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">software development</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2109,6 +1965,9 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>How to Survive a Laptop Fire</h2>
+<div class="dt-tags">
+<div class="dt-tag">software development</div>
+</div>
 <p>How bad would it be for your work if your laptop burned in a fire?</p>
 </div>
 </a>
@@ -2116,11 +1975,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","WebVR","R2VR","GIS"]}</script>
 <div class="metadata">
 <div class="publishedDate">March 27, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">WebVR</div>
-<div class="dt-tag">R2VR</div>
-<div class="dt-tag">GIS</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2128,6 +1984,12 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>R2VR: Meshing Uluru From Polygons and Rasters</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">WebVR</div>
+<div class="dt-tag">R2VR</div>
+<div class="dt-tag">GIS</div>
+</div>
 <p>In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.</p>
 </div>
 </a>
@@ -2135,10 +1997,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","rOpenSci","open science"]}</script>
 <div class="metadata">
 <div class="publishedDate">March 26, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">rOpenSci</div>
-<div class="dt-tag">open science</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2146,6 +2006,11 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Where is the value in package peer review? Reflection #2 on rOpenSci Onboarding</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">rOpenSci</div>
+<div class="dt-tag">open science</div>
+</div>
 <p>How is a package peer reviewer’s time best spent? When is the best time in a software package’s life cycle to undertake peer review? A user-driven perspective.</p>
 </div>
 </a>
@@ -2153,9 +2018,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["ghost","docker"]}</script>
 <div class="metadata">
 <div class="publishedDate">March 8, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">ghost</div>
-<div class="dt-tag">docker</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2163,6 +2027,10 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>A Fully Dockerised HTTPS Ghost Blog</h2>
+<div class="dt-tags">
+<div class="dt-tag">ghost</div>
+<div class="dt-tag">docker</div>
+</div>
 <p>The installation documentation for Ghost is comprehensive, but beyond my skill as a system administrator to complete. Docker to the rescue!</p>
 </div>
 </a>
@@ -2170,10 +2038,8 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":["rstats","open science","rOpenSci"]}</script>
 <div class="metadata">
 <div class="publishedDate">March 6, 2018</div>
-<div class="dt-tags">
-<div class="dt-tag">rstats</div>
-<div class="dt-tag">open science</div>
-<div class="dt-tag">rOpenSci</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
 </div>
 </div>
 <div class="thumbnail">
@@ -2181,6 +2047,11 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Waterslides vs Ivory Towers: Reflection #1 on rOpenSci Onboarding</h2>
+<div class="dt-tags">
+<div class="dt-tag">rstats</div>
+<div class="dt-tag">open science</div>
+<div class="dt-tag">rOpenSci</div>
+</div>
 <p>Onboarding is a waterslide. rOpenSci have created a rewarding and fun process that generates high quality R packages.</p>
 </div>
 </a>
@@ -2188,13 +2059,16 @@ function init_posts_list() {
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">
 <div class="publishedDate">Feb. 22, 2018</div>
-<div class="dt-tags"></div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
 </div>
 <div class="thumbnail">
 <img data-src="posts/alt-r-with-vscode/hover_help2.gif"/>
 </div>
 <div class="description">
 <h2>Going Alt-RStats with VSCode</h2>
+<div class="dt-tags"></div>
 <p>I never want to see another CSV that isn't rainbow!</p>
 </div>
 </a>
@@ -2204,87 +2078,95 @@ function init_posts_list() {
 <h3>Categories</h3>
 <ul>
 <li>
-<a href="#">Articles</a>
-<span class="category-count">(19)</span>
+<a href="#category:Articles">Articles</a>
+<span class="category-count">(20)</span>
 </li>
 <li>
-<a href="#data_science">data science</a>
+<a href="#category:data_science">data science</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#debugging">debugging</a>
+<a href="#category:debugging">debugging</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#docker">docker</a>
+<a href="#category:docker">docker</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#ghost">ghost</a>
+<a href="#category:ghost">ghost</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#GIS">GIS</a>
+<a href="#category:GIS">GIS</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#hacks">hacks</a>
+<a href="#category:hacks">hacks</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#lisp">lisp</a>
+<a href="#category:lisp">lisp</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#loops">loops</a>
+<a href="#category:loops">loops</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#open_science">open science</a>
+<a href="#category:open_science">open science</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#productivity">productivity</a>
+<a href="#category:productivity">productivity</a>
 <span class="category-count">(3)</span>
 </li>
 <li>
-<a href="#R2VR">R2VR</a>
+<a href="#category:R2VR">R2VR</a>
 <span class="category-count">(3)</span>
 </li>
 <li>
-<a href="#regex">regex</a>
+<a href="#category:regex">regex</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#reproducibility">reproducibility</a>
+<a href="#category:reproducibility">reproducibility</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#rOpenSci">rOpenSci</a>
+<a href="#category:rOpenSci">rOpenSci</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#rstats">rstats</a>
-<span class="category-count">(15)</span>
+<a href="#category:rstats">rstats</a>
+<span class="category-count">(16)</span>
 </li>
 <li>
-<a href="#software_development">software development</a>
+<a href="#category:rstudio">rstudio</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:software_development">software development</a>
 <span class="category-count">(2)</span>
 </li>
 <li>
-<a href="#tidyeval">tidyeval</a>
+<a href="#category:tidyeval">tidyeval</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#tidyverse">tidyverse</a>
+<a href="#category:tidyverse">tidyverse</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#WebVR">WebVR</a>
+<a href="#category:vscode">vscode</a>
 <span class="category-count">(1)</span>
 </li>
 <li>
-<a href="#workflow">workflow</a>
+<a href="#category:WebVR">WebVR</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:workflow">workflow</a>
 <span class="category-count">(2)</span>
 </li>
 </ul>
