@@ -43,7 +43,7 @@ at work, where I am forced to use Windows:
 3. My team has just been dipping our toes into AWS and VSCode facilitates wonderfully seamless [remote development over ssh](https://code.visualstudio.com/docs/remote/remote-overview).
 
 So I started experimenting to see how close I could make VSpaceCode feel to my
-Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: [`fnamte`](https://github.com/milesmcbain/fnmate)
+Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: [`fnmate`](https://github.com/milesmcbain/fnmate)
 
 To use `fnmate` your editor needs to interface with your R session to pass back
 the context of your document around your cursor. R does the magic once it has
