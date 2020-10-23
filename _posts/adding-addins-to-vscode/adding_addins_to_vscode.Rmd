@@ -38,7 +38,7 @@ Most people who follow me online know that I use [Spacemacs and ESS](https://git
 R. A few things changed recently that made VSCode radically more appealing to me
 at work, where I am forced to use Windows:
 
-1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](). ^[Thanks to the [Jack of Some YouTube channel](https://www.youtube.com/c/jackofsome)].
+1. I learned of a Spacemacs inspired extension for VSCode: [VSpaceCode](https://github.com/VSpaceCode/VSpaceCode). ^[Thanks to the [Jack of Some YouTube channel](https://www.youtube.com/c/jackofsome)].
 2. The whole 2020 and working from home thing has meant my team have been using VSCode's slick [Live share feature](https://visualstudio.microsoft.com/services/live-share/) to do real-time remote pair programming and debugging. It's shockingly good.
 3. My team has just been dipping our toes into AWS and VSCode facilitates wonderfully seamless [remote development over ssh](https://code.visualstudio.com/docs/remote/remote-overview).
 
