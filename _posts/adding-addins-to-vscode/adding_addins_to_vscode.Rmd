@@ -318,7 +318,7 @@ The bug itself is was quite interesting to me. When a user does
 `library(tidyverse)` for the first time in a session there is an on-attach hook
 that runs that prints a familiar _fancy_ looking message:
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 library(tidyverse)
 ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
 ✔ ggplot2 3.3.2     ✔ purrr   0.3.4

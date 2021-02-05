@@ -52,35 +52,35 @@ div.sourceCode
 @media screen {
 a.sourceLine::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #545454; font-weight: bold; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #a1024a; } /* BaseN */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #008000; } /* Char */
-code span.cn { color: #d91e18; } /* Constant */
-code span.co { color: #545454; } /* Comment */
-code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #aa5d00; } /* DataType */
-code span.dv { color: #a1024a; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #a1024a; } /* Float */
-code span.fu { color: #4254a7; } /* Function */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
-code span.in { color: #545454; font-weight: bold; } /* Information */
-code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
-code span.op { color: #696969; } /* Operator */
-code span.ot { color: #007faa; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #008000; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #008000; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #008000; } /* VerbatimString */
-code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
@@ -149,6 +149,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
     var header = $('header').get(0);
     var headerHeight = header.offsetHeight;
     var headroom = new Headroom(header, {
+      tolerance: 5,
       onPin : function() {
         if (window.headroom_prevent_pin) {
           window.headroom_prevent_pin = false;
@@ -471,8 +472,15 @@ d-title {
   top: 0;
 }
 
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
 </style>
 
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -496,22 +504,19 @@ function offsetURL(url) {
   return offset ? offset + '/' + url : url;
 }
 
-function createIndex() {
-  var options = {
-    keys: [
-      "title",
-      "categories",
-      "description",
-      "contents"
-    ]
-  };
-  return new window.Fuse([],options);
-}
-
 function createFuseIndex() {
 
   // create fuse index
-  var options = { keys: ["title", "description", "contents"] };
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
   var fuse = new window.Fuse([], options);
 
   // fetch the main search.json
@@ -579,29 +584,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             shouldSort: true,
             minMatchCharLength: 2,
             limit: 10,
-            keys: [
-              { name: 'title', weight: 20 },
-              { name: 'categories', weight: 15 },
-              { name: 'description', weight: 10 },
-              { name: 'contents', weight: 5 },
-            ],
           };
           var results = fuse.search(query, searchOptions);
           callback(results
             .map(function(result) { return result.item; })
-            .filter(function(item) { return !!item.description; })
           );
         },
         templates: {
           suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
             var html = `
               <div class="search-item">
                 <h3>${suggestion.title}</h3>
                 <div class="search-item-description">
-                  ${suggestion.description}
+                  ${suggestion.description || ''}
                 </div>
                 <div class="search-item-preview">
-                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                  ${img}
                 </div>
               </div>
             `;
@@ -624,6 +625,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 
 <style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
 
 /* Algolioa Autocomplete */
 
@@ -699,6 +704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 }
 
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
   margin-block-start: 0;
   margin-block-end: 5px;
 }
@@ -882,7 +888,7 @@ d-article pre code {
 d-article pre,
 d-article div.sourceCode,
 d-article div.sourceCode pre {
-  overflow: hidden;
+  overflow: auto;
 }
 
 d-article div.sourceCode {
@@ -924,6 +930,11 @@ d-article pre a {
 d-article pre a:hover {
   border-bottom: none;
   text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
 }
 
 @media(min-width: 768px) {
@@ -1080,6 +1091,17 @@ d-article .citation {
 
 div.hanging-indent{
   margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
 }
 
 
@@ -1747,7 +1769,7 @@ function init_distill() {
     var layout = $(this).attr('data-layout');
 
     // apply layout to markdown level block elements
-    var elements = $(this).children().not('div.sourceCode, pre, script');
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
     elements.each(function(i, el) {
       var layout_div = $('<div class="' + layout + '"></div>');
       if (layout_div.hasClass('shaded')) {
@@ -1862,6 +1884,20 @@ function init_distill() {
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
 
     // clear polling timer
     clearInterval(tid);
@@ -2023,6 +2059,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!--/radix_placeholder_distill-->
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -2244,7 +2284,7 @@ li::marker {
 <p>The first piece is a function called <code>assignInNamespace</code> which allows us to do this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,
                   <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
                     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Duck punch!"</span><span class='op'>)</span>
                   <span class='op'>}</span>,
@@ -2257,7 +2297,7 @@ li::marker {
 <p>The second piece allows us to make that assignment happen, immediately after the <code>rstudioapi</code> namespace gets loaded into your R session, whenever, if ever, that may be. It’s a function called <code>setHook</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>rstudioapi_hook</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>pkgname</span>, <span class='va'>pkgpath</span><span class='op'>)</span> <span class='op'>{</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rstudioapi_hook</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>pkgname</span>, <span class='va'>pkgpath</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Running your package onLoad hook..."</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,
                     <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2340,7 +2380,15 @@ li::marker {
 <p>In retrospect the option would have been a good idea from the start, I did think about it at some point, but I guess I got overconfident.</p>
 <p>The bug itself is was quite interesting to me. When a user does <code>library(tidyverse)</code> for the first time in a session there is an on-attach hook that runs that prints a familiar <em>fancy</em> looking message:</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb4-2" title="2">── Attaching packages ─────────────────────────────────────── tidyverse <span class="dv">1</span>.<span class="fl">3.0</span> ──</a>
+<a class="sourceLine" id="cb4-3" title="3">✔ ggplot2 <span class="dv">3</span>.<span class="fl">3.2</span>     ✔ purrr   <span class="dv">0</span>.<span class="fl">3.4</span></a>
+<a class="sourceLine" id="cb4-4" title="4">✔ tibble  <span class="dv">3</span>.<span class="fl">0.3</span>     ✔ dplyr   <span class="dv">1</span>.<span class="fl">0.2</span></a>
+<a class="sourceLine" id="cb4-5" title="5">✔ tidyr   <span class="dv">1</span>.<span class="fl">1.2</span>     ✔ stringr <span class="dv">1</span>.<span class="fl">4.0</span></a>
+<a class="sourceLine" id="cb4-6" title="6">✔ readr   <span class="dv">1</span>.<span class="fl">3.1</span>     ✔ forcats <span class="dv">0</span>.<span class="fl">5.0</span></a>
+<a class="sourceLine" id="cb4-7" title="7">── Conflicts ────────────────────────────────────────── <span class="kw">tidyverse_conflicts</span>() ──</a>
+<a class="sourceLine" id="cb4-8" title="8">✖ dplyr<span class="op">::</span><span class="kw">filter</span>() masks stats<span class="op">::</span><span class="kw">filter</span>()</a>
+<a class="sourceLine" id="cb4-9" title="9">✖ dplyr<span class="op">::</span><span class="kw">lag</span>()    masks stats<span class="op">::</span><span class="kw">lag</span>()</a></code></pre></div>
 </div>
 <p>This reproduction on my blog is not as colourful as the one we see.</p>
 <p>This message makes heavy use of two packages for command line output: <code>{crayon}</code> and <code>{cli}</code>. Now the first time <em>these</em> packages are called in a session they fire off hundreds of lines of code designed to sniff details of your terminal and operating system, ultimately to determine:</p>
@@ -2354,7 +2402,7 @@ li::marker {
 <p>So that’s been the highs and lows of this project. Certainly I learned a lot, and I thank the maintainers of the VSCode-R extension (Yuki, Kun, and Andy) for the opportunity, and JJ and Kevin from RStudio for their support.</p>
 <p>Just today I used <code>fnmate</code> numerous times on an instance in AWS I had connected to using VSCode-over-SSH. I never actually tested this specific case, but VSCode is geared such that the remote development case is not something an extension author has to care that much about. Extremely satisfying!</p>
 <hr />
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes">
 <hr />
 <ol>
