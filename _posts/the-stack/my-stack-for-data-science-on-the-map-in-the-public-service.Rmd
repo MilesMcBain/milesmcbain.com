@@ -1,0 +1,78 @@
+---
+title: "My Stack for Data Science on the Map in the Public Service"
+description: |
+  A short description of the post.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 04-08-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+I recently gave a talk for the [R User's Network: Australian Public Policy
+(Runapp)]() about the kinds of data science products we make at my work, and
+the stack of tools behind them. I was left with a bit to say on the tools
+side of things, so I decided to follow up here, also for the benefit of
+people outside the group.
+
+# Introducing The stack
+
+After probably too much context setting, this was the map I presented of our
+tool stack:
+
+```{r, fig.cap = "A map of the tools we use for collaboration, data analysis, open source development, and mapping / geocomputation"}
+knitr::include_graphics("./the_stack.png")
+```
+
+I've grouped things into 4 blobs. Imagine these blobs pushing up against
+eachother and kind of undulating organically. Things overlap and shift from
+project to project.
+
+Let's now examine them in order of relative importance:
+
+* Collaboration
+* Data analysis
+* Mapping and geocomputation
+* Open source development
+
+# Collaboration
+
+## Git
+
+The bedrock of our collaboration is git and GitHub. We have a GitHub
+organisation our team works within - they're free! Every data science project
+is a git project. We use the GitHub project managment tools to organise. The
+main reason this works for us is because our projects are quite code heavy.
+
+We use R to build pipelines that suck in data from a variety of sources and
+transform it into analytical reports designed to address specific questions.
+These reports and all our internal communications that involve data analysis
+are written with `{rmarkdown}` so they too can easily be source controlled
+with git.
+
+There are many benefits to this kind of 'from code' approach. I suspect
+anyone who reads this blog will be on board with many of them, so I am just
+going to mention two:
+
+* reproducibility: not just of results, but understanding. If we are having difficulty
+  understanding the detail of a teammate's approach - as invariably happens -
+  we can go read their code.
+* reuse: over the course of many projects we have discovered common processing
+  algorithms, or visualisation types. A concrete implementation done for one project can
+  made into a general tool that can be called on cheaply in the future. 
+
+When taking the *from code* approach for a team, there's really
+no alternative to git. It reduces the friction and conflict of working on a
+shared code base. When used effectively, everyone has visibility of
+eachother's contributions. 
+
+Over time we have built a capability that seems to impress people together. We all have shared ownership of it.
+
+
