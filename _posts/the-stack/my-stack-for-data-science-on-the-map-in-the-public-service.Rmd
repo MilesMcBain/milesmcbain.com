@@ -35,21 +35,25 @@ I've grouped things into 4 blobs. Imagine these blobs pushing up against
 eachother and kind of undulating organically. Things overlap and shift from
 project to project.
 
-Let's now examine them in order of relative importance:
+I have decided to examine these in detail in a series of posts in this order:
 
 * Collaboration
-* Data analysis
+* Data Analysis
 * Mapping and geocomputation
 * Open source development
 
+For rest of this post I'll be talking about the collaboration blob.
+
+
 # Collaboration
 
-## Git
 
 The bedrock of our collaboration is git and GitHub. We have a GitHub
 organisation our team works within - they're free! Every data science project
 is a git project. We use the GitHub project managment tools to organise. The
 main reason this works for us is because our projects are quite code heavy.
+
+## Git
 
 We use R to build pipelines that suck in data from a variety of sources and
 transform it into analytical reports designed to address specific questions.
@@ -64,15 +68,92 @@ going to mention two:
 * reproducibility: not just of results, but understanding. If we are having difficulty
   understanding the detail of a teammate's approach - as invariably happens -
   we can go read their code.
-* reuse: over the course of many projects we have discovered common processing
-  algorithms, or visualisation types. A concrete implementation done for one project can
-  made into a general tool that can be called on cheaply in the future. 
+* reuse: as we find ourselves wanting to reuse code from previous projects, we
+  can eaisily lay hands on it, and refactor it out into functions in team
+  package. This ensures people are computing the same things the same way,
+  and all benefiting from enhancements discovered over time.
 
-When taking the *from code* approach for a team, there's really
-no alternative to git. It reduces the friction and conflict of working on a
-shared code base. When used effectively, everyone has visibility of
-eachother's contributions. 
+When taking the *from code* approach for a team, I can't imagine not using
+git. How can you expect to reproduce something if there is any uncertainty as
+to the final verison that produced the output? The same uncertainty
+undermines reuse. If I can't be sure how something was done, the safest option
+is to redo it from scratch.
 
-Over time we have built a capability that seems to impress people together. We all have shared ownership of it.
+I'd be interest to hear actually from teams that don't use git (or subversion
+etc.): How you do you manage multiple anaylysts contributing to the same projects?
 
+Git facilitates continuous integration of project work so that you can always
+be working on a project that contains up to date input from colleagues.
+Without git in the mix this becomes a delicate dance. I bet collaborating in
+in a more manual way tends toward certain pathologies like:
+
+  * Team members working mainly in isolation for most of the project followed
+    by a painful *integration phase* where they try to make eachother's work fit
+    together in a rush at the end. Mistakes are made.
+  * Divergent coding styles and dependency usage due to above. The effect of which is people have
+    trouble following eachother's work. Reproducibility is challenged, and
+    people tend want to rewrite the work of others in their style rather than bothering to understand it.
+
+These are real things I have seen in teams that are not collaborating well.
+To innoculate against these pathologies, I think it's obvious you need to have
+people seeing and using eachother's work as it is developed, so there's ample
+opportunity for questions to be asked and approaches to be harmonised. This
+can invite some micro-conflicts, but I think these are a healthy part of
+establishing the team's norms. And much better than the larger scale
+conflicts that ensue under the pressure of things not fitting together well
+in a final crunch.
+
+Git does not magically gurantee the this kind of collaboration for data
+science projects, but it makes
+it easier and thus more likely. [^There are other things that improve the
+odds. In particular I think pipeline caching with `{drake}` or `{targets}`
+can help a lot since it takes away the question of what code needs to be
+re-run when pulling the work of others. You're guaranteed
+to run as little as possible. This reduces 'pull-hesitancy' - where
+collaborators avoid pulling work to avoid re-running long-running
+computations.]
+
+## GitHub
+
+Initially my team was using hosted git repos on [Azure Dev Ops](https://azure.microsoft.com/en-au/services/devops/), 
+because at that time GitHub organisations were not free, and we had access
+to Dev Ops via existing organisational licensing arrangemnts. 
+
+We found Dev Ops was not great at keeping you informed about what teammates
+are up to, and generally kind of burried information you want to see under
+too many clicks. Its project management tools were clearly geared towards
+enterprise workflows which creates a situation where complex workflows are
+made possible at the cost of making simple workflows complex [^This is a
+criticism I would also level Jira + Confluence.].
+
+GitHub by contrast doesn't give you highly configurable project management
+tools, however they feel like they hit a sweet spot for us where there is
+just enough flexibility to accomodate our needs. We switched to GitHub pretty
+much as soon as organisations became free.
+
+We've used [GitHub issues](https://docs.github.com/en/github/managing-your-work-on-github/about-issues)
+as general vehicles for project related stuff like:
+
+* Describing requirements for tasks that need to be done
+* Deciding on methodology
+* Sharing observations arisng from data analysis (complete with plots etc)
+* Review comments
+* Bug reports and feature requests for internal packages
+
+Of course a lot of this happens informally via face to
+face conversations or instant messanger, but we very much prefer issues to email.
+They keep project information centralised with the project code where it can
+add context, rather dispersed into inboxes where it can be missed.
+
+For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) feature to organise issues on
+a project board. So far we've kept this to a simple 'To do', 'Doing',
+'Done' type setup. With sparing use of issue tags for cetain
+important tasks.
+
+Project boards can operate at the organisational level, potentially pulling
+in issues from multiple repositories, or at the repository level. We use both
+types, but not as a rule. We scale the level of project management to match
+the project.
+
+## Visual Studio Code
 
