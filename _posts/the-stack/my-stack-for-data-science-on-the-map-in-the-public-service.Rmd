@@ -155,5 +155,7 @@ in issues from multiple repositories, or at the repository level. We use both
 types, but not as a rule. We scale the level of project management to match
 the project.
 
+## Git flow
+
 ## Visual Studio Code
 
