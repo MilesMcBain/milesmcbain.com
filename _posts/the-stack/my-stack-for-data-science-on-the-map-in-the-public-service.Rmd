@@ -145,8 +145,7 @@ face conversations or instant messanger, but we very much prefer issues to email
 They keep project information centralised with the project code where it can
 add context, rather dispersed into inboxes where it can be missed.
 
-For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) feature to organise issues on
-a project board. So far we've kept this to a simple 'To do', 'Doing',
+For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) feature to organise issues. So far we've kept this to a simple 'To do', 'Doing',
 'Done' type setup. With sparing use of issue tags for cetain
 important tasks.
 
