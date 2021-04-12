@@ -164,7 +164,7 @@ knitr::include_graphics("./project_board.png")
 ## {targets} / {drake}
 
 I've written [at some length about our `{drake}`/`{targets}` workflow](https://milesmcbain.com/the-drake-post), 
-so I won't rehash that here. I'll make a three of extra observations:
+so I won't rehash that here. I'll make three extra observations:
 
 There are some nice interactions between git and pipeline tools that offer
 cache management like `{drake}/{targets}`. These tools take away the question
