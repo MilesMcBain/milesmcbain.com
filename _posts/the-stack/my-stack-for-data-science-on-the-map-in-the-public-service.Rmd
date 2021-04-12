@@ -22,7 +22,7 @@ the stack of tools behind them. I was left with a bit to say on the tools
 side of things, so I decided to follow up here, also for the benefit of
 people outside the group.
 
-# Introducing The stack
+# Introducing The Stack
 
 After probably too much context setting, this was the map I presented of our
 tool stack:
@@ -97,8 +97,9 @@ in a more manual way tends toward certain pathologies like:
 These are real things I have seen in teams that are not collaborating well.
 To innoculate against these pathologies, I think it's obvious you need to have
 people seeing and using eachother's work as it is developed, so there's ample
-opportunity for questions to be asked and approaches to be harmonised. This
-can invite some micro-conflicts, but I think these are a healthy part of
+opportunity for questions to be asked and approaches to be harmonised. 
+
+This can invite some micro-conflicts, but I think these are a healthy part of
 establishing the team's norms. And much better than the larger scale
 conflicts that ensue under the pressure of things not fitting together well
 in a final crunch.
@@ -138,7 +139,7 @@ as general vehicles for project related stuff like:
 Of course a lot of this happens informally via face to
 face conversations or instant messanger, but we very much prefer issues to email.
 They keep project information centralised with the project code where it can
-add context, rather dispersed into inboxes where it can be missed.
+add context, rather dispersed into inboxes where it can be lost.
 
 ```{r, fig.cap = "Some of our GitHub issues"}
 knitr::include_graphics("./issues_list.png")
@@ -148,9 +149,11 @@ knitr::include_graphics("./issues_list.png")
 knitr::include_graphics("./issue_with_plots.png")
 ```
 
-For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) feature to organise issues. So far we've kept this to a simple 'To do', 'Doing',
-'Done' type setup. With sparing use of issue tags for cetain
-important tasks. There's some basic automation options available - for example closing issues that are moved to 'Done'.
+For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) 
+feature to organise issues. So far we've kept this to a simple 'To do',
+'Doing', 'Done' type setup. With sparing use of issue tags for cetain
+important tasks. There's some basic automation options available - for
+example closing issues that are moved to 'Done'.
 
 Project boards can operate at the organisational level, potentially pulling
 in issues from multiple repositories, or at the repository level. We use both
@@ -176,22 +179,47 @@ pulling updated work from the main repository in order to avoid re-running
 long-running computations they feel they don't have time for.
 
 Observation two is the the utility of the pipeline plan a high level map of
-the computation. It allows team members to easily see where their work fits,
-and how it interacts with the rest of the project. Getting up to speed after
-a context switch has never felt easier.
+the project. It allows team members to easily see where their work fits,
+and how it interacts with the work of others. I think this can
+help build shared understanding, and thus shared ownership of the project.
+Also helps with getting up to speed after a context switch.
  
-The final oberservation is how the dependency graph creates confidence when it comes to changing or fixing
-code written by collaborators. I can remember some bad old projects where
-the global environment was used a little too recklessly and the only way to
-truly know what changes were safe to make was to do a close reading of the entire source of the
-project. Either that or just make the change and hope you could find all the broken things.
+The final oberservation is how the dependency graph creates confidence when
+it comes to changing or fixing code written by collaborators. I can remember
+some bad old projects, where the global environment was used a little too
+recklessly, and the only way to truly know what changes were safe to make was
+to do a close reading of the entire source of the project. Either that or
+just make the change and hope you could find all the broken things.
 
-Those days feel forever behind me now. Both `drake` and `targets` can
+Those days feel forever behind us now. Both `{drake}` and `{targets}` can
 provide you with beautiful graphical representations of exactly what targets
 will be affected by a change, and that lets you know the precise list of
 places you need to check for unintended consequences, after which you're D-O-N-E.
 
 ## {rmarkdown}
+
+As I touched on before, `{rmarkdown}`'s value as a collaborative tool comes
+from the way it keeps analysis output in sync with the source code that
+generates it. This helps avoid innacuracies creeping in due to rework, and
+means when ambiguity is discovered it can be resolved by consulting the
+source code that generated the document.
+
+To make the source-output link easy to follow we've adopted the practice of
+including a 'reproducibility receipt' at the foot of our report source. It
+looks like this in source:
+
+And like this in a report:
+
+With the receipt in place, you can always have a reference to the location and version of the report source.
+
+The classic scenario where this has proven very satisfying to have is when a
+document boomerangs on the team, usually with changes required on short
+notice for an important engagement. This has happened multiple times when the
+primary author of the report has been unavailable [^And will to you too via
+Murphy's Law]. The fact that you can quickly pinpoint the exact source code
+that produced the document, which will be organised in clearly laid out
+pipeline plan, really takes the heat out of a potentially a stressful
+situation.
 
 ## Visual Studio Code
 
