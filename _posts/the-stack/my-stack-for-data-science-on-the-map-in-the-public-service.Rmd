@@ -105,13 +105,7 @@ in a final crunch.
 
 Git does not magically gurantee the this kind of collaboration for data
 science projects, but it makes
-it easier and thus more likely. [^There are other things that improve the
-odds. In particular I think pipeline caching with `{drake}` or `{targets}`
-can help a lot since it takes away the question of what code needs to be
-re-run when pulling the work of others. You're guaranteed
-to run as little as possible. This reduces 'pull-hesitancy' - where
-collaborators avoid pulling work to avoid re-running long-running
-computations.]
+it easier and thus more likely. 
 
 ## GitHub
 
@@ -123,11 +117,12 @@ We found Dev Ops was not great at keeping you informed about what teammates
 are up to, and generally kind of burried information you want to see under
 too many clicks. Its project management tools were clearly geared towards
 enterprise workflows which creates a situation where complex workflows are
-made possible at the cost of making simple workflows complex [^This is a
-criticism I would also level Jira + Confluence.].
+made possible at the cost of making simple workflows complex [^This is also a problem with Jira + Confluence.]. So instead we were using Microsoft
+Planner as for project management and hating it. There was no
+integration with our repositories, so things had to be manually kept in sync.
 
 GitHub by contrast doesn't give you highly configurable project management
-tools, however they feel like they hit a sweet spot for us where there is
+tools, however it feels like they hit a sweet spot for us where there is
 just enough flexibility to accomodate our needs. We switched to GitHub pretty
 much as soon as organisations became free.
 
@@ -145,16 +140,58 @@ face conversations or instant messanger, but we very much prefer issues to email
 They keep project information centralised with the project code where it can
 add context, rather dispersed into inboxes where it can be missed.
 
+```{r, fig.cap = "Some of our GitHub issues"}
+knitr::include_graphics("./issues_list.png")
+```
+
+```{r, fig.cap = "Code and analysis in an issue"}
+knitr::include_graphics("./issue_with_plots.png")
+```
+
 For larger projects we use the [GitHub project boards](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards) feature to organise issues. So far we've kept this to a simple 'To do', 'Doing',
 'Done' type setup. With sparing use of issue tags for cetain
-important tasks.
+important tasks. There's some basic automation options available - for example closing issues that are moved to 'Done'.
 
 Project boards can operate at the organisational level, potentially pulling
 in issues from multiple repositories, or at the repository level. We use both
 types, but not as a rule. We scale the level of project management to match
 the project.
 
-## Git flow
+```{r, fig.cap = "A repo project board"}
+knitr::include_graphics("./project_board.png")
+```
+ 
+## {targets} / {drake}
+
+I've written [at some length about our `{drake}`/`{targets}` workflow](https://milesmcbain.com/the-drake-post), 
+so I won't rehash that here. I'll make a three of extra observations:
+
+There are some nice interactions between git and pipeline tools that offer
+cache management like `{drake}/{targets}`. These tools take away the question
+of what code needs to be re-run when pulling or merging the work of others,
+and guarantees it will be as little as possible.
+
+I've seen this work to reduce 'pull-hesitancy' - where collaborators avoid
+pulling updated work from the main repository in order to avoid re-running
+long-running computations they feel they don't have time for.
+
+Observation two is the the utility of the pipeline plan a high level map of
+the computation. It allows team members to easily see where their work fits,
+and how it interacts with the rest of the project. Getting up to speed after
+a context switch has never felt easier.
+ 
+The final oberservation is how the dependency graph creates confidence when it comes to changing or fixing
+code written by collaborators. I can remember some bad old projects where
+the global environment was used a little too recklessly and the only way to
+truly know what changes were safe to make was to do a close reading of the entire source of the
+project. Either that or just make the change and hope you could find all the broken things.
+
+Those days feel forever behind me now. Both `drake` and `targets` can
+provide you with beautiful graphical representations of exactly what targets
+will be affected by a change, and that lets you know the precise list of
+places you need to check for unintended consequences, after which you're D-O-N-E.
+
+## {rmarkdown}
 
 ## Visual Studio Code
 
