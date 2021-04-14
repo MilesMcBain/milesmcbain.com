@@ -205,12 +205,12 @@ means when ambiguity is discovered it can be resolved by consulting the
 source code that generated the document.
 
 To make the source-output link easy to follow we've adopted the practice of
-including a 'reproducibility receipt' at the foot of our report source. It
-looks like this in source:
+including a ['reproducibility receipt' at the foot of our report source.](https://github.com/MilesMcBain/dflow/blob/master/inst/templates/blank.Rmd#L14) 
 
-And like this in a report:
+It looks like this in a report:
 
-With the receipt in place, you can always have a reference to the location and version of the report source.
+With the receipt in place, you can always have a reference to the location
+and version of the report source.
 
 The classic scenario where this has proven very satisfying to have is when a
 document boomerangs on the team, usually with changes required on short
@@ -223,3 +223,22 @@ situation.
 
 ## Visual Studio Code
 
+VSCode has pretty great support for R, it's the most popular choice of daily driver in my team [^that's not due to me, I was actually late to the party!].
+It has one incredible draw-card feature for collaboration, and that is: [Live Share](https://visualstudio.microsoft.com/services/live-share/).
+
+This is collaborative Google Docs style editing. Everyone can see what
+everyone else is typing or highlighting in real time. Participants can chat
+via text or voice. The R session is run by the host who can allow guests to
+send commands to their R terminal and view results.
+
+There are some rough edges, since the VSCode R extension wasn't built with
+this mode in mind, however at time of writing there is a very promising [body of work underway to improve this that is nearing completion](https://github.com/Ikuyadeu/vscode-R/pull/598).
+This will make shared views of things like plots and help 'just work'.
+
+Even in it's current state it's very usable for pair programming. I spent 90
+minutes or so just last week pairing with a colleague via Live Share to solve
+some data processing scaling issues. It was actually just heaps of fun.
+Possibly even superior to us both standing in front of a computer together,
+since there's no awkwardness due to switching who's driving or not being able
+to type for shit on someone else's fancy keyboard. The session felt very
+fluid and productive.
