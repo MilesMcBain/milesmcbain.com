@@ -226,10 +226,10 @@ situation.
 VSCode has pretty great support for R, it's the most popular choice of daily driver in my team [^that's not due to me, I was actually late to the party!].
 It has one incredible draw-card feature for collaboration, and that is: [Live Share](https://visualstudio.microsoft.com/services/live-share/).
 
-This is collaborative Google Docs style editing. Everyone can see what
+This is collaborative Google-Docs-style editing. Everyone can see what
 everyone else is typing or highlighting in real time. Participants can chat
 via text or voice. The R session is run by the host who can allow guests to
-send commands to their R terminal and view results.
+send commands to the host's R terminal and view results.
 
 There are some rough edges, since the VSCode R extension wasn't built with
 this mode in mind, however at time of writing there is a very promising [body of work underway to improve this that is nearing completion](https://github.com/Ikuyadeu/vscode-R/pull/598).
@@ -242,3 +242,22 @@ Possibly even superior to us both standing in front of a computer together,
 since there's no awkwardness due to switching who's driving or not being able
 to type for shit on someone else's fancy keyboard. The session felt very
 fluid and productive.
+
+## Microsoft Teams
+
+Teams cops a lot of flack for being either a shoddy Slack or a poor Zoom. I
+think to appreciate it at all, it has to be thought of as kind of a mash up of
+both of these tools that is better than neither in their niche, but excels at
+providing a blended medium that simplifies switching between text and video.
+
+I've come to appreciate this low effort video option to give head room to an
+instant message conversation that is being limited by text. The team really
+got into the groove of using it during 100% work from home periods of 2020.
+We started doing frequent unscheduled small group video chats for quick
+discussions, rather than scheduled fixtures. I do think this helped us stay
+productive.
+
+The screen sharing is solid so it's good for demonstrating. You can grant
+teammates remote control of your sceen too, but it's a bit laggy and janky
+for pair programming - it's completely inferior to VSCode Live Share for this
+purpose.
