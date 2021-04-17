@@ -83,12 +83,12 @@ to the final source version that produced the output? The same uncertainty
 undermines reuse. If I can't be sure how something was done, the safest option
 is to redo it from scratch.
 
-I'd be interest to hear actually from teams that don't use git (or subversion
+I'd be interested to hear from teams that don't use git (or subversion
 etc.): How you do you manage multiple analysts contributing to the same projects?
 
 Git facilitates continuous integration of project work so that you can always
 be working on a project that contains up to date input from colleagues.
-Without git in the mix this becomes a delicate dance. I bet collaborating in
+Without git in the mix this becomes a delicate dance. I bet collaborating
 in a more manual way tends toward certain pathologies like:
 
   * Team members working mainly in isolation for most of the project, followed
