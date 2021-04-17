@@ -12,7 +12,21 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 22 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>A Public Service Data Science Stack: Collaboration</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/the-stack</link>
+      <description>git, GitHub, {targets}, VSCode, and other tools that our data science team uses to collaborate.</description>
+      <category>rstats</category>
+      <category>collaboration</category>
+      <category>workflow</category>
+      <category>reproducibility</category>
+      <category>runapp</category>
+      <guid>https://milesmcbain.com/posts/the-stack</guid>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.com/posts/the-stack/the_stack.png" medium="image" type="image/png" width="1550" height="935"/>
+    </item>
     <item>
       <title>Adding RStudio Addins to VSCode</title>
       <dc:creator>Miles McBain</dc:creator>

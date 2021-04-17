@@ -1,14 +1,21 @@
 ---
 title: "A Public Service Data Science Stack: Collaboration"
 description: |
-  A short description of the post.
+  git, GitHub, {targets}, VSCode, and other tools that our data science team uses to collaborate.
 author:
   - name: Miles McBain
     url: https://milesmcbain.xyz
-date: 04-08-2021
+date: 2021-04-17
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - rstats
+  - collaboration 
+  - workflow
+  - reproducibility
+  - runapp
+preview: the_stack.png 
 ---
 
 
@@ -35,18 +42,15 @@ I've grouped things into 4 blobs. Imagine these blobs pushing up against
 eachother and kind of undulating organically. Things overlap and shift from
 project to project.
 
-I have decided to examine these in detail in a series of posts in this order:
+My estimation is that probably the most novel / useful things I can share are in the
+*Collaboration* and *Mapping and geocomputation* blobs, so I am committing to
+write a blog post examining each of these. Maybe the others too if I really
+get fired up.
 
-* Collaboration
-* Data Analysis
-* Mapping and geocomputation
-* Open source development
-
-For rest of this post I'll be talking about the collaboration blob.
-
+For rest of this post I'll be talking about our *Collaboration* stack, which
+has strong links to things I've written about before.
 
 # Collaboration
-
 
 The bedrock of our collaboration is git and GitHub. We have a GitHub
 organisation our team works within - they're free! Every data science project
@@ -70,12 +74,12 @@ going to mention two:
   we can go read their code.
 * reuse: as we find ourselves wanting to reuse code from previous projects, we
   can easily lay hands on it, and refactor it out into functions in team
-  package. This ensures people are computing the same things the same way,
-  and all benefiting from enhancements discovered over time.
+  packages. This ensures people are computing the same things the same way,
+  and everyone's work benefits from enhancements discovered over time.
 
 When taking the *from code* approach for a team, I can't imagine not using
 git. How can you expect to reproduce something if there is any uncertainty as
-to the final version that produced the output? The same uncertainty
+to the final source version that produced the output? The same uncertainty
 undermines reuse. If I can't be sure how something was done, the safest option
 is to redo it from scratch.
 
@@ -87,7 +91,7 @@ be working on a project that contains up to date input from colleagues.
 Without git in the mix this becomes a delicate dance. I bet collaborating in
 in a more manual way tends toward certain pathologies like:
 
-  * Team members working mainly in isolation for most of the project followed
+  * Team members working mainly in isolation for most of the project, followed
     by a painful *integration phase* where they try to make eachother's work fit
     together in a rush at the end. Mistakes are made.
   * Divergent coding styles and dependency usage due to above. The effect of which is people have
@@ -100,8 +104,8 @@ people seeing and using eachother's work as it is developed, so there's ample
 opportunity for questions to be asked and approaches to be harmonised. 
 
 This can invite some micro-conflicts, but I think these are a healthy part of
-establishing the team's norms. And much better than the larger scale
-conflicts that ensue under the pressure of things not fitting together well
+establishing the team's norms - and preferable to the larger scale
+conflicts that ensue when things don't fit together well
 in a final crunch.
 
 Git does not magically guarantee the this kind of collaboration for data
@@ -114,13 +118,13 @@ Initially my team was using hosted git repos on [Azure Dev Ops](https://azure.mi
 because at that time GitHub organisations were not free, and we had access
 to Dev Ops via existing organisational licensing arrangements. 
 
-We found Dev Ops was not great at keeping you informed about what teammates
-are up to, and generally kind of buried information you want to see under
-too many clicks. Its project management tools were clearly geared towards
-enterprise workflows which creates a situation where complex workflows are
-made possible at the cost of making simple workflows complex [^This is also a problem with Jira + Confluence.]. So instead we were using Microsoft
-Planner as for project management and hating it. There was no
-integration with our repositories, so things had to be manually kept in sync.
+We found Dev Ops generally buried information we wanted to see under
+too many clicks. Its project management tools are geared towards
+enterprise workflows. Complex workflows are
+made possible at the cost of making simple workflows complex ^[This is also a problem with Jira + Confluence.]. 
+So instead of the built-in stuff we were using Microsoft Planner for
+project management and hating it. Things had to be manually kept in sync
+since there was no integration with our repositories.
 
 GitHub by contrast doesn't give you highly configurable project management
 tools, however it feels like they hit a sweet spot for us where there is
@@ -196,6 +200,9 @@ provide you with beautiful graphical representations of exactly what targets
 will be affected by a change, and that lets you know the precise list of
 places you need to check for unintended consequences, after which you're D-O-N-E.
 
+```{r, fig.cap = "A {drake} dependency graph with targets outdated by an earlier code change."}
+knitr::include_graphics("./outdated.PNG")
+```
 ## {rmarkdown}
 
 As I touched on before, `{rmarkdown}`'s value as a collaborative tool comes
@@ -219,8 +226,10 @@ and version of the report source.
 The classic scenario where this has proven very satisfying to have is when a
 document boomerangs on the team, usually with changes required on short
 notice for an important engagement. This has happened multiple times when the
-primary author of the report has been unavailable [^And will to you too via
-Murphy's Law]. The fact that you can quickly pinpoint the exact source code
+primary author of the report has been unavailable ^[And will to you too via
+Murphy's Law]. 
+
+The fact that, under duress, you can quickly pinpoint the exact source code
 that produced the document, which will be organised in clearly laid out
 pipeline plan, really takes the heat out of a potentially a stressful
 situation.
@@ -231,7 +240,7 @@ situation.
 knitr::include_graphics("./vscode.png")
 ```
 
-VSCode has [pretty great support for R](https://github.com/Ikuyadeu/vscode-R), it's the most popular choice of daily driver in my team [^that's not due to me, I was actually late to the party!].
+VSCode has [pretty great support for R](https://github.com/Ikuyadeu/vscode-R), it's the most popular choice of daily driver in my team ^[That's not due to me, I was actually late to the party!].
 It has one incredible draw-card feature for collaboration, and that is: [Live Share](https://visualstudio.microsoft.com/services/live-share/).
 
 This is collaborative Google-Docs-style editing. Everyone can see what
@@ -239,11 +248,11 @@ everyone else is typing or highlighting in real time. Participants can chat
 via text or voice. The R session is run by the host who can allow guests to
 send commands to the host's R terminal and view results.
 
-There are some rough edges, since the VSCode R extension wasn't built with
+There are some rough edges, since the VSCode-R extension wasn't built with
 this mode in mind, however at time of writing there is a very promising [body of work underway to improve this that is nearing completion](https://github.com/Ikuyadeu/vscode-R/pull/598).
 This will make shared views of things like plots and help 'just work'.
 
-Even in it's current state it's very usable for pair programming. I spent 90
+Even in its' current state it's very usable for pair programming. I spent 90
 minutes or so just last week pairing with a colleague via Live Share to solve
 some data processing scaling issues. It was actually just heaps of fun.
 Possibly even superior to us both standing in front of a computer together,
@@ -270,7 +279,7 @@ teammates remote control of your screen too, but it's a bit laggy and janky
 for pair programming - it's completely inferior to VSCode Live Share for this
 purpose.
 
-# The Wrap
+# Wrapping up 
 
 So that was the main pieces in the collaboration stack. Underpinning the
 choice of tools is a team focus on reproducibility and visibility in the
@@ -286,5 +295,7 @@ in the office.
 As always I am not trying to put us on a pedestal or suggesting that we have
 made the best choices in every regard. What we have seems to be working well,
 but I am very keen to hear tips from other people doing similar kinds of work
-for similarly constrained organisations. Please share in the comments or tag
-me in the Runapp slack channel!
+for similarly constrained organisations. Please share in the comments below or tag
+me in the Runapp Slack channel.
+
+See you in the next post where I'll unpack our mapping stack! 
