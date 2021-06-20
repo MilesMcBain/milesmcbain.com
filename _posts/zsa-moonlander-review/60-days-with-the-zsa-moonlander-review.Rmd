@@ -1,0 +1,49 @@
+---
+title: "60 Days with the ZSA Moonlander: Review"
+description: |
+  I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me. 
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 06-20-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - keyboards
+  - ergonomics
+draft: true 
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](). It's billed as the next generation of the much vaunted [ErgodoxEZ]() lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
+
+This post is my review of this apex input device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
+
+The rest of this review is going to examine the these aspects of the board:
+
+1. Quality
+2. Portability
+2. Tweakability
+3. Ergonomics
+4. Support Experience
+
+From my perspective these represent the main selling points.
+
+The Moonlander I ordered was the black version with Kailh Box Red (linear) switches:
+
+![]()
+
+# Quality
+
+For the most part the Moonlander felt like a premium device. Its surfaces felt good under my hands. The key caps are subtly textured ever so slightly grippy. They felt weighty and durable. They typing sounds were thick and substantial, without being excessively loud [^although a lot of this is due to my initial choice of a linear switch]. It gives a very tidy first impression.
+
+I do have some nitpicks though:
+
+* For a device in this price range the 'case' is a let down. It's not really a case so much as a thin neoprene slip that will keep the two halves, allen key, and cables bundled together. It offers no protection whatsoever from bumps during transit. By contrast, my headphones which cost in the same ballpark as the Moonlander, shipped with a rigid zip-up case.
+* Tenting legs
+* Hinge screws
