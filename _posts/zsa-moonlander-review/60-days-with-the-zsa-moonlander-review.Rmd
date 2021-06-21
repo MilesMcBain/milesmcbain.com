@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](). It's billed as the next generation of the much vaunted [ErgodoxEZ]() lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
 
-This post is my review of this apex input device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
+This post is my review of this apex input device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
 
 The rest of this review is going to examine the these aspects of the board:
 
@@ -40,10 +40,50 @@ The Moonlander I ordered was the black version with Kailh Box Red (linear) switc
 
 # Quality
 
-For the most part the Moonlander felt like a premium device. Its surfaces felt good under my hands. The key caps are subtly textured ever so slightly grippy. They felt weighty and durable. They typing sounds were thick and substantial, without being excessively loud [^although a lot of this is due to my initial choice of a linear switch]. It gives a very tidy first impression.
+For the most part the Moonlander felt like a premium device. Its surfaces felt good under my hands. The key caps are subtly textured and ever so slightly grippy. They felt weighty and durable. They typing sounds were thick and substantial, without being excessively loud [^although a lot of this is due to my initial choice of a linear switch]. It gave a very tidy first impression.
 
 I do have some nitpicks though:
 
-* For a device in this price range the 'case' is a let down. It's not really a case so much as a thin neoprene slip that will keep the two halves, allen key, and cables bundled together. It offers no protection whatsoever from bumps during transit. By contrast, my headphones which cost in the same ballpark as the Moonlander, shipped with a rigid zip-up case.
-* Tenting legs
-* Hinge screws
+For a device in this price range the 'case' was a let down. It wasn't really a
+case so much as a thin neoprene slip that keeps the two halves, allen key, and
+cables bundled together. It didn't seem like it would offers any protection
+whatsoever from bumps during transit. By contrast my headphones, which cost in
+the same ballpark as the Moonlander, shipped with a rigid zip-up case.
+
+The mechanism in the tenting legs felt flimsy. When rotating them I could feel
+a gear clicking though a discrete set of positions, but the sound and feel of
+this gave the impression that the gear was plastic. Unsettling metallic groans were emitted from the springs on the allen screws when tightening them that made me feel caution was required.
+
+
+# Portability
+
+This is an important one for me. I can't afford two Moonlanders, so I needed it
+to be able accompany me in a bicycle pannier bag on my daily commute. Also setting it up at the destination can't be a chore.
+
+A big strike against the Moonlander in this regard is the lack of rigid case. After some careful measuring I was able to find exactly one reasonably priced rigid case for DJ headphones that would accept it, for which I paid AUD $40.
+
+In its stock neoprene travel bundle, the board, cables, and allen key weighed in at around a kilo. I didn't notice the weight on the bike, but you would in a backpack, particularly since it is dense weight. Heavy enough to notice, not heavy enough to be an issue I think.
+
+The setup and tear down process does feel a bit cumbersome at first. The fit of the allen key in the tenting screws was quite tight, so I found myself having to concentrate to slot it in. Perhaps the most difficult thing to get down was that the left thumb cluster screw is reverse threaded. "Lift-to-loosen" I found myself muttering under my breath. It's the kind of thing you forget in hurry, which I frequently am when trying to depart.
+
+When packing up, the cables don't have a dedicated place to live in the neoprene slip which meant pack up always felt a bit haphazard. A couple of times I accidentally popped off a keycap trying to squeeze the cables into the slip along side one of the halves.
+
+On the plus side, the wrist wrest folding mechanism is quite slick with a magnetic clasp that keeps them in travel mode. The wrist wrest hinge also gave a robust impression.
+
+After I got the rigid case packing was greatly simplified. I started using the slip as padding only, and the case was sufficiently large that I could keep the tenting legs in my favoured position while stowing it.
+
+So while I agree the Moonlander is portable, I don't think it's appreciably more portable than a small keyboard (e.g. 60% form factor). Compared with other ergonomic boards, it probably would be at the portable end, definitely more portable than traditional offerings from Microsoft, Kinesis, et. al. 
+
+# Tweakability
+
+This is where the Moonlander shone for me. So many possibilities! Over the course of my time with it I:
+
+* Configured [my own custom layout](https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0) with ZSA's online editor
+* Swapped out all the key switches (twice)
+* Progressed to building the QMK firmware from source to accommodate config not supported by the online editor
+* Added 3d printed aftermarket tenting legs to make it tentable without thumb cluster down
+* Added custom keycaps to change the thumb cluster ergonomics
+
+Of course the dark side of all of this was that I was doing a lot of it because I was struggling to get comfortable. But I was having a fantastic time tweaking.
+
+The root of the magic is the QMK firmware.
