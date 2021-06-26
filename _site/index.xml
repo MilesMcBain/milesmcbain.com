@@ -12,7 +12,18 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>60 Days with the ZSA Moonlander: Review</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/zsa-moonlander-review</link>
+      <description>I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me.</description>
+      <category>keyboards</category>
+      <category>ergonomics</category>
+      <guid>https://milesmcbain.com/posts/zsa-moonlander-review</guid>
+      <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.com/posts/zsa-moonlander-review/moonlander_new.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>A Public Service Data Science Stack: Collaboration</title>
       <dc:creator>Miles McBain</dc:creator>
@@ -24,7 +35,7 @@
       <category>reproducibility</category>
       <category>runapp</category>
       <guid>https://milesmcbain.com/posts/the-stack</guid>
-      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://milesmcbain.com/posts/the-stack/the_stack.png" medium="image" type="image/png" width="1550" height="935"/>
     </item>
     <item>

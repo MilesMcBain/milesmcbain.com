@@ -24,9 +24,9 @@ options(tidyverse.quiet = TRUE)
 knitr::include_graphics("./moonlander_new.jpg")
 ```
 
-Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
+Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's quite an aesthetically pleasing device, and It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage. Like its' predecessor it carries an eye-watering price tag: USD $365.
 
-This post is my review of this apex input device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
+This post is my review of this apex ergonomic device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
 
 The rest of this review is going to examine the these aspects of the board:
 
