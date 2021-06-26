@@ -89,11 +89,18 @@ down was that the left thumb cluster screw is reverse threaded. "Lift-to-loosen"
 I found myself muttering under my breath. It's the kind of thing you forget in
 hurry, which I frequently am when trying to depart.
 
-When packing up, the cables don't have a dedicated place to live in the neoprene slip which meant pack up always felt a bit haphazard. A couple of times I accidentally popped off a keycap trying to squeeze the cables into the slip along side one of the halves.
+When packing up, the cables don't have a dedicated place to live in the neoprene
+slip which meant pack up always felt a bit haphazard. A couple of times I
+accidentally popped off a keycap trying to squeeze the cables into the slip
+along side one of the halves.
 
-On the plus side, the wrist wrest folding mechanism is quite slick with a magnetic clasp that keeps them in travel mode. The wrist wrest hinge also gave a robust impression.
+On the plus side, the wrist wrest folding mechanism is quite slick with a
+magnetic clasp that keeps them in travel mode. The wrist wrest hinge also gave a
+robust impression.
 
-After I got the rigid case packing was greatly simplified. I started using the slip as padding only, and the case was sufficiently large that I could keep the tenting legs in my favoured position while stowing it.
+After I got the rigid case packing was greatly simplified. I started using the
+slip as padding only, and the case was sufficiently large that I could keep the
+tenting legs in my favoured position while stowing it.
 
 So while I agree the Moonlander is portable, I don't think it's appreciably more
 portable than a small keyboard (e.g. 60% form factor). Compared with other
@@ -104,7 +111,9 @@ portable than traditional offerings from Microsoft, Kinesis, et. al.
 
 ## Software 
 
-This is where the Moonlander shone for me. The software side of things is incredibly well executed. There are two main ways you can customise the Moonlander's functionality: 
+This is where the Moonlander shone for me. The software side of things is
+incredibly well executed. There are two main ways you can customise the
+Moonlander's functionality:
 
 * You can use [online GUI editor called 'Oryx'](https://configure.zsa.io/moonlander/layouts/default/latest/0) which seems to be backed by `git`.
   Changes are incrementally tracked and you can fork a configuration at any
@@ -117,7 +126,8 @@ This is where the Moonlander shone for me. The software side of things is incred
 
 I didn't do anything too radical but the possibilities are expansive. To give a taste for what's possible:
 
-I swapped out my shift keys for layer toggles. This meant I could directly control the 'shifted' version of each key. With this concept I:
+I swapped out my shift keys for layer toggles. This meant I could directly
+control the 'shifted' version of each key. With this concept I:
 
 * Made underscore, `_`, the shift of space.
 * Swapped the locations of angle brackets `<`,`>` and parentheses `(`,`)`
@@ -207,7 +217,8 @@ felt like I could more easily maintain a healthier posture.
 The staggered columnar arrangement presented a bit of a stumbling block
 initially. It took me 7 days to get back to my previous typing speeds ^[Perhaps I had some advantage coming from a board that was already split]. I
 have mixed feelings about the arrangement. I can get on board with the idea it
-makes hand movements symmetrical, but I didn't find universally better as the hype would have you believe. 
+makes hand movements symmetrical, but I didn't find it universally better as the
+hype would have had me believe.
 
 The columnar arrangement makes different tradeoffs. Some keys are easier to
 reach while some get harder. For example: The middle columns are offset slightly
@@ -285,8 +296,116 @@ ggplot(data = ansur_2, aes(x = handbreadth, y = handlength)) +
   )
 ```
 
-So I guess I am outlier-ish. I certainly don't have 'large' hands, but to call
-them 'small' could be misleading depending on what dimensions are important. I
-have 'skinny' hands may be better ^[For someone in the US Army. Against warriors of the keyboard kind I expect I'd fare a little better].
+So I guess there's some evidence to suggest my hand shape is uncommon. I
+certainly don't have 'large' hands, but to call them 'small' could be misleading
+depending on what dimensions are important. I have 'skinny' hands may be better
+^[For someone in the US Army. Against warriors of the keyboard kind I expect I'd fare a little better].
 
-With these hands I couldn't find a way to use the thumb cluster without pain.
+What I do know for sure is that with these hands I couldn't find a way to use
+the thumb cluster without pain. Inflammation in my thumbs and wrists slowly
+accumulated during my time with the Moonlander, and really started to worry me
+around week 3 - 4 when I noticed pain away from the keyboard when I was doing
+things like gripping a steering wheel or holding a cup of coffee. The locus of
+pain was centred at the base of both thumbs running up to my second knuckle and
+back toward my wrists.
+
+I tried all sorts of things to get relief. Using the thumb cluster tilted up
+felt horrible, inducing sharp pain quite quickly, so I started looking at
+modifications including: 
+
+* purchasing [aftermarket 3d printed legs](https://www.thingiverse.com/thing:4688862) to
+allow the Moonlander to tent with the thumb cluster up
+* over-size key caps to move the pressable area of the key closer to my natural position
+* wooden blocks to allow the board to have a degree of negative tilt.
+
+Here's a picture with those mods:
+
+The only thing I found that reliably gave me a break from the pain was switching
+back to my Microsoft Sculpt. This made it abundantly clear that the Moonlander was
+the root cause of my problems. 
+
+What's got me a bit annoyed about this experience is that ZSA's marketing made
+me feel like the board has been designed to cater to all hands. They tout a
+next-generation ergonomic keyboard that can provide "A custom fit for your hand
+size". I think I probably bought into this a bit too much, and was convinced that
+the flexibility of the design would allow it to work for me if I could just find
+the right combination of parameters.
+
+In retrospect it's a fairly significant oversight by ZSA to talk about the
+Moonlander working in different ways for people with 'large' and 'small' hands
+whilst providing no guidance as to the definitions of large and small. Ideally I
+would have got clarification from them before purchase, but my degree of trust
+in them was high due to the experiences of other people I know who have purchased
+their hardware.
+
+ZSA can and absolutely should provide potential customers with sizing aids. I
+have suggested to them that they should make printable paper templates available
+like Apple do for their watches, so people can get a feel for how their hands
+will fall on the board^[To ZSA's credit they actually sent me some of these for feedback, so this may be a work in progress. In the meantime if anyone would like a paper template for the Moonlander or Ergodox, let me know.].
+
+Beyond my personal woes I see a larger issue with the Moonlander's ergonomics:
+Out of the box tenting is only supported for people with large hands. This is because
+tilting the thumb cluster down to use as a stababliser moves the thumb's keys quite
+some distance from the bottom row of letters.
+
+Rather than being next-generation, this strikes me as something of a regression.
+The ErgodoxEZ could tent for all users, while the Moonlander can only tent for a
+small proportion. People who are interested in tenting should be aware that the
+Moonlander may not work for them. Ideally ZSA would provide guidance in the form
+of hand measurements that tenting will work for, or even better: include some kind
+of kit in the box that makes tenting accessible to all.
+
+# Support experience
+
+Around day 60 I got fed up. I'd tried so much and was still experiencing pain. I was
+considering even wilder solutions like swapping the left and right halves, when
+I had a moment of clarity that my experience was far from what might be
+reasonably expected with a top tier ergonomic keyboard. So I wrote an email to
+ZSA support. It was a simple email that outlined the trouble I was having, the
+things I had tried, and asked them if they had any advice they could offer
+before I gave up on it completely.
+
+The response was very impressive. In short order I received an email from ZSA
+CEO Erez Zuckerman who offered to work with me personally to try to find a setup
+that would work. One of the things he requested from me were some photos of my
+hands on the board lying flat in it's stock configuration. These are some of the
+photos I responded with:
+
+Erez's response again impressed me, because on seeing the photos he quickly
+responded with a note to say that in his opinion the thumb cluster shape was not
+compatible with my hand shape. He also offered to accept a return and make a
+refund even though I was well outside the window in ZSA's official returns
+policy.
+
+The direct approach was a real relief. I was gearing myself up for the kind of
+painful support experience you get from many companies where they walk you
+through a script and make you try all the things you've already said you've
+tried. This was very different. My time and efforts prior to contacting support
+were being respected. This is quite a rare thing!
+
+It was also nice to have confirmation that I wasn't missing something. I had
+failed to find a good solution most likely because one did not exist. I accepted
+the refund offer and mailed my Moonlander for return a few days later ^[Returns are made to Taiwan. From Australia this is quite cheap. I think I paid AUD $24. Elsewhere in the world it is much more cost prohibitive.]. 
+
+Throughout the support process we discussed some potential improvements to the
+customer experience, and Erez gave the impression he was giving consideration to
+my suggestions. He sent me example paper templates for feedback. He also
+recommended a couple of other boards I should check out made by competitors! As
+far as I am concerned this was a support experience befitting a top tier
+product.
+
+# Conclusion
+
+My experience with the Moonlander was frustrating and painful. Yet at times it was also
+exhilarating, and in the end it was satisfactory. ZSA lost my money but kept
+my trust, and I give them full credit for their degree of customer care. 
+
+In writing this review I have aimed to give an account of my experiences with
+the Moonlander that might help others avoid wasting time and money as I did. But I
+have also tried to be fair to the parts of the product that are genuinely well
+done, and could be appreciated by those with the right size hands.
+
+The Moonlander is not a keyboard for everyone, although I think many of it's
+ideas could have wide appeal. I am now definitely in the market for a
+split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt]. 
+
