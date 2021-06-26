@@ -12,13 +12,16 @@ output:
 categories:
   - keyboards
   - ergonomics
-draft: true 
+preview: moonlander_new.jpg
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 options(tidyverse.quiet = TRUE)
+```
+```{r}
+knitr::include_graphics("./moonlander_new.jpg")
 ```
 
 Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
@@ -35,13 +38,6 @@ The rest of this review is going to examine the these aspects of the board:
 
 From my perspective these represent the main selling points.
 
-The Moonlander I ordered was the black version with Kailh Box Red (linear) switches:
-
-
-```{r, fig.cap = "My new Moonlander keyboard."}
-knitr::include_graphics("./moonlander_new.jpg")
-```
-
 Some context about me: I spend most of my job writing code to do data science
 work in R, during which I use a keyboard-driven workflow. I work standing 100%
 of the time, and I avoid using a mouse wherever possible. For text editing I
@@ -54,7 +50,7 @@ last 4 or so years has been the Microsoft Sculpt.
 For the most part the Moonlander felt like a premium device. Its surfaces felt
 good under my hands. The key caps are subtly textured and ever so slightly
 grippy. They felt weighty and durable. They typing sounds were thick and
-substantial, without being excessively loud [^although a lot of this is due to my initial choice of a linear switch]. It gave a very tidy first impression.
+substantial, without being excessively loud ^[although a lot of this is due to my initial choice of a linear switch.]. It gave a very tidy first impression.
 
 I do have one nitpick: The mechanism in the tenting legs felt flimsy. When rotating them I could feel a
 gear clicking though a discrete set of positions, but the sound and feel of this
@@ -67,15 +63,15 @@ feel caution was required.
 
 This is an important one for me. I can't afford two Moonlanders, so I needed it
 to be able accompany me in a bicycle pannier bag on my daily commute. Also
-setting and tear down had to be reasonably low effort.
+setting and tearing down had to be reasonably low effort.
 
 A big strike against the Moonlander in this regard is the lack of rigid case.
 For a device in this price range it was a let down. What was provided wasn't
 really a case so much as a thin neoprene slip that keeps the two halves, allen
 key, and cables bundled together. It didn't seem like it would offer any
-protection whatsoever from bumps during transit. By contrast my headphones,
-which cost in the same ballpark as the Moonlander, shipped with a rigid zip-up
-case.
+protection whatsoever from bumps during transit. By contrast, I have a set of
+headphones which cost in the same ballpark as the Moonlander that shipped with a
+rigid zip-up case.
 
 ```{r, fig.cap ="The Moonlander's case is very lightweight."}
 knitr::include_graphics("./moonlander_case.jpg")
@@ -127,7 +123,7 @@ Moonlander's functionality:
   stuff that is possible in the firmware.
 * You can edit the Moonlander firmware directly in C code. It uses a framework
   called 'QMK'. ZSA provide instructions on how to get going with this, and QMK
-  itself has some of the nicest documentation of any open source project that I
+  itself has [some of the nicest documentation](https://docs.qmk.fm/) of any open source project that I
   have ever seen.
 
 I didn't do anything too radical but the possibilities are expansive. To give a taste for what's possible:
@@ -136,13 +132,14 @@ I swapped out my shift keys for layer toggles. This meant I could directly
 control the 'shifted' version of each key. With this concept I:
 
 * Made underscore, `_`, the shift of space.
-* Swapped the locations of angle brackets `<`,`>` and parentheses `(`,`)`
-* Made Lshift + Rshift `{`, with `}` on hold
-* Made Rshift + Lshift `[`, with `]` on hold
+* Swapped the locations of angle brackets `<``>` and parentheses `(``)`
+* Made Lshift + Rshift `{` with `}` on hold
+* Made Rshift + Lshift `[` with `]` on hold
 
 The idea I was working on was to move symbols that I use regularly while working
-to more convenient locations - and the results felt pretty damn good!^[The last layout I made in Oryx is here if you're curious: https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0] This
-experience has cemented for me that deep programmability is an important facet
+to more convenient locations - and the results felt pretty damn good!^[The last layout I made in Oryx is here if you're curious: https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0] 
+
+This experience has cemented for me that deep programmability is an important facet
 of truly ergonomic hardware. All of us have different preferences and physical
 limitations, too many and varied to design for in hardware!
 
@@ -160,7 +157,9 @@ One nitpick I'd make about tweaking that the iteration loop is quite slow for
 continuous parameters. These underpin some important features, for example: How
 long does a key need to be held down to register as a hold? How quick does a
 double tap need to be? How fast should the mouse accelerate in mouse control
-mode? The only way to set these is according to personal taste, but to change a
+mode? 
+
+The only way to set these is according to personal taste, but to change a
 value means recompiling the firmware and re-flashing the board. It would be cool
 if the board could provide some kind of shell that would accept commands
 to alter these parameters live and feel the effects ^[This nitpick is minor since, I think within QMK it would definitely be possible to assign keys to increment and decrement these parameters live - it just would be nice to have a workflow for this out of the box.].
@@ -225,7 +224,7 @@ felt like I could more easily maintain a healthier posture.
 
 The staggered columnar arrangement presented a bit of a stumbling block
 initially. It took me 7 days to get back to my previous typing speeds ^[Perhaps
-I had some advantage coming from a board that was already split]. I have mixed
+I had some advantage coming from a board that was already split.]. I have mixed
 feelings about the arrangement. I can get on board with the idea it makes hand
 movements symmetrical, and I did find it easy to visualise the 'grid' in my
 head, but I didn't find it universally better as the hype would have had me
@@ -233,11 +232,11 @@ believe.
 
 The columnar arrangement makes different tradeoffs. Some keys are easier to
 reach while some get harder. For example: The middle columns are offset slightly
-downward from the index finger columns. Why is this is case when these columns
-use the same finger? The effect of this is that (in QWERTY) `Y` and `T` become
+downward from the index finger columns ^[Why is this is case when these columns
+use the same finger?]. The effect of this is that (in QWERTY) `Y` and `T` become
 easier to reach while `N`, a frequent key in programming, becomes a much further reach than on a staggered board.
 
-```{r, fig.cap = "The diference in spacing between J and N on the Moonlander (right) and my laptop (left)."}
+```{r, fig.cap = "The diference in spacing between J and N on the Moonlander (left) and my laptop (right).", out.width = "200%", fig.align = "center"}
 knitr::include_graphics("./reach_diff_mockup.png")
 ```
 
@@ -250,7 +249,7 @@ noticed another issue introduced by the staggered columns: In DVORAK the outside
 keys above home are `'` and `L`. It seems that the `L` position upsets a lot of
 programmers and terminal users, in part due to proximity to `S` which is
 immediately below it. I.e. `ls -l` uses the pinky for all the characters other
-than space in DVORAK. So what is recommended is that the ring finger is used
+than space. So what is recommended is that the ring finger is used
 when reaching upward for `L` and `-`. This is unconventional but perfectly
 viable on a staggered board, but felt super awkward to me with the Moonlander's
 columns.
@@ -283,38 +282,41 @@ I'll start by pointing you to how the thumb cluster is marketed by ZSA:
 
 > A custom fit for your hand size.
 
-Next I should tell you my hand size. A common way to measure this seems to be hand length and breadth. So here are these dimensions for me against the [2012 US Army Anthropometric Survey](http://mreed.umtri.umich.edu/mreed/downloads.html#ansur) for males:
+Next I should tell you my hand size. A common way to measure this seems to be hand length and breadth. So here are these dimensions for me against the [2012 US Army Anthropometric Survey](http://mreed.umtri.umich.edu/mreed/downloads.html#ansur) for males and females^[Initially when I made this plot I made it for males only. The data sets are separated by gender. Against males I am in the 60th percentile for length and the 6th for breadth. So I definitely have a more unusual shape compared with men only. Later I realised this was a mistake since ergonomic keyboards shouldn't be designed for men only.]:
 
-```{r, fig.cap = "Compared with surveyed servicemen in the sample I am at the 60th percentile for length but only the 6th for breadth."}
+```{r, echo = TRUE, fig.cap = "Compared with the 4082 servicemen and 1986 servicewomen in the sample I am at the 71st percentile for length but only the 30th for breadth."}
 library(tidyverse)
-ansur_2 <- read_csv("./ANSUR II MALE Public.csv")
-
-my_hand <-tibble(handlength = 195, handbreadth = 81, label = "Me")
+ansur_2 <- bind_rows(
+  read_csv("./ANSUR II MALE Public.csv"),
+  read_csv("./ANSUR II FEMALE Public.csv")
+)
+my_hand <- tibble(handlength = 195, handbreadth = 81, label = "Me")
 
 ggplot(data = ansur_2, aes(x = handbreadth, y = handlength)) +
   geom_point(colour = "grey") +
   geom_density_2d() +
   geom_point(data = my_hand, colour = "red") +
   theme_minimal() +
-  geom_text(data = my_hand,
-            aes(label = "Me"),
-            colour = "red",
-            nudge_x = 0,
-            nudge_y = 1,
-            size = 8 
-            ) +
+  geom_text(
+    data = my_hand,
+    aes(label = "Me"),
+    colour = "red",
+    nudge_x = 0,
+    nudge_y = 4,
+    size = 4
+  ) +
   labs(
-    title = "My hand size vs males in the ANSUR II 2012 sample",
+    title = "My hand size vs service people in the ANSUR II 2012 sample",
     subtitle = "Contours depict observation density",
-    x = "Hand breadth",
-    y = "Hand length"
+    x = "Hand breadth (mm)",
+    y = "Hand length (mm)"
   )
 ```
 
-So I guess there's some evidence to suggest my hand shape is uncommon. I
+So I guess there's some evidence to suggest my hand shape is a little uncommon. I
 certainly don't have 'large' hands, but to call them 'small' could be misleading
 depending on what dimensions are important. I have 'skinny' hands may be better
-^[For someone in the US Army. Against warriors of the keyboard kind I expect I'd fare a little better].
+^[For someone in the US Army. Compared with warriors of the keyboard kind I expect I'd be a bit more normal.].
 
 What I do know for sure is that with these hands I couldn't find a way to use
 the thumb cluster without pain. Inflammation in my thumbs and wrists slowly
@@ -375,9 +377,9 @@ of kit in the box that makes tenting accessible to all.
 
 # Support experience
 
-Around day 60 I got fed up. I'd tried so much and was still experiencing pain. I was
-considering even wilder solutions like swapping the left and right halves, when
-I had a moment of clarity that my experience was far from what might be
+Around day 60 I got fed up. I'd tried so much and was still experiencing pain. I
+was considering even wilder solutions, like swapping the left and right halves,
+when I had a moment of clarity: My experience was far from what would
 reasonably expected with a top tier ergonomic keyboard. So I wrote an email to
 ZSA support. It was a simple email that outlined the trouble I was having, the
 things I had tried, and asked them if they had any advice they could offer
@@ -433,5 +435,5 @@ done, and could be appreciated by those with the right size hands.
 
 The Moonlander is not a keyboard for everyone, although I think many of it's
 ideas could have wide appeal. I am now definitely in the market for a
-split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt]. 
+split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.]. 
 
