@@ -346,10 +346,10 @@ will fall on the board^[To ZSA's credit they actually sent me some of these for 
 Beyond my personal woes I see a larger issue with the Moonlander's ergonomics:
 Out of the box tenting is only supported for people with large hands. This is because
 tilting the thumb cluster down to use as a stababliser moves the thumb's keys quite
-some distance from the bottom row of letters.
+some distance from the bottom row of letters. Also the angle of tenting is quite limited. Notably there is no ability to tilt forward which is recommended by most ergonomics guides.
 
 Rather than being next-generation, this strikes me as something of a regression.
-The ErgodoxEZ could tent for all users, while the Moonlander can only tent for a
+The ErgodoxEZ could tent in more directions, for all users, while the Moonlander can only tent one way for a
 small proportion. People who are interested in tenting should be aware that the
 Moonlander may not work for them. Ideally ZSA would provide guidance in the form
 of hand measurements that tenting will work for, or even better: include some kind
