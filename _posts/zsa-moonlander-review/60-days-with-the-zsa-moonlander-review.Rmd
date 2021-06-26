@@ -24,7 +24,7 @@ options(tidyverse.quiet = TRUE)
 knitr::include_graphics("./moonlander_new.jpg")
 ```
 
-Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's quite an aesthetically pleasing device, and It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage. Like its' predecessor it carries an eye-watering price tag: USD $365.
+Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's quite an aesthetically pleasing device, and It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage. Like its predecessor it carries an eye-watering price tag: USD $365.
 
 This post is my review of this apex ergonomic device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
 
@@ -132,7 +132,7 @@ I swapped out my shift keys for layer toggles. This meant I could directly
 control the 'shifted' version of each key. With this concept I:
 
 * Made underscore, `_`, the shift of space.
-* Swapped the locations of angle brackets `<``>` and parentheses `(``)`
+* Swapped the locations of angle brackets `<>` and parentheses `()`
 * Made Lshift + Rshift `{` with `}` on hold
 * Made Rshift + Lshift `[` with `]` on hold
 
@@ -388,7 +388,7 @@ before I gave up on it completely.
 The response was very impressive. In short order I received an email from ZSA
 CEO Erez Zuckerman who offered to work with me personally to try to find a setup
 that would work. One of the things he requested from me were some photos of my
-hands on the board lying flat in it's stock configuration. These are some of the
+hands on the board lying flat in its stock configuration. These are some of the
 photos I responded with:
 
 ```{r, fig.cap = "My hand in my natural typing position on the Microsoft Sculpt"}
