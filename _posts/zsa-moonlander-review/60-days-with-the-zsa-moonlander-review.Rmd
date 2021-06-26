@@ -17,10 +17,11 @@ draft: true
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+options(tidyverse.quiet = TRUE)
 ```
 
-Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](). It's billed as the next generation of the much vaunted [ErgodoxEZ]() lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
+Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage, and like it's predecessor it carries an eye-watering price tag: USD $365.
 
 This post is my review of this apex input device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
 
@@ -36,7 +37,10 @@ From my perspective these represent the main selling points.
 
 The Moonlander I ordered was the black version with Kailh Box Red (linear) switches:
 
-![]()
+
+```{r, fig.cap = "My new Moonlander keyboard."}
+knitr::include_graphics("./moonlander_new.jpg")
+```
 
 Some context about me: I spend most of my job writing code to do data science
 work in R, during which I use a keyboard-driven workflow. I work standing 100%
@@ -52,9 +56,7 @@ good under my hands. The key caps are subtly textured and ever so slightly
 grippy. They felt weighty and durable. They typing sounds were thick and
 substantial, without being excessively loud [^although a lot of this is due to my initial choice of a linear switch]. It gave a very tidy first impression.
 
-I do have some nitpicks though:
-
-The mechanism in the tenting legs felt flimsy. When rotating them I could feel a
+I do have one nitpick: The mechanism in the tenting legs felt flimsy. When rotating them I could feel a
 gear clicking though a discrete set of positions, but the sound and feel of this
 gave the impression that the gear was plastic. Unsettling metallic groans were
 emitted from the springs on the allen screws when tightening them that made me
@@ -65,7 +67,7 @@ feel caution was required.
 
 This is an important one for me. I can't afford two Moonlanders, so I needed it
 to be able accompany me in a bicycle pannier bag on my daily commute. Also
-setting it up at the destination can't be a chore.
+setting and tear down had to be reasonably low effort.
 
 A big strike against the Moonlander in this regard is the lack of rigid case.
 For a device in this price range it was a let down. What was provided wasn't
@@ -74,6 +76,10 @@ key, and cables bundled together. It didn't seem like it would offer any
 protection whatsoever from bumps during transit. By contrast my headphones,
 which cost in the same ballpark as the Moonlander, shipped with a rigid zip-up
 case.
+
+```{r, fig.cap ="The Moonlander's case is very lightweight."}
+knitr::include_graphics("./moonlander_case.jpg")
+```
 
 After some careful measuring I was able to find exactly one reasonably priced rigid case for DJ headphones that would accept it, for which I paid AUD $40.
 
@@ -91,7 +97,7 @@ hurry, which I frequently am when trying to depart.
 
 When packing up, the cables don't have a dedicated place to live in the neoprene
 slip which meant pack up always felt a bit haphazard. A couple of times I
-accidentally popped off a keycap trying to squeeze the cables into the slip
+accidentally popped off a key cap trying to squeeze the cables into the slip
 along side one of the halves.
 
 On the plus side, the wrist wrest folding mechanism is quite slick with a
@@ -134,13 +140,13 @@ control the 'shifted' version of each key. With this concept I:
 * Made Lshift + Rshift `{`, with `}` on hold
 * Made Rshift + Lshift `[`, with `]` on hold
 
-The idea being to move symbols that I use regularly while working to more
-convenient locations - and the results felt pretty damn good! This experience
-has cemented for me that deep programmability is an important facet of truly
-ergonomic hardware. All of us have different preferences and physical
+The idea I was working on was to move symbols that I use regularly while working
+to more convenient locations - and the results felt pretty damn good!^[The last layout I made in Oryx is here if you're curious: https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0] This
+experience has cemented for me that deep programmability is an important facet
+of truly ergonomic hardware. All of us have different preferences and physical
 limitations, too many and varied to design for in hardware!
 
-One bonus in the Moonlander's favour is that QMK is an open source firmware that
+A bonus in the Moonlander's favour is that QMK is an open source firmware that
 is used by a variety of exotic keyboards including kit-builds. So experience
 with QMK is likely to be portable to other boards, rather than being one
 manufacturer's way of doing things.
@@ -189,12 +195,15 @@ The hot-swap design worked really well for me since I didn't really know what I
 wanted in a switch. I ordered a sampler batch and had a fun time trying them all
 in different positions to get a feel for what I liked. The Moonlander taught me a lot about the influence of switches, and the hot-swap ability is a convenient feature that I would regard highly when choosing my next keyboard, although it may not be essential, having some concept of what I like now.
 
+```{r, fig.cap = "A switch swap in progress on the Moonlander"}
+knitr::include_graphics("./moonlander_switch_swap.jpg")
+```
 
 # Ergonomics
 
 ZSA's marketing bills the Moonlanader as a "Next-generation ergonomic keyboard".
 Apart from the customisable key layouts, the main ergonomic features of the
-Moonlander that it stakes this claim on seem to be:
+Moonlander that it makes this claim based on seem to be:
 
 * Split halves for typing at more comfortable width and angle
 * Staggered 'Columnar' or 'Ortholinear' key arrangement which changes home position reach angles reach distances
@@ -215,16 +224,22 @@ felt like I could more easily maintain a healthier posture.
 ## Staggered Columns
 
 The staggered columnar arrangement presented a bit of a stumbling block
-initially. It took me 7 days to get back to my previous typing speeds ^[Perhaps I had some advantage coming from a board that was already split]. I
-have mixed feelings about the arrangement. I can get on board with the idea it
-makes hand movements symmetrical, but I didn't find it universally better as the
-hype would have had me believe.
+initially. It took me 7 days to get back to my previous typing speeds ^[Perhaps
+I had some advantage coming from a board that was already split]. I have mixed
+feelings about the arrangement. I can get on board with the idea it makes hand
+movements symmetrical, and I did find it easy to visualise the 'grid' in my
+head, but I didn't find it universally better as the hype would have had me
+believe.
 
 The columnar arrangement makes different tradeoffs. Some keys are easier to
 reach while some get harder. For example: The middle columns are offset slightly
 downward from the index finger columns. Why is this is case when these columns
 use the same finger? The effect of this is that (in QWERTY) `Y` and `T` become
 easier to reach while `N`, a frequent key in programming, becomes a much further reach than on a staggered board.
+
+```{r, fig.cap = "The diference in spacing between J and N on the Moonlander (right) and my laptop (left)."}
+knitr::include_graphics("./reach_diff_mockup.png")
+```
 
 I did notice some fatigue and pain in my right index finger and I believe the
 `N` position contributed. This isn't an insurmountable problem, it could be
@@ -320,6 +335,9 @@ allow the Moonlander to tent with the thumb cluster up
 
 Here's a picture with those mods:
 
+```{r, fig.cap = "My modified Moonalander hardware configuration"}
+knitr::include_graphics("moonlander_mods.jpg")
+```
 The only thing I found that reliably gave me a break from the pain was switching
 back to my Microsoft Sculpt. This made it abundantly clear that the Moonlander was
 the root cause of my problems. 
@@ -370,6 +388,14 @@ CEO Erez Zuckerman who offered to work with me personally to try to find a setup
 that would work. One of the things he requested from me were some photos of my
 hands on the board lying flat in it's stock configuration. These are some of the
 photos I responded with:
+
+```{r, fig.cap = "My hand in my natural typing position on the Microsoft Sculpt"}
+knitr::include_graphics("./rhand_sculpt.jpg")
+```
+
+```{r, fig.cap = "My hand trying to reproduce my natural typing position on the Moonlander"}
+knitr::include_graphics("./rhand_moonlander.jpg")
+```
 
 Erez's response again impressed me, because on seeing the photos he quickly
 responded with a note to say that in his opinion the thumb cluster shape was not
