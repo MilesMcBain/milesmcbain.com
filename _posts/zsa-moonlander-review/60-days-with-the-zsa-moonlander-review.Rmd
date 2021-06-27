@@ -236,7 +236,7 @@ downward from the index finger columns ^[Why is this is case when these columns
 use the same finger?]. The effect of this is that (in QWERTY) `Y` and `T` become
 easier to reach while `N`, a frequent key in programming, becomes a much further reach than on a staggered board.
 
-```{r, fig.cap = "The diference in spacing between J and N on the Moonlander (left) and my laptop (right).", out.width = "200%", fig.align = "center"}
+```{r, fig.cap = "The difference in spacing between J and N on the Moonlander (left) and my laptop (right).", out.width = "200%", fig.align = "center"}
 knitr::include_graphics("./reach_diff_mockup.png")
 ```
 
