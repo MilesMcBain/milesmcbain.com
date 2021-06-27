@@ -433,7 +433,7 @@ the Moonlander that might help others avoid wasting time and money as I did. But
 have also tried to be fair to the parts of the product that are genuinely well
 done, and could be appreciated by those with the right size hands.
 
-The Moonlander is not a keyboard for everyone, although I think many of it's
+The Moonlander is not a keyboard for everyone, although I think many of its
 ideas could have wide appeal. I am now definitely in the market for a
 split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.]. 
 
