@@ -96,8 +96,8 @@ slip which meant pack up always felt a bit haphazard. A couple of times I
 accidentally popped off a key cap trying to squeeze the cables into the slip
 along side one of the halves.
 
-On the plus side, the wrist wrest folding mechanism is quite slick with a
-magnetic clasp that keeps them in travel mode. The wrist wrest hinge also gave a
+On the plus side, the wrist rest folding mechanism is quite slick with a
+magnetic clasp that keeps them in travel mode. The wrist rest hinge also gave a
 robust impression.
 
 After I got the rigid case packing was greatly simplified. I started using the
@@ -153,7 +153,7 @@ commonly used symbol combinations like `%>%` and `<-`, as well as playing with
 the acceleration parameters of mouse control mode. This was all much easier than
 I expected, thanks to the excellent docs. I found a Docker config for the QMK build environment that made building my changes a breeze.
 
-One nitpick I'd make about tweaking that the iteration loop is quite slow for
+One nitpick I'd make about tweaking is that the iteration loop is quite slow for
 continuous parameters. These underpin some important features, for example: How
 long does a key need to be held down to register as a hold? How quick does a
 double tap need to be? How fast should the mouse accelerate in mouse control
