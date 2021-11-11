@@ -1,0 +1,44 @@
+---
+title: "se-for-ds"
+description: |
+  A short description of the post.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.xyz
+date: 11-09-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This week I saw a [tweet](https://twitter.com/alexkyllo/status/1457072262520004632?s=20) that startled me:
+
+> Software engineering for data science is such a glaring, unsolved problem.
+> I've worked for years at the intersection of the two and am still amazed by how
+> difficult it is to write good, maintainable code for data science and how no one
+> really even knows what that means yet.
+
+It had 1.7k likes!? 
+
+I'm not buying it. As a community we've been at the coalface
+mining those insights long enough to have learned a few truths - difficult as
+some may be to face. In this post I'll argue for some principles that are
+currently underpinning my team's approach to engineering data science software. 
+
+# A new kind of software engineering
+
+My team does everything in code. So this graph of our commits corresponds to the total of our output since I joined:
+
+The time scale and number of projects may vary, but I predict that most data
+science teams will be able to recognise something of themselves in this pattern of many short-lived small projects in combination with a smaller set of longer-lived projects built out continuously. For my team the labels "investigations" and "infrastructure" feel like a fit. Just roll with me on them for a minute, I'm applying them broadly.
+
+There are few things driving the large number of investigations.
+
+Some of them are dead ends. These are inevitable in all organisations with a maturing data science capability (most organisations). Leaders are exploring what they can ask of their data, and data scientists are exploring what it can answer. "We found this new data source", "I read about this new method", "VIP A is insisting we look at X", "TLA Division wants our help understanding drivers of Y", are all examples of things that may trigger an investigation with a short shelf life.
+
+
