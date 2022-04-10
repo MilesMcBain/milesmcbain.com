@@ -136,7 +136,7 @@ For the outlanders, we're looking at the smallest published statistical areas th
 
 This dataset is roughly 370 000 polygons of varying detail.
 
-Not the heftyest, but too complex for `leaflet`, and good enough for illustrative purposes.
+Not the heftiest, but too complex for `leaflet`, and good enough for illustrative purposes.
 
 ### Getting the data
 
