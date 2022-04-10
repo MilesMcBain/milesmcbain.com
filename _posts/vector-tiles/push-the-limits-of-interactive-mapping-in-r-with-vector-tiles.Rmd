@@ -389,7 +389,7 @@ That's it for this crash course on vector tiles. Hopefully it's enough to get yo
 
 I would advise packaging up `tippecanoe` recipes that work well for the kinds of datasets you have as you discover them. This will save you effort remembering them in the future, and make life easier for your teammates.
 
-We barely scratched the surface of what `{rdeck}` can do, but rest assured its capabilities extend well beyond vector tiles. It is an excellent choice for a general purpose web mapping widget for products created with ``{rmarkdown}``^[and yes, Quarto] and `{shiny}``.
+We barely scratched the surface of what `{rdeck}` can do, but rest assured its capabilities extend well beyond vector tiles. It is an excellent choice for a general purpose web mapping widget for products created with ``{rmarkdown}``^[and yes, Quarto] and `{shiny}`.
 
 Please feel free to leave a comment! Especially if something is still mysterious, or you have your own completely different vector tiles workflow.
 
