@@ -134,8 +134,6 @@ We're going to use R and Tippecanoe to turn the [Australian Bureau of Statistics
 
 For the outlanders, we're looking at the smallest published statistical areas that cover Australia. In the big cities they get quite tight, covering maybe a single city block or building.
 
-`mesh block gif`
-
 This dataset is roughly 370 000 polygons of varying detail.
 
 Not the heftyest, but too complex for `leaflet`, and good enough for illustrative purposes.
