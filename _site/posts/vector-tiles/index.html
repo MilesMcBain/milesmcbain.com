@@ -2239,13 +2239,13 @@ li::marker {
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#what-are-vector-tiles">What are Vector Tiles?</a>
+<li><a href="#what-are-vector-tiles">What are vector tiles?</a>
 <ul>
-<li><a href="#mapbox-vector-tiles">Mapbox Vector Tiles</a></li>
-<li><a href="#mbtiles-databases">MBTiles Databases</a></li>
+<li><a href="#mapbox-vector-tiles">Mapbox vector tiles</a></li>
+<li><a href="#mbtiles-databases">MBTiles databases</a></li>
 </ul></li>
 <li><a href="#how-my-team-use-vector-tiles">How my team use vector tiles</a></li>
-<li><a href="#how-to-make-vector-tiles">How to make Vector Tiles</a>
+<li><a href="#how-to-make-vector-tiles">How to make vector tiles</a>
 <ul>
 <li><a href="#tutorial">Tutorial</a>
 <ul>
@@ -2257,7 +2257,7 @@ li::marker {
 <li><a href="#serving-vector-tiles-in-production">Serving vector tiles in production</a>
 <ul>
 <li><a href="#mapbox">Mapbox</a></li>
-<li><a href="#aws-lambda">AWS Lambda</a></li>
+<li><a href="#aws-lambda">AWS lambda</a></li>
 <li><a href="#other-options">Other options</a></li>
 </ul></li>
 <li><a href="#conclusion">Conclusion</a></li>
@@ -2282,7 +2282,7 @@ li::marker {
 <li>how to make them</li>
 <li>how to map them</li>
 </ul>
-<h1 id="what-are-vector-tiles">What are Vector Tiles?</h1>
+<h1 id="what-are-vector-tiles">What are vector tiles?</h1>
 <p>Let’s start with tiles: If you’ve used interactive maps or ‘slippy maps’ as they are sometimes known, you’re probably aware of tiles. A slippy map (E.g. Google Maps) is comprised of thousands to millions of little images, a selection of which are served to you depending on the spatial viewport you have established on the map as you slip-slide around.</p>
 <p>These solve the problem of how to serve a high resolution map image to the user. High resolution images of the Earth use a ton of data and bandwidth to transfer, but the typical user is only chasing an image of a very small section that contains whatever they are interested in.</p>
 <p>So some clever person came up with the idea of cutting up the images of the earth into three dimensional dataset of x, y, and zoom. A tileset, as they are called, contains the whole Earth projected onto an x/y plane, rendered at progressively higher resolution or higher detail, with increasing zoom.</p>
@@ -2291,9 +2291,9 @@ li::marker {
 <p>Now we get to the ‘vector’ part: As personal computing devices became more powerful, it was realised that it could be more efficient to transmit tiles in ‘vector’ form, and have the user’s browser process them into the final tile image. Vector tiles contain arrays of annotated spatial coordinate data: The edges of the roads, the boundaries of buildings etc. Not an image, but the building blocks for one.</p>
 <p>This information is combined with a separately transmitted stylesheet to produce the tile image. Different stylesheets can use the same vector data to produce radically different looking maps that either highlight or omit data with certain attributes.</p>
 <p>As mappers of data we can use the same trick of streaming tiled sections of our data in vector form to drastically boost the amount of information we can make available on interactive maps.</p>
-<h2 id="mapbox-vector-tiles">Mapbox Vector Tiles</h2>
+<h2 id="mapbox-vector-tiles">Mapbox vector tiles</h2>
 <p>A <a href="https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/">vector tile specfication created by the Mapbox company</a> is currently the de-facto standard for vector tile files. Mabbox Vector Tiles, or ‘MVT’ as they are often abbreviated, are stored as a Google protocol buffer - a tightly packed binary format.</p>
-<h2 id="mbtiles-databases">MBTiles Databases</h2>
+<h2 id="mbtiles-databases">MBTiles databases</h2>
 <p><a href="https://github.com/mapbox/mbtiles-spec">MBTiles</a> is a second specification created by Mapbox that describes a method of storing an entire MVT tileset inside a single file. Internally <code>.mtbtiles</code> files are SQLlite databases containg two tables: <code>metadata</code> and <code>tiles</code>.</p>
 <p>The <code>tiles</code> table is indexed by z,x,y and contains a <code>tile_data</code> column for the vector tile protocol buffers, which are stored compressed using gzip<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>This single-file tileset is much easier to ship around than millions of tiny files, and the SQLite format and gzip compression help with efficient retrieval and transmission.</p>
@@ -2327,7 +2327,7 @@ Figure 2: A state-wide bushfire risk reference layer
 <li>Simplification doesn’t really help, you still have too many features</li>
 <li>You’re suffering death by a thousand cuts, and cumulatively your datasets are too much to handle.</li>
 </ul>
-<h1 id="how-to-make-vector-tiles">How to make Vector Tiles</h1>
+<h1 id="how-to-make-vector-tiles">How to make vector tiles</h1>
 <p>There are a variety of tools that you use to can do this. Possibly some exorbitantly priced graphical GIS tools have simple MVT export features, and it would be worth investigating that if you have these in your stack.</p>
 <p>In my team we use <a href="https://github.com/mapbox/tippecanoe">Tippecanoe</a> - a command line tool purpose built by Mapbox. I need to give you two warnings about Tippecanoe:</p>
 <p>One: Tippecanoe is officially unsupported at present, although it does have commits as recently as 2021. There is a <a href="https://github.com/protomaps/tippecanoe">community fork that is being actively maintained</a> at the time of writing. I cannot vouch for the community fork, we’ve never had cause to try it. We have been using the main repository version without any issues for the last couple of years.</p>
@@ -2510,7 +2510,7 @@ Figure 4: ABS mesh blocks, local view
 <h2 id="mapbox">Mapbox</h2>
 <p>Mapbox offers a vector tile hosting as a service, and we trialled this and it seemed fine, however I cannot recommend it because the pricing model was unworkable for us. Mapbox bill per square kilometre of tiles ‘processed’, and then per square kilometre hosted per day. The processing fee for the tileset we just created would probably be around $40 AUD - insanely steep considering all the work already done to convert the data to .mbtiles, and the amount of cloud compute that could be purchased for that price.</p>
 <p>The per square kilometre idea is completely broken for a jurisdiction like Queensland, which is quite large but also very sparsely populated. For example a tileset that has the entire Queensland road network could cost hundreds of dollars a month to host, ridiculous considering many many of those square kilometres of tiles have hardly any data. So if you do want try Mapbox, be sure to read the pricing pages closely!</p>
-<h2 id="aws-lambda">AWS Lambda</h2>
+<h2 id="aws-lambda">AWS lambda</h2>
 <p>We rolled our own Amazon Web Services solution that serves tilesets upload to an S3 bucket via an API gateway that handles requests with AWS lambda functions that run a Node.js environment. So this is a serverless solution where we only pay for the storage and compute we actually use, and the solution will scale to huge numbers of requests that we’ll never see. Our maps only have users in order of dozens, so this works out to be so cheap as to make the Mapbox option look absurd.</p>
 <p>The AWS solution is built with <a href="https://aws.amazon.com/serverless/sam/">AWS SAM</a>, meaning it is all infrastructure as code / config, and so should be deployable with minor config changes by other teams who would like to try it out. Check it out <a href="https://github.com/qfes/mapbox-tile-server">here</a>.</p>
 <h2 id="other-options">Other options</h2>

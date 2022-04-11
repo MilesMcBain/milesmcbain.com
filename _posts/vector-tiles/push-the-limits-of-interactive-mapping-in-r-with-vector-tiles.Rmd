@@ -50,7 +50,7 @@ The rest of this blog post is all about them, specifically:
   * how to make them
   * how to map them
 
-# What are Vector Tiles?
+# What are vector tiles?
 
 Let's start with tiles: If you've used interactive maps or 'slippy maps' as they are sometimes known, you're probably aware of tiles. A slippy map (E.g. Google Maps) is comprised of thousands to millions of little images, a selection of which are served to you depending on the spatial viewport you have established on the map as you slip-slide around.
 
@@ -68,11 +68,11 @@ This information is combined with a separately transmitted stylesheet to produce
 
 As mappers of data we can use the same trick of streaming tiled sections of our data in vector form to drastically boost the amount of information we can make available on interactive maps. 
 
-## Mapbox Vector Tiles
+## Mapbox vector tiles
 
 A [vector tile specfication created by the Mapbox company](https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/) is currently the de-facto standard for vector tile files. Mabbox Vector Tiles, or 'MVT' as they are often abbreviated, are stored as a Google protocol buffer - a tightly packed binary format.
 
-## MBTiles Databases
+## MBTiles databases
 
 [MBTiles](https://github.com/mapbox/mbtiles-spec) is a second specification created by Mapbox that describes a method of storing an entire MVT tileset inside a single file. Internally `.mtbtiles` files are SQLlite databases containg two tables: `metadata` and `tiles`. 
 
@@ -111,7 +111,7 @@ In summary you might look at using vector tiles for mapping your data when:
   - You're suffering death by a thousand cuts, and cumulatively your datasets are too much to handle.
 
 
-# How to make Vector Tiles
+# How to make vector tiles
 
 There are a variety of tools that you use to can do this. Possibly some exorbitantly priced graphical GIS tools have simple MVT export features, and it would be worth investigating that if you have these in your stack.
 	
@@ -356,7 +356,7 @@ Mapbox offers a vector tile hosting as a service, and we trialled this and it se
 
 The per square kilometre idea is completely broken for a jurisdiction like Queensland, which is quite large but also very sparsely populated. For example a tileset that has the entire Queensland road network could cost hundreds of dollars a month to host, ridiculous considering many many of those square kilometres of tiles have hardly any data. So if you do want try Mapbox, be sure to read the pricing pages closely!
 
-## AWS Lambda
+## AWS lambda
 
 We rolled our own Amazon Web Services solution that serves tilesets upload to an S3 bucket via an API gateway that handles requests with AWS lambda functions that run a Node.js environment. So this is a serverless solution where we only pay for the storage and compute we actually use, and the solution will scale to huge numbers of requests that we'll never see. Our maps only have users in order of dozens, so this works out to be so cheap as to make the Mapbox option look absurd. 
 
