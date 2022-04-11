@@ -203,7 +203,7 @@ Two noteworthy moves:
 
 So now the fun part! Here's the command I ran in the terminal to generate the tiles from the geojson we wrote:
 
-```{bash}
+```bash
 tippecanoe -zg \
            -o abs_mesh_blocks.mbtiles \
            --coalesce-densest-as-needed \

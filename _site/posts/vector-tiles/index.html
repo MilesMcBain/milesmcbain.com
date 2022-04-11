@@ -2403,9 +2403,11 @@ Figure 2: A state-wide bushfire risk reference layer
 </ul>
 <h3 id="generating-the-tiles">Generating the tiles</h3>
 <p>So now the fun part! Here’s the command I ran in the terminal to generate the tiles from the geojson we wrote:</p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tippecanoe</span> <span class="at">-zg</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">-o</span> abs_mesh_blocks.mbtiles <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">--coalesce-densest-as-needed</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">--extend-zooms-if-still-dropping</span> <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           mb_shapes.geojson</span></code></pre></div>
 <p>And here is a sample of the output:</p>
 <pre><code>For layer 0, using name &quot;mb_shapes&quot;
 368255 features, 110834523 bytes of geometry, 6144695 bytes of separate metadata, 4830542 bytes of string pool
@@ -2418,11 +2420,11 @@ Going to try keeping the sparsest 47.99% of the features to make it fit
 tile 3/7/4 size is 649835 with detail 12, &gt;500000    
 Going to try keeping the sparsest 33.23% of the features to make it fit  ... </code></pre>
 <p>After completion we should have an <code>.mbtiles</code> available, let’s check how big it is in the terminal:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span><span class="va">$du</span> <span class="ex">-h</span> abs_mesh_blocks.mbtiles</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">83M</span>     abs_mesh_blocks.mbtiles</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span><span class="va">$du</span> <span class="ex">-h</span> abs_mesh_blocks.mbtiles</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">83M</span>     abs_mesh_blocks.mbtiles</span></code></pre></div>
 <p>Not too shabby compared with:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span><span class="va">$du</span> <span class="ex">-h</span> mb_shapes.geojson</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">932M</span>    mb_shapes.geojson</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span><span class="va">$du</span> <span class="ex">-h</span> mb_shapes.geojson</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">932M</span>    mb_shapes.geojson</span></code></pre></div>
 <p>You’re probably wondering where I pulled the command from. The <code>tippecanoe</code> README has a helpful ‘cookbook’ section which contains example invocations for common tasks. I copied that command from a section titled <a href="https://github.com/mapbox/tippecanoe#continuous-polygon-features-states-and-provinces-visible-at-all-zoom-levels">Continuous polygon features (states and provinces), visible at all zoom levels</a>. All I changed were the input and output file names.</p>
 <p>To understand the options you need to understand what <code>tippecanoe</code> is trying achieve. It’s all about trying to factor the geometry into tiles such that the tiles remain under size limits that are designed to maintain map performance. For example:</p>
 <ul>
@@ -2454,26 +2456,26 @@ Going to try keeping the sparsest 69.29% of the features to make it fit</code></
 <p>For this example we’ll serve the tiles with <a href="https://github.com/milesmcbain/mvtview">{mvtview}</a>, a package I put together that provides a basic MVT server and viewer powered by {plumber} and {rdeck} respectively. It’s meant as a development tool, to help you iterate on <code>tippecanoe</code> parameters, not as a production solution.</p>
 <p>We’ll discuss production options for serving vector tiles in the next section.</p>
 <p>To map the tiles we created earlier:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtview)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rdeck)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire up the server</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">serve_mvt</span>(<span class="st">&quot;abs_mesh_blocks.mbtiles&quot;</span>, <span class="at">port =</span> <span class="dv">8765</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Serving your tile data from http://0.0.0.0:8765/abs_mesh_blocks.json.</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run clean_mvt() to remove all server sessions.</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the data</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tile_json</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>),</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      random_attribute</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtview)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rdeck)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire up the server</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">serve_mvt</span>(<span class="st">&quot;abs_mesh_blocks.mbtiles&quot;</span>, <span class="at">port =</span> <span class="dv">8765</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Serving your tile data from http://0.0.0.0:8765/abs_mesh_blocks.json.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run clean_mvt() to remove all server sessions.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the data</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tile_json</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      random_attribute</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>And you should get:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="aus1.png" alt="ABS mesh blocks, continental view" width="633" />
 <p class="caption">
 Figure 3: ABS mesh blocks, continental view
@@ -2481,7 +2483,7 @@ Figure 3: ABS mesh blocks, continental view
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="aus2.png" alt="ABS mesh blocks, local view" width="634" />
 <p class="caption">
 Figure 4: ABS mesh blocks, local view
@@ -2490,20 +2492,20 @@ Figure 4: ABS mesh blocks, local view
 </div>
 <p>You might be wondering where this file came from: <code>abs_mesh_blocks.json</code>. Recall that a component of a .mbtiles database is a <code>metadata</code> table. <code>{mvtview}</code> provides a way to fetch this metadata as json by querying a json file with the same name as the <code>.mbitles</code> file. The structure of <a href="https://github.com/mapbox/tilejson-spec">‘tilejson’ is yet another specification</a> created by Mapbox, and is supported in <code>deck.gl</code> (and therefore <code>{rdeck}</code>) to describe tile endpoints.</p>
 <p>The tilejson can also be useful for an end user, for example to set the map limits:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the tile json</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tile_json <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial_bounds =</span> <span class="fu">structure</span>(tile_json<span class="sc">$</span>bounds, <span class="at">crs =</span> <span class="dv">4326</span>, <span class="at">class =</span> <span class="st">&quot;bbox&quot;</span>) <span class="co"># using the tilejson</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tile_json</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      random_attribute</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the tile json</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>tile_json <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial_bounds =</span> <span class="fu">structure</span>(tile_json<span class="sc">$</span>bounds, <span class="at">crs =</span> <span class="dv">4326</span>, <span class="at">class =</span> <span class="st">&quot;bbox&quot;</span>) <span class="co"># using the tilejson</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tile_json</span>(<span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks.json&quot;</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      random_attribute</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <h1 id="serving-vector-tiles-in-production">Serving vector tiles in production</h1>
 <h2 id="mapbox">Mapbox</h2>
 <p>Mapbox offers a vector tile hosting as a service, and we trialled this and it seemed fine, however I cannot recommend it because the pricing model was unworkable for us. Mapbox bill per square kilometre of tiles ‘processed’, and then per square kilometre hosted per day. The processing fee for the tileset we just created would probably be around $40 AUD - insanely steep considering all the work already done to convert the data to .mbtiles, and the amount of cloud compute that could be purchased for that price.</p>
@@ -2515,22 +2517,22 @@ Figure 4: ABS mesh blocks, local view
 <p>The <a href="https://github.com/mapbox/awesome-vector-tiles">‘Awesome Vector Tiles’</a> repository has a number of open source tile servers linked.</p>
 <p>You could also roll your own. Tile servers are fairly simple programs. They only have to handle two types of requests. If you take a look around the <code>{plumber}</code> implementation in <code>{mvtview}</code> for inspiration, you’ll see we’re talking less than 300 lines of code. Our AWS solution is a similarly small amount of Typescript.</p>
 <p>Falling back to more traditional methods for serving tiles is possible if you are willing to deal in thousands to millions of tiny vector tile files in a directory structure, rather than an <code>.mbtiles</code> database. A directory structure can be served with an ordinary vanilla webserver program. <code>tippicanoe</code> can output such a directory structure with the <code>--output-to-directory</code> option. Instead of a tile json URL you can give <code>{rdeck}</code> template URL like:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks/{z}/{x}/{y}.vector.pbf&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      random_attribute,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>) <span class="co"># without the tilejson metadata we have no defaults available for the attribute range</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rdeck</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_mvt_layer</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="st">&quot;http://0.0.0.0:8765/abs_mesh_blocks/{z}/{x}/{y}.vector.pbf&quot;</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">get_fill_color =</span> <span class="fu">scale_color_linear</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      random_attribute,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>) <span class="co"># without the tilejson metadata we have no defaults available for the attribute range</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <h1 id="conclusion">Conclusion</h1>
 <p>That’s it for this crash course on vector tiles. Hopefully it’s enough to get you exploring the space and reaping some benefits. Converting data to vector tiles feels a bit like an art at times, so don’t worry if you struggle to get a feel for the right options at first. That’s something we had to go through as well.</p>
 <p>I would advise packaging up <code>tippecanoe</code> recipes that work well for the kinds of datasets you have as you discover them. This will save you effort remembering them in the future, and make life easier for your teammates.</p>
 <p>We barely scratched the surface of what <code>{rdeck}</code> can do, but rest assured its capabilities extend well beyond vector tiles. It is an excellent choice for a general purpose web mapping widget for products created with <code>{rmarkdown}</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and <code>{shiny}</code>.</p>
 <p>Please feel free to leave a comment! Especially if something is still mysterious, or you have your own completely different vector tiles workflow.</p>
 <p>All the code used in this blog post is in <a href="https://github.com/MilesMcBain/mbtiles_example">this repository</a>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
