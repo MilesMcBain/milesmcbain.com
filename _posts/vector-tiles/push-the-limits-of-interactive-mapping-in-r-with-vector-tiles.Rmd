@@ -286,7 +286,7 @@ To stream vector tiles on demand to maps two thing are needed:
   - A map widget that supports making http requests for vector tiles (front end)
   - A vector tile server that can processes the http requests and serve the requested tiles (back end)
 
-At present, as I am aware, there is only one package in the R ecosystem which has a map widget that can render Mapbox vector tiles: [{rdeck}](https://github.com/anthonynorth/rdeck). {rdeck} is a [deck.gl](https://deck.gl) wrapper created by my colleague [Anthony North](https://anthonynorth.r-universe.dev), and has been my team's main interactive mapping workhorse for the last couple of years.
+At present, as far as I am aware, there is only one package in the R ecosystem which has a map widget that can render Mapbox vector tiles: [{rdeck}](https://github.com/anthonynorth/rdeck). {rdeck} is a [deck.gl](https://deck.gl) wrapper created by my colleague [Anthony North](https://anthonynorth.r-universe.dev), and has been my team's main interactive mapping workhorse for the last couple of years.
 
 For this example we'll serve the tiles with [{mvtview}](https://github.com/milesmcbain/mvtview), a package I put together that provides a basic MVT server and viewer powered by {plumber} and {rdeck} respectively. It's meant as a development tool, to help you iterate on `tippecanoe` parameters, not as a production solution.
 
@@ -368,7 +368,7 @@ The ['Awesome Vector Tiles'](https://github.com/mapbox/awesome-vector-tiles) rep
 
 You could also roll your own. Tile servers are fairly simple programs. They only have to handle two types of requests. If you take a look around the `{plumber}` implementation in `{mvtview}` for inspiration, you'll see we're talking less than 300 lines of code. Our AWS solution is a similarly small amount of Typescript.
 
-Falling back to more traditional methods or serving tiles is possible if you are willing to deal in thousands to millions of tiny vector tile files in a directory structure, rather than an `.mbtiles` database. A directory structure can be served with an ordinary vanilla webserver program. `tippicanoe` can output such a directory structure with the `--output-to-directory` option. Instead of a tile json URL you can give `{rdeck}` template URL like:
+Falling back to more traditional methods for serving tiles is possible if you are willing to deal in thousands to millions of tiny vector tile files in a directory structure, rather than an `.mbtiles` database. A directory structure can be served with an ordinary vanilla webserver program. `tippicanoe` can output such a directory structure with the `--output-to-directory` option. Instead of a tile json URL you can give `{rdeck}` template URL like:
 
 ```r
 rdeck() |>
