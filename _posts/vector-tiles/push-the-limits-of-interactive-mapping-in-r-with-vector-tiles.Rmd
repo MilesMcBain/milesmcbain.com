@@ -348,21 +348,21 @@ rdeck(
 
 
 
-## Serving vector tiles in production
+# Serving vector tiles in production
 
-### Mapbox
+## Mapbox
 
 Mapbox offers a vector tile hosting as a service, and we trialled this and it seemed fine, however I cannot recommend it because the pricing model was unworkable for us. Mapbox bill per square kilometre of tiles 'processed', and then per square kilometre hosted per day. The processing fee for the tileset we just created would probably be around $40 AUD - insanely steep considering all the work already done to convert the data to .mbtiles, and the amount of cloud compute that could be purchased for that price.
 
 The per square kilometre idea is completely broken for a jurisdiction like Queensland, which is quite large but also very sparsely populated. For example a tileset that has the entire Queensland road network could cost hundreds of dollars a month to host, ridiculous considering many many of those square kilometres of tiles have hardly any data. So if you do want try Mapbox, be sure to read the pricing pages closely!
 
-### AWS Lambda
+## AWS Lambda
 
 We rolled our own Amazon Web Services solution that serves tilesets upload to an S3 bucket via an API gateway that handles requests with AWS lambda functions that run a Node.js environment. So this is a serverless solution where we only pay for the storage and compute we actually use, and the solution will scale to huge numbers of requests that we'll never see. Our maps only have users in order of dozens, so this works out to be so cheap as to make the Mapbox option look absurd. 
 
 The AWS solution is built with [AWS SAM](https://aws.amazon.com/serverless/sam/), meaning it is all infrastructure as code / config, and so should be deployable with minor config changes by other teams who would like to try it out. Check it out [here](https://github.com/qfes/mapbox-tile-server). 
 
-### Other options
+## Other options
 
 The ['Awesome Vector Tiles'](https://github.com/mapbox/awesome-vector-tiles) repository has a number of open source tile servers linked.
 

@@ -2253,12 +2253,12 @@ li::marker {
 <li><a href="#generating-the-tiles">Generating the tiles</a></li>
 <li><a href="#mapping-the-data">Mapping the data</a></li>
 </ul></li>
+</ul></li>
 <li><a href="#serving-vector-tiles-in-production">Serving vector tiles in production</a>
 <ul>
 <li><a href="#mapbox">Mapbox</a></li>
 <li><a href="#aws-lambda">AWS Lambda</a></li>
 <li><a href="#other-options">Other options</a></li>
-</ul></li>
 </ul></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
@@ -2504,14 +2504,14 @@ Figure 4: ABS mesh blocks, local view
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<h2 id="serving-vector-tiles-in-production">Serving vector tiles in production</h2>
-<h3 id="mapbox">Mapbox</h3>
+<h1 id="serving-vector-tiles-in-production">Serving vector tiles in production</h1>
+<h2 id="mapbox">Mapbox</h2>
 <p>Mapbox offers a vector tile hosting as a service, and we trialled this and it seemed fine, however I cannot recommend it because the pricing model was unworkable for us. Mapbox bill per square kilometre of tiles ‘processed’, and then per square kilometre hosted per day. The processing fee for the tileset we just created would probably be around $40 AUD - insanely steep considering all the work already done to convert the data to .mbtiles, and the amount of cloud compute that could be purchased for that price.</p>
 <p>The per square kilometre idea is completely broken for a jurisdiction like Queensland, which is quite large but also very sparsely populated. For example a tileset that has the entire Queensland road network could cost hundreds of dollars a month to host, ridiculous considering many many of those square kilometres of tiles have hardly any data. So if you do want try Mapbox, be sure to read the pricing pages closely!</p>
-<h3 id="aws-lambda">AWS Lambda</h3>
+<h2 id="aws-lambda">AWS Lambda</h2>
 <p>We rolled our own Amazon Web Services solution that serves tilesets upload to an S3 bucket via an API gateway that handles requests with AWS lambda functions that run a Node.js environment. So this is a serverless solution where we only pay for the storage and compute we actually use, and the solution will scale to huge numbers of requests that we’ll never see. Our maps only have users in order of dozens, so this works out to be so cheap as to make the Mapbox option look absurd.</p>
 <p>The AWS solution is built with <a href="https://aws.amazon.com/serverless/sam/">AWS SAM</a>, meaning it is all infrastructure as code / config, and so should be deployable with minor config changes by other teams who would like to try it out. Check it out <a href="https://github.com/qfes/mapbox-tile-server">here</a>.</p>
-<h3 id="other-options">Other options</h3>
+<h2 id="other-options">Other options</h2>
 <p>The <a href="https://github.com/mapbox/awesome-vector-tiles">‘Awesome Vector Tiles’</a> repository has a number of open source tile servers linked.</p>
 <p>You could also roll your own. Tile servers are fairly simple programs. They only have to handle two types of requests. If you take a look around the <code>{plumber}</code> implementation in <code>{mvtview}</code> for inspiration, you’ll see we’re talking less than 300 lines of code. Our AWS solution is a similarly small amount of Typescript.</p>
 <p>Falling back to more traditional methods for serving tiles is possible if you are willing to deal in thousands to millions of tiny vector tile files in a directory structure, rather than an <code>.mbtiles</code> database. A directory structure can be served with an ordinary vanilla webserver program. <code>tippicanoe</code> can output such a directory structure with the <code>--output-to-directory</code> option. Instead of a tile json URL you can give <code>{rdeck}</code> template URL like:</p>
