@@ -18,6 +18,74 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: R anti-pattern: Row-wise modification of data in a loop</title>
 
@@ -1992,7 +2060,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2140,7 +2214,13 @@ li::marker {
 
 <div class="d-title">
 <h1>R anti-pattern: Row-wise modification of data in a loop</h1>
-<p>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</p>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:loops" class="dt-tag">loops</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>The Row-wise modification of data in a loop is a trap for programmers coming to R from other languages.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2157,57 +2237,54 @@ li::marker {
 <h2 id="the-pattern">The pattern</h2>
 <p>Suppose you have some operation you want to perform on every row in a column, saving the results in the original column. You’ve heard about some fancy packages to do this, but why bother when a simple loop will do the trick? Someone said that loops are no longer slow in R, right?</p>
 <p>Let’s assume you have this data and you want update each value of <code>df$a</code>. As an example we’ll just do a simple conversion:</p>
-<pre class="r"><code>
-mtcars
-library(tibble)
-library(microbenchmark)
-
-df &lt;- data.frame(
-  a = runif(1000),
-  b = runif(1000)
-)
-
-## crack out the loop!
-for (i in nrow(df[, 1])) {
-    df[i,1] &lt;- df[i,1] * 180/pi
-}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">runif</span>(<span class="dv">1000</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">runif</span>(<span class="dv">1000</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## crack out the loop!</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">nrow</span>(df[, <span class="dv">1</span>])) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    df[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> df[i,<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">180</span><span class="sc">/</span>pi</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The key feature of the anti-pattern is that a <code>data.frame</code> column, in this case <code>df[, 1]</code> is being modified many times in sequence - once for each row.</p>
 <h2 id="a-new-challenger-appears">A new challenger appears</h2>
 <p>A colleague who has been using R for some time, sees your code over your shoulder and lets out some tut tuts. “You really should use lapply or map for that.” he says.</p>
 <p>Really? Shouldn’t they take about the same time? lapply and map must be just a loop under the hood! You decide to benchmark the suggestion:</p>
-<pre class="r"><code>
-microbenchmark(
-  for (i in nrow(df[, 1])) {
-    df[i,1] &lt;- df[i,1] * 180/pi
-  },
-  df$a &lt;- lapply(df$a, function(val) val * 180/pi))
-  
-&gt;
-Unit: milliseconds
-expr                min       lq     mean    median
-for (...            11.794536 12.17966 15.64883 12.682777
-df$a &lt;- lapply(...  1.883315  1.97313  2.59433  2.067858
-       uq      max neval
- 16.30356 50.23415   100
-  2.35720 15.98660   100</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">nrow</span>(df[, <span class="dv">1</span>])) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    df[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> df[i,<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">180</span><span class="sc">/</span>pi</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df<span class="sc">$</span>a, <span class="cf">function</span>(val) val <span class="sc">*</span> <span class="dv">180</span><span class="sc">/</span>pi))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Unit<span class="sc">:</span> milliseconds</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>expr                min       lq     mean    median</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (...            <span class="fl">11.794536</span> <span class="fl">12.17966</span> <span class="fl">15.64883</span> <span class="fl">12.682777</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">lapply</span>(...  <span class="fl">1.883315</span>  <span class="fl">1.97313</span>  <span class="fl">2.59433</span>  <span class="fl">2.067858</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>       uq      max neval</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a> <span class="fl">16.30356</span> <span class="fl">50.23415</span>   <span class="dv">100</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">2.35720</span> <span class="fl">15.98660</span>   <span class="dv">100</span></span></code></pre></div>
 <p>Wow. <code>lapply</code> was 8x faster!</p>
 <h2 id="what-is-going-on">What is going on</h2>
 <p>At this point you might be getting mad at the person that told you that loops aren’t slow - but it’s not their fault. Loops are not the problem here - it is the way R manages memory. In this case R is doing some extra work it doesn’t need to do, and we can demonstrate it using tools from the <code>pryr</code> package.</p>
 <p>Let’s consider the first five iterations of the loop, and print out the address of the column being modified, using <code>inspect(df[, 1])</code>, each time:</p>
-<pre class="r"><code>
-library(pryr)
-
-for (i in 1:5) {
-  df[i,1] &lt;- df[i,1] * 180/pi
-  print(inspect(df[, 1]))
-}
-
-&gt;
-&lt;REALSXP 0x117c6f40&gt;
-&lt;REALSXP 0x117c98c0&gt;
-&lt;REALSXP 0x1ae1dec0&gt;
-&lt;REALSXP 0x1ae1fe40&gt;
-&lt;REALSXP 0x2446cc60&gt;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  df[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> df[i,<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">180</span><span class="sc">/</span>pi</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">inspect</span>(df[, <span class="dv">1</span>]))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>REALSXP <span class="dv">0x117c6f40</span><span class="sc">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>REALSXP <span class="dv">0x117c98c0</span><span class="sc">&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>REALSXP <span class="dv">0x1ae1dec0</span><span class="sc">&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>REALSXP <span class="dv">0x1ae1fe40</span><span class="sc">&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>REALSXP <span class="dv">0x2446cc60</span><span class="sc">&gt;</span></span></code></pre></div>
 <p>What we observe is that at the end of each iteration, the column has a new address in memory. ==Now the only way that this can happen is if the entire column is copied to the new location, every single time it is modified.==</p>
 <p>With loops that modify multiple columns, there is a copying cost associated with each column, each iteration. For large datasets this can easily cause processing time blowouts.</p>
 <p>By contrast, the <code>lapply</code> construct only modifies the column once, all in one go. So it does not pay any penalty associated with copies induced by repeated assignments to the column.</p>
@@ -2216,8 +2293,7 @@ for (i in 1:5) {
 <p>So whenever a column is modified it is copied, in case that column was a column referred to by another dataframe. But this seems kind of dumb in the case where there is only one dataframe that uses that column - which is what we had in our example. It should be possible, by counting references to a column, to know when copying is required and when in-place modification is okay. <a href="https://adv-r.hadley.nz/names-values.html#copy-on-modify">Apparently this is coming in future versions of R</a>.</p>
 <h2 id="not-quite-the-end-of-the-story">Not quite the end of the story</h2>
 <p>Amongst the commotion and exclaiming at this revelation your supervisor approaches to see what is happening. She looks at the code briefly, blinks, and says “That’s nice but you really could do that in one line, like this”. She scribbles out this R code onto an important document on your desk:</p>
-<pre class="r"><code>
-df$a &lt;- df$a * 180/pi</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a <span class="ot">&lt;-</span> df<span class="sc">$</span>a <span class="sc">*</span> <span class="dv">180</span><span class="sc">/</span>pi</span></code></pre></div>
 <p>And instantly you know she’s right. You don’t even need to run the benchmark to know it’s going to crush the alternatives. Here you learned an important lesson: in R often the fastest iteration construct is no iteration at all. Taking advantage of the internally vectorised nature of R’s base functions and operators is the way to go where possible. I had a great lesson in this watching <a href="https://resources.rstudio.com/webinars/thinking-inside-the-box-you-can-do-that-inside-a-data-frame-april-jenny-bryan">Jenny Bryan’s webinar on row-oriented workflows</a> which I thoroughly recommend.</p>
 <h2 id="summary">Summary</h2>
 <p>Anywhere you encounter a dataframe (or <code>tibble</code>) being modified row-wise in a loop is an opportunity to improve run time significantly. I once found something like this written by a teammate and we got the run time down from around 6 hours to around 20 minutes by changing to another approach. Ofcourse thesedays most people are using <code>dplyr</code> or <code>data.table</code> to do this kind of work, so you’re only likely to encounter it in legacy code or code written by people who are new to R.</p>
@@ -2225,6 +2301,7 @@ df$a &lt;- df$a * 180/pi</code></pre>
 <hr />
 <p><em>With thanks to the #rstats twitter crowd who chimed in on <a href="https://twitter.com/MilesMcBain/status/1070565789827133442">this twitter thread</a> in particular <span class="citation" data-cites="groundwalkergmb">@groundwalkergmb</span> and <span class="citation" data-cites="ThomasMailund">@ThomasMailund</span> who provided code examples on which I based the one in this post.</em></p>
 <p><em>Header Image credit: By Ryan9270144, 11/5/2015, CC-BY-SA 4.0 <a href="https://commons.wikimedia.org/wiki/File:El_Diablo_Roller_Coaster.jpg" class="uri">https://commons.wikimedia.org/wiki/File:El_Diablo_Roller_Coaster.jpg</a></em></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

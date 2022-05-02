@@ -275,7 +275,7 @@ tile 3/7/4 size is 649415 with detail 12, >500000
 Going to try keeping the sparsest 69.29% of the features to make it fit
 ```
 
-Here `tippecanoe` is letting us know that even with simplification and the reduction strategies we asked it to apply, a tile turned out bigger than 500Kb. As a last ditch effort its going to keep a selection of features and drop others. Some of this is to be expected, particularly at high zooms like 3. Consider the tiles that contain capital cities at zoom 3, they're going to have a ton of data, most of which won't be visible, so the dropping has little observable effect. However, these reattempts slow up the processing, and if you're getting too many, it might be worth researching some of the other options `tippecanoe` makes available[In particular `--hilbert` seems to make coalescing much better].
+Here `tippecanoe` is letting us know that even with simplification and the reduction strategies we asked it to apply, a tile turned out bigger than 500Kb. As a last ditch effort its going to keep a selection of features and drop others. Some of this is to be expected, particularly at high zooms like 3. Consider the tiles that contain capital cities at zoom 3, they're going to have a ton of data, most of which won't be visible, so the dropping has little observable effect. However, these reattempts slow up the processing, and if you're getting too many, it might be worth researching some of the other options `tippecanoe` makes available^[In particular `--hilbert` seems to make coalescing much better].
 
 So that's `tippecanoe`. Don't worry if some (or a lot) of that went over your head. It's taken me a few passes at the README and bunch of playing around to get what feels like a tenuous handle on how this tool works.
   

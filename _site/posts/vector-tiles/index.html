@@ -2444,7 +2444,7 @@ Going to try keeping the sparsest 33.23% of the features to make it fit  ... </c
 <p>The last thing we need to cover is this type of output</p>
 <pre><code>tile 3/7/4 size is 649415 with detail 12, &gt;500000    
 Going to try keeping the sparsest 69.29% of the features to make it fit</code></pre>
-<p>Here <code>tippecanoe</code> is letting us know that even with simplification and the reduction strategies we asked it to apply, a tile turned out bigger than 500Kb. As a last ditch effort its going to keep a selection of features and drop others. Some of this is to be expected, particularly at high zooms like 3. Consider the tiles that contain capital cities at zoom 3, they’re going to have a ton of data, most of which won’t be visible, so the dropping has little observable effect. However, these reattempts slow up the processing, and if you’re getting too many, it might be worth researching some of the other options <code>tippecanoe</code> makes available[In particular <code>--hilbert</code> seems to make coalescing much better].</p>
+<p>Here <code>tippecanoe</code> is letting us know that even with simplification and the reduction strategies we asked it to apply, a tile turned out bigger than 500Kb. As a last ditch effort its going to keep a selection of features and drop others. Some of this is to be expected, particularly at high zooms like 3. Consider the tiles that contain capital cities at zoom 3, they’re going to have a ton of data, most of which won’t be visible, so the dropping has little observable effect. However, these reattempts slow up the processing, and if you’re getting too many, it might be worth researching some of the other options <code>tippecanoe</code> makes available<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>So that’s <code>tippecanoe</code>. Don’t worry if some (or a lot) of that went over your head. It’s taken me a few passes at the README and bunch of playing around to get what feels like a tenuous handle on how this tool works.</p>
 <h3 id="mapping-the-data">Mapping the data</h3>
 <p>To stream vector tiles on demand to maps two thing are needed:</p>
@@ -2529,7 +2529,7 @@ Figure 4: ABS mesh blocks, local view
 <h1 id="conclusion">Conclusion</h1>
 <p>That’s it for this crash course on vector tiles. Hopefully it’s enough to get you exploring the space and reaping some benefits. Converting data to vector tiles feels a bit like an art at times, so don’t worry if you struggle to get a feel for the right options at first. That’s something we had to go through as well.</p>
 <p>I would advise packaging up <code>tippecanoe</code> recipes that work well for the kinds of datasets you have as you discover them. This will save you effort remembering them in the future, and make life easier for your teammates.</p>
-<p>We barely scratched the surface of what <code>{rdeck}</code> can do, but rest assured its capabilities extend well beyond vector tiles. It is an excellent choice for a general purpose web mapping widget for products created with <code>{rmarkdown}</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and <code>{shiny}</code>.</p>
+<p>We barely scratched the surface of what <code>{rdeck}</code> can do, but rest assured its capabilities extend well beyond vector tiles. It is an excellent choice for a general purpose web mapping widget for products created with <code>{rmarkdown}</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> and <code>{shiny}</code>.</p>
 <p>Please feel free to leave a comment! Especially if something is still mysterious, or you have your own completely different vector tiles workflow.</p>
 <p>All the code used in this blog post is in <a href="https://github.com/MilesMcBain/mbtiles_example">this repository</a>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
@@ -2539,7 +2539,8 @@ Figure 4: ABS mesh blocks, local view
 <li id="fn1" role="doc-endnote"><p>Compression is normally assumed to be used. It is possible to avoid it though.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>The mesh blocks are projected in GDA2020, how modern!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>which {rdeck} does<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>and yes, Quarto<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>In particular <code>--hilbert</code> seems to make coalescing much better<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>and yes, Quarto<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
