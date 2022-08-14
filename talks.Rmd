@@ -4,7 +4,7 @@ description: |
   Presentations given by me
 ---
 
-
+* [Really Useful Engines: Engineering Data Science](https://github.com/MilesMcBain/really_useful_engines), Australian Statistical Society, Victorian Branch, July 2022
 * [That Feeling of Workflowing](https://github.com/MilesMcBain/nycr_meetup_talk), New York Open Statistical Programming Meetup, August 2020
 * [So Hot Right Now: Data Science at Queensland Fire and Emergency Services](https://docs.google.com/presentation/d/1dl6EF1X_UqBWFE-2ySkvs0YOpK52Dlass3KE4a04SLE/edit?usp=sharing), WOMBAT, November 2019
 * [Our Colours of Magic: The open sourcery of fantastic R packages](https://github.com/MilesMcBain/rstudioconf_talk), RStudio::conf, January 2019
