@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: The Roots of Quotation</title>
 
@@ -2021,8 +2090,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.16/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2170,6 +2244,12 @@ li::marker {
 
 <div class="d-title">
 <h1>The Roots of Quotation</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:lisp" class="dt-tag">lisp</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>In this post I use Lisp as a prop to have the quoting conversation from the start. It’s a deep dive that will hopefully arrive at a deep understanding.</p></p>
 </div>
 
@@ -2202,39 +2282,33 @@ li::marker {
 <p>Now I’m going to present a scenario that will give you some insight into the importance of <code>quote</code> in making evaluation work, but before I can do that I’ll need to give you a brief primer of Lisp functions and evaluation rules.</p>
 <h2 id="lisp-in-a-paragraph">Lisp in a paragraph</h2>
 <p>In Lisp everything is either an atom or a list. atoms are literals like <code>3.14</code>, <code>"Hello"</code>, or names of variables or functions like: <code>myvar</code>, <code>list</code>, <code>quote</code>. Lists are denoted with <code>()</code> and contain atoms and or other lists. When writing Lisp programs you write lists, each of which is interpreted as a function call unless otherwise instructed<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. In a function call the first list element is a name identifying the function and the following elements become its arguments. To make that concrete, this R expression:</p>
-<pre class="r"><code>
-list(1, 2, list(3, 4) )
-
-#&gt; [[1]]
-# [1] 1
-#
-# [[2]]
-# [1] 2
-#
-# [[3]]
-# [[3]][[1]]
-# [1] 3
-#
-# [[3]][[2]]
-# [1] 4
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fu">list</span>(<span class="dv">3</span>, <span class="dv">4</span>) )</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [[2]]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># [[3]]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># [[3]][[1]]</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 3</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># [[3]][[2]]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 4</span></span></code></pre></div>
 <p>has this lisp equivalent:</p>
-<pre class="lisp"><code>
-(list 1 2 (list 3 4))
-
-; =&gt; (1 2 (3 4))</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> (<span class="kw">list</span> <span class="dv">3</span> <span class="dv">4</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">; =&gt; (1 2 (3 4))</span></span></code></pre></div>
 <h2 id="the-set-up">The set up</h2>
 <p>Let me now introduce you to a Lisp function called <code>set</code>. It has a role as an assignment function. Given that, you might try something like:</p>
-<pre class="lisp"><code>
-(set myvar &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set</span> myvar <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>But that’ll get you an error: <code>The variable MYVAR is unbound</code>. So the program tried to evaluate <code>myvar</code> and found it was not defined - we knew that - we were just trying to define it!</p>
 <p>So okay let’s go out on a limb:</p>
-<pre class="lisp"><code>
-(set &quot;myvar&quot; &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set</span> <span class="st">&quot;myvar&quot;</span> <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>Error again: <code>The value "myvar" is not of type SYMBOL when binding SYMBOL</code></p>
 <p>Yikes. So it won’t take a string as a variable name because that’s not a ‘symbol’, but if we give it plain text it will try to evaluate it and find it unbound. You may have guessed where this is going. We need to tell the program: Don’t evaluate <code>myvar</code>, it’s not code, it’s data for the <code>set</code> operation. We need to use <code>quote</code>:</p>
-<pre class="lisp"><code>
-(set (quote myvar) &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set</span> (<span class="kw">quote</span> myvar) <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>There are several shorthands available to make this less cumbersome. In Lisp <code>(quote myvar)</code> can also be written as <code>'myvar</code>, and furthermore, these are all equivalent:</p>
 <ul>
 <li><code>(set (quote myvar) "myvalue")</code></li>
@@ -2244,89 +2318,100 @@ list(1, 2, list(3, 4) )
 <p>It may not surprise you to learn <code>setq</code> (a quoting set) is a standard way to perform assignment in Lisp. In fact it’s verging on impossible to do something resembling traditional assignment in Lisp without a quoting function being involved somehow.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <h2 id="getting-us-on-a-technicality">Getting us on a technicality</h2>
 <p>An interesting discussion point arises from the previous example: <code>quote</code> seems to return the text we supply as a ‘symbol’ since that is the input expected by <code>set</code>. How can we reconcile that with <a href="https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/substitute">descriptions of <code>quote</code></a> that say it ‘simply’ returns its argument unevaluated? Consider these R and Lisp expressions:</p>
-<pre class="r"><code>
-## R
-x &lt;- quote(y)
-class(x)
-# [1] &quot;name&quot;
-
-;; Lisp
-(setq x (quote y))
-(type-of x)
-; =&gt; SYMBOL</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">quote</span>(y)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;name&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>;; Lisp</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(setq <span class="fu">x</span> (quote y))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>(type<span class="sc">-</span>of x)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> SYMBOL</span></code></pre></div>
 <p>Come on R, the thing I passed you didn’t have a class. You definitely evaluated <em>something</em>, and Lisp you’re no better… can unevaluated text have a data type?</p>
 <p>It turns out that these type of definitions of <code>quote</code> are correct only if we apply a narrow and technical definition of <em>evaluate</em>. The relevant background to comprehend this definition is well articulated by Peter Seibel in <a href="http://www.gigamonkeys.com/book/syntax-and-semantics.html">Chapter 4 of Practical Common Lisp</a>. Here’s a crude summary:</p>
 <p>Compilers and interpreters are most often opaque to programmers. It is usual though that they are made up of subprograms. There is usually a distinct program with the responsibility of parsing the text we type and creating a structure of machine-readable of tokens or symbols. Then there is usually a distinct program responsible for mapping parts of this structure to low level code to be executed on the processor. This last program - the one in control of execution - is considered to be the ‘evaluator’ of the code.</p>
-<p>So what this means is that code can be transformed and structured by sub-programs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> without technically being evaluated until it is processed by the ‘evaluator’. ==In the Lisp family of programming languages it is possible to instruct the evaluator to leave off, and instead of an evaluation result, the machine-readable symbolic structure that would have been ‘evaluated’ is returned. <em>This</em> is what <code>quote</code> does.==</p>
+<p>So what this means is that code can be transformed and structured by sub-programs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> without technically being evaluated until it is processed by the ‘evaluator’. In the Lisp family of programming languages it is possible to instruct the evaluator to leave off, and instead of an evaluation result, the machine-readable symbolic structure that would have been ‘evaluated’ is returned. <em>This</em> is what <code>quote</code> does.</p>
 <h2 id="code-as-data">Code as Data</h2>
 <p>If you have investigated much of the tidy eval documentation you may know the machine-readable symbolic structure returned by <code>quote</code> as an <em>Abstract Syntax Tree</em>. In Lisp it’s just regular nested lists. In the previous section, the R class <code>"name"</code> and Lisp type <code>SYMBOL</code> are atomic elements of these structures respectively. Quoting more complex code will yield different structures. Since Lisp uses plain lists for data and code, it is intuitive that syntactical structures can be manipulated using regular list mechanisms - somewhat surprisingly this holds for R as well:</p>
-<pre class="r"><code>
-## R
-y &lt;- quote(abs(x - 1))
-class(y)
-# [1] &quot;call&quot;
-
-y[1]
-# abs()
-
-y[2]
-#(x - 1)()
-
-y[[1]] &lt;- quote(sin)
-y
-# sin(x - 1)
-
-;; Lisp
-(setq y (quote (abs (- x 1))))
-(type-of y)
-; =&gt; CONS
-
-(car y)
-; =&gt; ABS
-
-(cdr y)
-; =&gt; ((- X 1))
-
-(setf (car y) (quote sin))
-
-(print y)
-; =&gt; (sin (- x 1))</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="fu">abs</span>(x <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;call&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">1</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># abs()</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">2</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#(x - 1)()</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>y[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">quote</span>(sin)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># sin(x - 1)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>;; Lisp</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>(setq <span class="fu">y</span> (<span class="fu">quote</span> (<span class="fu">abs</span> (<span class="sc">-</span> x <span class="dv">1</span>))))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>(type<span class="sc">-</span>of y)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> CONS</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>(car y)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> ABS</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>(cdr y)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> ((<span class="sc">-</span> X <span class="dv">1</span>))</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>(<span class="fu">setf</span> (car y) (quote sin))</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>(print y)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> (<span class="fu">sin</span> (<span class="sc">-</span> x <span class="dv">1</span>))</span></code></pre></div>
 <p>Lisp notes: <code>car</code> can be thought of as <code>y[[1]]</code> and <code>cdr</code> can be thought of as <code>y[-1]</code>. <code>setf</code> is a general version of <code>setq</code> that can handle the equivalent of <code>[&lt;-</code> in R.</p>
 <h2 id="data-to-code">Data to Code</h2>
 <p>The last piece of the puzzle is taking the data that we have manipulated and evaluating it as code once again. Then we’re metaprogramming. Continuing from above, we do this in both Lisp and R with <code>eval</code>, after setting a value for <code>x</code>.</p>
-<pre class="r"><code>
-## R
-x &lt;- 1
-eval(y)
-# [1] 0
-
-;; Lisp
-(setq x 1)
-(eval y)
-; =&gt; 0.0</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(y)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>;; Lisp</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>(setq x <span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>(eval y)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>; <span class="ot">=&gt;</span> <span class="fl">0.0</span></span></code></pre></div>
 <h2 id="quote-derivatives">Quote derivatives</h2>
-<p>With our understanding of <code>quote</code> firming up it is natural to see if we can use it to understand other related concepts like <em>unquoting</em> and <em>quasiquotation</em>. Applying the natural interpretation of the prefixes ‘un’ and ‘quasi’ we might guess: * unquoting is the reverse of quoting? Machine-readable back to human readable? Can it be be ‘evaluation’? We already have a word for that. * quasiquotation is something that is almost but not quite quotation?</p>
+<p>With our understanding of <code>quote</code> firming up it is natural to see if we can use it to understand other related concepts like <em>unquoting</em> and <em>quasiquotation</em>. Applying the natural interpretation of the prefixes ‘un’ and ‘quasi’ we might guess:</p>
+<ul>
+<li>unquoting is the reverse of quoting? Machine-readable back to human readable? Can it be be ‘evaluation’? We already have a word for that.</li>
+<li>quasiquotation is something that is almost but not quite quotation?</li>
+</ul>
 <p>And we’d be wrong on two counts. But it’s not our fault - these are terms are straight up jargon. The concepts they describe are simple to explain and motivate though. A last Lisp example should do the trick:</p>
 <p>Let’s say we are operating in a scenario where we are trying to compose a list to eventually become function call that takes a function as an argument. We have to build two lists, quoting most of the arguments, except the last one where we want the result of the code in that position, <code>(+ 1 1)</code>, as the argument.</p>
 <p>We are actually quoting more often than we are evaluating, e.g:</p>
-<pre class="lisp"><code>
-(list &#39;myfun &#39;arg1 (list &#39;myfun2 &#39;arg2 (+ 1 1)))
-; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list</span> &#39;myfun &#39;arg1 (<span class="kw">list</span> &#39;myfun2 &#39;arg2 (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</span></span></code></pre></div>
 <p>Ugh, very noisy. It would be convenient syntactically if we could switch into a complimentary mode where instead of telling Lisp what we want to quote, we just tell it what needs to be evaluated. Quoting becomes the standard procedure.</p>
-<p>==This anti-quoting mode is what was named ‘quasiquotation’==. In Lisp you switch it on using the ‘`’ operator, and you signal things needing evaluation using a ‘,’. So when ‘quasiquoting’ the above function would be:</p>
-<pre class="lisp"><code>
-`(myfun arg1 (myfun2 arg2 ,(+ 1 1)))
-; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</code></pre>
+<p>This anti-quoting mode is what was named ‘quasiquotation’. In Lisp you switch it on using the ‘`’ operator, and you signal things needing evaluation using a ‘,’. So when ‘quasiquoting’ the above function would be:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>`(myfun arg1 (myfun2 arg2 ,(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</span></span></code></pre></div>
 <p>Signaling things need evaluating in the midst of quasiquotation is what has been called unquoting. Notice the effect of unquoting is that the result of the evaluation, <code>'2'</code>, becomes data in the list that is returned.</p>
 <p>In simple cases like above unquote is effectively saying ‘evaluate’. But it does make sense to have a different term, since it is possible to have nested quasiquotation and unquote is not equivalent to evaluate in that context - it’s an evaluation somewhere down the line.</p>
 <p>FYI you’ve now seen the Lisp ‘backquote macro’ referred to by R’s <code>bquote</code> that I showed the help for in the introduction.</p>
 <h1 id="a-distillation">A Distillation</h1>
-<p>Now let me try and distill the concepts we have covered into a few memorable one-liners: * <code>quote</code> transforms code into data. * That data being the machine-readable symbolic structure needed to <strong>formally</strong> evaluate it. * <code>quasiquotation</code> is a mode that assumes we want all code transformed to data. * <code>unquote</code> flags code that we wish to have the result of transformed to data. * In the context of quasiquotation.</p>
+<p>Now let me try and distill the concepts we have covered into a few memorable one-liners:</p>
+<ul>
+<li><code>quote</code> transforms code into data.
+<ul>
+<li>That data being the machine-readable symbolic structure needed to <strong>formally</strong> evaluate it.</li>
+</ul></li>
+<li><code>quasiquotation</code> is a mode that assumes we want all code transformed to data.</li>
+<li><code>unquote</code> flags code that we wish to have the result of transformed to data.
+<ul>
+<li>In the context of quasiquotation.</li>
+</ul></li>
+</ul>
 <h1 id="conclusion">Conclusion</h1>
 <p>The big light bulb arising from this for me was when I gained appreciation for <code>quote</code> as a code -&gt; data transformation. I think the main reason I found studying quoting in Lisp revelatory in this regard is that the mechanics are <strong>a)</strong> simple and <strong>b)</strong> predictable. Code and data <a href="https://twitter.com/_lionelhenry/status/1020224078592999424">are both plain lists</a>. These properties make Lisp a useful sandbox for building confidence with metraprogramming ideas.</p>
 <p>In R you can really only have <strong>a)</strong> OR <strong>b)</strong> but not both. Base R quoting and Non-Standard evaluation functions are few and seem simple on the surface but are dogged by behaviour that changes with context (e.g. <code>substitute</code>) or are less general/robust than we might like (e.g. <code>bquote</code>).</p>
 <p>Tidy eval deserves our appreciation for doing something similar to what <code>purrr</code> did for functional programming: it’s rounding off the jagged edges in the API and making metaprogramming in R much more stable and predictable. The trouble, as <a href="https://milesmcbain.xyz/solving-the-challenge-of-tidyeval/">I have discussed previously</a>, is this has come at the cost of simplicity. There’s much work to be done to break that down and this post has just focused on one foundational aspect.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>Examples: <a href="https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/bquote">bquote (<em>base R</em>)</a>, <a href="https://www.rdocumentation.org/packages/rlang/versions/0.2.1/topics/quasiquotation">quasiquotation (<em>rlang</em>)</a>, <a href="https://adv-r.hadley.nz/quasiquotation.html">quasiquotation (<em>Advanced R</em>)</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

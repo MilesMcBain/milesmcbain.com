@@ -132,7 +132,7 @@ It turns out that these type of definitions of `quote` are correct only if we ap
 
 Compilers and interpreters are most often opaque to programmers. It is usual though that they are made up of subprograms. There is usually a distinct program with the responsibility of parsing the text we type and creating a structure of machine-readable of tokens or symbols. Then there is usually a distinct program responsible for mapping parts of this structure to low level code to be executed on the processor. This last program - the one in control of execution - is considered to be the 'evaluator' of the code.
 
-So what this means is that code can be transformed and structured by sub-programs^[Called names like 'lexical analyser' and 'parser'] without technically being evaluated until it is processed by the 'evaluator'. ==In the Lisp family of programming languages it is possible to instruct the evaluator to leave off, and instead of an evaluation result, the machine-readable symbolic structure that would have been 'evaluated' is returned. *This* is what `quote` does.==
+So what this means is that code can be transformed and structured by sub-programs^[Called names like 'lexical analyser' and 'parser'] without technically being evaluated until it is processed by the 'evaluator'. In the Lisp family of programming languages it is possible to instruct the evaluator to leave off, and instead of an evaluation result, the machine-readable symbolic structure that would have been 'evaluated' is returned. *This* is what `quote` does.
 
 ## Code as Data
 
@@ -192,8 +192,9 @@ eval(y)
 ## Quote derivatives
 
 With our understanding of `quote` firming up it is natural to see if we can use it to understand other related concepts like *unquoting* and *quasiquotation*. Applying the natural interpretation of the prefixes 'un' and 'quasi' we might guess:
-* unquoting is the reverse of quoting? Machine-readable back to human readable? Can it be be 'evaluation'? We already have a word for that.
-* quasiquotation is something that is almost but not quite quotation?
+
+  * unquoting is the reverse of quoting? Machine-readable back to human readable? Can it be be 'evaluation'? We already have a word for that.
+  * quasiquotation is something that is almost but not quite quotation?
 
 And we'd be wrong on two counts. But it's not our fault - these are terms are straight up jargon. The concepts they describe are simple to explain and motivate though. A last Lisp example should do the trick:
 
@@ -208,7 +209,7 @@ We are actually quoting more often than we are evaluating, e.g:
 
 Ugh, very noisy. It would be convenient syntactically if we could switch into a complimentary mode where instead of telling Lisp what we want to quote, we just tell it what needs to be evaluated. Quoting becomes the standard procedure. 
 
-==This anti-quoting mode is what was named 'quasiquotation'==. In Lisp you switch it on using the '`' operator, and you signal things needing evaluation using a ','. So when 'quasiquoting' the above function would be:
+This anti-quoting mode is what was named 'quasiquotation'. In Lisp you switch it on using the '`' operator, and you signal things needing evaluation using a ','. So when 'quasiquoting' the above function would be:
 
 ```lisp
 `(myfun arg1 (myfun2 arg2 ,(+ 1 1)))
@@ -224,10 +225,11 @@ FYI you've now seen the Lisp 'backquote macro' referred to by R's `bquote` that 
 # A Distillation
 
 Now let me try and distill the concepts we have covered into a few memorable one-liners:
-* `quote` transforms code into data.
+
+  * `quote` transforms code into data.
     * That data being the machine-readable symbolic structure needed to **formally** evaluate it.
-* `quasiquotation` is a mode that assumes we want all code transformed to data.
-* `unquote` flags code that we wish to have the result of transformed to data.
+  * `quasiquotation` is a mode that assumes we want all code transformed to data.
+  * `unquote` flags code that we wish to have the result of transformed to data.
     * In the context of quasiquotation.
 
 # Conclusion
