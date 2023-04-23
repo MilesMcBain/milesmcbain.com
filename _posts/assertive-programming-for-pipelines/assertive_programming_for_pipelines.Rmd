@@ -122,6 +122,7 @@ I'm really enjoying `{testthat}` for my in-pipeline assertive programming at the
 There's one significant advantage assertive programming has over traditional testing for pipelines that is worth mentioning and remembering if you're ever challenged about it: by design, software tests run outside of the 'production' pipeline code. The test suite is separate from the main codebase that gets the work done. A consequence of that is even though the tests exist, there is nothing that guarantees they all passed, or indeed even ran, before the pipeline code was executed. By moving the test conditions into the pipeline and expressing them as assertions, we guarantee all the conditions were met, otherwise, the pipeline would have failed to complete. This is a very useful guarantee from a reproducibility perspective.
 
 Some other packages I've used, and recommend for assertive programming:
+
   - [`{assertthat}`](https://github.com/hadley/assertthat) It's a lightweight assertion package by Hadley, the reporting is not as nice as `{testthat}` but it has some handy one-liners for common assertions.
   - [`{pointblank}](https://github.com/rich-iannone/pointblank) This is a heavier-duty package that helps you validate all aspects of datatsets with extensive reporting capabilities.
 
