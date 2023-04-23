@@ -12,7 +12,18 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 10 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>How to be assertive about not testing your data science pipeline</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/assertive-programming-for-pipelines</link>
+      <description>An introduction to assertive programming as an alternative to testing</description>
+      <category>rstats</category>
+      <category>workflow</category>
+      <guid>https://milesmcbain.com/posts/assertive-programming-for-pipelines</guid>
+      <pubDate>Sun, 23 Apr 2023 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.com/posts/assertive-programming-for-pipelines/pipelines.png" medium="image" type="image/png" width="1300" height="867"/>
+    </item>
     <item>
       <title>Push the limits of interactive mapping in R with vector tiles</title>
       <dc:creator>Miles McBain</dc:creator>
