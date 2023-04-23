@@ -2275,7 +2275,7 @@ Figure 1: A solidly built pipeline, or is it?
 <p>This is a short post introducing assertive programming as an alternative to traditional software testing that probably makes more sense for data science pipeline code.</p>
 <h1 id="getting-assertive">Getting assertive</h1>
 <p>Assertive programming is a useful defensive programming technique where we try to identify problems with our data early, and throw an error rather than letting that problem propagate deeper into the program where it might cause all sorts of weird and wonderful bugs.</p>
-<p>If you’ve ever written an #rstats function there’s a reasonable chance you made some attempt to validate your inputs. For example:</p>
+<p>If you’ve ever written an #rstats function there’s a reasonable chance you made some attempt to validate your inputs. Congratulations you’re assertive programming. For example:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(name) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(name) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="fu">is.character</span>(name))</span>
@@ -2302,7 +2302,7 @@ Figure 1: A solidly built pipeline, or is it?
 </div>
 </div>
 <p>This example is so simple we wouldn’t bother testing it, but imagine the classification was a bit more involved and the code makes us a bit uneasy.</p>
-<p>If we tried the traditional approach and fired up <code>{testhat}</code> to write a test for <code>add_record_classification()</code> the very first hurdle we’d face is to create some test data. And this is where things get start to get awkward. We already have a dataset… so should we carve off some of that and use it as test data? That would be an oddly specific test. But then should we create a test dataset that is different from the dataset we know we plan to use for the sake of testing the function?</p>
+<p>If we tried the traditional approach and fired up <code>{testthat}</code> to write a test for <code>add_record_classification()</code> the very first hurdle we’d face is to create some test data. And this is where things get start to get awkward. We already have a dataset… so should we carve off some of that and use it as test data? That would be an oddly specific test. But then should we create a test dataset that is different from the dataset we know we plan to use for the sake of testing the function?</p>
 <p>If you’ve done a lot of testing you might say, “Ahah but what if <code>body_mass_g</code> is NA?”, and that would be a useful thing to think about. But it turns out our current dataset doesn’t have any NAs for now. Should we invent a test dataset that contains NAs we know we don’t have for the sake of it? That would force us to write new code to address a problem we don’t have.</p>
 <p>I mean sure the data might change, that’s a valid perspective. But writing robust NA handling for the sake of passing a test, for a case we know we won’t encounter for real now is very speculative. In my opinion, it’s better to take a lazy approach, and put in the NA handling code if and when that situation arises. Assertive programming is how we detect when that situation arises:</p>
 <div class="layout-chunk" data-layout="l-body">

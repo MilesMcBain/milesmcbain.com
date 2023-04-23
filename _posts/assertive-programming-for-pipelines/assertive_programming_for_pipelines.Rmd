@@ -25,7 +25,7 @@ This is a short post introducing assertive programming as an alternative to trad
 
 Assertive programming is a useful defensive programming technique where we try to identify problems with our data early, and throw an error rather than letting that problem propagate deeper into the program where it might cause all sorts of weird and wonderful bugs.
 
-If you've ever written an #rstats function there's a reasonable chance you made some attempt to validate your inputs. For example:
+If you've ever written an #rstats function there's a reasonable chance you made some attempt to validate your inputs. Congratulations you're assertive programming. For example:
 
 ```{r eval=FALSE}
 my_function <- function(name) {
@@ -59,7 +59,7 @@ add_record_classification <- function(dataset) {
 
 This example is so simple we wouldn't bother testing it, but imagine the classification was a bit more involved and the code makes us a bit uneasy.
 
-If we tried the traditional approach and fired up `{testhat}` to write a test for `add_record_classification()` the very first hurdle we'd face is to create some test data. And this is where things get start to get awkward. We already have a dataset... so should we carve off some of that and use it as test data? That would be an oddly specific test. But then should we create a test dataset that is different from the dataset we know we plan to use for the sake of testing the function?
+If we tried the traditional approach and fired up `{testthat}` to write a test for `add_record_classification()` the very first hurdle we'd face is to create some test data. And this is where things get start to get awkward. We already have a dataset... so should we carve off some of that and use it as test data? That would be an oddly specific test. But then should we create a test dataset that is different from the dataset we know we plan to use for the sake of testing the function?
 
 If you've done a lot of testing you might say, "Ahah but what if `body_mass_g` is NA?", and that would be a useful thing to think about. But it turns out our current dataset doesn't have any NAs for now. Should we invent a test dataset that contains NAs we know we don't have for the sake of it? That would force us to write new code to address a problem we don't have.
 
