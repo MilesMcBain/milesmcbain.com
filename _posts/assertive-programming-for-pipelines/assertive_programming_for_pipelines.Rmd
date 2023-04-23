@@ -52,7 +52,7 @@ add_record_classification <- function(dataset) {
     mutate(size = case_when(
       body_mass_g >= 4000 ~ "big",
       body_mass_g >= 3000 ~ "medium",
-      body_mass_g < 3000 ~ "mmall"
+      body_mass_g < 3000 ~ "small"
     ))
 }
 ```
