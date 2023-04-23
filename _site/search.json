@@ -5,14 +5,14 @@
       "title": "About this blog",
       "author": [],
       "contents": "\nThis is the personal blog of Miles McBain, coming to you from Brisbane, Queensland, Australia.\nFind me online:\n@milesmcbain\n@milesmcbain\n@milesmcbain@fosstodon.org\nmicro.blog/milesmcbain\n\n\n\n",
-      "last_modified": "2023-04-23T13:29:22+10:00"
+      "last_modified": "2023-04-23T13:32:14+10:00"
     },
     {
       "path": "index.html",
       "title": "Posts",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2023-04-23T13:29:23+10:00"
+      "last_modified": "2023-04-23T13:32:15+10:00"
     },
     {
       "path": "other_writings.html",
@@ -20,7 +20,7 @@
       "description": "Things I've posted elsewhere",
       "author": [],
       "contents": "\nCombining Australian Census data with the Same Sex Marriage Postal Survey in R (Medium)\nTidying the Australian Same Sex Marriage Postal Survey Data with R (Medium)\nAustralia Unconference (rOpenSci)\nLaunching webrockets at runconf17 (rOpenSci)\nR Has No Primitives (One weiRd tip)\nWhat the shist()? (One weiRd tip)\n\n\n\n",
-      "last_modified": "2023-04-23T13:29:24+10:00"
+      "last_modified": "2023-04-23T13:32:16+10:00"
     },
     {
       "path": "talks.html",
@@ -28,7 +28,7 @@
       "description": "Presentations given by me",
       "author": [],
       "contents": "\nReally Useful Engines: Engineering Data Science, Australian Statistical Society, Victorian Branch, July 2022\nThat Feeling of Workflowing, New York Open Statistical Programming Meetup, August 2020\nSo Hot Right Now: Data Science at Queensland Fire and Emergency Services, WOMBAT, November 2019\nOur Colours of Magic: The open sourcery of fantastic R packages, RStudio::conf, January 2019\nMaking an Impact With Software Publishing, QUT BRAG, May 2018\nA High Level Overview of Low Level Computing, QUT BRAG, December 2017\nThis Thing Called GitHub, BURGr, September 2017\nDiscovering R Packages, BURGr, April 2017\nBig Data as a Discipline, AMSI Summer School, January 2017\n\n\n\n",
-      "last_modified": "2023-04-23T13:29:24+10:00"
+      "last_modified": "2023-04-23T13:32:16+10:00"
     }
   ],
   "collections": ["posts/posts.json"]

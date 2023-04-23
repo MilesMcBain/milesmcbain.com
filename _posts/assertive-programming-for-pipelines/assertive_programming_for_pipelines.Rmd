@@ -85,7 +85,7 @@ If you're scoffing, remember this is pipeline code. It's designed to take a spec
 
 You may agree with my approach but be uncomfortable with being so lazy because your pipelines are a long-running process. It would suck to get that error 30 minutes into a run - that's for sure. But if that's the case I'd argue you can do a lazier and better job of things by converting your pipeline to use `{targets}` and then that problem goes away. You can resume processing from close to where the error occurred.
 
-# {testhat} as an assertive programming tool
+# {testthat} as an assertive programming tool
 
 There are lots of great tools in R for assertive programming. An interesting find for me is that `{testthat}` is incredibly useful in this regard, due to the detailed errors it gives when it finds conditions that aren't met. For example, quite often after combining a bunch of datasets or sending them through a pipeline of manipulations, I want to assert that I have not inadvertently changed the length of the output dataset either by accidentally dropping rows or accidentally introducing duplicates:
 
