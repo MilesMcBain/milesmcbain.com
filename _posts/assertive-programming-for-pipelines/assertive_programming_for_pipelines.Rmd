@@ -126,4 +126,10 @@ Some other packages I've used, and recommend for assertive programming:
   - [`{assertthat}`](https://github.com/hadley/assertthat) It's a lightweight assertion package by Hadley, the reporting is not as nice as `{testthat}` but it has some handy one-liners for common assertions.
   - [`{pointblank}`](https://github.com/rich-iannone/pointblank) This is a heavier-duty package that helps you validate all aspects of datatsets with extensive reporting capabilities.
 
+Tools suggested by `#rstats` community members on Mastodon:
+
+  - [`{assertr}`](https://github.com/ropensci/assertr) Includes many flavours of data frame checks.
+  - [`{checkmate}`](https://mllg.github.io/checkmate/) Rich facilities for function argument type validation.
+  - [`{contentid}`](https://github.com/cboettig/contentid) A complementary tool for ensuring input data has not changed.
+
 In conclusion, I hope I've helped you feel better about not testing your pipeline code. You know what to do. Be assertive about it!
