@@ -10,7 +10,6 @@ This is the personal blog of Miles McBain, coming to you from Brisbane, Queensla
 
 Find me online:
 
-  - `r fontawesome::fa("twitter")` [`@milesmcbain`](https://www.twitter.com/milesmcbain)
   - `r fontawesome::fa("github")` [`@milesmcbain`](https://www.github.com/milesmcbain)
   - `r fontawesome::fa("mastodon")` [`@milesmcbain@fosstodon.org`](https://fosstodon.org/@milesmcbain)
   - [`micro.blog/milesmcbain`](https://micro.blog/milesmcbain)
