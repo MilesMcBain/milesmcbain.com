@@ -18,54 +18,123 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
-<title>Before I Sleep: Project as an R package: An okay idea</title>
+<title>Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike</title>
 
-<meta property="description" itemprop="description" content="The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend"/>
+<meta property="description" itemprop="description" content="I review our car-replacement cargo ebike one year on."/>
 
-<link rel="canonical" href="https://milesmcbain.com/posts/an-okay-idea/"/>
+<link rel="canonical" href="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 <link rel="icon" type="image/vnd.microsoft.icon" href="../../images/favicon.ico"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2020-07-24"/>
-<meta property="article:created" itemprop="dateCreated" content="2020-07-24"/>
+<meta property="article:published" itemprop="datePublished" content="2023-10-23"/>
+<meta property="article:created" itemprop="dateCreated" content="2023-10-23"/>
 <meta name="article:author" content="Miles McBain"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Before I Sleep: Project as an R package: An okay idea"/>
+<meta property="og:title" content="Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend"/>
-<meta property="og:url" content="https://milesmcbain.com/posts/an-okay-idea/"/>
-<meta property="og:image" content="https://milesmcbain.com/posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg"/>
+<meta property="og:description" content="I review our car-replacement cargo ebike one year on."/>
+<meta property="og:url" content="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"/>
+<meta property="og:image" content="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/evamos_city.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Before I Sleep"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Before I Sleep: Project as an R package: An okay idea"/>
-<meta property="twitter:description" content="The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend"/>
-<meta property="twitter:url" content="https://milesmcbain.com/posts/an-okay-idea/"/>
-<meta property="twitter:image" content="https://milesmcbain.com/posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg"/>
+<meta property="twitter:title" content="Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike"/>
+<meta property="twitter:description" content="I review our car-replacement cargo ebike one year on."/>
+<meta property="twitter:url" content="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"/>
+<meta property="twitter:image" content="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/evamos_city.jpg"/>
 <meta property="twitter:site" content="@milesmcbain"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Before I Sleep: Project as an R package: An okay idea"/>
-<meta name="citation_fulltext_html_url" content="https://milesmcbain.com/posts/an-okay-idea/"/>
+<meta name="citation_title" content="Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike"/>
+<meta name="citation_fulltext_html_url" content="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"/>
 <meta name="citation_fulltext_world_readable" content=""/>
-<meta name="citation_online_date" content="2020/07/24"/>
-<meta name="citation_publication_date" content="2020/07/24"/>
+<meta name="citation_online_date" content="2023/10/23"/>
+<meta name="citation_publication_date" content="2023/10/23"/>
 <meta name="citation_author" content="Miles McBain"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Project as an R package: An okay idea"]},{"type":"character","attributes":{},"value":["The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["2020-07-24"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["rstats","workflow","data science"]},{"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/an-okay-idea/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/an-okay-idea/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","preview","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["12 months and 2700km with the Tribe Evamos Longtail cargo ebike"]},{"type":"character","attributes":{},"value":["I review our car-replacement cargo ebike one year on."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com"]}]}]},{"type":"character","attributes":{},"value":["2023-10-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["evamos_city.jpg"]},{"type":"character","attributes":{},"value":["review","cargobikes"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg","project_as_an_r_package_files/bowser-1.9.3/bowser.min.js","project_as_an_r_package_files/distill-2.2.21/template.v2.js","project_as_an_r_package_files/header-attrs-2.3/header-attrs.js","project_as_an_r_package_files/jquery-1.11.3/jquery.min.js","project_as_an_r_package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["evamos_calf.jpg","evamos_chain_clearance.jpg","evamos_city.jpg","evamos_eddie_sleeping.jpg","evamos_em.png","evamos_esky.jpg","evamos_happy_kiddo.jpg","evamos_loaded.jpg","evamos_me.jpg","evamos_park.jpg","evamos_rig.jpg","evamos_shopping.jpg","evamos_trip.jpg","evamos_vs_urban_arrow.jpg","evamos_wheel.jpg","tribe-evamos-longtail-cargo-review_files/anchor-4.2.2/anchor.min.js","tribe-evamos-longtail-cargo-review_files/bowser-1.9.3/bowser.min.js","tribe-evamos-longtail-cargo-review_files/distill-2.2.21/template.v2.js","tribe-evamos-longtail-cargo-review_files/header-attrs-2.23/header-attrs.js","tribe-evamos-longtail-cargo-review_files/jquery-3.6.0/jquery-3.6.0.js","tribe-evamos-longtail-cargo-review_files/jquery-3.6.0/jquery-3.6.0.min.js","tribe-evamos-longtail-cargo-review_files/jquery-3.6.0/jquery-3.6.0.min.map","tribe-evamos-longtail-cargo-review_files/popper-2.6.0/popper.min.js","tribe-evamos-longtail-cargo-review_files/tippy-6.2.7/tippy-bundle.umd.min.js","tribe-evamos-longtail-cargo-review_files/tippy-6.2.7/tippy-light-border.css","tribe-evamos-longtail-cargo-review_files/tippy-6.2.7/tippy.css","tribe-evamos-longtail-cargo-review_files/tippy-6.2.7/tippy.umd.min.js","tribe-evamos-longtail-cargo-review_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2028,7 +2097,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.23/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2143,7 +2218,7 @@ li::marker {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Project as an R package: An okay idea","description":"The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-07-24T00:00:00.000+10:00","citationText":"McBain, 2020"}
+{"title":"12 months and 2700km with the Tribe Evamos Longtail cargo ebike","description":"I review our car-replacement cargo ebike one year on.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.com","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-10-23T00:00:00.000+10:00","citationText":"McBain, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2175,214 +2250,352 @@ li::marker {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Project as an R package: An okay idea</h1>
-<p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p>
+<h1>12 months and 2700km with the Tribe Evamos Longtail cargo ebike</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:review" class="dt-tag">review</a>
+  <a href="../../index.html#category:cargobikes" class="dt-tag">cargobikes</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>I review our car-replacement cargo ebike one year on.</p></p>
 </div>
 
 <div class="d-byline">
-  Miles McBain <a href="https://milesmcbain.xyz" class="uri">https://milesmcbain.xyz</a> 
+  Miles McBain <a href="https://milesmcbain.com" class="uri">https://milesmcbain.com</a> 
   
-<br/>2020-07-24
+<br/>2023-10-23
 </div>
 
 <div class="d-article">
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="corrugated-cardboard-3853506_1280.jpg" width="100%" /></p>
+<p><img src="evamos_city.jpg" /><!-- --></p>
 </div>
-<p>This post is about an okay idea: structuring your R data analysis projects as packages.</p>
-<p>I say an “okay idea” because I’ve heard good points made by R community members I respect, and I agree with some of them - BUT ultimately I don’t think those points add up to a payoff that makes it a “good idea” for most teams in an industry context.</p>
-<p>There are quite a number of resources that list the pros of this way of working, and I will briefly summarise those before I examine the cons. I’ll discuss:</p>
+<p>Last week marked the one year anniversary of the purchase of our Tribe Evamos longtail cargo ebike. During this time we’ve racked up a whopping 2700 kilometres of trips to kindy, school, supermarkets, pool, gymnastics, library, parks, doctors, cafes, cinemas, and this list goes on. Should you buy this bike? Yes. Is it perfect? No. It has some flaws. Read on for my analysis.</p>
+<h1 id="background">Background</h1>
+<p>My family was not new to getting around by bike. For a couple of years, we had
+been getting around locally using an ebike to tow 2 kids in a Thule bike
+trailer. We started looking into cargo bikes around September 2022, since our
+boys were getting too large for the trailer, and the
+new school run seemed to demand something a bit more nimble.</p>
+<p>I’d been a commuter cyclist for 8 years, and my partner had been an on / off ebike
+commuter for the last couple of years. It was important that the cargo bike
+could suit us both.</p>
+<h1 id="comparing-the-market">Comparing the Market</h1>
+<p>The frustrating thing about searching for an electric cargo bike capable of replacing a car in Australia is the market is essentially a binary choice between:</p>
 <ul>
-<li>double handling of metadata</li>
-<li><button type="artifact">
-pointless artifacts
-</button></li>
-<li>milesmcbain.xyz::added milesmcbain.yxz::noise</li>
-<li>duplication of metadata</li>
+<li>Cheap sketchy drop-shipped-from-China brands with flimsy looking attachments in the $2K-$3K bracket.</li>
+<li>Hideously expensive overseas imports with sticker prices upward from $8K before you even start to accessorise.</li>
 </ul>
-<h1 id="pros">Pros</h1>
-<p>The primary argument is usually that by structuring your project as an R package you gain access to a plethora of automations and facilities that are going to make your life better.</p>
-<p>You get <code>{devtools}</code> and <code>{usethis}</code> for populating for speeding up menial development tasks including:</p>
-<ul>
-<li><code>devtools::load_all()</code> to populate your global environment with the most recent versions of your functions</li>
-<li><code>usethis::use_package()</code> to declare a dependency.</li>
-</ul>
-<p>The R CMD check routine can run on your project which will find things that do not comply with CRAN policy .e.g:</p>
-<ul>
-<li>undeclared dependencies</li>
-<li>incomplete function documentation</li>
-</ul>
-<p>You get a well paved on-ramp to continuous integration services on GitHub to run automated test reports on your project code after pushing each commit.</p>
-<p>You can wield the <code>DESCRIPTION</code> file, which:</p>
-<ul>
-<li>can make your work more easily searchable</li>
-<li>clearly documents the authors/copyright holders and helps make your work citable (via <code>citation()</code>)</li>
-<li>documents your dependencies</li>
-</ul>
-<p>If you install your project package onto a system it automatically installs dependencies defined in the <code>DESCRIPTION</code> file.</p>
-<p>You’re forced to put all your work in functions which hopefully triggers thought processes about composability and reuse.</p>
-<h2 id="further-reading">Further reading</h2>
-<p>The first place I encountered the project as package idea was when I heard about <a href="https://peerj.com/preprints/3192.pdf"><em>Research Compendia</em></a> and I believe it was through following <a href="https://twitter.com/ropensci">rOpensci</a> and <a href="https://twitter.com/benmarwick">Ben Marwick</a> online.</p>
-<p>It is notable that prominent proposals for the structure of a Research Compendium deviate significantly from that of a standard R package, for example: <a href="https://github.com/ropensci/rrrpkg" class="uri">https://github.com/ropensci/rrrpkg</a>. Ben Marwick has even created <a href="https://github.com/benmarwick/rrtools">distinct devtools-like tooling</a> for Research Compendia.</p>
-<p><a href="https://twitter.com/mdneuzerling/status/1284976213509849088">David Neuzerling</a> just wrote an excellent overview of the case for project as a package in his post <a href="https://mdneuzerling.com/post/data-science-workflows/"><em>Data Science Workflows</em></a>.</p>
-<h1 id="cons">Cons</h1>
-<p>And now for the main event…</p>
-<h2 id="double-handling-of-metadata">Double handling of metadata</h2>
-<p>The machine readable metadata in the DESCRIPTION file makes a lot of sense for something going to CRAN or some other deep storage archive. If you’re not actually releasing the project to public storage though some things become redundant.</p>
-<p>Let’s assume you use git for your project version control and host on GitHub. GitHub is your “deep storage”, and that means:</p>
-<ul>
-<li>The <code>Authors</code> of the project are already tracked and displayed on GitHub</li>
-<li><code>Title</code> and <code>Description</code> are made redundant by your README</li>
-<li><code>URL</code> and <code>BugReports</code> are useless because that’s the GitHub repo you work out of.</li>
-<li><code>Version</code> can be a git tag (GitHub release) <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
-</ul>
-<p><code>Imports</code>, <code>Depends</code>, and <code>Suggests</code> describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn’t on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<p>To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. To do this you use a lockfile or a dockerfile or both. Let’s say you use a lockfile created with <code>{renv}</code>. You now have a second place in your project repository that lists R package dependencies and version numbers.</p>
-<p>What’s worse is that these two statements of version dependence can easily become out of sync. This happens since lockfiles are typically generated by an automated snapshot process that examines your environment, while your DESCRIPTION is updated manually. Lockfiles obsolete dependencies in DESCRIPTION.</p>
-<h2 id="pointless-artifacts">Pointless artifacts</h2>
-<p>Pointless artifacts are things that must exist for your project to be a valid package by CRAN’s policies but serve no purpose for a project that isn’t going to be publicly released on CRAN.</p>
-<p>The most absurd pointless artifact for never-to-be released software is a license. You’ll need to declare an open source license acceptable to CRAN or R CMD check will throw an error in your continuous integration reports.</p>
-<p>Also in this category are the paths you must use for your files. Documents that are to be built by your project go in <code>./vignettes</code>. Report? It’s a vignette. Slide deck? That’s a vignette. Flexdashboard? That’s vignette too. What isn’t a vignette? Someone may well ask.</p>
-<p>Alternatively you could bury your documents in <code>/inst/docs</code>, since the <code>inst</code> folder is fair game, or you could introduce an <code>.Rbuildignore</code> file to indicate to R CMD check that a simple <code>./docs</code> should not be cause for alarm. The <code>.Rbuildignore</code> file is the pointless artifact in this case.</p>
-<h2 id="added-noise">Added noise</h2>
-<p>Every function call made in an R package that is not part of the base language needs to be tied to an appropriate namespace. The community has settled on the noisiest but most flexible approach to do this as standard, using the <code>::</code> operator.</p>
-<p>I dug up a real snippet of code from a recent project to demonstrate the difference.</p>
-<p>Here’s the standard for project as a package:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    dplyr::filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    dplyr::group_by(IncidentTypeCategory) %&gt;%
-    dplyr::mutate(total_hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    dplyr::mutate(
-      month = tsibble::yearmonth(floor_date(date, &quot;month&quot;)),
-      category = forcats::fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    dplyr::group_by(month, category) %&gt;%
-    dplyr::summarise(hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    tsibble::as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot2::ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    ggplot2::geom_path() +
-    ggplot2::scale_x_date() +
-    ggplot2::expand_limits(y = 0) +
-    ggplot2::facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    ggplot2::theme_minimal() +
-    ggplot2::labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    ggplot2::geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
-<p>and here’s what my team actually had:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    group_by(IncidentTypeCategory) %&gt;%
-    mutate(total_hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    mutate(
-      month = yearmonth(floor_date(date, &quot;month&quot;)),
-      category = fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    group_by(month, category) %&gt;%
-    summarise(hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    geom_path() +
-    scale_x_date() +
-    expand_limits(y = 0) +
-    facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    theme_minimal() +
-    labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
-<p>Note how we had <code>tsibble::fill_gaps</code> even in the second example even though we didn’t need to. This is sometimes done as a kindness for the reader when using lesser known functions.</p>
-<p>I find reading from a <code>%&gt;%</code> down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style <code>dplyr</code> flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<p>Surprisingly you must also use <code>::</code> to prefix functions from core namespaces that are loaded automatically by R. So that means <code>stats::</code>, <code>utils::</code>, and <code>tools::</code> etc with accompanying declarations in the <code>DESCRIPTION</code> file. A lot of commonly used functions are held in the core packages and I am regularly tripped up in package development trying to use functions without namespace prefixes that I thought were in the base language.</p>
-<p>Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like <code>EPSG_WEB_MERCATOR &lt;- 3857</code> so later in my code I can do <code>st_transform(sf_object, EPSG_WEB_MERCATOR)</code> instead of having the magic number <code>3857</code> appear from the ether.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
-<p>To do this in a package project I must introduce this odd looking side-effect function into my code:</p>
-<pre class="r"><code>
-globalVariables(c(&quot;EPSG_WEB_MERCATOR&quot;), &quot;my_package&quot;)
-WEBMERCATOR_EPSG &lt;- 3857</code></pre>
-<h1 id="dissecting-the-killer-features">Dissecting the killer features</h1>
-<p>From what fans of the project as a package workflow have said to me, the two killer features are:</p>
+<p>An Australian company called <em>Tribe</em> have made a sharp play for the middle, pitching a complete <em><a href="https://www.tribebikes.com.au/product/tribe-evamos-longtail/">Evamos</a></em> rig for around $5K on top of which you’ll probably pay another $400 for decent kids seats.</p>
+<p>In my opinion we can judge this play as a success if:</p>
 <ol type="1">
-<li>Having an easily installable artifact that will install its own dependencies</li>
-<li>Easy on-ramp to automated testing on GitHub continuous integration services.</li>
+<li>The Evamos is good enough quality to function as a daily family “driver”. I.e. it maintains decent battery range, and doesn’t fall to bits in the face of abuse from two rambunctious kids, or occasionally the adult pilot.</li>
+<li>The Evamos is just comfortable and ergonomic enough, that the design and concessions made to drive down cost don’t grate on you over time, and push you to the point where you wish you’d ‘just paid the extra’ to get the swish Euro ride with the telescopic dual-latching seat post.</li>
 </ol>
-<p>With respect to 1. I’ve already debunked the dependencies aspect - making your project a package is not a robust form of dependency management<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. On sharing, I’d argue <code>git clone https://github.com/my_org/my_project</code> is a pretty nice way to share a project, equivalent to <code>install_github("my_org/my_project")</code>.</p>
-<p>Thinking about 2: Automated testing is great, and the package ecosystem has a nicely paved flow consisting of just a couple of <code>{usethis}</code> calls. But your automated tests are run within RMD check which adds overhead and a whole basket of compliance requirements that are pointless.</p>
-<p>I think people are missing the fact the that there is nothing spooky about the way <code>{testthat}</code> works. There is a function called <code>testthat::test_dir</code> that runs a folder of <code>testthat</code> tests in an environment that is setup by <code>testthat.R</code> . You could change a couple of lines in the <a href="https://github.com/r-lib/actions/tree/master/examples">GitHub action for CMD check</a>, swapping <code>rcmdcheck::rcmdcheck</code> for <code>testthat::test_dir</code> and you have your automated testing without the tyranny of the CMD check and R package structure.</p>
-<h1 id="weighing-the-cons">Weighing the cons</h1>
-<p>Okay so here’s where I go full subjective and get to the heart of why project as a package upsets me.</p>
-<p>As data scientists we work in a field where there are very few objectively right outcomes. It doesn’t matter how we wrote our code, or how many unit tests it has, or even if our models converged<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.</p>
-<p>And the key word is <em>convincing</em>. It’s not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
-<p>So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
-<p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend.</p>
-<p>People have said: “Yes but once you know how to make packages it actually makes things clearer”. I find this an inhumane response on a number of levels. It steepens the learning curve before collaborators can become contributors. This is cruel if there are less convoluted options that would suffice.</p>
-<p>My response to advocates of project as a package is: ==You’re wasting precious time making the wrong packages.==</p>
-<p>Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren’t you packaging tools that create the smooth <code>{devtools}</code>/<code>{usethis}</code> style experience for your own domain?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
-<p>No really. Why. Aren’t. You. Doing. That?</p>
-<p>You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. Your domain, done in your style, under your rules.</p>
-<h1 id="conclusions-caveats-concessions">Conclusions, caveats, concessions</h1>
-<p>My aim here has been to provide some balance to a discussion that felt a bit one sided. I fully accept that I have but one vantage point and others will evaluate the tradeoffs project as package makes differently from theirs.</p>
-<p>For my peers slugging away in industry data science roles, my argument essentially boils down to:</p>
-<p>The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as ‘pros’, most can be realised under alternative workflows<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.</p>
-<p>I am more convinced of the R package approach for reproducible research objects. Although they may not be going to CRAN, they fully expect to be archived. In this case the DESCRIPTION file has more value. It also makes sense to adhere to a really common standard, since if the domain shifts over a very long period of time, it may actually aid comprehension of the work to be in a more general standard form.</p>
-<h1 id="where-to-next">Where to next</h1>
-<p>When I step back and look at what’s going on here I am <a href="https://www.gwern.net/Holy-wars">reminded of this very lucid article shared by Hadley Wickham</a> <a href="https://twitter.com/hadleywickham/status/1280340931657564160">on Twitter</a> recently. The article talks about the phenomenon of ‘bitrot’ and ‘bitcreep’ which are reciprocal software phenomena. In R, our collective tooling has seen significant <em>bitcreep</em> toward package development due to the amount and quality of developers who depend on these tools.</p>
-<p>Conversely tools that break the package development paradigm for projects are succeptible to <em>bitrot</em> since they have fewer developers and everything that comes with that is its own self-reinforcing disincentive to users and future developers.</p>
-<p>The way I see to combat this is with modularity. With small easy to maintain tools that we can compose to build our domain specific workflows. An example would be some kind of <code>{testthis}</code> package that encapsulates how to set up a project for automated testing with <code>{testthat}</code> sans CMD check. Another example might be a package that does something similar for linting.</p>
-<h1 id="with-thanks-to">With thanks to</h1>
-<p>The following #rstats community members who responded for my callout for feedback on Twitter, each opening my eyes to a different aspect of projects as packages:</p>
+<h1 id="as-a-daily-driver">As a Daily Driver</h1>
+<p>Most of the time our Evamos is configured as a people mover. We have it kitted out with the front basket, the running boards, the Crew Cab safety enclosure, a Polisport Guppy seat for the older child, and a Thule Yepp Maxi for the younger.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_rig.jpg" /><!-- --></p>
+</div>
+<p>Over the course of a typical week, it’s in service every single day. The staple
+rides are to the school<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, to the shops, or
+into the city for some entertainment. I’ll usually charge the bike’s battery
+twice over the week, for which I’ll pay the princely sum of about 18 cents. I am
+completely satisfied with the battery life we get.</p>
+<p>My partner and I have been caught out one time each needing to haul kids with no
+battery. There is a bit of a trick with the battery indicator, in that it is
+non-linear<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. What this means is that the first 3 bars of
+battery will last you 2x or 3x as long as the last 3 bars. And when you’re on
+your last bars, the power from the pedal assist drops off - It’s still helping
+but not as much.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_trip.jpg" /><!-- --></p>
+</div>
+<p>Luckily the ‘granny’ gears (1 and 2) on the bike mean you can get going, and even tackle moderate hills hauling kids or cargo with no electronic assist at all. It’s just going to take you a while, and you’re going to sweat.</p>
+<p>Over the year we’ve had it I’ve seen a bike mechanic twice. The first time was to replace the brake pads, and check if the gears needed indexing - they didn’t, the chain just needed a clean and lube. The second time was to bleed the brake lines which had air built up in them. This is minor stuff, and I think I paid around $120 each time.</p>
+<p>Both times the mechanic has made a comment about a lot of bolts on the bike being looser than they should be. For stuff like the running boards, and the crew cab it’s not a big deal, but he reckons the handle bar bolts really shouldn’t get loose, although it is a thing he sees with manufacturers that use a certain kind of cheap bolt. I’m checking all these more regularly now.</p>
+<p>So my conclusion, based on 1 year of daily use, is that Tribe have built a machine that functionally stands up to the everyday tasks you’ll likely want to throw at it, and they have succeed in achieving criteria 1. from above.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_park.jpg" /><!-- --></p>
+</div>
+<h1 id="comfort-ergonomics-and-power">Comfort, ergonomics, and power</h1>
+<p>One of the things that is limited on the Evamos compared to the higher end bikes
+is degree of adjustment. You have a small amount of play in the handlebar height
+and angle. You have the seat height. That’s it. And to me it feels like maybe
+the configurable range of the seat and handlebars caters better to taller riders
+than shorter.</p>
+<p>We have our handlebars as high, and as swept back as they can go. But at my
+preferred seat height, I’m hunched just a little more over than I would like. My
+partner is short, and she uses the seat as far down as it can go, bottoming out
+the post, so possibly she could go a little lower. So neither of us can quite
+dial in our ‘ideal’ position.</p>
+<p>I’ll also point out that although the stem is billed as adjustable, you need an
+allen key to do it, and you want to make sure it’s done up really tight for
+safety, so it just doesn’t feel practical to tune that every time you swap
+riders, which for us is basically every day.</p>
+<p>At this point though it hasn’t been a big issue. The ‘good enough’ position we
+can both get by setting the seat height is just that. We’re not touring on this
+thing, it’s a daily run about. The longest trip we do regularly is to the city
+library which is probably about 30 minutes in the saddle each way. Neither of us
+are getting any aches or pains from that.</p>
+<p>Speaking of saddle, the seat was one thing I expected to be rubbish, and that
+we’d need to swap, but somehow the stock seat that comes with the Evamos is
+actually a pretty nice one. Neither of us has had any trouble with it, unlike
+previous bikes we’ve purchased.</p>
+<p>The kids are happy with their setups too. They prefer getting around by bike to
+the car. They often insist on riding, and oddly, even more firmly when it’s
+raining! There’s not a lot of space once we’re all lined up, but somehow it’s
+enough. No one whinges. My eldest son will occasionally jab me in the back with
+the peak of his hat, but he’s mostly too busy checking things out to be looking
+at my boring back. As the kids get larger we’ll be able to change the seating to
+open up more space.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>But how does it <em>feel</em>? When you’re riding unencumbered it feels surprisingly
+like a normal bike. It’s a little on the heavy side, but not unbearably so. And
+it’s a very smooth ride. More so than something like a Tern with small wheels
+front and back. To me, these feel more twitchy and ‘scooterish’.</p>
+<p>When you add kids or cargo, it takes on a more ‘planted’ feel. Kind of like
+you’re on some kind of watercraft. At very low speeds, or when stationary,
+wriggling kids can make the balance feel precarious. As soon as you’re moving
+with any speed the Evamos is a stable, smooth, and confident ride.</p>
+<p>As for power, I do live in a pretty hilly area so I feel qualified to comment.
+For reference, I’d estimate our load with 2 kids and some gear to be ~145kg. So,
+fully loaded, the Evamos has enough power on the max assist level to get us
+comfortably up the kinds of hills that would leave me a little bit hot and
+bothered on a regular bike by myself. What I have found by experimentation is
+that if I take on a hill that looks like it would be seriously hard work on a
+regular bike, it’s still seriously hard work with 2 kids on the Evamos.</p>
+<p>So for my partner who is smaller, and less cycling fit than I am, this means
+there is one hill in particular on our markets route that I feel is within range
+on the Evamos, but she feels is best avoided if she’s riding. Something to
+consider if you’ve hills between you and key destinations.</p>
+<p>It’s worth noting that the 250W Bafang M400 motor on our Evamos has the maximum
+power rating allowed for street-legal ebikes in Australia and Europe. So it’s
+not really fair to say the bike could have been made more powerful. But I do
+hope that one day there is a legal class of higher-powered motors permitted for
+ebikes designed to carry multiple passengers (especially in hot places like
+Brisbane!). The speed limiter can stay at 25km/h.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_em.png" width="283" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="flaws">Flaws</h1>
+<p>Some of the things I will discuss here only apply to the first-generation model
+we bought, and have since been addressed. But I figure these are handy to know
+about in case you’re looking at buying an Evamos secondhand.</p>
+<h2 id="double-top-tube-clearance">Double top tube clearance</h2>
+<p>It’s easy to miss in the photos of the bike online, but the Evamos’ frame actually has two top tubes that branch off the head tube forming a kind of triangle that joins the rear ‘rack’.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_calf.jpg" /><!-- --></p>
+</div>
+<p>This creates an issue for me, but not my partner, whereby if I jump on and adopt
+my natural riding posture, my calf muscles will rub on the
+two-top-tube-triangular arrangement. I have to widen my riding stance a little,
+placing the pedal more toward the front of my foot, and shaping my leg outward a
+little to avoid this. These days I hardly ever notice it happening, but it was
+definitely something that had me taken aback when we first got the bike.</p>
+<p>Whether this affects you is probably very dependent on your body geometry, and
+your sensitivity to the rubbing sensation. But it’s definitely something to
+check out in a test ride.</p>
+<h2 id="high-step-thu">High step-thu</h2>
+<p>The Evamos’ frame has a ‘step-thu’ look about it, but the sweep of the top tubes comes quite high. So much so that my shorter partner still has a bit of difficulty getting her leg over when the kids are on the bike.</p>
+<h2 id="wheel-mounted-front-rack-now-fixed">Wheel mounted front rack (now fixed)</h2>
+<p>Our Evamos shipped with a front rack that was mounted on the wheel. This meant
+that adding anything more than a small amount of weight to the front basket made
+the steering feel awful, heavy, and prone to ‘flopping’. To the point where I
+would say it was genuinely dangerous to fill the front basket. We’ve since
+replaced the original front rack with the frame-mounted version that now ships
+as stock configuration. It completely mitigates this issue. So I’d advise you to
+make sure the Evamos you are thinking of buying has the frame-mounted rack or
+factor getting it into what you pay.</p>
+<h2 id="chain-bounce-damping-wheel-now-fixed">Chain bounce damping wheel (now fixed)</h2>
+<p>Since the Evamos has such a long chain it is prone to bouncing around, perhaps
+even out of position, when going over big bumps. The original solution to this
+was a small rubber wheel mounted on an arm. But the wheel was set too high, which
+caused the chain to rapidly eat into it, and eventually saw it in half.
+This happened to us after only 20 or so kilometres.</p>
+<p>We ended up having a fair bit of correspondence with Steve at Tribe over this issue. Multiple replacement
+wheels and arms were sent, until one day a new design arrived out of the blue,
+and the issue was solved. The chain now sits over a lower wheel, within an
+enclosure, that keeps the chain from bouncing around too much. Make sure the
+Evamos you are buying has a black metal enclosure that holds the wheel, and the
+chain, not just a wheel on an arm. Get the enclosure from Tribe if not.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_wheel.jpg" /><!-- --></p>
+</div>
+<h2 id="chain-clearance-in-first-gear">Chain clearance in first gear</h2>
+<p>In first gear, the chain makes light contact with the rear tyre. It could be
+that this is a setup issue, but it’s been like this since the bike was shipped
+to use with the rear wheel on. This is not really a practical problem since you
+will almost never have cause to use the first gear, and if you do, you’re
+probably in a state where you couldn’t care less about the rubbing noise. But it
+is a rough edge that probably shouldn’t exist on a $5K bike.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_chain_clearance.jpg" /><!-- --></p>
+</div>
+<h2 id="mik-stability">MIK stability (?)</h2>
+<p>The Evamos is compatible with an accessory attachment system called MIK. I have
+noticed that there is perhaps more wobble than you might expect in our front
+basket when attached using this system, on both racks we have used. This
+wouldn’t have rated a mention, except for the fact that a lady in my
+neighbourhood also bought an Evamos, but she went the route of using the MIK
+adaptor on the tail to attach a child seat. She wasn’t really comfortable with
+how much the seat wobbled around, and was impressed with how firmly seated our Yep
+Maxi is, which does not use the MIK system. I never saw her setup so this is
+second-hand information, but it was corroborated by the wobble in our basket, so
+I thought it worth a mention. See if you can check out child seat mounted using
+MIK before you buy.</p>
+<h1 id="good-stuff">Good stuff</h1>
+<p>Alright, onward now to some things I really appreciate about the bike.</p>
+<h2 id="rear-cassette-and-derailleur">Rear cassette and derailleur</h2>
+<p>Many of the expensive cargo ebikes are using internally geared hubs. I actually
+love internally geared hubs, and have used a three-speed on my commuter bike for
+many years now. However you need to treat these hubs well or they can fail, and
+then things get very expensive.</p>
+<p>I had a Shimano Nexus fail due to moisture ingress, and replacing it nearly cost
+me the price of the whole bike again. I also have a friend in the area with an
+Urban Arrow who has gone through two Enviolo hubs, and is now contemplating
+purchasing a Rholoff ($$$). He reckons hauling his kids up hills is just too much
+for the stock internal gears.</p>
+<p>The use of a simple 1 x 8 speed single cassette and derailleur on the Evamos is
+a choice I respect. If any of the non-electric bits fail the replacement will be
+a readily available commodity part, not something that needs to be specially
+ordered in from far away.</p>
+<h2 id="small-rear-wheel">Small rear wheel</h2>
+<p>Tribe didn’t invent this idea, but the slightly odd-ball looking combination of
+a 20” rear wheel and a 24” in the front is a very practical compromise,
+especially if you plan to cart children.</p>
+<p>Unlike static loads, children wriggle, rubberneck, fight, fall asleep and flop
+etc. You’ll feel those movements actually change the bike’s direction a little
+bit, sometimes requiring rider compensation. The more leverage you give the
+kids, by placing them higher, the more they’ll be able to shift the bike off
+course by throwing their weight around. A lower wheel reduces the kids sitting
+height, and also their leverage.</p>
+<p>The front of the bike has some different trade-offs though. If you make the
+front wheel smaller it will be knocked around by bumps (or sticks!) more, and
+the steering will feel more dynamic (‘scooterish’). On the Tern bikes with 20”
+front wheels, shock absorbers are added to try to mitigate the bump factor, but
+the handling still feels twitchy. I have ridden a Tern with a child on the rear,
+and the kid wriggles combine with the twitchy handling to create a completely
+different ride. It doesn’t exactly feel unsafe because the Tern has such a low
+centre of gravity - But it’s a much more dynamic ride than the Evamos which, as
+I have said, is smooth, and somewhat boring by comparison.</p>
+<h2 id="aesthetics">Aesthetics</h2>
+<p>For certain this is down to personal taste, but I appreciate curves. There’s a
+retro vibe about the curves within the Evamos’ frame, that makes it somehow a
+bit of a throwback to bikes of times past. Bikes that were more celebratory of
+the basic human fun, and empowerment to be found in cruising around by bike.
+Bikes from before cycling became fully sportified, and the design language
+shifted to communicating performance.</p>
+<p>It’s not a bike that says “I’m for going fast”, “I’m for going off-road”, or
+even “I’m for carrying lots of heavy shit”. It’s more like “I’m for having fun”,
+and yeah if you get one of the bright colours there’s a bit of “Check out much
+I’m having fun” in there too.</p>
+<p>It turns out the design is a bit of a beacon. Definitely do not buy this bike if
+you don’t enjoy random strangers striking up conversations about ebikes, cargo
+bikes, riding with kids, replacing cars, urbanism etc. Because this quite
+literally happens to me on a weekly basis. It’s quite funny now because often
+the kids will take the lead evangelising <code>#bikelife</code>, and I’ll be left trying to
+get a word in edgewise.</p>
+<h2 id="customer-support">Customer Support</h2>
+<p>I don’t think this is featured enough in reviews of products. When
+you buy a product you’re buying into someone’s idea of customer support, and
+that can either be an absolute drain that sucks your time, or a delight that
+completely reverses any bad feelings about the product you were having due to
+some kind of problem.</p>
+<p>As it happens we had two significant issues that started on day 1 when the bike
+was delivered in a torn box, with a small scratch on the frame, but more
+importantly it was missing the battery. I believe that the package was
+tampered with by someone who had access to it during shipping, and the battery
+was stolen to make a few hundred bucks.</p>
+<p>Steve from Tribe was great to deal with, and in short order, we had a new battery
+on the way, and some credit toward accessories for our trouble.</p>
+<p>The second issue we had I’ve discussed already: the rubber chain bounce damper
+gizmo wheel. This was a bit interesting because I would say at first Steve was a
+little sceptical there was a design flaw, and he asked me to check a few things,
+but later he called me back and admitted that there was indeed evidence of the
+problem on other test bikes, it just hadn’t been noticed before. Steve argued
+this kind of thing was to be expected on a first-generation product, and seemed
+relieved, when I, a software developer, agreed.</p>
+<p>He sent me some newly designed parts, and when they led to the rubber wheels
+lasting longer but still failing in an unreasonable amount of time, he sent us a
+whole bag of rubber wheels to use as a stop-gap until the ultimate design they had
+in the works could be shipped. As I said, that came unprompted, as promised,
+complete with detailed installation instructions. And there’s been not a hiccup
+since.</p>
+<p>I’m giving Tribe top marks for customer support. Well done Steve.</p>
+<h1 id="versus-alternatives">Versus Alternatives</h1>
+<p>I’ve already strewn a bit of ‘versus Tern’ throughout this review. These are some more general thoughts about styles.</p>
+<p>In Australia you have three main choices of style for a car-replacement cargo ebike:</p>
 <ul>
-<li><a href="https://twitter.com/RplSmn">Raphaël Simon</a></li>
-<li><a href="https://twitter.com/edwin_thoen">Edwin Thoen</a></li>
-<li><a href="https://twitter.com/JonTheGeek">Jon Harmon</a></li>
+<li>Longtail, like our Evamos</li>
+<li>‘Bakfiets’ or a two-wheeled bike with a bucket in the front like the <a href="https://urbanarrow.com/">Urban Arrow</a></li>
+<li>A three-wheeled bike with a large box in the front. Tribe’s <a href="https://www.tribebikes.com.au/product/tribe-original">frist bike</a> was one of these.</li>
 </ul>
-<p>Nick Tierney and Dean Machiori for being a sounding board for some of my agruments.</p>
-<p>My team at QFES for being on board with putting clarity above all else, especially Anthony North.</p>
-<hr />
-<section class="footnotes">
+<p>I haven’t ridden a trike, so I can’t comment much on that. It seems like it
+would be a bit of a hassle weaving through the crowds at school pickup / dropoff
+etc. And you’d be a bit more limited in places you can park it.</p>
+<p>For me the bakfiets is the main contender against the longtail. I’ve ridden
+bakfiets’, I think they’re very cool, but as far as I am concerned this is a
+design conceived by a person from a cool climate.</p>
+<p>I live in a hot climate. When kids heat up they get shitty, and what you don’t
+do is cram multiple hot shitty kids together in a small box, where they will
+begin to sweat, fidget, and whinge about their brother touching them. All of the
+bakfiets I’ve seen have this problem. Unless the kids are both under about 5,
+the fit in the bucket is too tight for comfort in the heat.</p>
+<p>In my humble opinion, the Longtail is the hot weather solution. It maximises
+airflow over everyone’s bodies. The kids can stretch out and wave their limbs
+around. I have seen sunshade-type accessories for Longtails as well as Bakfiets.
+Although none are offered by Tribe. Honestly, we haven’t needed it. We use
+sunscreen, long-sleeve shirts, and helmet covers with peaks and neck flaps, and
+we’re doing okay.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_vs_urban_arrow.jpg" /><!-- --></p>
+</div>
+<h1 id="conclusion">Conclusion</h1>
+<p>I’ve already said that I think Tribe has nailed a level of quality that permits
+this bike to become a family’s reliable daily ride. I’ve discussed what I
+believe are some of its limitations and flaws, and so the questions that remains
+is:</p>
+<p>Now that I know for sure how well my family takes to the cargo <code>#bikelife</code>, do I regret not finding the extra cash for a more expensive bike?</p>
+<p>And the answer is: I do not!</p>
+<p>For bikes that are very similar to the Evamos, I don’t see how the extra expense
+could be justified. The Evamos is good enough but far cheaper. For bikes that
+are a little different, but with tons of nice features etc like the Terns, it’s
+not a clear cut. I’d still be losing features I think are valuable, and paying
+crazy high prices for the privilege.</p>
+<p>So yes, I can recommend the Tribe Evamos to anyone looking for a car-replacing
+cargo ebike for local family transport. But do try to ride before you buy to
+make sure its limitations work for you.</p>
+<p>The way I pitch this bike to car people is like this: It’s probably destined to
+be an Australian classic in the same way a car like the Hyundai i30 is. It’s
+reliable, and economical transport that has just enough features, and wins
+because of what you get for the price.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_me.jpg" /><!-- --></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_esky.jpg" /><!-- --></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_happy_kiddo.jpg" /><!-- --></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_loaded.jpg" /><!-- --></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_eddie_sleeping.jpg" /><!-- --></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="evamos_shopping.jpg" /><!-- --></p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>which you were probably doing anyway since it facilitates: <code>devtools::install_github("milesmcbain/slippymath@0.3.1)</code><a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>AND your dependencies dependencies dependencies…<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Speaking of <code>%&gt;%</code>, you’ll have noticed we don’t have to do <code>magrittr::%&gt;%</code> everywhere that is used. It is declared via <code>importFrom(magrittr,"%&gt;%")</code> in the package’s <code>NAMESPACE</code> file. <code>NAMESPACE</code> is arguably pointless artifact if the project as a package is never installed.<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Global <em>variables</em> are dangerous. Global <em>constants</em> are useful communication tools.<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>And if you don’t have proper dependency management, you are the dependency management!<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>Since misspecified models can converge to an answer that is not well founded.<a href="#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>With possible peers including our future selves in 3-6 months time.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>And I’m lucky enough to work with some people that share this view.<a href="#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>There are many examples of R developers doing this. Some prominent examples to consider are: <a href="https://jdblischak.github.io/workflowr/index.html">{workflowr}</a>, <a href="https://github.com/benmarwick/rrtools">{rrpkg}</a>, <a href="https://www.vaccineimpact.org/orderly/articles/orderly.html">{orderly}</a>. I have made my own efforts public as discussed in my previous blog post. <a href="#fnref10" class="footnote-back">↩</a></p></li>
-<li id="fn11"><p>To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.<a href="#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>If you like writing functions you owe it to yourself to give <code>{drake}</code> a look.<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Fuck yeah no school car park hell<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>This is pretty common<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Word of warning: If you give the kids ice-creams or cream
+bun-type things you need to go really easy on the brakes or you’re going to wear
+it on your back.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2403,13 +2616,13 @@ WEBMERCATOR_EPSG &lt;- 3857</code></pre>
   <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://www.github.com/milesmcbain/website_distill">https://www.github.com/milesmcbain/website_distill</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">McBain (2020, July 24). Before I Sleep: Project as an R package: An okay idea. Retrieved from https://milesmcbain.com/posts/an-okay-idea/</pre>
+  <pre class="citation-appendix short">McBain (2023, Oct. 23). Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike. Retrieved from https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{mcbain2020project,
+  <pre class="citation-appendix long">@misc{mcbain202312,
   author = {McBain, Miles},
-  title = {Before I Sleep: Project as an R package: An okay idea},
-  url = {https://milesmcbain.com/posts/an-okay-idea/},
-  year = {2020}
+  title = {Before I Sleep: 12 months and 2700km with the Tribe Evamos Longtail cargo ebike},
+  url = {https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/},
+  year = {2023}
 }</pre>
 </div>
 <!--/radix_placeholder_appendices-->

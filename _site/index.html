@@ -459,8 +459,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -789,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1861,15 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2068,7 +2075,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2355,6 +2362,26 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Posts">Posts</h1>
+<a href="posts/tribe-evamos-longtail-cargo-review/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["review","cargobikes"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 23, 2023</div>
+<div class="dt-authors">
+<div class="dt-author">Miles McBain</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/tribe-evamos-longtail-cargo-review/evamos_city.jpg"/>
+</div>
+<div class="description">
+<h2>12 months and 2700km with the Tribe Evamos Longtail cargo ebike</h2>
+<div class="dt-tags">
+<div class="dt-tag">review</div>
+<div class="dt-tag">cargobikes</div>
+</div>
+<p>I review our car-replacement cargo ebike one year on.</p>
+</div>
+</a>
 <a href="posts/assertive-programming-for-pipelines/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["rstats","workflow"]}</script>
 <div class="metadata">
@@ -2448,7 +2475,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/adding-addins-to-vscode/vscode_addins.png"/>
+<img data-src="posts/adding-addins-to-vscode/vscode_addins.png"/>
 </div>
 <div class="description">
 <h2>Adding RStudio Addins to VSCode</h2>
@@ -2853,7 +2880,11 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(24)</span>
+<span class="category-count">(25)</span>
+</li>
+<li>
+<a href="#category:cargobikes">cargobikes</a>
+<span class="category-count">(1)</span>
 </li>
 <li>
 <a href="#category:collaboration">collaboration</a>
@@ -2918,6 +2949,10 @@ function init_posts_list() {
 <li>
 <a href="#category:reproducibility">reproducibility</a>
 <span class="category-count">(3)</span>
+</li>
+<li>
+<a href="#category:review">review</a>
+<span class="category-count">(1)</span>
 </li>
 <li>
 <a href="#category:rOpenSci">rOpenSci</a>

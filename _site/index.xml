@@ -12,7 +12,18 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 23 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>2023-10-23</lastBuildDate>
+    <item>
+      <title>12 months and 2700km with the Tribe Evamos Longtail cargo ebike</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review</link>
+      <description>I review our car-replacement cargo ebike one year on.</description>
+      <category>review</category>
+      <category>cargobikes</category>
+      <guid>https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review</guid>
+      <pubDate>2023-10-23</pubDate>
+      <media:content url="https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/evamos_city.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>How to be assertive about not testing your data science pipeline</title>
       <dc:creator>Miles McBain</dc:creator>
@@ -21,7 +32,7 @@
       <category>rstats</category>
       <category>workflow</category>
       <guid>https://milesmcbain.com/posts/assertive-programming-for-pipelines</guid>
-      <pubDate>Sun, 23 Apr 2023 00:00:00 +0000</pubDate>
+      <pubDate>2023-04-23</pubDate>
       <media:content url="https://milesmcbain.com/posts/assertive-programming-for-pipelines/pipelines.png" medium="image" type="image/png" width="1300" height="867"/>
     </item>
     <item>
@@ -33,7 +44,7 @@
       <category>vector-tiles</category>
       <category>spatial</category>
       <guid>https://milesmcbain.com/posts/vector-tiles</guid>
-      <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-04-10</pubDate>
       <media:content url="https://milesmcbain.com/posts/vector-tiles/fire_and_ice.png" medium="image" type="image/png" width="2560" height="1301"/>
     </item>
     <item>
@@ -44,7 +55,7 @@
       <category>keyboards</category>
       <category>ergonomics</category>
       <guid>https://milesmcbain.com/posts/zsa-moonlander-review</guid>
-      <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-06-20</pubDate>
       <media:content url="https://milesmcbain.com/posts/zsa-moonlander-review/moonlander_new.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -58,7 +69,7 @@
       <category>reproducibility</category>
       <category>runapp</category>
       <guid>https://milesmcbain.com/posts/the-stack</guid>
-      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-04-17</pubDate>
       <media:content url="https://milesmcbain.com/posts/the-stack/the_stack.png" medium="image" type="image/png" width="1550" height="935"/>
     </item>
     <item>
@@ -70,7 +81,7 @@
       <category>vscode</category>
       <category>rstudio</category>
       <guid>https://milesmcbain.com/posts/adding-addins-to-vscode</guid>
-      <pubDate>Thu, 22 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-22</pubDate>
       <media:content url="https://milesmcbain.com/posts/adding-addins-to-vscode/vscode_addins.png" medium="image" type="image/png" width="2274" height="1396"/>
     </item>
     <item>
@@ -82,7 +93,7 @@
       <category>workflow</category>
       <category>data science</category>
       <guid>https://milesmcbain.com/posts/an-okay-idea</guid>
-      <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-07-24</pubDate>
       <media:content url="https://milesmcbain.com/posts/an-okay-idea/corrugated-cardboard-3853506_1280.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -96,7 +107,7 @@
       <category>reproducibility</category>
       <category>debugging</category>
       <guid>https://milesmcbain.com/posts/the-drake-post</guid>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-04-30</pubDate>
       <media:content url="https://milesmcbain.com/posts/the-drake-post/spinach_small.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -107,7 +118,7 @@
       <category>rstats</category>
       <category>debugging</category>
       <guid>https://milesmcbain.com/posts/recover</guid>
-      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      <pubDate>2019-07-28</pubDate>
       <media:content url="https://milesmcbain.com/posts/recover/recover_vid.png" medium="image" type="image/png" width="893" height="503"/>
     </item>
     <item>
@@ -118,7 +129,7 @@
       <category>rstats</category>
       <category>hacks</category>
       <guid>https://milesmcbain.com/posts/hacking-r-library-paths</guid>
-      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>2019-06-20</pubDate>
       <media:content url="https://milesmcbain.com/posts/hacking-r-library-paths/Monkey-typing.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -129,7 +140,7 @@
       <category>rstats</category>
       <category>reproducibility</category>
       <guid>https://milesmcbain.com/posts/packrat-lite</guid>
-      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>2019-04-09</pubDate>
       <media:content url="https://milesmcbain.com/posts/packrat-lite/nutria-1200457_1920.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -140,7 +151,7 @@
       <category>rstats</category>
       <category>loops</category>
       <guid>https://milesmcbain.com/posts/for-loops</guid>
-      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>2019-02-14</pubDate>
       <media:content url="https://milesmcbain.com/posts/for-loops/1024px-Apocalypse_vasnetsov.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -151,7 +162,7 @@
       <category>rstats</category>
       <category>loops</category>
       <guid>https://milesmcbain.com/posts/rstats-anti-pattern-row-wise</guid>
-      <pubDate>Fri, 07 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-12-07</pubDate>
       <media:content url="https://milesmcbain.com/posts/rstats-anti-pattern-row-wise/El_Diablo_Roller_Coaster.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -162,7 +173,7 @@
       <category>rstats</category>
       <category>lisp</category>
       <guid>https://milesmcbain.com/posts/the-roots-of-quotation</guid>
-      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-07-26</pubDate>
       <media:content url="https://milesmcbain.com/posts/the-roots-of-quotation/Quote---2-.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -173,7 +184,7 @@
       <category>rstats</category>
       <category>R2VR</category>
       <guid>https://milesmcbain.com/posts/r2vr3-shading-meshes-in-webvr</guid>
-      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-07-05</pubDate>
       <media:content url="https://milesmcbain.com/posts/r2vr3-shading-meshes-in-webvr/uluru_header.png" medium="image" type="image/png" width="1834" height="1058"/>
     </item>
     <item>
@@ -185,7 +196,7 @@
       <category>regex</category>
       <category>productivity</category>
       <guid>https://milesmcbain.com/posts/crushing-the-contact-details-file</guid>
-      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-06-24</pubDate>
       <media:content url="https://milesmcbain.com/posts/crushing-the-contact-details-file/1024px-Batman_-truck-.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -196,7 +207,7 @@
       <category>rstats</category>
       <category>R2VR</category>
       <guid>https://milesmcbain.com/posts/r2vr2-rendering-meshes-in-webvr</guid>
-      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-05-29</pubDate>
       <media:content url="https://milesmcbain.com/posts/r2vr2-rendering-meshes-in-webvr/rock_opera.png" medium="image" type="image/png" width="1921" height="1083"/>
     </item>
     <item>
@@ -207,7 +218,7 @@
       <category>productivity</category>
       <category>software development</category>
       <guid>https://milesmcbain.com/posts/2018-in-pursuit-of-productivity</guid>
-      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-05-23</pubDate>
       <media:content url="https://milesmcbain.com/posts/2018-in-pursuit-of-productivity/corn-flakes-1915632_1280.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -219,7 +230,7 @@
       <category>tidyverse</category>
       <category>tidyeval</category>
       <guid>https://milesmcbain.com/posts/solving-the-challenge-of-tidyeval</guid>
-      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-05-23</pubDate>
       <media:content url="https://milesmcbain.com/posts/solving-the-challenge-of-tidyeval/9972796593_14695448e7_b.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -229,7 +240,7 @@
       <description>How bad would it be for your work if your laptop burned in a fire?</description>
       <category>software development</category>
       <guid>https://milesmcbain.com/posts/how-to-survive-a-laptop-fire</guid>
-      <pubDate>Sun, 20 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-05-20</pubDate>
       <media:content url="https://milesmcbain.com/posts/how-to-survive-a-laptop-fire/Burned_laptop_secumem_11.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -242,7 +253,7 @@
       <category>R2VR</category>
       <category>GIS</category>
       <guid>https://milesmcbain.com/posts/r2v1-meshing-uluru-from-polygons-and-rasters</guid>
-      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-03-27</pubDate>
       <media:content url="https://milesmcbain.com/posts/r2v1-meshing-uluru-from-polygons-and-rasters/1200px-Uluru1_2003-11-21.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -254,7 +265,7 @@
       <category>rOpenSci</category>
       <category>open science</category>
       <guid>https://milesmcbain.com/posts/ropensci-onboarding2</guid>
-      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-03-26</pubDate>
       <media:content url="https://milesmcbain.com/posts/ropensci-onboarding2/1200px-Satin_bowerbird.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -265,7 +276,7 @@
       <category>ghost</category>
       <category>docker</category>
       <guid>https://milesmcbain.com/posts/a-fully-dockerised-ghost-blog</guid>
-      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-03-08</pubDate>
       <media:content url="https://milesmcbain.com/posts/a-fully-dockerised-ghost-blog/g1.png" medium="image" type="image/png" width="953" height="560"/>
     </item>
     <item>
@@ -277,7 +288,7 @@
       <category>open science</category>
       <category>rOpenSci</category>
       <guid>https://milesmcbain.com/posts/ropensci-onboarding1</guid>
-      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-03-06</pubDate>
       <media:content url="https://milesmcbain.com/posts/ropensci-onboarding1/640px-Wet-n-Wild_Water_World_Australia_Mach_5.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -286,7 +297,7 @@
       <link>https://milesmcbain.com/posts/alt-r-with-vscode</link>
       <description>I never want to see another CSV that isn't rainbow!</description>
       <guid>https://milesmcbain.com/posts/alt-r-with-vscode</guid>
-      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-02-22</pubDate>
       <media:content url="https://milesmcbain.com/posts/alt-r-with-vscode/hover_help2.gif" medium="image" type="image/gif"/>
     </item>
   </channel>

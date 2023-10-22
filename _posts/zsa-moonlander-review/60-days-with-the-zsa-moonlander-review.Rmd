@@ -1,7 +1,7 @@
 ---
 title: "60 Days with the ZSA Moonlander: Review"
 description: |
-  I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me. 
+  I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me.
 author:
   - name: Miles McBain
     url: https://milesmcbain.xyz
@@ -12,6 +12,7 @@ output:
 categories:
   - keyboards
   - ergonomics
+  - review
 preview: moonlander_new.jpg
 ---
 
@@ -26,7 +27,7 @@ knitr::include_graphics("./moonlander_new.jpg")
 
 Even if you're not a massive input nerd, there's a pretty good chance you've heard about the [ZSA Moonlander Ergonomic Keyboard](https://www.zsa.io/moonlander/). It's quite an aesthetically pleasing device, and It's billed as the next generation of the much vaunted [ErgodoxEZ](https://ergodox-ez.com/) lineage. Like its predecessor it carries an eye-watering price tag: USD $365.
 
-This post is my review of this apex ergonomic device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about. 
+This post is my review of this apex ergonomic device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about.
 
 The rest of this review is going to examine the these aspects of the board:
 
@@ -111,7 +112,7 @@ portable than traditional offerings from Microsoft, Kinesis, et. al.
 
 # Tweakability
 
-## Software 
+## Software
 
 This is where the Moonlander shone for me. The software side of things is
 incredibly well executed. There are two main ways you can customise the
@@ -137,7 +138,7 @@ control the 'shifted' version of each key. With this concept I:
 * Made Rshift + Lshift `[` with `]` on hold
 
 The idea I was working on was to move symbols that I use regularly while working
-to more convenient locations - and the results felt pretty damn good!^[The last layout I made in Oryx is here if you're curious: https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0] 
+to more convenient locations - and the results felt pretty damn good!^[The last layout I made in Oryx is here if you're curious: https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0]
 
 This experience has cemented for me that deep programmability is an important facet
 of truly ergonomic hardware. All of us have different preferences and physical
@@ -157,7 +158,7 @@ One nitpick I'd make about tweaking is that the iteration loop is quite slow for
 continuous parameters. These underpin some important features, for example: How
 long does a key need to be held down to register as a hold? How quick does a
 double tap need to be? How fast should the mouse accelerate in mouse control
-mode? 
+mode?
 
 The only way to set these is according to personal taste, but to change a
 value means recompiling the firmware and re-flashing the board. It would be cool
@@ -172,7 +173,7 @@ On the hardware side there are a few avenues for tweaking. The thumb clusters
 seem to have been designed to be swappable, although no other alternatives exist
 at this time. I could easily imagine ZSA is planning a cluster with a pointing
 device. There's also some mysterious sets of screw holes in the base of the
-board, maybe for extreme tenting mode? Again there's nothing out at the moment. 
+board, maybe for extreme tenting mode? Again there's nothing out at the moment.
 
 So the hardware tweaking angle I had open to me was the key switches. They're
 'hot-swappable', which to my surprise meant I could literally swap them out
@@ -210,7 +211,7 @@ Moonlander that it makes this claim based on seem to be:
 * Tiltable thumb cluster
 * Ability to tent the board using a tenting leg and thumb cluster.
 
-Some of these things worked for me, others did not. I expect this is a highly personal thing. 
+Some of these things worked for me, others did not. I expect this is a highly personal thing.
 
 ## Split Halves
 
@@ -272,7 +273,7 @@ hover typing after the first few days. Thankfully this was easy to do.
 
 ## Tenting and Thumb Cluster
 
-So now finally we arrive at the cluster that was tenting and the thumb cluster. This is a challenging part to write since I still have a lot of really raw frustration and anger attached to my experience with this part of the keyboard. 
+So now finally we arrive at the cluster that was tenting and the thumb cluster. This is a challenging part to write since I still have a lot of really raw frustration and anger attached to my experience with this part of the keyboard.
 
 I'll start by pointing you to how the thumb cluster is marketed by ZSA:
 
@@ -328,7 +329,7 @@ back toward my wrists.
 
 I tried all sorts of things to get relief. Using the thumb cluster tilted up
 felt horrible, inducing sharp pain quite quickly, so I started looking at
-modifications including: 
+modifications including:
 
 * purchasing [aftermarket 3d printed legs](https://www.thingiverse.com/thing:4688862) to
 allow the Moonlander to tent with the thumb cluster up
@@ -342,7 +343,7 @@ knitr::include_graphics("moonlander_mods.jpg")
 ```
 The only thing I found that reliably gave me a break from the pain was switching
 back to my Microsoft Sculpt. This made it abundantly clear that the Moonlander was
-the root cause of my problems. 
+the root cause of my problems.
 
 What's got me a bit annoyed about this experience is that ZSA's marketing made
 me feel like the board has been designed to cater to all hands. They tout a
@@ -413,7 +414,7 @@ were being respected. This is quite a rare thing!
 
 It was also nice to have confirmation that I wasn't missing something. I had
 failed to find a good solution most likely because one did not exist. I accepted
-the refund offer and mailed my Moonlander for return a few days later ^[Returns are made to Taiwan. From Australia this is quite cheap. I think I paid AUD $24. Elsewhere in the world it is much more cost prohibitive.]. 
+the refund offer and mailed my Moonlander for return a few days later ^[Returns are made to Taiwan. From Australia this is quite cheap. I think I paid AUD $24. Elsewhere in the world it is much more cost prohibitive.].
 
 Throughout the support process we discussed some potential improvements to the
 customer experience, and Erez gave the impression he was giving consideration to
@@ -426,7 +427,7 @@ product.
 
 My experience with the Moonlander was frustrating and painful. Yet at times it was also
 exhilarating, and in the end it was satisfactory. ZSA lost my money but kept
-my trust, and I give them full credit for their degree of customer care. 
+my trust, and I give them full credit for their degree of customer care.
 
 In writing this review I have aimed to give an account of my experiences with
 the Moonlander that might help others avoid wasting time and money as I did. But I
@@ -435,5 +436,5 @@ done, and could be appreciated by those with the right size hands.
 
 The Moonlander is not a keyboard for everyone, although I think many of its
 ideas could have wide appeal. I am now definitely in the market for a
-split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.]. 
+split ortholinear/columnar keyboard running QMK. I'll be pleased to take recommendations!^[For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.].
 
