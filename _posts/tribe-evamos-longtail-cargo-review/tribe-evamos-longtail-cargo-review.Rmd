@@ -20,7 +20,7 @@ categories:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r}
+```{r, fig.alt = "Two children seated on the Tribe Evamos in the foreground facing away from camera. In the background is sand, water, and city buildings (Streets Beach Brisbane)."}
 knitr::include_graphics("evamos_city.jpg")
 ```
 
@@ -60,7 +60,7 @@ In my opinion we can judge this play as a success if:
 
 Most of the time our Evamos is configured as a people mover. We have it kitted out with the front basket, the running boards, the Crew Cab safety enclosure, a Polisport Guppy seat for the older child, and a Thule Yepp Maxi for the younger.
 
-```{r}
+```{r, fig.alt = "The Tribe Evamos in profile. It has a front basket and two kid seats in the rear."}
 knitr::include_graphics("evamos_rig.jpg")
 ```
 
@@ -77,7 +77,7 @@ battery will last you 2x or 3x as long as the last 3 bars. And when you're on
 your last bars, the power from the pedal assist drops off - It's still helping
 but not as much.
 
-```{r}
+```{r, fig.alt = "The Tribe Evamos computer display. Showing full battery, speed 0, and trip 2725.4km"}
 knitr::include_graphics("evamos_trip.jpg")
 ```
 
@@ -89,7 +89,7 @@ Both times the mechanic has made a comment about a lot of bolts on the bike bein
 
 So my conclusion, based on 1 year of daily use, is that Tribe have built a machine that functionally stands up to the everyday tasks you'll likely want to throw at it, and they have succeed in achieving criteria 1. from above.
 
-```{r}
+```{r, fig.alt = "The tribe evamos in a leafy green park. A backpack is attached to the rear of the crew cab. The basket is full of gear."}
 knitr::include_graphics("evamos_park.jpg")
 ```
 
@@ -163,7 +163,7 @@ hope that one day there is a legal class of higher-powered motors permitted for
 ebikes designed to carry multiple passengers (especially in hot places like
 Brisbane!). The speed limiter can stay at 25km/h.
 
-```{r, fig.align="center"}
+```{r, fig.align="center", fig.alt = "My partner riding, with our two kids aboard. On a bike path in parkland. Rear view."}
 knitr::include_graphics("evamos_em.png")
 ```
 
@@ -177,7 +177,7 @@ about in case you're looking at buying an Evamos secondhand.
 
 It's easy to miss in the photos of the bike online, but the Evamos' frame actually has two top tubes that branch off the head tube forming a kind of triangle that joins the rear 'rack'.
 
-```{r}
+```{r, fig.alt = "The Tribe Evamos top tubes. Top view. My left calf rests against the left-top tube."}
 knitr::include_graphics("evamos_calf.jpg")
 ```
 
@@ -222,7 +222,7 @@ enclosure, that keeps the chain from bouncing around too much. Make sure the
 Evamos you are buying has a black metal enclosure that holds the wheel, and the
 chain, not just a wheel on an arm. Get the enclosure from Tribe if not.
 
-```{r}
+```{r, fig.alt = "The final version of the damping wheel situated on the frame with the chain running through it."}
 knitr::include_graphics("evamos_wheel.jpg")
 ```
 
@@ -235,7 +235,7 @@ will almost never have cause to use the first gear, and if you do, you're
 probably in a state where you couldn't care less about the rubbing noise. But it
 is a rough edge that probably shouldn't exist on a $5K bike.
 
-```{r}
+```{r, fig.alt = "The chain of the Evamos foreground running up against the tyre. In the background, the chain is on the largest cog on the cassette."}
 knitr::include_graphics("evamos_chain_clearance.jpg")
 ```
 
@@ -315,7 +315,7 @@ I'm having fun" in there too.
 It turns out the design is a bit of a beacon. Definitely do not buy this bike if
 you don't enjoy random strangers striking up conversations about ebikes, cargo
 bikes, riding with kids, replacing cars, urbanism etc. Because this quite
-literally happens to me on a weekly basis. It's quite funny now because often
+literally happens to me on a weekly basis. It's getting funny now because often
 the kids will take the lead evangelising `#bikelife`, and I'll be left trying to
 get a word in edgewise.
 
@@ -384,7 +384,7 @@ Although none are offered by Tribe. Honestly, we haven't needed it. We use
 sunscreen, long-sleeve shirts, and helmet covers with peaks and neck flaps, and
 we're doing okay.
 
-```{r}
+```{r, fig.alt = "The Tribe Evamos pictured side by side with an Urban Arrow bafiets. In a school car park, front view."}
 knitr::include_graphics("evamos_vs_urban_arrow.jpg")
 ```
 
@@ -415,26 +415,26 @@ reliable, and economical transport that has just enough features, and wins
 because of what you get for the price.
 
 
-```{r}
+```{r, fig.alt = "Me, with brimmed helmet and sunglasses, and my two kids sitting on the Tribe Evamos, wearing legionaires style helmet covers."}
 knitr::include_graphics("evamos_me.jpg")
 ```
 
-```{r}
+```{r, fig.alt = "An esky mounted on the the tail of the Evamos."}
 knitr::include_graphics("evamos_esky.jpg")
 ```
 
-```{r}
+```{r, fig.alt = "My youngest son poses happily in front of the Evamos in the morning sunshine, in a green field"}
 knitr::include_graphics("evamos_happy_kiddo.jpg")
 ```
 
-```{r}
+```{r, fig.alt = "The evamos with a plastic tub mounted on the tail, full of groceries."}
 knitr::include_graphics("evamos_loaded.jpg")
 ```
 
-```{r}
+```{r, fig.alt = "My youngest son, asleep in the rear seat of the evamos. Parked in the city."}
 knitr::include_graphics("evamos_eddie_sleeping.jpg")
 ```
 
-```{r}
+```{r, fig.alt = "The Evamos, parked, carrying 4 large re-usable insulated shopping bags. They are distributed: two in the basket, and one in each child seat."}
 knitr::include_graphics("evamos_shopping.jpg")
 ```
