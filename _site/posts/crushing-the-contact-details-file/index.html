@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: Crushing the Contact Details file with #rstats</title>
 
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,8 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2177,6 +2276,14 @@ li::marker {
 
 <div class="d-title">
 <h1>Crushing the Contact Details file with #rstats</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:regex" class="dt-tag">regex</a>
+  <a href="../../index.html#category:productivity" class="dt-tag">productivity</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>It is a universal law that if you volunteer to help organise something, you will at some stage be issued with a flat text file of contact details.</p></p>
 </div>
 
@@ -2192,8 +2299,7 @@ li::marker {
 </div>
 <p>It is a universal law that if you volunteer to help organise something, you will at some stage be issued with a flat text file of contact details to be input into a table. This post is about how you can crush that file into a fine, fine powder, using the power of R.</p>
 <p>My last encounter was two weeks ago, with 40 or so records arriving by Slack message, and needing to be input into a Google Sheet. Here is a dramatic recreation:</p>
-<pre><code>
-Latonia Lamer l.lamer@outluck.com
+<pre><code>Latonia Lamer l.lamer@outluck.com
 Verlie Van Der Vales vvdv@gmule.com
 Branden Bohner brenden.bohner@hurtmail.com
 Alejandro Amezcua a.amezcua@outluck.com
@@ -2208,7 +2314,7 @@ Mario McRae  mario@thatismcrae.com</code></pre>
 <p>It is amazing how perfectly annoying this task is. I am sure it is POSSIBLE to write an R script that reads from the Slack message into R, munges it, and writes it directly to the spreadsheet, but you’d never recover the time you invested to write it. Next time the data will be attached to an email, or Trello card, and needing to go to Office365, or GitHub, or whatever, and you’re back at square one.</p>
 <p>So what to do? It’s a small enough task that manual entry is an option. Suck it up and bash it out?</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="PpJ6.gif" alt="Never!" width="100%" />
 <p class="caption">
 Figure 1: Never!
@@ -2218,7 +2324,7 @@ Figure 1: Never!
 <p>Here is a fast, but completely unashamedly non-reproducible way to get this done:</p>
 <h2 id="copy">1 Copy</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="slack_copy.gif" alt="whistling is heard" width="100%" />
 <p class="caption">
 Figure 2: whistling is heard
@@ -2227,7 +2333,7 @@ Figure 2: whistling is heard
 </div>
 <h2 id="paste">2 Paste</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="rstudio_paste.gif" alt="Pasting with 'datapasta'" width="100%" />
 <p class="caption">
 Figure 3: Pasting with ‘datapasta’
@@ -2239,8 +2345,7 @@ Figure 3: Pasting with ‘datapasta’
 <p>There is no text munging problem that cannot be solved by a series of <em>extract</em>, <em>substitute</em>, or <em>split</em> steps. Regex just help us describe what needs to be extracted, substituted, or where to split the string. Discovering the order to apply these steps is the puzzle, and once you realise that’s all there is to it, it can actually be kind of fun, just like <em>group_by</em>, <em>mutate</em>, <em>filter</em>, <em>summarise</em> et. al.</p>
 <p>The challenging part of these data are the ‘special people’ with multiple last names i.e. ‘Verlie Van Der Vales’ and ‘Danny De Downer’. If not for them we could use a simple ‘split on space’ strategy. (Here’s looking at you <a href="https://twitter.com/StephdeSilva">Steph De Silva</a>).</p>
 <p>So after naming the vector, we apply these steps:</p>
-<pre><code>
-flat_name_email &lt;-  
+<pre><code>flat_name_email &lt;-  
   c(&quot;Latonia Lamer l.lamer@outluck.com&quot;,
     &quot;Verlie Van Der Vales vvdv@gmule.com&quot;,
     &quot;Branden Bohner brenden.bohner@hurtmail.com&quot;,
@@ -2294,12 +2399,17 @@ attendee_data
 ## 3     Branden        Bohner brenden.bohner@hurtmail.com
 ## ...</code></pre>
 <p>To understand this code completely you only need to understand one Regex that describes an email: <code>[A-Za-z0-9.]+@[A-Za-z0-9.]+</code>.</p>
-<p>In English this says: * <code>[A-Za-z0-9.]</code> A Character that is an upper or lower case letter, number, or a dot. <code>+</code> one or more times. * <code>@</code> followed by an @ * <code>[A-Za-z0-9.]</code> followed by a character that is an upper or lower case letter, number, or a dot. <code>+</code> one or more times.</p>
+<p>In English this says:
+* <code>[A-Za-z0-9.]</code> A Character that is an upper or lower case letter, number, or a dot. <code>+</code> one or more times.
+* <code>@</code> followed by an @
+* <code>[A-Za-z0-9.]</code> followed by a character that is an upper or lower case letter, number, or a dot. <code>+</code> one or more times.</p>
 <p>Notice how only by extracting and substituting away the emails, were we free to apply a simple strategy of ‘splitting on the first space’ to solve the remainder of the problem.</p>
-<p>Other things to note: * It is possible to write this in similar #tidyverse style code using only <code>tidyr::extract</code>, and <code>tidyr::separate</code>. That would have made for more difficult commentary, and so is left as an exercise to the reader. * It is possible to solve the whole problem in one monstrous abomination of a Regex, but you wouldn’t bother.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Other things to note:
+* It is possible to write this in similar #tidyverse style code using only <code>tidyr::extract</code>, and <code>tidyr::separate</code>. That would have made for more difficult commentary, and so is left as an exercise to the reader.
+* It is possible to solve the whole problem in one monstrous abomination of a Regex, but you wouldn’t bother.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <h2 id="copy-1">4 Copy</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="clipr_copy.gif" alt="Matthew Lincoln's 'clipr' is the unsung hero of many #rstats packages including 'reprex' and 'datapasta'" width="100%" />
 <p class="caption">
 Figure 4: Matthew Lincoln’s ‘clipr’ is the unsung hero of many #rstats packages including ‘reprex’ and ‘datapasta’
@@ -2308,7 +2418,7 @@ Figure 4: Matthew Lincoln’s ‘clipr’ is the unsung hero of many #rstats pac
 </div>
 <h2 id="paste-1">5 Paste</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="spreadsheet_paste.gif" alt="whistling resumes" width="100%" />
 <p class="caption">
 Figure 5: whistling resumes
@@ -2318,11 +2428,13 @@ Figure 5: whistling resumes
 <h2 id="conclusion">Conclusion</h2>
 <p>How nice is it to be able to harness the scything power of R without having to deal with yet another data import/export problem? Does anyone else ever wonder about a world where programs are not so precious about their data, and we could just tell a computer: “Pipe data from my last Slack message into RStudio please.” and it JUST DOES IT. I’m all for data security, but within my own system I don’t need a disparate set of fortresses accessible to each other only by cumbersome protocol. I want my apps to form a team that cooperates freely under the banner of me getting shit done.</p>
 <hr />
-<p><em>Header image credit:</em> <em>By Jot Powers, 1/2006, CC BY-SA 2.5,</em> <em><a href="https://commons.wikimedia.org/w/index.php?curid=558469" class="uri">https://commons.wikimedia.org/w/index.php?curid=558469</a></em></p>
-<section class="footnotes" role="doc-endnotes">
+<p><em>Header image credit:</em>
+<em>By Jot Powers, 1/2006, CC BY-SA 2.5,</em> <em><a href="https://commons.wikimedia.org/w/index.php?curid=558469" class="uri">https://commons.wikimedia.org/w/index.php?curid=558469</a></em></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>For the Stack Overflow crowd: <code>first_last_email &lt;- str_match(flat_name_email, "(^[A-Za-z]+)\\s+((?:[A-Za-z]+\\s+)+)([A-Za-z0-9.]+@[A-Za-z0-9.]+$)")</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For the Stack Overflow crowd: <code>first_last_email &lt;- str_match(flat_name_email, "(^[A-Za-z]+)\\s+((?:[A-Za-z]+\\s+)+)([A-Za-z0-9.]+@[A-Za-z0-9.]+$)")</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2356,7 +2468,8 @@ Figure 5: whistling resumes
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

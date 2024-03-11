@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: 2018: In Pursuit of Productivity</title>
 
@@ -65,7 +134,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["corn-flakes-1915632_1280.jpg","in_pursuit_of_productivity_files/bowser-1.9.3/bowser.min.js","in_pursuit_of_productivity_files/distill-2.2.21/template.v2.js","in_pursuit_of_productivity_files/header-attrs-2.3/header-attrs.js","in_pursuit_of_productivity_files/jquery-1.11.3/jquery.min.js","in_pursuit_of_productivity_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["corn-flakes-1915632_1280.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,7 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2176,7 +2276,14 @@ li::marker {
 
 <div class="d-title">
 <h1>2018: In Pursuit of Productivity</h1>
-<p>2018 was probably my busiest year on record. I reflect on some of the productivity tools that got me through.</p>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:productivity" class="dt-tag">productivity</a>
+  <a href="../../index.html#category:software_development" class="dt-tag">software development</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>2018 was probably my busiest year on record. I reflect on some of the productivity tools that got me through.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2204,7 +2311,7 @@ li::marker {
 <li><code>r2vr</code> ReefVR Demo</li>
 <li><code>r2vr</code> + <code>quadmesh</code> workshop @ FOSS4GSOTM</li>
 </ul>
-<p>With the way I work, there’s always a crunch with deadlines. Something something perfectionism. But with a young child at home now I couldn’t fall back on my old tactics of working through into the early hours. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> I had to get REALLY serious about optimising the time I did have. Some of the things I got up to are pretty nerdy and may repulse you. I make no apologies! The rest of this post is about those tools I picked up that helped.</p>
+<p>With the way I work, there’s always a crunch with deadlines. Something something perfectionism. But with a young child at home now I couldn’t fall back on my old tactics of working through into the early hours. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I had to get REALLY serious about optimising the time I did have. Some of the things I got up to are pretty nerdy and may repulse you. I make no apologies! The rest of this post is about those tools I picked up that helped.</p>
 <h2 id="pomodoro">Pomodoro</h2>
 <p>Pomodoro is a productivity system where you divide your work day into intervals and mini breaks. Lengths vary. I do: work 25 minutes, break for 5. Once you complete 4 ‘reps’ you get a longer break for 20 minutes, or longer if it’s lunchtime.</p>
 <p>This is not a thing I do religiously. But I find myself going back to this every time I feel the pressure because it reliably boosts my productivity.</p>
@@ -2226,7 +2333,7 @@ li::marker {
 <h2 id="learning-to-type">Learning to type</h2>
 <p>Somewhat embarrassingly, up until mid 2018 I was a 4 - 6 finger typist. I wasn’t exactly slow, but my style was inefficient, and error prone. I also had habit of looking down at the keys, although I could type without doing this if I forced myself. That’s what comes from learning to type ‘organically’ while wasting a youth on computer games and internet forums.</p>
 <p>At some point during this year I had the insight that typos were this persistent niggling source of distraction. It’s as if each one created a tiny frustration that got added to a buffer. At some point my typo frustration buffer would overflow and my brain would have to dump the thread of whatever I was working on. When that happened I would be wide open for the forces of procrastination.</p>
-<p>So I decided to purchase a mechanical keyboard<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> and spend 30 minutes an evening as often as possible on improving my typing. Intially I was using <code>gtypist</code> - a free command line tutor, and eventually I moved to <a href="https://www.typingclub.com/">typingclub</a>, also free. I made the most dramatic progress with typingclub. It has some sweet analytics that can help you decide what to practice, so I would recommend going straight to that.</p>
+<p>So I decided to purchase a mechanical keyboard<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and spend 30 minutes an evening as often as possible on improving my typing. Intially I was using <code>gtypist</code> - a free command line tutor, and eventually I moved to <a href="https://www.typingclub.com/">typingclub</a>, also free. I made the most dramatic progress with typingclub. It has some sweet analytics that can help you decide what to practice, so I would recommend going straight to that.</p>
 <p>After about 3 months of semi-regular practice I was doing around 60wpm with accuracy in high 90s, and the looking down habbit completely broken. Now I feel like my typing is better able to keep up with my train of thought, which has increased the speed at which I can draft and interate on text. It’s also changed the way I anticipate writing - the dread has dialed way down.</p>
 <h2 id="dedicated-learning-time">Dedicated Learning Time</h2>
 <p>I’ve found it really hard when I’m under the pump to make time to learn new things. Even if I can see those things have the capacity to make me more productive on a project. It’s like I find learning too enjoyable to be work.</p>
@@ -2240,14 +2347,15 @@ li::marker {
 <ul>
 <li>I control my desktop and its windows using a tiling window manager called <a href="https://i3wm.org/"><code>i3</code></a>. Window arrangement uses vim inspired keys (h,j,k,l).</li>
 <li>I write code using <a href="http://spacemacs.org/">Spacemacs</a>, which among other things, places a vim control scheme over Emacs (and ESS for R).</li>
-<li>I control my Chromium browser using an extension called <a href="https://chrome.google.com/webstore/detail/vimium-c/hfjbmagddngcpeloejdejnfgbamkjaeg?hl=en">‘Vimium C’</a> that implements an amazingly faithful vim control scheme for a browser.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
+<li>I control my Chromium browser using an extension called <a href="https://chrome.google.com/webstore/detail/vimium-c/hfjbmagddngcpeloejdejnfgbamkjaeg?hl=en">‘Vimium C’</a> that implements an amazingly faithful vim control scheme for a browser.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 <li>I launch applications with a launcher called <code>rofi</code> that uses a vim navigation scheme.</li>
 <li>I use a terminal file browser called <a href="https://github.com/ranger/ranger"><code>ranger</code></a> that has vim navigation and command scheme.</li>
 </ul>
-<p>So what’s it like to have one unified(ish) keyboard control scheme for all your work tools? It feels fast and instinctive. I feel frustrated by a regular desktop setup now - like I can’t wait to get back to my vimland. Everything is sluggish and clunky by comparison <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>So what’s it like to have one unified(ish) keyboard control scheme for all your work tools? It feels fast and instinctive. I feel frustrated by a regular desktop setup now - like I can’t wait to get back to my vimland. Everything is sluggish and clunky by comparison <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>I don’t think this path is for everyone, but I do think everyone can benefit from reexamining the painful UIs in their life that they’ve normalised. Frustration and tension make us tired, susceptible to distraction, and give up prematurely. Giving up murders good ideas.</p>
 <figure>
-<img src="/content/images/2019/01/productivity.png" alt="My tools: Spacemacs, Chromium, Ranger, and rofi in i3 window manager" /><figcaption>My tools: Spacemacs, Chromium, Ranger, and rofi in i3 window manager</figcaption>
+<img src="/content/images/2019/01/productivity.png" alt="My tools: Spacemacs, Chromium, Ranger, and rofi in i3 window manager" />
+<figcaption aria-hidden="true">My tools: Spacemacs, Chromium, Ranger, and rofi in i3 window manager</figcaption>
 </figure>
 <h1 id="hello-2019---sorry-im-late">Hello 2019 - Sorry I’m late</h1>
 <p>This year my resolution for my work is for less crunchy, more smooth. I’m changing jobs at the beginning of February and I hope to bring some of the planning tools I learned from Lucy in from the start, so that I never reach the peak workloads of 2018. Consequently I am looking forward to more worry free weekends with the family!</p>
@@ -2255,13 +2363,14 @@ li::marker {
 <hr />
 <p><em>Your mileage with productivity techniques mentioned here may vary, I am far, far from a guru.</em></p>
 <p><em>Header image is CC0 from <a href="https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/" class="uri">https://pixabay.com/en/corn-flakes-corn-breakfast-food-1915632/</a></em></p>
-<section class="footnotes">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Prospective breeders beware. Here’s the harshest realisation I’ve had since becomming a parent: No matter what kind of night you’ve had, the kid is waking up EARLY and FULL OF BEANS<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>The Magicfore 68 with blue switches to be precise. E.g. <a href="https://www.amazon.com/Qisan-Mechanical-Keyboard-68-Keys-Magicforce/dp/B01E8KO2B0">this</a>. Mine came with some dodgey soldering that made 2 keys unreliable. I had the gear to fix that so it was not much hassle, and the Ebay seller even knocked 10USD for my labour - I really like it, so great value!<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>I made a fallback mode in <code>i3</code> where I can operate my mouse pointer using vim keys for websites that force the issue - yes I am aware how crazy this sounds.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>This might partly be due to dropping down the key repeat time for key presses - this is worth trying, trust me.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Prospective breeders beware. Here’s the harshest realisation I’ve had since becomming a parent: No matter what kind of night you’ve had, the kid is waking up EARLY and FULL OF BEANS<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The Magicfore 68 with blue switches to be precise. E.g. <a href="https://www.amazon.com/Qisan-Mechanical-Keyboard-68-Keys-Magicforce/dp/B01E8KO2B0">this</a>. Mine came with some dodgey soldering that made 2 keys unreliable. I had the gear to fix that so it was not much hassle, and the Ebay seller even knocked 10USD for my labour - I really like it, so great value!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I made a fallback mode in <code>i3</code> where I can operate my mouse pointer using vim keys for websites that force the issue - yes I am aware how crazy this sounds.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This might partly be due to dropping down the key repeat time for key presses - this is worth trying, trust me.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2295,7 +2404,8 @@ li::marker {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: R2VR: Meshing Uluru From Polygons and Rasters</title>
 
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,8 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2177,6 +2276,15 @@ li::marker {
 
 <div class="d-title">
 <h1>R2VR: Meshing Uluru From Polygons and Rasters</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:WebVR" class="dt-tag">WebVR</a>
+  <a href="../../index.html#category:R2VR" class="dt-tag">R2VR</a>
+  <a href="../../index.html#category:GIS" class="dt-tag">GIS</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>In this post I describe using R to make a 3D mesh of Uluru from publicly available spatial data.</p></p>
 </div>
 
@@ -2195,7 +2303,7 @@ li::marker {
 <p>This is intended to be a example you can adapt for you own purposes. All code and data in this post is available in <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh">this GitHub repository</a>.</p>
 <p>The end goal of this post is a triangulated mesh of x,y,z vertices:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="ulurumesh.png" alt="A preview of an Uluru mesh created with rgl" width="100%" />
 <p class="caption">
 Figure 1: A preview of an Uluru mesh created with rgl
@@ -2205,55 +2313,56 @@ Figure 1: A preview of an Uluru mesh created with rgl
 <p>Each triangular section forms a ‘face’ that can be shaded with interesting colours or textures, perhaps derived from data. In the world of 3D graphics meshes are built from either quadrilaterals or triangles, but since I am targeting WebVR in particular, the choice is made for me: The underlying three.js framework only <a href="https://github.com/mrdoob/three.js/issues/11655">uses triangles</a>.</p>
 <h1 id="data">Data</h1>
 <p>Typically you will have some combination of shapefiles and raster data available. Shapefiles can describe 2D outlines of features as well as their 3D topology via stacked outlines - aka contours. Raster data are often a more useful for adding the third spatial dimension, since they are a common format for Digital Elevation Models (DEMs). I’ve found these tend to provide elevation information at finer resolution.</p>
-<p>For this example I’ll use: * Shapefiles containing contours for Uluru, provided by Geoscience Australia, from <a href="https://data.gov.au/fr/dataset/uluru-ayers-rock-1-250-000-gis-dataset">data.gov.au</a> * A DEM raster image, exported from Geoscience Australia’s <a href="http://www.ga.gov.au/elvis/">Elevation Information System (ELVIS)</a>.</p>
+<p>For this example I’ll use:
+* Shapefiles containing contours for Uluru, provided by Geoscience Australia, from <a href="https://data.gov.au/fr/dataset/uluru-ayers-rock-1-250-000-gis-dataset">data.gov.au</a>
+* A DEM raster image, exported from Geoscience Australia’s <a href="http://www.ga.gov.au/elvis/">Elevation Information System (ELVIS)</a>.</p>
 <p>The <code>sf</code> and <code>raster</code> packages provide the ability to read and manipulate these spatial data. For an introduction to <code>sf</code> I highly recommend the <a href="https://www.jessesadler.com/post/gis-with-r-intro/">blog of Jesse Sadler</a>.</p>
 <h2 id="shapes">Shapes</h2>
 <p>The contour shapefiles are distributed as part of a GIS dataset containing a dizzying array of features of the Uluru-Kata Tjuta National Park.</p>
 <p>Contours can give us elevation, but in this example I am just using them to get an outline. For reasons that will soon become clear, in this case this turns out to be a slightly flawed approach, however I am confident it is worthwhile examining the method for its applicability to meshing complex arbitrary shapes.</p>
 <p>I start by loading the shapefiles into R using the <code>sf</code> package, filtering the contour data down to Uluru using a bounding box, before finally finding the outer-most contour. This gives me a 2D outline I can project into 3D.</p>
-<pre class="r"><code>
-library(sf)
-library(raster)
-library(tidyverse)
-
-# Contours from all over Uluru-Kata Tjuta National Park                    
-uluru_kata_shape &lt;- 
-read_sf(&quot;./data/GEODATA_TOPO250K_TILE_DATA/G5208/Shapefiles/Elevation/g5208_contours.shx&quot;)
-
-# Make a bounding box to focus in on Uluru
-# mymaps.google.com is a handy tool for determining bounding boxes.
-uluru_bbox_poly &lt;- 
-  st_bbox(c(ymin = -25.39521, 
-            ymax = -25.2922, 
-            xmax = 131.09814, 
-            xmin = 130.97454), 
-            crs = st_crs(&quot;+proj=longlat +ellps=WGS84&quot;)) %&gt;%
-    st_as_sfc() 
-    # An sf bbox is not geometry... this converts it :S
-
-# Filter map countours to those comprising Uluru
-uluru_contours &lt;- 
-    filter(uluru_kata_shape, 
-           as.vector(
-             st_contains(uluru_bbox_poly, 
-                        uluru_kata_shape$geometry, 
-                        sparse = FALSE)
-           ))
-
-# Find the outer contour by finding the one with the highest longitude
-uluru_outline &lt;- 
-  uluru_contours %&gt;%
-  mutate(max_y = map_dbl(geometry,
-                         ~max(as.matrix(.)[,1]) )) %&gt;% 
-  arrange(desc(max_y)) %&gt;% 
-  filter(row_number() == 1)
-
-  plot(uluru_contours[&quot;FEATTYPE&quot;], 
-    main = &quot;Uluru Elevation Contours&quot;)
-  plot(uluru_outline[&quot;FEATTYPE&quot;], 
-    main = &quot;Outline Contour&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Contours from all over Uluru-Kata Tjuta National Park                    </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>uluru_kata_shape <span class="ot">&lt;-</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sf</span>(<span class="st">&quot;./data/GEODATA_TOPO250K_TILE_DATA/G5208/Shapefiles/Elevation/g5208_contours.shx&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a bounding box to focus in on Uluru</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># mymaps.google.com is a handy tool for determining bounding boxes.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>uluru_bbox_poly <span class="ot">&lt;-</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">ymin =</span> <span class="sc">-</span><span class="fl">25.39521</span>, </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">25.2922</span>, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">xmax =</span> <span class="fl">131.09814</span>, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">xmin =</span> <span class="fl">130.97454</span>), </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=longlat +ellps=WGS84&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_as_sfc</span>() </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># An sf bbox is not geometry... this converts it :S</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter map countours to those comprising Uluru</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>uluru_contours <span class="ot">&lt;-</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(uluru_kata_shape, </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>           <span class="fu">as.vector</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>             <span class="fu">st_contains</span>(uluru_bbox_poly, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                        uluru_kata_shape<span class="sc">$</span>geometry, </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sparse =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>           ))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the outer contour by finding the one with the highest longitude</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>uluru_outline <span class="ot">&lt;-</span> </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  uluru_contours <span class="sc">%&gt;%</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_y =</span> <span class="fu">map_dbl</span>(geometry,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                         <span class="sc">~</span><span class="fu">max</span>(<span class="fu">as.matrix</span>(.)[,<span class="dv">1</span>]) )) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(max_y)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(uluru_contours[<span class="st">&quot;FEATTYPE&quot;</span>], </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Uluru Elevation Contours&quot;</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(uluru_outline[<span class="st">&quot;FEATTYPE&quot;</span>], </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Outline Contour&quot;</span>)</span></code></pre></div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="uluru_contours.png" alt="Plot otuputs of contours and outline" width="100%" />
 <p class="caption">
 Figure 2: Plot otuputs of contours and outline
@@ -2261,8 +2370,7 @@ Figure 2: Plot otuputs of contours and outline
 </div>
 </div>
 <p>We’re nearly done here, but for one small issue. Looking closely at <code>uluru_outline</code> I found:</p>
-<pre><code>
-r$&gt; uluru_outline$geometry
+<pre><code>r$&gt; uluru_outline$geometry
 
 Geometry set for 1 feature
 geometry type:  MULTILINESTRING
@@ -2273,8 +2381,7 @@ proj4string:    +proj=longlat +ellps=GRS80 +no_defs
 MULTILINESTRING ((131.0233 -25.34388, 131.0233 ...</code></pre>
 <p>We have a <code>MULTILINESTRING</code> geometry which as the name suggests is a collection of lines, rather than a shape. There’s not a sensible way to interpret a set of lines as the basis for a triangular mesh - unless those lines form a closed ring, in which case they can be recast as a polygon.</p>
 <p>The raw data show the points on the lines do indeed start and end in the same position, forming a closed ring:</p>
-<pre><code>
-r$&gt; as.matrix(uluru_outline$geometry[[1]])
+<pre><code>r$&gt; as.matrix(uluru_outline$geometry[[1]])
 
            [,1]      [,2]
   [1,] 131.0233 -25.34388
@@ -2285,22 +2392,20 @@ r$&gt; as.matrix(uluru_outline$geometry[[1]])
   [98,] 131.0241 -25.34524
   [99,] 131.0233 -25.34388</code></pre>
 <p>So you’d think there would be a nice simple way to cast from <code>MULTLINESTRING</code> to <code>POLYGON</code>, but unfortunately at the time of writing this is the best I could do:</p>
-<pre class="r"><code>
-uluru_outline_poly &lt;- 
-  uluru_outline %&gt;%
-  st_geometry() %&gt;%
-  pluck(1) %&gt;%
-  as.matrix() %&gt;%
-  list() %&gt;%
-  list() %&gt;%
-  st_multipolygon() %&gt;%
-  st_sfc()
-
-# When we create a new geometry we need to set CRS. 
-st_crs(uluru_outline_poly) &lt;- st_crs(uluru_contours)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>uluru_outline_poly <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  uluru_outline <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_geometry</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_multipolygon</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_sfc</span>()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># When we create a new geometry we need to set CRS. </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(uluru_outline_poly) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(uluru_contours)</span></code></pre></div>
 <p>Notice I chose <code>MULTIPOLYGON</code> over <code>POLYGON</code>. This simple convenience, because I have a triangulation function I will apply later that expects a <code>MULTIPOLYGON</code> argument. The result:</p>
-<pre><code>
-r$&gt; uluru_outline_poly
+<pre><code>r$&gt; uluru_outline_poly
 
 Geometry set for 1 feature
 geometry type:  MULTIPOLYGON
@@ -2313,20 +2418,19 @@ MULTIPOLYGON (((131.0233 -25.34388, 131.0233 -2...</code></pre>
 <h2 id="rasters">Rasters</h2>
 <p>The method <code>raster::raster()</code> reliably reads raster data in a variety of formats. NetCDF, GeoTIFF, plain images, etc are all handled without fuss. After reading an elevation raster in, I decided it would be a good idea to check the Uluru shape overlaid it sensibly using a plot.</p>
 <p>Before I can make the plot in the code below, I have to convert (reproject) the shape to the same coordinate reference system (CRS) as the raster. A shape is usually much less data than a raster, and can be reprojected losslessly whereas a raster relies on interpolation methods. For these reasons reprojecting the shape is preferable to the raster.</p>
-<pre class="r"><code>
-nt_raster &lt;- raster(&quot;./data/ELVIS_CLIP.tif&quot;)
-
-# sanity check - do these overlap?
-# convert uluru_outline_poly to raster CRS
-
-uluru_outline_poly &lt;-
-  st_transform(uluru_outline_poly, crs(nt_raster)@projargs)
-
-# plot and overlap
-plot(nt_raster, main=&quot;Uluru outline over elevation raster&quot;)
-lines(as(uluru_outline_poly, &#39;Spatial&#39;))</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nt_raster <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">&quot;./data/ELVIS_CLIP.tif&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check - do these overlap?</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert uluru_outline_poly to raster CRS</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>uluru_outline_poly <span class="ot">&lt;-</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(uluru_outline_poly, <span class="fu">crs</span>(nt_raster)<span class="sc">@</span>projargs)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot and overlap</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nt_raster, <span class="at">main=</span><span class="st">&quot;Uluru outline over elevation raster&quot;</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">as</span>(uluru_outline_poly, <span class="st">&#39;Spatial&#39;</span>))</span></code></pre></div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="uluru_raster_overlap-1.png" alt="My outline fit is far from perfect!" width="100%" />
 <p class="caption">
 Figure 3: My outline fit is far from perfect!
@@ -2338,15 +2442,16 @@ Figure 3: My outline fit is far from perfect!
 <p>Once you have an outline of a shape, and some elevation data, the next step is to triangulate the shape - cover it with small triangles. The vertices of the triangles will have coordinates in 2 dimensions, a third elevation dimension can then be added to create the mesh.</p>
 <p>There are a variety of fast algorithms available for triangulating polygons but not all are suitable for creating meshes. Keeping in mind our end goal of shading the mesh using data - we need an algorithm that can deliver a set of triangles of a similar size and shape.</p>
 <p>Perhaps the most famous algorithm is <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation</a> which maximises the minimum interior angle of all triangles. This is great because it avoids degenerate ‘slivers’ with tiny width. But in its simplest form Delaunay doesn’t care about creating triangles of a regular size. Most critically, it also doesn’t fully respect the polygon outline since it works over the convex hull of points. You can experiment with plain Delaunay in <code>sf</code> since it is available using <code>st_triangulate()</code>.</p>
-<p>Instead I’ll use the Constrained Delaunay Triangulation algorithm provided in the <a href="https://github.com/davidcsterratt/RTriangle"><code>RTriangle</code></a> package. Using this approach I can specify additional constraints including: * Line segments that must be included as part of the border, interior detail, and interior holes. * The maximum size of triangles.</p>
+<p>Instead I’ll use the Constrained Delaunay Triangulation algorithm provided in the <a href="https://github.com/davidcsterratt/RTriangle"><code>RTriangle</code></a> package. Using this approach I can specify additional constraints including:
+* Line segments that must be included as part of the border, interior detail, and interior holes.
+* The maximum size of triangles.</p>
 <p>I have <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh/blob/master/helpers/sf_to_trimesh.R">written a convenient wrapper</a>, <code>sf_to_trimesh()</code> for RTriangle that works with <code>sf</code> geometry containing a single <code>MULTIPOLYGON</code>. If you have an <code>sf</code> geometry containing many polygons you can merge them into a multipolygon, using <code>st_union()</code> or <code>st_combine()</code> - see <a href="https://github.com/MilesMcBain/r2vr1_uluru_mesh/blob/master/examples/meshing_polygons_nc.R">this example</a>.</p>
 <p>Something to take into consideration at this point is the CRS of your shape. If it is in latitude and longitude, your flat mesh will be expressed in lat-lon as well. Usually elevation data will be expressed in meters so the difference of scale is problematic. I already converted the CRS of the <code>uluru_outline_poly</code> to the CRS of the raster to check for overlay fit above.</p>
 <p><code>sf_to_trimesh</code> can be supplied with a number of triangles, <code>n_tris</code>. This is the number of triangles that you wish to fit inside the bounding box of the shape - not the shape itself. It exists to help you determine a reasonable density of triangles. With respect to triangle density - go for thousands! The resolution needs to be fine-grained enough for the elevation features to be discernible and shading applied later on to reflect the data source.</p>
-<pre class="r"><code>
-uluru_trimesh &lt;- sf_to_tri_mesh(uluru_outline_poly, 2500)
-plot(uluru_trimesh)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>uluru_trimesh <span class="ot">&lt;-</span> <span class="fu">sf_to_tri_mesh</span>(uluru_outline_poly, <span class="dv">2500</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(uluru_trimesh)</span></code></pre></div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="uluru_tri_2500.png" alt="A flat triangular mesh appears" width="100%" />
 <p class="caption">
 Figure 4: A flat triangular mesh appears
@@ -2354,8 +2459,7 @@ Figure 4: A flat triangular mesh appears
 </div>
 </div>
 <p>Looking deeper into the data returned by the triangulation we have:</p>
-<pre><code>
-r$&gt; str(uluru_trimesh)
+<pre><code>r$&gt; str(uluru_trimesh)
 
 List of 12
  $ P : num [1:1199, 1:2] -398761 -398762 -398747 -398653 -398605 ...
@@ -2370,8 +2474,7 @@ List of 12
  $ VE: int [1:3473, 1:2] 1 1 1 2 2 2 3 3 3 4 ...
  $ VN: num [1:2275, </code></pre>
 <p>Our main interest is in <code>P</code>: a 2 column matrix of unique vertices, and <code>T</code>: a 3 column matrix of vertex indices in <code>P</code>. Each row in <code>T</code> represents a triangle by 3 vertex indices. This is an important concept when moving to VR, so I’ll try to make it concrete for you with some code that obtains the 3 vertices of the first triangle in <code>T</code>:</p>
-<pre><code>
-r$&gt; first_tri_vertex_indices &lt;- uluru_trimesh$T[1,]
+<pre><code>r$&gt; first_tri_vertex_indices &lt;- uluru_trimesh$T[1,]
 
 r$&gt; first_tri_vertex_indices
 
@@ -2389,14 +2492,12 @@ r$&gt; first_tri_vertices
 <p>This kind of idea is quite prevalent in 3D graphics. Textures and colours are described in similar ways, i.e. with indices into unique data arrays. More information on the other data can be found in the the <code>RTriangle</code> documentation.</p>
 <h1 id="adding-raster-elevation">Adding Raster Elevation</h1>
 <p>The vertices in <code>P</code> can be promoted to 3 dimensions by adding a third column to the matrix that represents the elevation. To do this the elevation is extracted from the raster for each vertex:</p>
-<pre class="r"><code>
-uluru_elev &lt;- 
-  raster::extract(nt_raster, uluru_trimesh$P[,1:2])
-uluru_trimesh$P &lt;- 
-  cbind(uluru_trimesh$P, uluru_elev)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>uluru_elev <span class="ot">&lt;-</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  raster<span class="sc">::</span><span class="fu">extract</span>(nt_raster, uluru_trimesh<span class="sc">$</span>P[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>uluru_trimesh<span class="sc">$</span>P <span class="ot">&lt;-</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(uluru_trimesh<span class="sc">$</span>P, uluru_elev)</span></code></pre></div>
 <p>I used <code>rgl</code> to preview my handiwork by passing <code>P</code> and <code>T</code> reshaped slightly to suit <code>rgl</code>:</p>
-<pre><code>
-library(rgl)
+<pre><code>library(rgl)
 rgl.clear()
 bg3d(&quot;white&quot;)
   wire3d(
@@ -2407,7 +2508,7 @@ bg3d(&quot;white&quot;)
   )
 rglwidget()</code></pre>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="uluru_backside.png" alt="Backside of the mesh from the introduction" width="100%" />
 <p class="caption">
 Figure 5: Backside of the mesh from the introduction
@@ -2417,37 +2518,38 @@ Figure 5: Backside of the mesh from the introduction
 <p>When run locally, you’ll get live 3D render of the mesh you can rotate and zoom. Unfortunately the backside of the mesh is not nearly as tidy as the front. It seems as though it doesn’t drop down to the same level. This <strong>should</strong> be a certainty, given the outline contour was originally intended to represent structure on the same elevation. The sub-perfect alignment of the data sets really shows here.</p>
 <p>Depending on usecase this could be a problem. I give an alternative for cases like this below.</p>
 <h1 id="triangulating-a-raster">Triangulating A Raster</h1>
-<p>The workflow I’ve explored was predicated on the need to create a mesh from a specific outline shape. But in some cases there is no specific shape: * You have a large geography you want to place someone in, inside VR - A VR ‘tile’. * You had a specific shape and it didn’t work out 😉 .</p>
+<p>The workflow I’ve explored was predicated on the need to create a mesh from a specific outline shape. But in some cases there is no specific shape:
+* You have a large geography you want to place someone in, inside VR - A VR ‘tile’.
+* You had a specific shape and it didn’t work out 😉 .</p>
 <p>A simple approach to using elevation raster data with no specific shape is:</p>
 <ol type="1">
 <li>Create a spatial bounding box around the area to be meshed</li>
 <li>Triangulate the bounding box</li>
 <li>Add elevation to the triangles.</li>
 </ol>
-<pre class="r"><code>
-source(&quot;./helpers/bbox_to_multipoly.R&quot;)
-uluru_contours_bbox &lt;- 
-  st_bbox(uluru_outline_poly)
-uluru_extent &lt;- 
-  bbox_to_multipoly(uluru_contours_bbox, 
-                    st_crs(uluru_outline_poly))
-ul_extent_trimesh &lt;- 
-  sf_to_trimesh(uluru_extent, 2500)
-ul_extent_elev &lt;- 
-  raster::extract(nt_raster, ul_extent_trimesh$P[,1:2])
-ul_extent_trimesh$P &lt;- 
-  cbind(ul_extent_trimesh$P, ul_extent_elev)
-
-rgl.clear()
-bg3d(&quot;white&quot;)
-  wire3d(
-    tmesh3d(vertices = t(asHomogeneous(ul_extent_trimesh$P)), 
-            indices = array(t(ul_extent_trimesh$T))
-    )
-  )
-rglwidget()  </code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./helpers/bbox_to_multipoly.R&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>uluru_contours_bbox <span class="ot">&lt;-</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_bbox</span>(uluru_outline_poly)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>uluru_extent <span class="ot">&lt;-</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bbox_to_multipoly</span>(uluru_contours_bbox, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">st_crs</span>(uluru_outline_poly))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ul_extent_trimesh <span class="ot">&lt;-</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sf_to_trimesh</span>(uluru_extent, <span class="dv">2500</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ul_extent_elev <span class="ot">&lt;-</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  raster<span class="sc">::</span><span class="fu">extract</span>(nt_raster, ul_extent_trimesh<span class="sc">$</span>P[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ul_extent_trimesh<span class="sc">$</span>P <span class="ot">&lt;-</span> </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(ul_extent_trimesh<span class="sc">$</span>P, ul_extent_elev)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rgl.clear</span>()</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bg3d</span>(<span class="st">&quot;white&quot;</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wire3d</span>(</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tmesh3d</span>(<span class="at">vertices =</span> <span class="fu">t</span>(<span class="fu">asHomogeneous</span>(ul_extent_trimesh<span class="sc">$</span>P)), </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">indices =</span> <span class="fu">array</span>(<span class="fu">t</span>(ul_extent_trimesh<span class="sc">$</span>T))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rglwidget</span>()  </span></code></pre></div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="triangulated_bbox.png" alt="An Alternative Mesh of Uluru" width="100%" />
 <p class="caption">
 Figure 6: An Alternative Mesh of Uluru
@@ -2468,6 +2570,7 @@ Figure 6: An Alternative Mesh of Uluru
 <p><img src="csiro_acems_qut_aad.png" width="100%" /></p>
 </div>
 <p><em>Header image credit: By Maurus Blank - Own work, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=1177350" class="uri">https://commons.wikimedia.org/w/index.php?curid=1177350</a></em></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2499,7 +2602,8 @@ Figure 6: An Alternative Mesh of Uluru
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

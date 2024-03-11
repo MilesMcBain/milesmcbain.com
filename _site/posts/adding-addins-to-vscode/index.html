@@ -20,26 +20,28 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,16 +50,17 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -71,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: Adding RStudio Addins to VSCode</title>
@@ -134,7 +138,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["adding_addins_to_vscode_files/anchor-4.2.2/anchor.min.js","adding_addins_to_vscode_files/bowser-1.9.3/bowser.min.js","adding_addins_to_vscode_files/distill-2.2.21/template.v2.js","adding_addins_to_vscode_files/jquery-1.11.3/jquery.min.js","adding_addins_to_vscode_files/webcomponents-2.0.0/webcomponents.js","vscode_addins.png"]}
+  {"type":"character","attributes":{},"value":["vscode_addins.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -481,8 +485,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -852,9 +856,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -949,6 +965,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1710,6 +1731,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1787,8 +1814,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1814,12 +1842,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2097,7 +2126,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2250,6 +2280,7 @@ li::marker {
 
 <div class="d-title">
 <h1>Adding RStudio Addins to VSCode</h1>
+
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
@@ -2257,7 +2288,7 @@ li::marker {
   <a href="../../index.html#category:rstudio" class="dt-tag">rstudio</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p>Technical details and select highlights of my project to bring RStudio addins to VSCode.</p>
+<p><p>Technical details and select highlights of my project to bring RStudio addins to VSCode.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2271,113 +2302,193 @@ li::marker {
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#but-why">But why?</a></li>
-<li><a href="#green-lights">Green lights</a></li>
-<li><a href="#the-how">The how</a><ul>
-<li><a href="#the-humane-punching-of-ducks">The humane punching of ducks</a></li>
-<li><a href="#vscode-r-communications">VSCode-R communications</a></li>
+<li><a href="#but-why" id="toc-but-why">But why?</a></li>
+<li><a href="#green-lights" id="toc-green-lights">Green lights</a></li>
+<li><a href="#the-how" id="toc-the-how">The how</a>
+<ul>
+<li><a href="#the-humane-punching-of-ducks" id="toc-the-humane-punching-of-ducks">The humane punching of ducks</a></li>
+<li><a href="#vscode-r-communications" id="toc-vscode-r-communications">VSCode-R communications</a></li>
 </ul></li>
-<li><a href="#challenges">Challenges</a><ul>
-<li><a href="#lack-of-specificity">Lack of specificity</a></li>
-<li><a href="#typescript-workflow">Typescript workflow</a></li>
-<li><a href="#merging-a-large-pr">Merging a large PR</a></li>
+<li><a href="#challenges" id="toc-challenges">Challenges</a>
+<ul>
+<li><a href="#lack-of-specificity" id="toc-lack-of-specificity">Lack of specificity</a></li>
+<li><a href="#typescript-workflow" id="toc-typescript-workflow">Typescript workflow</a></li>
+<li><a href="#merging-a-large-pr" id="toc-merging-a-large-pr">Merging a large PR</a></li>
 </ul></li>
-<li><a href="#and-then-i-broke-librarytidyverse">And then I broke library(tidyverse)</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#and-then-i-broke-librarytidyverse" id="toc-and-then-i-broke-librarytidyverse">And then I broke library(tidyverse)</a></li>
+<li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
 </ul>
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="vscode_addins.png" width="1137" /></p>
 </div>
-<p>I recently completed a project to add RStudio addins to the <a href="https://github.com/Ikuyadeu/vscode-R">Visual Studio Code R extension</a>. In this post I explain the technical sleight of hand that makes this work, and share some of my select highlights from the project.</p>
+<p>I recently completed a project to add RStudio addins to the <a href="https://github.com/Ikuyadeu/vscode-R">Visual Studio Code
+R extension</a>. In this post I explain the
+technical sleight of hand that makes this work, and share some of my select
+highlights from the project.</p>
 <h1 id="but-why">But why?</h1>
-<p>Most people who follow me online know that I use <a href="https://github.com/MilesMcBain/spacemacs_cfg">Spacemacs and ESS</a> to write R. A few things changed recently that made VSCode radically more appealing to me at work, where I am forced to use Windows:</p>
+<p>Most people who follow me online know that I use <a href="https://github.com/MilesMcBain/spacemacs_cfg">Spacemacs and ESS</a> to write
+R. A few things changed recently that made VSCode radically more appealing to me
+at work, where I am forced to use Windows:</p>
 <ol type="1">
-<li>I learned of a Spacemacs inspired extension for VSCode: <a href="https://github.com/VSpaceCode/VSpaceCode">VSpaceCode</a>. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</li>
+<li>I learned of a Spacemacs inspired extension for VSCode: <a href="https://github.com/VSpaceCode/VSpaceCode">VSpaceCode</a>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 <li>The whole 2020 and working from home thing has meant my team have been using VSCode’s slick <a href="https://visualstudio.microsoft.com/services/live-share/">Live share feature</a> to do real-time remote pair programming and debugging. It’s shockingly good.</li>
 <li>My team has just been dipping our toes into AWS and VSCode facilitates wonderfully seamless <a href="https://code.visualstudio.com/docs/remote/remote-overview">remote development over ssh</a>.</li>
 </ol>
-<p>So I started experimenting to see how close I could make VSpaceCode feel to my Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: <a href="https://github.com/milesmcbain/fnmate"><code>fnmate</code></a></p>
-<p>To use <code>fnmate</code> your editor needs to interface with your R session to pass back the context of your document around your cursor. R does the magic once it has that context.</p>
-<p>Emacs and RStudio facilitate this in different ways, but ultimately they both allow you execute code on data taken from the text editor and shove the result of that into an R function called in your R session. <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>VSCode was without this ability. So I thought that to implement a binding for my beloved <code>fnmate</code> my options were:</p>
+<p>So I started experimenting to see how close I could make VSpaceCode feel to my
+Spacemacs setup. The first major sticking point was an R package of mine I use many times daily: <a href="https://github.com/milesmcbain/fnmate"><code>fnmate</code></a></p>
+<p>To use <code>fnmate</code> your editor needs to interface with your R session to pass back
+the context of your document around your cursor. R does the magic once it has
+that context.</p>
+<p>Emacs and RStudio facilitate this in different ways, but ultimately they both
+allow you execute code on data taken from the text editor and shove the result
+of that into an R function called in your R session. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>VSCode was without this ability. So I thought that to implement a binding for my
+beloved <code>fnmate</code> my options were:</p>
 <ul>
-<li>Write my own VSCode extension - having to redo work already in the R extension, relating to interfacing with the R process in terminal.</li>
+<li>Write my own VSCode extension - having to redo work already in the R
+extension, relating to interfacing with the R process in terminal.</li>
 <li>Get a binding for <code>fnmate</code> merged into the R extension.</li>
 </ul>
-<p>And I guess I was mulling over what unsatisfying options these were when I realised that what the VSCode R extension really needed was something like the RStudio API - HOLD ON. Can I port the RStudio API? Can I make <code>fnmate</code>, <code>datapasta</code> and other popular addins work with VSCode with no changes to their code?! I think I know how to do this!</p>
+<p>And I guess I was mulling over what unsatisfying options these were when I
+realised that what the VSCode R extension really needed was something like the
+RStudio API - HOLD ON. Can I port the RStudio API? Can I make <code>fnmate</code>,
+<code>datapasta</code> and other popular addins work with VSCode with no changes to their
+code?! I think I know how to do this!</p>
 <p>It was like as soon as the lightning bolt struck I knew I was not going to be able to stop myself from doing this.</p>
 <h1 id="green-lights">Green lights</h1>
-<p>I was pretty jazzed about the idea and it occurred to me that it was so good that I was probably not the first person to have it. A GitHub search revealed that my intuition was correct: In May of 2020, VSCode-R extension maintainer <a href="https://github.com/andycraig">Andrew Craig</a> had created an issue discussing the possibility.</p>
-<p>When I read through the discussion I saw that it had kind of stalled out because the maintainers were worried about RStudio’s reaction and legal issues. They’d resolved to contact RStudio before making any moves.</p>
-<p>The implementation I had in mind side stepped of their initial legal concerns, and I was pretty confident that the RStudio team I knew, the great people that I had met, would not be bothered.</p>
-<p>I offered to contribute and was invited to start working on the idea.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Once I had a proof of concept - 1 working API call - I decided to email the authors of <code>{rstudioapi}</code> to let them know what we were planning to do.</p>
-<p>The RStudio response was all class. You can see for yourself in the <a href="https://github.com/Ikuyadeu/vscode-R/issues/302">issue thread</a>. JJ Allaire wrote back with encouraging words, a heads up on future API directions, and an offer to talk about the API. Kevin Ushey did likewise, filling out some more detail on future plans, and invited questions and feedback on the API. When I did have a question about the API, Kevin answered it quickly.</p>
-<p>This is RStudio walking the walk of being a company that works in the community’s interests. Diversity is good. Friendly competition is good. It’s really impressive stuff, and it’s a part of this story that I really wanted to share, because it meant I could really dive into the work unencumbered by worry about how it would be received.</p>
+<p>I was pretty jazzed about the idea and it occurred to me that it was so good
+that I was probably not the first person to have it. A GitHub search
+revealed that my intuition was correct: In May of 2020, VSCode-R extension
+maintainer <a href="https://github.com/andycraig">Andrew Craig</a> had created an issue discussing the possibility.</p>
+<p>When I read through the discussion I saw that it had kind of stalled out because
+the maintainers were worried about RStudio’s reaction and legal issues. They’d
+resolved to contact RStudio before making any moves.</p>
+<p>The implementation I had in mind side stepped of their initial legal concerns,
+and I was pretty confident that the RStudio team I knew, the great people that I
+had met, would not be bothered.</p>
+<p>I offered to contribute and was invited to start working on the idea.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Once I had a proof of concept - 1 working API call - I decided to email the authors of <code>{rstudioapi}</code> to let them know what we were planning to do.</p>
+<p>The RStudio response was all class. You can see for yourself in the <a href="https://github.com/Ikuyadeu/vscode-R/issues/302">issue
+thread</a>. JJ Allaire wrote back
+with encouraging words, a heads up on future API directions, and an offer to
+talk about the API. Kevin Ushey did likewise, filling out some more detail on
+future plans, and invited questions and feedback on the API. When I did have a
+question about the API, Kevin answered it quickly.</p>
+<p>This is RStudio walking the walk of being a company that works in the
+community’s interests. Diversity is good. Friendly competition is good. It’s
+really impressive stuff, and it’s a part of this story that I really wanted to
+share, because it meant I could really dive into the work unencumbered by worry
+about how it would be received.</p>
 <h1 id="the-how">The how</h1>
 <h2 id="the-humane-punching-of-ducks">The humane punching of ducks</h2>
-<p>Now we get to some fun stuff. How is it that I can call: <code>rstudioapi::getActiveDocumentContext()</code> from within an R session in VSCode and get back the context of my VSCode active text editor window?</p>
-<p>The trick is one that is often used the testing context, there it’s known as ‘mocking’. In other context it can be called <a href="https://en.wikipedia.org/wiki/Monkey_patch">‘duck punching’ or ‘monkey patching’</a>:</p>
-<p>Within your VSCode sessions only, I’ve replaced the definition of the <code>getActiveDocumentContext</code> function in the <code>rstudioapi</code> name space, with code that talks to VSCode instead of RStudio. The incredible thing about this to me, is that even though it feels a bit dodgy, everything you could want to have to do it is built into the R language.</p>
+<p>Now we get to some fun stuff. How is it that I can call:
+<code>rstudioapi::getActiveDocumentContext()</code> from within an R session in VSCode and
+get back the context of my VSCode active text editor window?</p>
+<p>The trick is one that is often used the testing context, there it’s known as
+‘mocking’. In other context it can be called <a href="https://en.wikipedia.org/wiki/Monkey_patch">‘duck punching’ or ‘monkey
+patching’</a>:</p>
+<p>Within your VSCode sessions only, I’ve replaced the definition of the
+<code>getActiveDocumentContext</code> function in the <code>rstudioapi</code> name space, with code
+that talks to VSCode instead of RStudio. The incredible thing about this to me,
+is that even though it feels a bit dodgy, everything you could want to have to
+do it is built into the R language.</p>
 <p>The first piece is a function called <code>assignInNamespace</code> which allows us to do this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,
-                  <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
-                    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Duck punch!"</span><span class='op'>)</span>
-                  <span class='op'>}</span>,
-                  <span class='st'>"rstudioapi"</span>
-                  <span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,</span>
+<span>                  <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>                    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Duck punch!"</span><span class='op'>)</span></span>
+<span>                  <span class='op'>}</span>,</span>
+<span>                  <span class='st'>"rstudioapi"</span></span>
+<span>                  <span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Calling <code>rstudioapi::getActiveDocumentContext()</code> would now return “Duck punch!”.</p>
 <p>The second piece allows us to make that assignment happen, immediately after the <code>rstudioapi</code> namespace gets loaded into your R session, whenever, if ever, that may be. It’s a function called <code>setHook</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rstudioapi_hook</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>pkgname</span>, <span class='va'>pkgpath</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Running your package onLoad hook..."</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,
-                    <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
-                      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Duck punch!"</span><span class='op'>)</span>
-                    <span class='op'>}</span>,
-                    <span class='st'>"rstudioapi"</span>
-                    <span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/userhooks.html'>setHook</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/userhooks.html'>packageEvent</a></span><span class='op'>(</span><span class='st'>"rstudioapi"</span>, <span class='st'>"onLoad"</span><span class='op'>)</span>, <span class='va'>rstudioapi_hook</span><span class='op'>)</span>
-
-<span class='fu'>rstudioapi</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rstudioapi/man/rstudio-editors.html'>getActiveDocumentContext</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>rstudioapi_hook</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>pkgname</span>, <span class='va'>pkgpath</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Running your package onLoad hook..."</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/utils/getFromNamespace.html'>assignInNamespace</a></span><span class='op'>(</span><span class='st'>"getActiveDocumentContext"</span>,</span>
+<span>                    <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>                      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Duck punch!"</span><span class='op'>)</span></span>
+<span>                    <span class='op'>}</span>,</span>
+<span>                    <span class='st'>"rstudioapi"</span></span>
+<span>                    <span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/userhooks.html'>setHook</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/userhooks.html'>packageEvent</a></span><span class='op'>(</span><span class='st'>"rstudioapi"</span>, <span class='st'>"onLoad"</span><span class='op'>)</span>, <span class='va'>rstudioapi_hook</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>rstudioapi</span><span class='fu'>::</span><span class='fu'><a href='https://rstudio.github.io/rstudioapi/reference/rstudio-editors.html'>getActiveDocumentContext</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># [1] "Running your package onLoad hook..."</span></span>
+<span><span class='co'># [1] "Duck punch!"</span></span></code></pre>
 </div>
-<pre><code>[1] &quot;Running your package onLoad hook...&quot;
-[1] &quot;Duck punch!&quot;</code></pre>
 </div>
-<p>So we’re asking R to only perform the duck punching if the user actually loads the <code>{rstudioapi}</code> namespace, which will happen when any function in it is called <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. So if the user never calls the API we never do anything spooky.</p>
-<p>It’s also handy to be able to patch the API functions selectively, since it allows us to keep <code>rstudioapi</code> functions that don’t talk to the IDE unchanged, e.g. <code>rstudioapi::is.document_range</code>, and we can call those in our adapted versions.</p>
+<p>So we’re asking R to only perform the duck punching if the user actually loads
+the <code>{rstudioapi}</code> namespace, which will happen when any function in it is
+called <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. So if the user
+never calls the API we never do anything spooky.</p>
+<p>It’s also handy to be able to patch the API functions selectively, since it
+allows us to keep <code>rstudioapi</code> functions that don’t talk to the IDE unchanged,
+e.g. <code>rstudioapi::is.document_range</code>, and we can call those in our adapted
+versions.</p>
 <h2 id="vscode-r-communications">VSCode-R communications</h2>
-<p>The VSCode-R extension already implemented a one-way communication channel between the user’s R session and VSCode for signalling custom rendering behaviour of plots, shiny apps, web pages etc. So my main challenge was to implement the return protocol so that VSCode could send data back to the R session in response to <code>rstudioapi</code> requests. This had to be written in Typescript using the VSCode API.</p>
-<p>The way in which the communications worked was quite interesting to me - I guess I assumed it would be some kind of fancy web socket protocol thing. Actually it’s pretty lofi, based on files. It worked like this:</p>
+<p>The VSCode-R extension already implemented a one-way communication channel
+between the user’s R session and VSCode for signalling custom rendering
+behaviour of plots, shiny apps, web pages etc. So my main challenge was to
+implement the return protocol so that VSCode could send data back to the R
+session in response to <code>rstudioapi</code> requests. This had to be written in
+Typescript using the VSCode API.</p>
+<p>The way in which the communications worked was quite interesting to me - I guess
+I assumed it would be some kind of fancy web socket protocol thing. Actually
+it’s pretty lofi, based on files. It worked like this:</p>
 <ol type="1">
-<li>On startup VSCode R sessions create two files <code>request.log</code> and <code>request.lock</code>. In VSCode/Typescript land a file watcher process is attached to the lock file that triggers a callback function whenever the lock file is updated.</li>
-<li>In the R session, a request for VSCode is made by writing some JSON to the <code>request.log</code> and then writing the current timestamp to the <code>request.lock</code>.</li>
-<li>In VSCode the callback for the lock file update fires and confirms that the timestamp indicates a new message, and fires the JSON off to a request router.</li>
-<li>A request router is just a fancy name for a giant switch statement that examines the JSON and decides what functions to call.</li>
+<li>On startup VSCode R sessions create two files <code>request.log</code> and
+<code>request.lock</code>. In VSCode/Typescript land a file watcher process is attached
+to the lock file that triggers a callback function whenever the lock file is
+updated.</li>
+<li>In the R session, a request for VSCode is made by writing some JSON to the
+<code>request.log</code> and then writing the current timestamp to the <code>request.lock</code>.</li>
+<li>In VSCode the callback for the lock file update fires and confirms that the
+timestamp indicates a new message, and fires the JSON off to a request
+router.</li>
+<li>A request router is just a fancy name for a giant switch statement that
+examines the JSON and decides what functions to call.</li>
 </ol>
-<p>My implementation for the return path copied these ideas. Once you make an <code>rstudioapi</code> call from R, the R sessions blocks, checking a <code>response.lock</code> file every 100ms until an update appears and response data is read from <code>response.log</code>.</p>
-<p>One mistake I made initially was that I thought some API calls might be able to be asynchronous, for example inserting text into a document - it seems like it could done without a response back to R. But I soon learned in testing that there are addins out there that blast the <code>rstudioapi</code> with a stream of function calls <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, and I needed to make sure the all changes in VSCode had been applied before I allowed a new request to be written, otherwise request data might be overwritten without being handled.</p>
+<p>My implementation for the return path copied these ideas. Once you make an
+<code>rstudioapi</code> call from R, the R sessions blocks, checking a <code>response.lock</code> file
+every 100ms until an update appears and response data is read from
+<code>response.log</code>.</p>
+<p>One mistake I made initially was that I thought some API calls might be able to
+be asynchronous, for example inserting text into a document - it seems like it
+could done without a response back to R. But I soon learned in testing that
+there are addins out there that blast the <code>rstudioapi</code> with a stream of function
+calls <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, and I needed to make sure the all
+changes in VSCode had been applied before I allowed a new request to be written,
+otherwise request data might be overwritten without being handled.</p>
 <h1 id="challenges">Challenges</h1>
 <h2 id="lack-of-specificity">Lack of specificity</h2>
 <p>By far the biggest challenge was trying to make VSCode behave exactly as per RStudio. Part of the issue is that the two applications have fundamentally different models.</p>
-<p>In VSCode for instance, terminals and text editors are different things. You have an active text editor and an active terminal, determining which one of those things has the user’s focus is not a facility provided by the API.</p>
-<p>RStudio, on the other hand, lets you treat everything as a ‘document’, and you can easily the context of the active document that has the user’s focus.</p>
-<p>But the hardest bit really is that while both APIs have reasonable documentation for the average end user, it suddenly seems lacking when you’re trying to make one program behave exactly like another - only a small portion of each program’s behavioural extent is documented. There was a lot of experimentation and probing at the limits of each application’s conventions to establish what it could handle.</p>
-<p>I want to give special mention to <code>rstudioapi::insertText()</code> which is quite possibly the most loosely specified function I have ever encountered. It was my nemeses on this project. This is the function signature:</p>
+<p>In VSCode for instance, terminals and text editors are different things. You
+have an active text editor and an active terminal, determining which one of
+those things has the user’s focus is not a facility provided by the API.</p>
+<p>RStudio, on the other hand, lets you treat everything as a ‘document’, and you
+can easily the context of the active document that has the user’s focus.</p>
+<p>But the hardest bit really is that while both APIs have reasonable documentation
+for the average end user, it suddenly seems lacking when you’re trying to make
+one program behave exactly like another - only a small portion of each program’s
+behavioural extent is documented. There was a lot of experimentation and
+probing at the limits of each application’s conventions to establish what it could handle.</p>
+<p>I want to give special mention to <code>rstudioapi::insertText()</code> which is quite
+possibly the most loosely specified function I have ever encountered. It was my
+nemeses on this project. This is the function signature:</p>
 <pre><code>insertText &lt;- function (location, text, id = NULL) {
 
 }</code></pre>
-<p>Insert <code>text</code> at <code>location</code> in document specified by <code>id</code> or active document. But this simplicity belies incredible complexity lurking beneath:</p>
+<p>Insert <code>text</code> at <code>location</code> in document specified by <code>id</code> or active document.
+But this simplicity belies incredible complexity lurking beneath:</p>
 <ul>
 <li><code>location</code> can be:
 <ul>
@@ -2391,9 +2502,12 @@ li::marker {
 <li><code>text</code> can be length 1 or <code>length(location)</code></li>
 <li>Numeric elements allowed in <code>location</code> are all integers in the range <code>[-Inf, Inf]</code>! These need to be resolved to actual possible locations further down the line.</li>
 </ul>
-<p>Phew! There are a couple of hundred lines dedicated to emulating this function and its’ aliases alone.</p>
+<p>Phew! There are a couple of hundred lines dedicated to emulating this function
+and its’ aliases alone.</p>
 <h2 id="typescript-workflow">Typescript workflow</h2>
-<p>Typescript is a statically typed Javascript-a-like that compiles to Javascript. I quite enjoy the language, but I found working without a REPL to be excruciatingly slow initially.</p>
+<p>Typescript is a statically typed Javascript-a-like that compiles to Javascript. I
+quite enjoy the language, but I found working without a REPL to be
+excruciatingly slow initially.</p>
 <p>I was going:</p>
 <ol type="1">
 <li>write code</li>
@@ -2403,53 +2517,97 @@ li::marker {
 </ol>
 <p>And the compilation/build time, and repetitive nature of setting up state for a test was a drag. A couple of things I discovered:</p>
 <ul>
-<li>If you put a breakpoint inside a function you are developing you can get to something like a REPL pretty quickly by doing your development in debug mode. You have the entire application’s state available in an object called <code>vscode_1</code> that you can tinker with in the debug console.</li>
-<li>By stopping fighting the type checker, and refactoring code that didn’t play nicely with it, I found the strong linting and hover help capability of VSCode gave me enough context to work without the safety net of the REPL. It’s a different kind of safety net, one that works well with application code.</li>
+<li>If you put a breakpoint inside a function you are developing you can get to
+something like a REPL pretty quickly by doing your development in debug
+mode. You have the entire application’s state available in an object called
+<code>vscode_1</code> that you can tinker with in the debug console.</li>
+<li>By stopping fighting the type checker, and refactoring code that didn’t play
+nicely with it, I found the strong linting and hover help capability of
+VSCode gave me enough context to work without the safety net of the REPL.
+It’s a different kind of safety net, one that works well with application code.</li>
 </ul>
 <h2 id="merging-a-large-pr">Merging a large PR</h2>
-<p>The maintainers of the VSCode-R extension have quite high standards for the code. <a href="https://renkun.me/about/">Kun Ren</a> gives unrelentingly thorough code reviews, which are actually a really valuable thing that I haven’t had a lot of in my software-writing career. It felt a little like a session with a code personal trainer. I realised I had been lazy in parts, or there were nicer ways of doing things that weren’t as complex as I had estimated.</p>
-<p>I was quite sympathetic to this process. Asking people to take on 1000 lines of potential technical debt is a big deal. We’re playing catch with a loaded foot-gun - whatever precautions the catcher wants to take have to be respected.</p>
+<p>The maintainers of the VSCode-R extension have quite high standards for the
+code. <a href="https://renkun.me/about/">Kun Ren</a> gives unrelentingly thorough code
+reviews, which are actually a really valuable thing that I haven’t had a lot of
+in my software-writing career. It felt a little like a session with a code
+personal trainer. I realised I had been lazy in parts, or there were nicer ways
+of doing things that weren’t as complex as I had estimated.</p>
+<p>I was quite sympathetic to this process. Asking people to take on 1000 lines of
+potential technical debt is a big deal. We’re playing catch with a loaded
+foot-gun - whatever precautions the catcher wants to take have to be respected.</p>
 <h1 id="and-then-i-broke-librarytidyverse">And then I broke library(tidyverse)</h1>
-<p>It turned out that much to my embarrassment the foot-gun went off pretty much immediately!</p>
-<p>When repository owner <a href="https://github.com/Ikuyadeu">Yuki Ueda</a> creates a release, it automatically flows through to VSCode users the next time they open VSCode. The PR was merged in the afternoon and in the evening I logged into my work machine to catch up on a task from a few hours earlier. My code fell in a heap at <code>library(tidyverse)</code> with an error that was painfully familiar, since I coded the message myself:</p>
+<p>It turned out that much to my embarrassment the foot-gun went off pretty much
+immediately!</p>
+<p>When repository owner <a href="https://github.com/Ikuyadeu">Yuki Ueda</a> creates a
+release, it automatically flows through to VSCode users the next time they open
+VSCode. The PR was merged in the afternoon and in the evening I logged into my
+work machine to catch up on a task from a few hours earlier. My code fell in a
+heap at <code>library(tidyverse)</code> with an error that was painfully familiar, since I
+coded the message myself:</p>
 <pre><code>error: This `{rstudioapi}` function is not currenlty implemented for VSCode.</code></pre>
-<p>WAT. I frantically tried to reproduce the bug on my personal laptop running Ubuntu and couldn’t. Ken Ren couldn’t reproduce it on Mac OS either. It seemed we had missed some Windows specific behaviour which I was the first to encounter on my Windows work machine.</p>
-<p>In the midst of this, a colleague of mine who is studying and uses R, messaged me to let me know the bug had sent someone in his study group into a panic and he had bailed them out with a fork of the extension. I felt terrible!</p>
-<p>Over the next couple of hours we worked out the issues and implemented a fix. We also made the <code>{rstudioapi}</code> emulation in VSCode opt-in for now with an option that must be set: <code>options(vsc.rstudioapi = TRUE)</code> - in case there are any other big showstoppers we haven’t seen yet.</p>
-<p>In retrospect the option would have been a good idea from the start, I did think about it at some point, but I guess I got overconfident.</p>
-<p>The bug itself is was quite interesting to me. When a user does <code>library(tidyverse)</code> for the first time in a session there is an on-attach hook that runs that prints a familiar <em>fancy</em> looking message:</p>
+<p>WAT. I frantically tried to reproduce the bug on my personal laptop running
+Ubuntu and couldn’t. Ken Ren couldn’t reproduce it on Mac OS either. It seemed
+we had missed some Windows specific behaviour which I was the first to encounter
+on my Windows work machine.</p>
+<p>In the midst of this, a colleague of mine who is studying and uses R, messaged
+me to let me know the bug had sent someone in his study group into a panic and
+he had bailed them out with a fork of the extension. I felt terrible!</p>
+<p>Over the next couple of hours we worked out the issues and implemented a fix. We
+also made the <code>{rstudioapi}</code> emulation in VSCode opt-in for now with an option
+that must be set: <code>options(vsc.rstudioapi = TRUE)</code> - in case there are any other
+big showstoppers we haven’t seen yet.</p>
+<p>In retrospect the option would have been a good idea from the start, I did think
+about it at some point, but I guess I got overconfident.</p>
+<p>The bug itself is was quite interesting to me. When a user does
+<code>library(tidyverse)</code> for the first time in a session there is an on-attach hook
+that runs that prints a familiar <em>fancy</em> looking message:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb4-2" title="2">── Attaching packages ─────────────────────────────────────── tidyverse <span class="dv">1</span>.<span class="fl">3.0</span> ──</a>
-<a class="sourceLine" id="cb4-3" title="3">✔ ggplot2 <span class="dv">3</span>.<span class="fl">3.2</span>     ✔ purrr   <span class="dv">0</span>.<span class="fl">3.4</span></a>
-<a class="sourceLine" id="cb4-4" title="4">✔ tibble  <span class="dv">3</span>.<span class="fl">0.3</span>     ✔ dplyr   <span class="dv">1</span>.<span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb4-5" title="5">✔ tidyr   <span class="dv">1</span>.<span class="fl">1.2</span>     ✔ stringr <span class="dv">1</span>.<span class="fl">4.0</span></a>
-<a class="sourceLine" id="cb4-6" title="6">✔ readr   <span class="dv">1</span>.<span class="fl">3.1</span>     ✔ forcats <span class="dv">0</span>.<span class="fl">5.0</span></a>
-<a class="sourceLine" id="cb4-7" title="7">── Conflicts ────────────────────────────────────────── <span class="kw">tidyverse_conflicts</span>() ──</a>
-<a class="sourceLine" id="cb4-8" title="8">✖ dplyr<span class="op">::</span><span class="kw">filter</span>() masks stats<span class="op">::</span><span class="kw">filter</span>()</a>
-<a class="sourceLine" id="cb4-9" title="9">✖ dplyr<span class="op">::</span><span class="kw">lag</span>()    masks stats<span class="op">::</span><span class="kw">lag</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>── Attaching packages ─────────────────────────────────────── tidyverse <span class="dv">1</span>.<span class="fl">3.0</span> ──</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>✔ ggplot2 <span class="dv">3</span>.<span class="fl">3.2</span>     ✔ purrr   <span class="dv">0</span>.<span class="fl">3.4</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>✔ tibble  <span class="dv">3</span>.<span class="fl">0.3</span>     ✔ dplyr   <span class="dv">1</span>.<span class="fl">0.2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>✔ tidyr   <span class="dv">1</span>.<span class="fl">1.2</span>     ✔ stringr <span class="dv">1</span>.<span class="fl">4.0</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>✔ readr   <span class="dv">1</span>.<span class="fl">3.1</span>     ✔ forcats <span class="dv">0</span>.<span class="fl">5.0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>── Conflicts ────────────────────────────────────────── <span class="fu">tidyverse_conflicts</span>() ──</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>✖ dplyr<span class="sc">::</span><span class="fu">filter</span>() masks stats<span class="sc">::</span><span class="fu">filter</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>✖ dplyr<span class="sc">::</span><span class="fu">lag</span>()    masks stats<span class="sc">::</span><span class="fu">lag</span>()</span></code></pre></div>
 </div>
 <p>This reproduction on my blog is not as colourful as the one we see.</p>
-<p>This message makes heavy use of two packages for command line output: <code>{crayon}</code> and <code>{cli}</code>. Now the first time <em>these</em> packages are called in a session they fire off hundreds of lines of code designed to sniff details of your terminal and operating system, ultimately to determine:</p>
+<p>This message makes heavy use of two packages for command line output: <code>{crayon}</code>
+and <code>{cli}</code>. Now the first time <em>these</em> packages are called in a session they
+fire off hundreds of lines of code designed to sniff details of your terminal
+and operating system, ultimately to determine:</p>
 <ul>
 <li>What is the number of colours in the palette I can use in the terminal?</li>
 <li>What symbols are supported in the terminal?</li>
 </ul>
-<p>On Windows only, <code>{cli}</code> ends up needing to know the version of RStudio you’re running, and it gets this via <code>rstudioapi::getVersion</code>. Up until this point I had shied away from <em>spoofing</em> an API version - that is my implementation would return <code>TRUE</code> for <code>rstudioapi::isAvailable()</code> but error if you tried to get the version or assert a specific version. This worked well for the dozen or so addin packages I tested.</p>
+<p>On Windows only, <code>{cli}</code> ends up needing to know the version of RStudio you’re
+running, and it gets this via <code>rstudioapi::getVersion</code>. Up until this point
+I had shied away from <em>spoofing</em> an API version - that is my implementation
+would return <code>TRUE</code> for <code>rstudioapi::isAvailable()</code> but error if you tried to
+get the version or assert a specific version. This worked well for the dozen or so addin packages I tested.</p>
 <p>There was no way around VSCode pretending to have an RStudio version for now to get <code>tidyverse</code> working. We shall see if this creates any issues.</p>
 <h1 id="conclusion">Conclusion</h1>
-<p>So that’s been the highs and lows of this project. Certainly I learned a lot, and I thank the maintainers of the VSCode-R extension (Yuki, Kun, and Andy) for the opportunity, and JJ and Kevin from RStudio for their support.</p>
-<p>Just today I used <code>fnmate</code> numerous times on an instance in AWS I had connected to using VSCode-over-SSH. I never actually tested this specific case, but VSCode is geared such that the remote development case is not something an extension author has to care that much about. Extremely satisfying!</p>
+<p>So that’s been the highs and lows of this project. Certainly I learned a lot,
+and I thank the maintainers of the VSCode-R extension (Yuki, Kun, and Andy) for
+the opportunity, and JJ and Kevin from RStudio for their support.</p>
+<p>Just today I used <code>fnmate</code> numerous times on an instance in AWS I had connected
+to using VSCode-over-SSH. I never actually tested this specific case, but VSCode
+is geared such that the remote development case is not something an extension
+author has to care that much about. Extremely satisfying!</p>
 <hr />
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Thanks to the <a href="https://www.youtube.com/c/jackofsome">Jack of Some YouTube channel</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>In Emacs that code is Lisp. In RStudio it’s R.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>I’d made one PR for a small feature to the VSCode-R extension in the past, so I think that helped in this regard.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Or they do <code>library(rstudioapi)</code> - but this is discouraged by the <code>{rstudioapi}</code> documentation and doesn’t make heaps of sense<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Thanks <code>{remedy}</code> and <code>{sinew}</code> ;)<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Thanks to the <a href="https://www.youtube.com/c/jackofsome">Jack of Some YouTube channel</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In Emacs that code is
+Lisp. In RStudio it’s R.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I’d made one PR for a small feature to the VSCode-R extension in the past, so I think that helped in this regard.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Or they do <code>library(rstudioapi)</code> - but this is discouraged by the
+<code>{rstudioapi}</code> documentation and doesn’t make heaps of sense<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Thanks <code>{remedy}</code> and <code>{sinew}</code> ;)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2483,7 +2641,8 @@ li::marker {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

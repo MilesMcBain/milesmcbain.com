@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: How to Survive a Laptop Fire</title>
 
@@ -65,7 +134,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Burned_laptop_secumem_11.jpg","how_to_survive_a_laptop_fire_files/bowser-1.9.3/bowser.min.js","how_to_survive_a_laptop_fire_files/distill-2.2.21/template.v2.js","how_to_survive_a_laptop_fire_files/jquery-1.11.3/jquery.min.js","how_to_survive_a_laptop_fire_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Burned_laptop_secumem_11.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,7 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2176,7 +2276,13 @@ li::marker {
 
 <div class="d-title">
 <h1>How to Survive a Laptop Fire</h1>
-<p>How bad would it be for your work if your laptop burned in a fire?</p>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:software_development" class="dt-tag">software development</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>How bad would it be for your work if your laptop burned in a fire?</p></p>
 </div>
 
 <div class="d-byline">
@@ -2190,23 +2296,38 @@ li::marker {
 <p><img src="Burned_laptop_secumem_11.jpg" width="100%" /></p>
 </div>
 <p>Over the last few years I’ve evolved a cloud-centric workflow that allows me to work more or less seamlessly across multiple projects, computers, and operating systems. This post is about the principles, software and services I use to make that work.</p>
-<p>Often when I’m <del>advocating</del> evangelising about working in this way I ask people something to the effect of ‘How bad would it be for your work if your laptop burned in a fire?’<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> - Alot of the responses I get tend to focus on personal data - ‘Well I do backup on Dropbox!’, ‘I use Googledrive’, etc. But I argue personal data loss is really just part of the pain you’d experience. What about your Applications? Software libraries? Just how hard would it be to recover a working environment that would allow you to carry on?<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Often when I’m <del>advocating</del> evangelising about working in this way I ask people something to the effect of ‘How bad would it be for your work if your laptop burned in a fire?’<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> - Alot of the responses I get tend to focus on personal data - ‘Well I do backup on Dropbox!’, ‘I use Googledrive’, etc. But I argue personal data loss is really just part of the pain you’d experience. What about your Applications? Software libraries? Just how hard would it be to recover a working environment that would allow you to carry on?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <h1 id="survival-skills">Survival skills</h1>
 <h2 id="use-free-software-where-possible">Use free software where possible</h2>
 <p>Apart from the obvious benefit of not costing anything, free software has the added advantage that you’ll always be able to access it. It’s pretty common to get access to proprietary stuff through one’s workplace, but I don’t enjoy the idea that I could lose access to a tool I depend on if I changed jobs or budget cut was handed down.</p>
 <p>Another great benefit of free software is others can freely reuse and reproduce your work if you release it publicly.</p>
 <h2 id="use-cloud-tools">Use cloud tools</h2>
-<p>The only local software I absolutely need is Chromium or Chrome. This gives me quite a lot of freedom in terms of devices I can do work from. This is because: * Lastpass manages all my passwords * I use Outlook/Gmail web interfaces for work/personal email * I use Goodle Docs for all simple documents, sheets, or quick slide decks * I store all my photos in Google Photos * I stream my music from Google Music * I store all my data and files in Google Drive * I host all my projects on GitHub. * I blog from a web interface hosted on this site. * I host RStudio server on my website - really handy when giving talks!</p>
+<p>The only local software I absolutely need is Chromium or Chrome. This gives me quite a lot of freedom in terms of devices I can do work from. This is because:
+* Lastpass manages all my passwords
+* I use Outlook/Gmail web interfaces for work/personal email
+* I use Goodle Docs for all simple documents, sheets, or quick slide decks
+* I store all my photos in Google Photos
+* I stream my music from Google Music
+* I store all my data and files in Google Drive
+* I host all my projects on GitHub.
+* I blog from a web interface hosted on this site.
+* I host RStudio server on my website - really handy when giving talks!</p>
 <p>Ofcourse I don’t only use cloud tools. I develop software and analyse data on my local machine since it costs less than hosting a powerful enough server.</p>
 <h2 id="keep-local-file-system-disposable">Keep Local file system disposable</h2>
 <p>Everything on my local hard-disk is disposable. Indeed this month I am on my third clean install of Linux - but that’s a story for another post. Keeping the system disposable is closely linked with keeping it simple.</p>
-<p>To keep things simple, every time I get a new system I create two folders: 1. <code>~/repos</code> that holds the cloned git repositories of all the projects I am working on. 2. <code>~/code</code> that holds random code I create that is not associated with a project. This is strictly limited to disposable things, like examples or exercises. If a code snippet becomes useful, I make it into a GitHub gist.</p>
+<p>To keep things simple, every time I get a new system I create two folders:
+1. <code>~/repos</code> that holds the cloned git repositories of all the projects I am working on.
+2. <code>~/code</code> that holds random code I create that is not associated with a project. This is strictly limited to disposable things, like examples or exercises. If a code snippet becomes useful, I make it into a GitHub gist.</p>
 <p>I use the standard folders like <code>~/Downloads</code>, <code>~/Images</code> etc, but again everything in them is disposable.</p>
 <p>Simplicity is also ensured by only using software that can be installed using a package manager. This means zero manual configuration for most of my applications. There are a handful of helpful bash scripts hosted on GitHub that I clone to <code>~/bin</code>. I have configuration for my desktop setup and my text editor hosted on GitHub as well.</p>
 <p>So getting a new system ready to be productive is a case of installing some software using the package manager and cloning a few GitHub repos. In theory this could done with a single command, but I am not that hardcore - yet!</p>
 <h2 id="use-github-for-all-projects">Use GitHub for all projects</h2>
 <p><a href="https://www.github.com">GitHub</a> is a place to host version controlled projects. It’s not the only choice, other popular choices are <a href="https://www.gitlab.com">GitLab</a> and <a href="https://www.bitbucket.com">BitBucket</a>. The main reason to choose GitHub is that everyone else is there, so it’s where collaboration happens.</p>
-<p>I use ‘project’ pretty loosely. Things I keep there inlcude: * Data analysis documents * Software projects * Slides for talks (when using markdown) * Learning/Study repositories of notes and examples.</p>
+<p>I use ‘project’ pretty loosely. Things I keep there inlcude:
+* Data analysis documents
+* Software projects
+* Slides for talks (when using markdown)
+* Learning/Study repositories of notes and examples.</p>
 <p>There’s this kind of ritual I go through now when I decide to do some new work where I create and name the GitHub repo. It’s become a habit to the point where not doing this creates mild anxiety.</p>
 <p>One point I should make: I commit my work frequently in small increments. In a regular work day I’ll push to Github a couple of times. This is important for the ‘version control’ aspect, which although not strictly required for laptop fire survival, is pretty damn handy.</p>
 <h2 id="keep-data-in-the-cloud">Keep data in the cloud</h2>
@@ -2227,12 +2348,14 @@ li::marker {
 <p>Clearly I find on the balance, doing things this way is worthwile. It meshes nicely with other values I hold relating to openess and reproducibilty. Having a simple system also frees me from regular worry at the expense of ocassional anxiety caused by things listed as cons.</p>
 <hr />
 <p><em>Thanks for reading! I’d love to hear about any tips or hacks you have for making working this way easier.</em></p>
-<p><em>Header Image Credit: By secumem - secumem, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=5878118" class="uri">https://commons.wikimedia.org/w/index.php?curid=5878118</a></em></p>
-<section class="footnotes">
+<p><em>Header Image Credit:
+By secumem - secumem, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=5878118" class="uri">https://commons.wikimedia.org/w/index.php?curid=5878118</a></em></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>One important way to avoid this is to stop hardcoding your local file paths in your code. Just ask Jenny Bryan.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>I once witnessed an amazing example of this at <a href="https://ropensci.org/blog/2016/06/16/au-unconf/">rOpenSci Ozunconf16</a>. As keystrokes were flying in some intensise pair programming, a fresh flat white coffee was emptied on to <a href="https://github.com/jeffreyhanson">Jeff Hanson’s</a> laptop. I swear without missing a beat he flipped the laptop upside down to drain, then immediately ignored it, moved to his buddy’s laptop, pulled the repo, and carried on typing. When I think about being robust to loss of computer, Jeff’s complete lack of concern is the bar to which I aspire.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>One important way to avoid this is to stop hardcoding your local file paths in your code. Just ask Jenny Bryan.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I once witnessed an amazing example of this at <a href="https://ropensci.org/blog/2016/06/16/au-unconf/">rOpenSci Ozunconf16</a>. As keystrokes were flying in some intensise pair programming, a fresh flat white coffee was emptied on to <a href="https://github.com/jeffreyhanson">Jeff Hanson’s</a> laptop. I swear without missing a beat he flipped the laptop upside down to drain, then immediately ignored it, moved to his buddy’s laptop, pulled the repo, and carried on typing. When I think about being robust to loss of computer, Jeff’s complete lack of concern is the bar to which I aspire.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2266,7 +2389,8 @@ li::marker {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

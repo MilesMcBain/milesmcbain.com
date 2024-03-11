@@ -132,7 +132,7 @@ Calling `rstudioapi::getActiveDocumentContext()` would now return "Duck punch!".
 
 The second piece allows us to make that assignment happen, immediately after the `rstudioapi` namespace gets loaded into your R session, whenever, if ever, that may be. It's a function called `setHook`:
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 rstudioapi_hook <- function(pkgname, pkgpath) {
   print("Running your package onLoad hook...")
   assignInNamespace("getActiveDocumentContext",
@@ -146,6 +146,9 @@ rstudioapi_hook <- function(pkgname, pkgpath) {
 setHook(packageEvent("rstudioapi", "onLoad"), rstudioapi_hook)
 
 rstudioapi::getActiveDocumentContext()
+
+# [1] "Running your package onLoad hook..."
+# [1] "Duck punch!"
 ```
 
 So we're asking R to only perform the duck punching if the user actually loads

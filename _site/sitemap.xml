@@ -2,118 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://milesmcbain.com/about.html</loc>
-    <lastmod>2023-07-02T10:11:46+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/</loc>
-    <lastmod>2020-08-15T23:25:42+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/other_writings.html</loc>
-    <lastmod>2020-08-15T22:57:47+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/talks.html</loc>
-    <lastmod>2022-08-14T17:46:42+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/tribe-evamos-longtail-cargo-review/</loc>
-    <lastmod>2023-10-23T22:06:34+10:00</lastmod>
+    <lastmod>2024-03-11T22:26:12+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/assertive-programming-for-pipelines/</loc>
-    <lastmod>2023-04-25T20:33:00+10:00</lastmod>
+    <lastmod>2024-03-11T22:19:01+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/vector-tiles/</loc>
-    <lastmod>2022-05-02T10:30:17+10:00</lastmod>
+    <lastmod>2024-03-11T22:26:25+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/zsa-moonlander-review/</loc>
-    <lastmod>2021-06-27T23:08:24+10:00</lastmod>
+    <lastmod>2024-03-11T22:33:34+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/the-stack/</loc>
-    <lastmod>2021-04-18T07:34:38+10:00</lastmod>
+    <lastmod>2024-03-11T22:25:50+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/adding-addins-to-vscode/</loc>
-    <lastmod>2021-02-05T20:24:13+10:00</lastmod>
+    <lastmod>2024-03-11T22:18:21+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/an-okay-idea/</loc>
-    <lastmod>2020-09-04T21:44:30+10:00</lastmod>
+    <lastmod>2024-03-11T22:18:44+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/the-drake-post/</loc>
-    <lastmod>2020-09-04T21:45:02+10:00</lastmod>
+    <lastmod>2024-03-11T22:25:08+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/recover/</loc>
-    <lastmod>2020-09-16T20:57:25+10:00</lastmod>
+    <lastmod>2024-03-11T22:23:51+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/hacking-r-library-paths/</loc>
-    <lastmod>2020-08-16T22:17:08+10:00</lastmod>
+    <lastmod>2024-03-11T22:20:06+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/packrat-lite/</loc>
-    <lastmod>2020-08-13T23:41:01+10:00</lastmod>
+    <lastmod>2024-03-11T22:20:34+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/for-loops/</loc>
-    <lastmod>2022-05-02T10:26:27+10:00</lastmod>
+    <lastmod>2024-03-11T22:19:40+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/rstats-anti-pattern-row-wise/</loc>
-    <lastmod>2022-05-02T10:27:49+10:00</lastmod>
+    <lastmod>2024-03-11T22:24:18+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/the-roots-of-quotation/</loc>
-    <lastmod>2022-11-12T10:39:31+10:00</lastmod>
+    <lastmod>2024-03-11T22:25:22+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/r2vr3-shading-meshes-in-webvr/</loc>
-    <lastmod>2020-08-13T23:13:58+10:00</lastmod>
+    <lastmod>2024-03-11T22:23:35+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/crushing-the-contact-details-file/</loc>
-    <lastmod>2020-08-13T23:09:57+10:00</lastmod>
+    <lastmod>2024-03-11T22:19:15+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/r2vr2-rendering-meshes-in-webvr/</loc>
-    <lastmod>2020-08-13T23:07:44+10:00</lastmod>
+    <lastmod>2024-03-11T22:22:03+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/2018-in-pursuit-of-productivity/</loc>
-    <lastmod>2020-09-04T21:48:05+10:00</lastmod>
+    <lastmod>2024-03-11T22:14:14+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/solving-the-challenge-of-tidyeval/</loc>
-    <lastmod>2020-08-13T23:11:20+10:00</lastmod>
+    <lastmod>2024-03-11T22:24:43+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/how-to-survive-a-laptop-fire/</loc>
-    <lastmod>2020-08-16T22:09:35+10:00</lastmod>
+    <lastmod>2024-03-11T22:20:22+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/r2v1-meshing-uluru-from-polygons-and-rasters/</loc>
-    <lastmod>2020-08-13T23:06:28+10:00</lastmod>
+    <lastmod>2024-03-11T22:20:52+10:00</lastmod>
+  </url>
+  <url>
+    <loc>https://milesmcbain.com/posts/r2vr/</loc>
+    <lastmod>2024-03-11T22:21:47+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/ropensci-onboarding2/</loc>
-    <lastmod>2020-08-16T22:09:15+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/a-fully-dockerised-ghost-blog/</loc>
-    <lastmod>2020-09-04T21:57:57+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/ropensci-onboarding1/</loc>
-    <lastmod>2020-08-16T22:08:51+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
   <url>
     <loc>https://milesmcbain.com/posts/alt-r-with-vscode/</loc>
-    <lastmod>2020-08-12T22:46:17+10:00</lastmod>
+    <lastmod>2024-03-11T20:38:26+10:00</lastmod>
   </url>
 </urlset>

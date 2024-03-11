@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: Hacking R's library paths</title>
 
@@ -65,7 +134,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["hacking_r_library_paths_files/bowser-1.9.3/bowser.min.js","hacking_r_library_paths_files/distill-2.2.21/template.v2.js","hacking_r_library_paths_files/header-attrs-2.3/header-attrs.js","hacking_r_library_paths_files/jquery-1.11.3/jquery.min.js","hacking_r_library_paths_files/webcomponents-2.0.0/webcomponents.js","Monkey-typing.jpg"]}
+  {"type":"character","attributes":{},"value":["Monkey-typing.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,7 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2176,7 +2276,14 @@ li::marker {
 
 <div class="d-title">
 <h1>Hacking R’s library paths</h1>
-<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</p>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:hacks" class="dt-tag">hacks</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick</p></p>
 </div>
 
 <div class="d-byline">
@@ -2189,56 +2296,58 @@ li::marker {
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="Monkey-typing.jpg" width="100%" /></p>
 </div>
-<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick I discovered today. Here’s an alternate to <code>.libPaths()</code> that will let you set your R library paths to precisely whatever you choose, whenever you like<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
-<pre class="r"><code>
-set_lib_paths &lt;- function(lib_vec) {
-
-  lib_vec &lt;- normalizePath(lib_vec, mustWork = TRUE)
-
-  shim_fun &lt;- .libPaths
-  shim_env &lt;- new.env(parent = environment(shim_fun))
-  shim_env$.Library &lt;- character()
-  shim_env$.Library.site &lt;- character()
-
-  environment(shim_fun) &lt;- shim_env
-  shim_fun(lib_vec)
-
-}
-
-&gt; .libPaths()
-[1] &quot;/home/miles/R/x86_64-pc-linux-gnu-library/3.6&quot;
-[2] &quot;/usr/local/lib/R/site-library&quot;                
-[3] &quot;/usr/lib/R/site-library&quot;                      
-[4] &quot;/usr/lib/R/library&quot;    
-
-&gt; set_lib_paths(&quot;~/code/library&quot;)
-&gt; .libPaths()
-[1] &quot;/home/miles/code/library&quot;</code></pre>
+<p>If you’ve been tripped up by R’s library paths in the past, or you just enjoy a good hack, you might appreciate this little trick I discovered today. Here’s an alternate to <code>.libPaths()</code> that will let you set your R library paths to precisely whatever you choose, whenever you like<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>set_lib_paths <span class="ot">&lt;-</span> <span class="cf">function</span>(lib_vec) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  lib_vec <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(lib_vec, <span class="at">mustWork =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  shim_fun <span class="ot">&lt;-</span> .libPaths</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  shim_env <span class="ot">&lt;-</span> <span class="fu">new.env</span>(<span class="at">parent =</span> <span class="fu">environment</span>(shim_fun))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  shim_env<span class="sc">$</span>.Library <span class="ot">&lt;-</span> <span class="fu">character</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  shim_env<span class="sc">$</span>.Library.site <span class="ot">&lt;-</span> <span class="fu">character</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">environment</span>(shim_fun) <span class="ot">&lt;-</span> shim_env</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shim_fun</span>(lib_vec)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;/home/miles/R/x86_64-pc-linux-gnu-library/3.6&quot;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">&quot;/usr/local/lib/R/site-library&quot;</span>                </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>] <span class="st">&quot;/usr/lib/R/site-library&quot;</span>                      </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>] <span class="st">&quot;/usr/lib/R/library&quot;</span>    </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set_lib_paths</span>(<span class="st">&quot;~/code/library&quot;</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;/home/miles/code/library&quot;</span></span></code></pre></div>
 <p>This code is inspired by some I found in the source of <a href="https://github.com/gmbecker/switchr/blob/682e0fe56ab1f3340856ff106767683058862c13/R/methods.R#L467">Gabe Becker’s <code>switchr</code> package</a>. It looks a little cryptic, but when you figure out what’s going on it’s really quite exciting.</p>
 <p>So let’s break it down:</p>
 <p>According to the help of <code>.libPaths()</code> (which is a pretty ‘classic’ base R help file):</p>
 <blockquote>
-<p>If called with argument ‘new’, the library search path is set to the existing directories in ‘unique(c(new, .Library.site, .Library))’ and this is returned. If given no argument, a character vector with the currently active library trees is returned.</p>
+<p>If called with argument ‘new’, the library search path is set to the
+existing directories in ‘unique(c(new, .Library.site, .Library))’
+and this is returned. If given no argument, a character vector
+with the currently active library trees is returned.</p>
 </blockquote>
 <p>Which is to say <code>.libPaths(new)</code> will prepend your library paths, <code>.Library</code> and <code>.Library.site</code>, with whatever <code>new</code> contains. <code>.Library</code> and <code>.Library.site</code> are just regular R objects though. You can look up their values by typing them into your console. E.g. On my PC here:</p>
-<pre class="r"><code>
-&gt; .Library
-[1] &quot;/usr/lib/R/library&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> .Library</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;/usr/lib/R/library&quot;</span></span></code></pre></div>
 <p>So you might think (like I did), oh cool I can just overwrite these! Alas no. They don’t appear in a regular environment e.g.:</p>
-<pre class="r"><code>
-&gt; environment(.Library)
-NULL</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">environment</span>(.Library)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code></pre></div>
 <p>And while you can assign to them, it doesn’t affect the behaviour of <code>.libPaths()</code>. So we can deduce that <code>.libPaths()</code> must have access to some other environment that contains the versions of these objects it references.</p>
 <p>On this assumption, what this function does is take a copy of the <code>.libPaths()</code> function and inject a shim environment between the copy and its original parent environment. Into the shim environment it injects new objects named <code>.Library</code> and <code>.Library.site</code> which are set to empty character vectors.</p>
-<p>These injected objects mask the true versions that reside somewhere up the environment chain that we can’t easily reach. So when the code in our copy of <code>.libPaths()</code> goes reaching for these objects it will find our empty copies first and its behaviour will now be to set our library paths to <code>c(new, character(0), character(0))</code> …PHWARH!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>These injected objects mask the true versions that reside somewhere up the environment chain that we can’t easily reach. So when the code in our copy of <code>.libPaths()</code> goes reaching for these objects it will find our empty copies first and its behaviour will now be to set our library paths to <code>c(new, character(0), character(0))</code> …PHWARH!<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Beyond this function, which could be incredibly useful in workshop/classroom settings, I’m quite taken with the environment shim technique. It’ll be interesting to see what fun havok it can wreak with other people’s package code. Can it facilitate a kind of <a href="https://en.wikipedia.org/wiki/Monkey_patch">monkey-patching</a> of unexported functions? We’ll see. Let me know if you use it for something gnarly!</p>
 <hr />
-<p><em>Header Image Credit: New York Zoological Society, Public domain</em></p>
-<section class="footnotes">
+<p><em>Header Image Credit:
+New York Zoological Society, Public domain</em></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Unbelievably <code>libPaths()</code> doesn’t let you remove your system or site library from the search path.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Importantly since we inserted our shim environment like a link into the existing chain, the <code>.libPaths()</code> code can still access any other objects it needs in higher scopes. Also the original <code>.libPaths()</code> works as normal<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Unbelievably <code>libPaths()</code> doesn’t let you remove your system or site library from the search path.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Importantly since we inserted our shim environment like a link into the existing chain, the <code>.libPaths()</code> code can still access any other objects it needs in higher scopes. Also the original <code>.libPaths()</code> works as normal<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2272,7 +2381,8 @@ NULL</code></pre>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

@@ -20,26 +20,28 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,16 +50,17 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -71,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: 60 Days with the ZSA Moonlander: Review</title>
@@ -125,12 +129,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["60 Days with the ZSA Moonlander: Review"]},{"type":"character","attributes":{},"value":["I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["06-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["keyboards","ergonomics"]},{"type":"character","attributes":{},"value":["moonlander_new.jpg"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/zsa-moonlander-review/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/zsa-moonlander-review/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["60 Days with the ZSA Moonlander: Review"]},{"type":"character","attributes":{},"value":["I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn't make the ergonomics work for me."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miles McBain"]},{"type":"character","attributes":{},"value":["https://milesmcbain.xyz"]}]}]},{"type":"character","attributes":{},"value":["06-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["keyboards","ergonomics","review"]},{"type":"character","attributes":{},"value":["moonlander_new.jpg"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/zsa-moonlander-review/"]},{"type":"character","attributes":{},"value":["https://milesmcbain.com/posts/zsa-moonlander-review/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["60-days-with-the-zsa-moonlander-review_files/anchor-4.2.2/anchor.min.js","60-days-with-the-zsa-moonlander-review_files/bowser-1.9.3/bowser.min.js","60-days-with-the-zsa-moonlander-review_files/distill-2.2.21/template.v2.js","60-days-with-the-zsa-moonlander-review_files/figure-html5/unnamed-chunk-5-1.png","60-days-with-the-zsa-moonlander-review_files/jquery-1.11.3/jquery.min.js","60-days-with-the-zsa-moonlander-review_files/popper-2.6.0/popper.min.js","60-days-with-the-zsa-moonlander-review_files/tippy-6.2.7/tippy-bundle.umd.min.js","60-days-with-the-zsa-moonlander-review_files/tippy-6.2.7/tippy-light-border.css","60-days-with-the-zsa-moonlander-review_files/tippy-6.2.7/tippy.css","60-days-with-the-zsa-moonlander-review_files/tippy-6.2.7/tippy.umd.min.js","60-days-with-the-zsa-moonlander-review_files/webcomponents-2.0.0/webcomponents.js","ANSUR II FEMALE Public.csv","ANSUR II MALE Public.csv","moonlander_case.jpg","moonlander_mods.jpg","moonlander_new.jpg","moonlander_switch_swap.jpg","reach_diff_mockup.png","rhand_moonlander.jpg","rhand_sculpt.jpg"]}
+  {"type":"character","attributes":{},"value":["60-days-with-the-zsa-moonlander-review_files/figure-html5/unnamed-chunk-5-1.png","ANSUR II FEMALE Public.csv","ANSUR II MALE Public.csv","moonlander_case.jpg","moonlander_mods.jpg","moonlander_new.jpg","moonlander_switch_swap.jpg","reach_diff_mockup.png","rhand_moonlander.jpg","rhand_sculpt.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -477,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -848,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -945,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1706,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1783,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1810,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2093,7 +2122,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2246,13 +2276,15 @@ li::marker {
 
 <div class="d-title">
 <h1>60 Days with the ZSA Moonlander: Review</h1>
+
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:keyboards" class="dt-tag">keyboards</a>
   <a href="../../index.html#category:ergonomics" class="dt-tag">ergonomics</a>
+  <a href="../../index.html#category:review" class="dt-tag">review</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p>I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn’t make the ergonomics work for me.</p>
+<p><p>I spent 60 days with the ZSA Moonlander Keyboard and ultimately returned it. I wanted to like it, but couldn’t make the ergonomics work for me.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2263,7 +2295,7 @@ li::marker {
 
 <div class="d-article">
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="moonlander_new.jpg" width="1920" /></p>
+<p><img src="moonlander_new.jpg" /><!-- --></p>
 </div>
 <p>Even if you’re not a massive input nerd, there’s a pretty good chance you’ve heard about the <a href="https://www.zsa.io/moonlander/">ZSA Moonlander Ergonomic Keyboard</a>. It’s quite an aesthetically pleasing device, and It’s billed as the next generation of the much vaunted <a href="https://ergodox-ez.com/">ErgodoxEZ</a> lineage. Like its predecessor it carries an eye-watering price tag: USD $365.</p>
 <p>This post is my review of this apex ergonomic device. I spent 60 days with it before giving up on it due to steadily worsening strain injuries in my hands. Despite the ergonomics being something of a critical failure for me, I did find a lot to like about it, especially on the configuration and customisation side of things. It came frustratingly close to a device I could really get excited about.</p>
@@ -2276,66 +2308,147 @@ li::marker {
 <li>Support Experience</li>
 </ol>
 <p>From my perspective these represent the main selling points.</p>
-<p>Some context about me: I spend most of my job writing code to do data science work in R, during which I use a keyboard-driven workflow. I work standing 100% of the time, and I avoid using a mouse wherever possible. For text editing I favour either <a href="https://www.spacemacs.org/">Spacemacs</a> or <a href="https://vspacecode.github.io/">VSpaceCode</a>. My daily-driver keyboard for the last 4 or so years has been the Microsoft Sculpt.</p>
+<p>Some context about me: I spend most of my job writing code to do data science
+work in R, during which I use a keyboard-driven workflow. I work standing 100%
+of the time, and I avoid using a mouse wherever possible. For text editing I
+favour either <a href="https://www.spacemacs.org/">Spacemacs</a> or
+<a href="https://vspacecode.github.io/">VSpaceCode</a>. My daily-driver keyboard for the
+last 4 or so years has been the Microsoft Sculpt.</p>
 <h1 id="quality">Quality</h1>
-<p>For the most part the Moonlander felt like a premium device. Its surfaces felt good under my hands. The key caps are subtly textured and ever so slightly grippy. They felt weighty and durable. The typing sounds were thick and substantial, without being excessively loud <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. It gave a very tidy first impression.</p>
-<p>I do have one nitpick: The mechanism in the tenting legs felt flimsy. When rotating them I could feel a gear clicking though a discrete set of positions, but the sound and feel of this gave the impression that the gear was plastic. Unsettling metallic groans were emitted from the springs on the allen screws when tightening them that made me feel caution was required.</p>
+<p>For the most part the Moonlander felt like a premium device. Its surfaces felt
+good under my hands. The key caps are subtly textured and ever so slightly
+grippy. They felt weighty and durable. The typing sounds were thick and
+substantial, without being excessively loud <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It gave a very tidy first impression.</p>
+<p>I do have one nitpick: The mechanism in the tenting legs felt flimsy. When rotating them I could feel a
+gear clicking though a discrete set of positions, but the sound and feel of this
+gave the impression that the gear was plastic. Unsettling metallic groans were
+emitted from the springs on the allen screws when tightening them that made me
+feel caution was required.</p>
 <h1 id="portability">Portability</h1>
-<p>This is an important one for me. I can’t afford two Moonlanders, so I needed it to be able accompany me in a bicycle pannier bag on my daily commute. Also setting up and tearing down had to be reasonably low effort.</p>
-<p>A big strike against the Moonlander in this regard is the lack of rigid case. For a device in this price range it was a let down. What was provided wasn’t really a case so much as a thin neoprene slip that keeps the two halves, allen key, and cables bundled together. It didn’t seem like it would offer any protection whatsoever from bumps during transit. By contrast, I have a set of headphones which cost in the same ballpark as the Moonlander that shipped with a rigid zip-up case.</p>
+<p>This is an important one for me. I can’t afford two Moonlanders, so I needed it
+to be able accompany me in a bicycle pannier bag on my daily commute. Also
+setting up and tearing down had to be reasonably low effort.</p>
+<p>A big strike against the Moonlander in this regard is the lack of rigid case.
+For a device in this price range it was a let down. What was provided wasn’t
+really a case so much as a thin neoprene slip that keeps the two halves, allen
+key, and cables bundled together. It didn’t seem like it would offer any
+protection whatsoever from bumps during transit. By contrast, I have a set of
+headphones which cost in the same ballpark as the Moonlander that shipped with a
+rigid zip-up case.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="moonlander_case.jpg" alt="The Moonlander's case is very lightweight." width="1920" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="moonlander_case.jpg" alt="The Moonlander's case is very lightweight."  />
 <p class="caption">
 Figure 1: The Moonlander’s case is very lightweight.
 </p>
 </div>
 </div>
 <p>After some careful measuring I was able to find exactly one reasonably priced rigid case for DJ headphones that would accept it, for which I paid AUD $40.</p>
-<p>In its stock neoprene travel bundle, the board, cables, and allen key weighed in at around a kilo. I didn’t notice the weight on the bike, but you would in a backpack, particularly since it is dense weight. Heavy enough to notice, not heavy enough to be an issue I think.</p>
-<p>The setup and tear down process did feel a bit cumbersome at first. The fit of the allen key in the tenting screws was quite tight, so I found myself always having to concentrate to slot it in. Perhaps the most difficult thing to get down was that the left thumb cluster screw is reverse threaded. “Lift-to-loosen” I found myself muttering under my breath. It’s the kind of thing you forget in hurry, which I frequently am when trying to depart.</p>
-<p>When packing up, the cables don’t have a dedicated place to live in the neoprene slip which meant pack up always felt a bit haphazard. A couple of times I accidentally popped off a key cap trying to squeeze the cables into the slip along side one of the halves.</p>
-<p>On the plus side, the wrist rest folding mechanism is quite slick with a magnetic clasp that keeps them in travel mode. The wrist rest hinge also gave a robust impression.</p>
-<p>After I got the rigid case packing was greatly simplified. I started using the slip as padding only, and the case was sufficiently large that I could keep the tenting legs in my favoured position while stowing it.</p>
-<p>So while I agree the Moonlander is portable, I don’t think it’s appreciably more portable than a small keyboard (e.g. 60% form factor). Compared with other ergonomic boards, it probably would be at the portable end, definitely more portable than traditional offerings from Microsoft, Kinesis, et. al.</p>
+<p>In its stock neoprene travel bundle, the board, cables, and allen key weighed in
+at around a kilo. I didn’t notice the weight on the bike, but you would in a
+backpack, particularly since it is dense weight. Heavy enough to notice, not
+heavy enough to be an issue I think.</p>
+<p>The setup and tear down process did feel a bit cumbersome at first. The fit of
+the allen key in the tenting screws was quite tight, so I found myself always
+having to concentrate to slot it in. Perhaps the most difficult thing to get
+down was that the left thumb cluster screw is reverse threaded. “Lift-to-loosen”
+I found myself muttering under my breath. It’s the kind of thing you forget in
+hurry, which I frequently am when trying to depart.</p>
+<p>When packing up, the cables don’t have a dedicated place to live in the neoprene
+slip which meant pack up always felt a bit haphazard. A couple of times I
+accidentally popped off a key cap trying to squeeze the cables into the slip
+along side one of the halves.</p>
+<p>On the plus side, the wrist rest folding mechanism is quite slick with a
+magnetic clasp that keeps them in travel mode. The wrist rest hinge also gave a
+robust impression.</p>
+<p>After I got the rigid case packing was greatly simplified. I started using the
+slip as padding only, and the case was sufficiently large that I could keep the
+tenting legs in my favoured position while stowing it.</p>
+<p>So while I agree the Moonlander is portable, I don’t think it’s appreciably more
+portable than a small keyboard (e.g. 60% form factor). Compared with other
+ergonomic boards, it probably would be at the portable end, definitely more
+portable than traditional offerings from Microsoft, Kinesis, et. al.</p>
 <h1 id="tweakability">Tweakability</h1>
 <h2 id="software">Software</h2>
-<p>This is where the Moonlander shone for me. The software side of things is incredibly well executed. There are two main ways you can customise the Moonlander’s functionality:</p>
+<p>This is where the Moonlander shone for me. The software side of things is
+incredibly well executed. There are two main ways you can customise the
+Moonlander’s functionality:</p>
 <ul>
-<li>You can use <a href="https://configure.zsa.io/moonlander/layouts/default/latest/0">online GUI editor called ‘Oryx’</a> which seems to be backed by <code>git</code>. Changes are incrementally tracked and you can fork a configuration at any point. Oryx is focused on the key map, but it does expose a subset of deeper stuff that is possible in the firmware.</li>
-<li>You can edit the Moonlander firmware directly in C code. It uses a framework called ‘QMK’. ZSA provide instructions on how to get going with this, and QMK itself has <a href="https://docs.qmk.fm/">some of the nicest documentation</a> of any open source project that I have ever seen.</li>
+<li>You can use <a href="https://configure.zsa.io/moonlander/layouts/default/latest/0">online GUI editor called ‘Oryx’</a> which seems to be backed by <code>git</code>.
+Changes are incrementally tracked and you can fork a configuration at any
+point. Oryx is focused on the key map, but it does expose a subset of deeper
+stuff that is possible in the firmware.</li>
+<li>You can edit the Moonlander firmware directly in C code. It uses a framework
+called ‘QMK’. ZSA provide instructions on how to get going with this, and QMK
+itself has <a href="https://docs.qmk.fm/">some of the nicest documentation</a> of any open source project that I
+have ever seen.</li>
 </ul>
 <p>I didn’t do anything too radical but the possibilities are expansive. To give a taste for what’s possible:</p>
-<p>I swapped out my shift keys for layer toggles. This meant I could directly control the ‘shifted’ version of each key. With this concept I:</p>
+<p>I swapped out my shift keys for layer toggles. This meant I could directly
+control the ‘shifted’ version of each key. With this concept I:</p>
 <ul>
 <li>Made underscore, <code>_</code>, the shift of space.</li>
 <li>Swapped the locations of angle brackets <code>&lt;&gt;</code> and parentheses <code>()</code></li>
 <li>Made Lshift + Rshift <code>{</code> with <code>}</code> on hold</li>
 <li>Made Rshift + Lshift <code>[</code> with <code>]</code> on hold</li>
 </ul>
-<p>The idea I was working on was to move symbols that I use regularly while working to more convenient locations - and the results felt pretty damn good!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>This experience has cemented for me that deep programmability is an important facet of truly ergonomic hardware. All of us have different preferences and physical limitations, too many and varied to design for in hardware!</p>
-<p>A bonus in the Moonlander’s favour is that QMK is an open source firmware that is used by a variety of exotic keyboards including kit-builds. So experience with QMK is likely to be portable to other boards, rather than being one manufacturer’s way of doing things.</p>
-<p>I didn’t get deep into QMK but I did work with it to set faster macros for commonly used symbol combinations like <code>%&gt;%</code> and <code>&lt;-</code>, as well as playing with the acceleration parameters of mouse control mode. This was all much easier than I expected, thanks to the excellent docs. I found a Docker config for the QMK build environment that made building my changes a breeze.</p>
-<p>One nitpick I’d make about tweaking is that the iteration loop is quite slow for continuous parameters. These underpin some important features, for example: How long does a key need to be held down to register as a hold? How quick does a double tap need to be? How fast should the mouse accelerate in mouse control mode?</p>
-<p>The only way to set these is according to personal taste, but to change a value means recompiling the firmware and re-flashing the board. It would be cool if the board could provide some kind of shell that would accept commands to alter these parameters live and feel the effects <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>The idea I was working on was to move symbols that I use regularly while working
+to more convenient locations - and the results felt pretty damn good!<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>This experience has cemented for me that deep programmability is an important facet
+of truly ergonomic hardware. All of us have different preferences and physical
+limitations, too many and varied to design for in hardware!</p>
+<p>A bonus in the Moonlander’s favour is that QMK is an open source firmware that
+is used by a variety of exotic keyboards including kit-builds. So experience
+with QMK is likely to be portable to other boards, rather than being one
+manufacturer’s way of doing things.</p>
+<p>I didn’t get deep into QMK but I did work with it to set faster macros for
+commonly used symbol combinations like <code>%&gt;%</code> and <code>&lt;-</code>, as well as playing with
+the acceleration parameters of mouse control mode. This was all much easier than
+I expected, thanks to the excellent docs. I found a Docker config for the QMK build environment that made building my changes a breeze.</p>
+<p>One nitpick I’d make about tweaking is that the iteration loop is quite slow for
+continuous parameters. These underpin some important features, for example: How
+long does a key need to be held down to register as a hold? How quick does a
+double tap need to be? How fast should the mouse accelerate in mouse control
+mode?</p>
+<p>The only way to set these is according to personal taste, but to change a
+value means recompiling the firmware and re-flashing the board. It would be cool
+if the board could provide some kind of shell that would accept commands
+to alter these parameters live and feel the effects <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <p>Nitpicks aside, the Moonlander was a software tweaker’s dream. I definitely want my next board to be running QMK.</p>
 <h2 id="hardware">Hardware</h2>
-<p>On the hardware side there are a few avenues for tweaking. The thumb clusters seem to have been designed to be swappable, although no other alternatives exist at this time. I could easily imagine ZSA is planning a cluster with a pointing device. There’s also some mysterious sets of screw holes in the base of the board, maybe for extreme tenting mode? Again there’s nothing out at the moment.</p>
-<p>So the hardware tweaking angle I had open to me was the key switches. They’re ‘hot-swappable’, which to my surprise meant I could literally swap them out while the board was hot (powered). The swapping process was repetitive but not otherwise challenging. There was a switch puller tool included for this purpose. It felt kind of like what imagine medieval dentistry was.</p>
-<p>I tried 3 sets of switches all up, including the Kailh Box Red switches I ordered the board with. The Box Reds were definitely a mistake for me. I found the travel too deep, like typing on a pillow. This lead to a lot of fumbling with missed presses or double-presses as I struggled to get a feel for the actuation point. I tried pushing the switches all the way down to the bottom-out point, but that felt fatiguing.</p>
-<p>I had a much better time with some Kailh Speed Copper switches which have lower travel and a higher actuation point. But even these felt like work compared to what I was used to on the Microsoft Sculpt.</p>
-<p>The hot-swap design worked really well for me since I didn’t really know what I wanted in a switch. I ordered a sampler batch and had a fun time trying them all in different positions to get a feel for what I liked. The Moonlander taught me a lot about the influence of switches, and the hot-swap ability is a convenient feature that I would regard highly when choosing my next keyboard, although it may not be essential, having some concept of what I like now.</p>
+<p>On the hardware side there are a few avenues for tweaking. The thumb clusters
+seem to have been designed to be swappable, although no other alternatives exist
+at this time. I could easily imagine ZSA is planning a cluster with a pointing
+device. There’s also some mysterious sets of screw holes in the base of the
+board, maybe for extreme tenting mode? Again there’s nothing out at the moment.</p>
+<p>So the hardware tweaking angle I had open to me was the key switches. They’re
+‘hot-swappable’, which to my surprise meant I could literally swap them out
+while the board was hot (powered). The swapping process was repetitive but not
+otherwise challenging. There was a switch puller tool included for this
+purpose. It felt kind of like what imagine medieval dentistry was.</p>
+<p>I tried 3 sets of switches all up, including the Kailh Box Red switches I
+ordered the board with. The Box Reds were definitely a mistake for me. I found
+the travel too deep, like typing on a pillow. This lead to a lot of
+fumbling with missed presses or double-presses as I struggled to get a feel for
+the actuation point. I tried pushing the switches all the way down to the bottom-out point, but that felt fatiguing.</p>
+<p>I had a much better time with some Kailh Speed Copper switches which have lower
+travel and a higher actuation point. But even these felt like work compared to
+what I was used to on the Microsoft Sculpt.</p>
+<p>The hot-swap design worked really well for me since I didn’t really know what I
+wanted in a switch. I ordered a sampler batch and had a fun time trying them all
+in different positions to get a feel for what I liked. The Moonlander taught me a lot about the influence of switches, and the hot-swap ability is a convenient feature that I would regard highly when choosing my next keyboard, although it may not be essential, having some concept of what I like now.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="moonlander_switch_swap.jpg" alt="A switch swap in progress on the Moonlander" width="1920" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="moonlander_switch_swap.jpg" alt="A switch swap in progress on the Moonlander"  />
 <p class="caption">
 Figure 2: A switch swap in progress on the Moonlander
 </p>
 </div>
 </div>
 <h1 id="ergonomics">Ergonomics</h1>
-<p>ZSA’s marketing bills the Moonlanader as a “Next-generation ergonomic keyboard”. Apart from the customisable key layouts, the main ergonomic features of the Moonlander that it makes this claim based on seem to be:</p>
+<p>ZSA’s marketing bills the Moonlanader as a “Next-generation ergonomic keyboard”.
+Apart from the customisable key layouts, the main ergonomic features of the
+Moonlander that it makes this claim based on seem to be:</p>
 <ul>
 <li>Split halves for typing at more comfortable width and angle</li>
 <li>Staggered ‘Columnar’ or ‘Ortholinear’ key arrangement which changes home position reach angles reach distances</li>
@@ -2345,23 +2458,55 @@ Figure 2: A switch swap in progress on the Moonlander
 </ul>
 <p>Some of these things worked for me, others did not. I expect this is a highly personal thing.</p>
 <h2 id="split-halves">Split Halves</h2>
-<p>A thing that worked was typing with a much wider posture encouraged by having the halves set around shoulder width. I have a sense that standing to type with my wrists close together exacerbates a tendency for me to round my shoulders forward - since it concentrates weight in front of me. With the Moonlander I felt like I could more easily maintain a healthier posture.</p>
+<p>A thing that worked was typing with a much wider posture encouraged by having
+the halves set around shoulder width. I have a sense that standing to type with
+my wrists close together exacerbates a tendency for me to round my shoulders
+forward - since it concentrates weight in front of me. With the Moonlander I
+felt like I could more easily maintain a healthier posture.</p>
 <h2 id="staggered-columns">Staggered Columns</h2>
-<p>The staggered columnar arrangement presented a bit of a stumbling block initially. It took me 7 days to get back to my previous typing speeds <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. I have mixed feelings about the arrangement. I can get on board with the idea it makes hand movements symmetrical, and I did find it easy to visualise the ‘grid’ in my head, but I didn’t find it universally better as the hype would have had me believe.</p>
-<p>The columnar arrangement makes different tradeoffs. Some keys are easier to reach while some get harder. For example: The middle columns are offset slightly downward from the index finger columns <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. The effect of this is that (in QWERTY) <code>Y</code> and <code>T</code> become easier to reach while <code>N</code>, a frequent key in programming, becomes a much further reach than on a staggered board.</p>
+<p>The staggered columnar arrangement presented a bit of a stumbling block
+initially. It took me 7 days to get back to my previous typing speeds <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. I have mixed
+feelings about the arrangement. I can get on board with the idea it makes hand
+movements symmetrical, and I did find it easy to visualise the ‘grid’ in my
+head, but I didn’t find it universally better as the hype would have had me
+believe.</p>
+<p>The columnar arrangement makes different tradeoffs. Some keys are easier to
+reach while some get harder. For example: The middle columns are offset slightly
+downward from the index finger columns <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. The effect of this is that (in QWERTY) <code>Y</code> and <code>T</code> become
+easier to reach while <code>N</code>, a frequent key in programming, becomes a much further reach than on a staggered board.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="reach_diff_mockup.png" alt="The difference in spacing between J and N on the Moonlander (left) and my laptop (right)." width="200%" />
 <p class="caption">
 Figure 3: The difference in spacing between J and N on the Moonlander (left) and my laptop (right).
 </p>
 </div>
 </div>
-<p>I did notice some fatigue and pain in my right index finger and I believe the <code>N</code> position contributed. This isn’t an insurmountable problem, it could be fixed by swapping <code>N</code> for a less common key - but <a href="https://workmanlayout.org/">as was noted by the creator of the Workman keyboard layout</a>, swapping keys without consideration for the interaction effects can produce poor results. Probably a better option is swapping to a new layout that has been holistically designed.</p>
-<p>Following that line of thinking I experimented with learning DVORAK, where I noticed another issue introduced by the staggered columns: In DVORAK the outside keys above home are <code>'</code> and <code>L</code>. It seems that the <code>L</code> position upsets a lot of programmers and terminal users, in part due to proximity to <code>S</code> which is immediately below it. I.e. <code>ls -l</code> uses the pinky for all the characters other than space. So what is recommended is that the ring finger is used when reaching upward for <code>L</code> and <code>-</code>. This is unconventional but perfectly viable on a staggered board, but felt super awkward to me with the Moonlander’s columns.</p>
-<p>What these examples made clear to me is that layouts designed for staggered key arrangements do not necessarily perform as well with the offset columnar arrangement. Which seems kind of obvious now, but was not something I considered when purchasing the Moonlander. <code>N</code> was a significant niggle for me in QWERTY as I suspect it may be for other programmers.</p>
+<p>I did notice some fatigue and pain in my right index finger and I believe the
+<code>N</code> position contributed. This isn’t an insurmountable problem, it could be
+fixed by swapping <code>N</code> for a less common key - but <a href="https://workmanlayout.org/">as was noted by the creator of the Workman keyboard layout</a>, swapping keys without consideration for the interaction effects can produce poor results. Probably a better option is swapping to a new layout that has been holistically designed.</p>
+<p>Following that line of thinking I experimented with learning DVORAK, where I
+noticed another issue introduced by the staggered columns: In DVORAK the outside
+keys above home are <code>'</code> and <code>L</code>. It seems that the <code>L</code> position upsets a lot of
+programmers and terminal users, in part due to proximity to <code>S</code> which is
+immediately below it. I.e. <code>ls -l</code> uses the pinky for all the characters other
+than space. So what is recommended is that the ring finger is used
+when reaching upward for <code>L</code> and <code>-</code>. This is unconventional but perfectly
+viable on a staggered board, but felt super awkward to me with the Moonlander’s
+columns.</p>
+<p>What these examples made clear to me is that layouts designed for staggered key
+arrangements do not necessarily perform as well with the offset columnar
+arrangement. Which seems kind of obvious now, but was not something I
+considered when purchasing the Moonlander. <code>N</code> was a significant niggle for me
+in QWERTY as I suspect it may be for other programmers.</p>
 <h2 id="wrist-rests">Wrist rests</h2>
-<p>Moving along to other ergonomic features brings us to the wrist rests. They’re premium feeling plastic, but I found them too hard. I couldn’t use them for much more than about 45 minutes at a stretch before my wrists and palms started going numb and tingly. There’s a chance I might have been using them wrong, but I am able to use the slightly softer wrist rest on my Microsoft Sculpt all day without consciously thinking about it. I removed the wrist rests and went with hover typing after the first few days. Thankfully this was easy to do.</p>
+<p>Moving along to other ergonomic features brings us to the wrist rests. They’re
+premium feeling plastic, but I found them too hard. I couldn’t use them for much
+more than about 45 minutes at a stretch before my wrists and palms started going
+numb and tingly. There’s a chance I might have been using them wrong, but I am
+able to use the slightly softer wrist rest on my Microsoft Sculpt all day
+without consciously thinking about it. I removed the wrist rests and went with
+hover typing after the first few days. Thankfully this was easy to do.</p>
 <h2 id="tenting-and-thumb-cluster">Tenting and Thumb Cluster</h2>
 <p>So now finally we arrive at the cluster that was tenting and the thumb cluster. This is a challenging part to write since I still have a lot of really raw frustration and anger attached to my experience with this part of the keyboard.</p>
 <p>I’ll start by pointing you to how the thumb cluster is marketed by ZSA:</p>
@@ -2374,108 +2519,176 @@ Figure 3: The difference in spacing between J and N on the Moonlander (left) and
 <blockquote>
 <p>A custom fit for your hand size.</p>
 </blockquote>
-<p>Next I should tell you my hand size. A common way to measure this seems to be hand length and breadth. So here are these dimensions for me against the <a href="http://mreed.umtri.umich.edu/mreed/downloads.html#ansur">2012 US Army Anthropometric Survey</a> for males and females<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>:</p>
+<p>Next I should tell you my hand size. A common way to measure this seems to be hand length and breadth. So here are these dimensions for me against the <a href="http://mreed.umtri.umich.edu/mreed/downloads.html#ansur">2012 US Army Anthropometric Survey</a> for males and females<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='va'>ansur_2</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span>
-  <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"./ANSUR II MALE Public.csv"</span><span class='op'>)</span>,
-  <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"./ANSUR II FEMALE Public.csv"</span><span class='op'>)</span>
-<span class='op'>)</span>
-<span class='va'>my_hand</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>handlength <span class='op'>=</span> <span class='fl'>195</span>, handbreadth <span class='op'>=</span> <span class='fl'>81</span>, label <span class='op'>=</span> <span class='st'>"Me"</span><span class='op'>)</span>
-
-<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ansur_2</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>handbreadth</span>, y <span class='op'>=</span> <span class='va'>handlength</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_density_2d</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>my_hand</span>, colour <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_text</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>my_hand</span>,
-    <span class='fu'>aes</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Me"</span><span class='op'>)</span>,
-    colour <span class='op'>=</span> <span class='st'>"red"</span>,
-    nudge_x <span class='op'>=</span> <span class='fl'>0</span>,
-    nudge_y <span class='op'>=</span> <span class='fl'>4</span>,
-    size <span class='op'>=</span> <span class='fl'>4</span>
-  <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"My hand size vs service people in the ANSUR II 2012 sample"</span>,
-    subtitle <span class='op'>=</span> <span class='st'>"Contours depict observation density"</span>,
-    x <span class='op'>=</span> <span class='st'>"Hand breadth (mm)"</span>,
-    y <span class='op'>=</span> <span class='st'>"Hand length (mm)"</span>
-  <span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='va'>ansur_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_rows.html'>bind_rows</a></span><span class='op'>(</span></span>
+<span>  <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"./ANSUR II MALE Public.csv"</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"./ANSUR II FEMALE Public.csv"</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>my_hand</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>handlength <span class='op'>=</span> <span class='fl'>195</span>, handbreadth <span class='op'>=</span> <span class='fl'>81</span>, label <span class='op'>=</span> <span class='st'>"Me"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ansur_2</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>handbreadth</span>, y <span class='op'>=</span> <span class='va'>handlength</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density_2d.html'>geom_density_2d</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>my_hand</span>, colour <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span></span>
+<span>    data <span class='op'>=</span> <span class='va'>my_hand</span>,</span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Me"</span><span class='op'>)</span>,</span>
+<span>    colour <span class='op'>=</span> <span class='st'>"red"</span>,</span>
+<span>    nudge_x <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span>    nudge_y <span class='op'>=</span> <span class='fl'>4</span>,</span>
+<span>    size <span class='op'>=</span> <span class='fl'>4</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"My hand size vs service people in the ANSUR II 2012 sample"</span>,</span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Contours depict observation density"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Hand breadth (mm)"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Hand length (mm)"</span></span>
+<span>  <span class='op'>)</span></span></code></pre>
 </div>
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="60-days-with-the-zsa-moonlander-review_files/figure-html5/unnamed-chunk-5-1.png" alt="Compared with the 4082 servicemen and 1986 servicewomen in the sample I am at the 71st percentile for length but only the 30th for breadth." width="624" />
 <p class="caption">
 Figure 4: Compared with the 4082 servicemen and 1986 servicewomen in the sample I am at the 71st percentile for length but only the 30th for breadth.
 </p>
 </div>
 </div>
-<p>So I guess there’s some evidence to suggest my hand shape is a little uncommon. I certainly don’t have ‘large’ hands, but to call them ‘small’ could be misleading depending on what dimensions are important. I have ‘skinny’ hands may be better <a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>.</p>
-<p>What I do know for sure is that with these hands I couldn’t find a way to use the thumb cluster without pain. Inflammation in my thumbs and wrists slowly accumulated during my time with the Moonlander, and really started to worry me around week 3 - 4 when I noticed pain away from the keyboard when I was doing things like gripping a steering wheel or holding a cup of coffee. The locus of pain was centred at the base of both thumbs running up to my second knuckle and back toward my wrists.</p>
-<p>I tried all sorts of things to get relief. Using the thumb cluster tilted up felt horrible, inducing sharp pain quite quickly, so I started looking at modifications including:</p>
+<p>So I guess there’s some evidence to suggest my hand shape is a little uncommon. I
+certainly don’t have ‘large’ hands, but to call them ‘small’ could be misleading
+depending on what dimensions are important. I have ‘skinny’ hands may be better
+<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<p>What I do know for sure is that with these hands I couldn’t find a way to use
+the thumb cluster without pain. Inflammation in my thumbs and wrists slowly
+accumulated during my time with the Moonlander, and really started to worry me
+around week 3 - 4 when I noticed pain away from the keyboard when I was doing
+things like gripping a steering wheel or holding a cup of coffee. The locus of
+pain was centred at the base of both thumbs running up to my second knuckle and
+back toward my wrists.</p>
+<p>I tried all sorts of things to get relief. Using the thumb cluster tilted up
+felt horrible, inducing sharp pain quite quickly, so I started looking at
+modifications including:</p>
 <ul>
-<li>purchasing <a href="https://www.thingiverse.com/thing:4688862">aftermarket 3d printed legs</a> to allow the Moonlander to tent with the thumb cluster up</li>
+<li>purchasing <a href="https://www.thingiverse.com/thing:4688862">aftermarket 3d printed legs</a> to
+allow the Moonlander to tent with the thumb cluster up</li>
 <li>over-size key caps to move the pressable area of the key closer to my natural position</li>
 <li>wooden blocks to allow the board to have a degree of negative tilt.</li>
 </ul>
 <p>Here’s a picture with those mods:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
-<img src="moonlander_mods.jpg" alt="My modified Moonalander hardware configuration" width="1920" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="moonlander_mods.jpg" alt="My modified Moonalander hardware configuration"  />
 <p class="caption">
 Figure 5: My modified Moonalander hardware configuration
 </p>
 </div>
 </div>
-<p>The only thing I found that reliably gave me a break from the pain was switching back to my Microsoft Sculpt. This made it abundantly clear that the Moonlander was the root cause of my problems.</p>
-<p>What’s got me a bit annoyed about this experience is that ZSA’s marketing made me feel like the board has been designed to cater to all hands. They tout a next-generation ergonomic keyboard that can provide “A custom fit for your hand size”. I think I probably bought into this a bit too much, and was convinced that the flexibility of the design would allow it to work for me if I could just find the right combination of parameters.</p>
-<p>In retrospect it’s a fairly significant oversight by ZSA to talk about the Moonlander working in different ways for people with ‘large’ and ‘small’ hands whilst providing no guidance as to the definitions of large and small. Ideally I would have got clarification from them before purchase, but my degree of trust in them was high due to the experiences of other people I know who have purchased their hardware.</p>
-<p>ZSA can and absolutely should provide potential customers with sizing aids. I have suggested to them that they should make printable paper templates available like Apple do for their watches, so people can get a feel for how their hands will fall on the board<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
-<p>Beyond my personal woes I see a larger issue with the Moonlander’s ergonomics: Out of the box tenting is only supported for people with large hands. This is because tilting the thumb cluster down to use as a stababliser moves the thumb’s keys quite some distance from the bottom row of letters. Also the angle of tenting is quite limited. Notably there is no ability to tilt forward which is recommended by most ergonomics guides.</p>
-<p>Rather than being next-generation, this strikes me as something of a regression. The ErgodoxEZ could tent in more directions, for all users, while the Moonlander can only tent one way for a small proportion. People who are interested in tenting should be aware that the Moonlander may not work for them. Ideally ZSA would provide guidance in the form of hand measurements that tenting will work for, or even better: include some kind of kit in the box that makes tenting accessible to all.</p>
+<p>The only thing I found that reliably gave me a break from the pain was switching
+back to my Microsoft Sculpt. This made it abundantly clear that the Moonlander was
+the root cause of my problems.</p>
+<p>What’s got me a bit annoyed about this experience is that ZSA’s marketing made
+me feel like the board has been designed to cater to all hands. They tout a
+next-generation ergonomic keyboard that can provide “A custom fit for your hand
+size”. I think I probably bought into this a bit too much, and was convinced that
+the flexibility of the design would allow it to work for me if I could just find
+the right combination of parameters.</p>
+<p>In retrospect it’s a fairly significant oversight by ZSA to talk about the
+Moonlander working in different ways for people with ‘large’ and ‘small’ hands
+whilst providing no guidance as to the definitions of large and small. Ideally I
+would have got clarification from them before purchase, but my degree of trust
+in them was high due to the experiences of other people I know who have purchased
+their hardware.</p>
+<p>ZSA can and absolutely should provide potential customers with sizing aids. I
+have suggested to them that they should make printable paper templates available
+like Apple do for their watches, so people can get a feel for how their hands
+will fall on the board<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<p>Beyond my personal woes I see a larger issue with the Moonlander’s ergonomics:
+Out of the box tenting is only supported for people with large hands. This is because
+tilting the thumb cluster down to use as a stababliser moves the thumb’s keys quite
+some distance from the bottom row of letters. Also the angle of tenting is quite limited. Notably there is no ability to tilt forward which is recommended by most ergonomics guides.</p>
+<p>Rather than being next-generation, this strikes me as something of a regression.
+The ErgodoxEZ could tent in more directions, for all users, while the Moonlander can only tent one way for a
+small proportion. People who are interested in tenting should be aware that the
+Moonlander may not work for them. Ideally ZSA would provide guidance in the form
+of hand measurements that tenting will work for, or even better: include some kind
+of kit in the box that makes tenting accessible to all.</p>
 <h1 id="support-experience">Support experience</h1>
-<p>Around day 60 I got fed up. I’d tried so much and was still experiencing pain. I was considering even wilder solutions, like swapping the left and right halves, when I had a moment of clarity: My experience was far from what would reasonably expected with a top tier ergonomic keyboard. So I wrote an email to ZSA support. It was a simple email that outlined the trouble I was having, the things I had tried, and asked them if they had any advice they could offer before I gave up on it completely.</p>
-<p>The response was very impressive. In short order I received an email from ZSA CEO Erez Zuckerman who offered to work with me personally to try to find a setup that would work. One of the things he requested from me were some photos of my hands on the board lying flat in its stock configuration. These are some of the photos I responded with:</p>
+<p>Around day 60 I got fed up. I’d tried so much and was still experiencing pain. I
+was considering even wilder solutions, like swapping the left and right halves,
+when I had a moment of clarity: My experience was far from what would
+reasonably expected with a top tier ergonomic keyboard. So I wrote an email to
+ZSA support. It was a simple email that outlined the trouble I was having, the
+things I had tried, and asked them if they had any advice they could offer
+before I gave up on it completely.</p>
+<p>The response was very impressive. In short order I received an email from ZSA
+CEO Erez Zuckerman who offered to work with me personally to try to find a setup
+that would work. One of the things he requested from me were some photos of my
+hands on the board lying flat in its stock configuration. These are some of the
+photos I responded with:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-7"></span>
-<img src="rhand_sculpt.jpg" alt="My hand in my natural typing position on the Microsoft Sculpt" width="1077" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="rhand_sculpt.jpg" alt="My hand in my natural typing position on the Microsoft Sculpt"  />
 <p class="caption">
 Figure 6: My hand in my natural typing position on the Microsoft Sculpt
 </p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-8"></span>
-<img src="rhand_moonlander.jpg" alt="My hand trying to reproduce my natural typing position on the Moonlander" width="1059" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="rhand_moonlander.jpg" alt="My hand trying to reproduce my natural typing position on the Moonlander"  />
 <p class="caption">
 Figure 7: My hand trying to reproduce my natural typing position on the Moonlander
 </p>
 </div>
 </div>
-<p>Erez’s response again impressed me, because on seeing the photos he quickly responded with a note to say that in his opinion the thumb cluster shape was not compatible with my hand shape. He also offered to accept a return and make a refund even though I was well outside the window in ZSA’s official returns policy.</p>
-<p>The direct approach was a real relief. I was gearing myself up for the kind of painful support experience you get from many companies where they walk you through a script and make you try all the things you’ve already said you’ve tried. This was very different. My time and efforts prior to contacting support were being respected. This is quite a rare thing!</p>
-<p>It was also nice to have confirmation that I wasn’t missing something. I had failed to find a good solution most likely because one did not exist. I accepted the refund offer and mailed my Moonlander for return a few days later <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
-<p>Throughout the support process we discussed some potential improvements to the customer experience, and Erez gave the impression he was giving consideration to my suggestions. He sent me example paper templates for feedback. He also recommended a couple of other boards I should check out made by competitors! As far as I am concerned this was a support experience befitting a top tier product.</p>
+<p>Erez’s response again impressed me, because on seeing the photos he quickly
+responded with a note to say that in his opinion the thumb cluster shape was not
+compatible with my hand shape. He also offered to accept a return and make a
+refund even though I was well outside the window in ZSA’s official returns
+policy.</p>
+<p>The direct approach was a real relief. I was gearing myself up for the kind of
+painful support experience you get from many companies where they walk you
+through a script and make you try all the things you’ve already said you’ve
+tried. This was very different. My time and efforts prior to contacting support
+were being respected. This is quite a rare thing!</p>
+<p>It was also nice to have confirmation that I wasn’t missing something. I had
+failed to find a good solution most likely because one did not exist. I accepted
+the refund offer and mailed my Moonlander for return a few days later <a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.</p>
+<p>Throughout the support process we discussed some potential improvements to the
+customer experience, and Erez gave the impression he was giving consideration to
+my suggestions. He sent me example paper templates for feedback. He also
+recommended a couple of other boards I should check out made by competitors! As
+far as I am concerned this was a support experience befitting a top tier
+product.</p>
 <h1 id="conclusion">Conclusion</h1>
-<p>My experience with the Moonlander was frustrating and painful. Yet at times it was also exhilarating, and in the end it was satisfactory. ZSA lost my money but kept my trust, and I give them full credit for their degree of customer care.</p>
-<p>In writing this review I have aimed to give an account of my experiences with the Moonlander that might help others avoid wasting time and money as I did. But I have also tried to be fair to the parts of the product that are genuinely well done, and could be appreciated by those with the right size hands.</p>
-<p>The Moonlander is not a keyboard for everyone, although I think many of its ideas could have wide appeal. I am now definitely in the market for a split ortholinear/columnar keyboard running QMK. I’ll be pleased to take recommendations!<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>.</p>
+<p>My experience with the Moonlander was frustrating and painful. Yet at times it was also
+exhilarating, and in the end it was satisfactory. ZSA lost my money but kept
+my trust, and I give them full credit for their degree of customer care.</p>
+<p>In writing this review I have aimed to give an account of my experiences with
+the Moonlander that might help others avoid wasting time and money as I did. But I
+have also tried to be fair to the parts of the product that are genuinely well
+done, and could be appreciated by those with the right size hands.</p>
+<p>The Moonlander is not a keyboard for everyone, although I think many of its
+ideas could have wide appeal. I am now definitely in the market for a
+split ortholinear/columnar keyboard running QMK. I’ll be pleased to take recommendations!<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>although a lot of this is due to my initial choice of a linear switch.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>The last layout I made in Oryx is here if you’re curious: <a href="https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0" class="uri">https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>This nitpick is minor since, I think within QMK it would definitely be possible to assign keys to increment and decrement these parameters live - it just would be nice to have a workflow for this out of the box.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Perhaps I had some advantage coming from a board that was already split.<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Why is this is case when these columns use the same finger?<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>Initially when I made this plot I made it for males only. The data sets are separated by gender. Against males I am in the 60th percentile for length and the 6th for breadth. So I definitely have a more unusual shape compared with men only. Later I realised this was a mistake since ergonomic keyboards shouldn’t be designed for men only.<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>For someone in the US Army. Compared with warriors of the keyboard kind I expect I’d be a bit more normal.<a href="#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>To ZSA’s credit they actually sent me some of these for feedback, so this may be a work in progress. In the meantime if anyone would like a paper template for the Moonlander or Ergodox, let me know.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>Returns are made to Taiwan. From Australia this is quite cheap. I think I paid AUD $24. Elsewhere in the world it is much more cost prohibitive.<a href="#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.<a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>although a lot of this is due to my initial choice of a linear switch.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The last layout I made in Oryx is here if you’re curious: <a href="https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0" class="uri">https://configure.zsa.io/moonlander/layouts/L4P6y/latest/0</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This nitpick is minor since, I think within QMK it would definitely be possible to assign keys to increment and decrement these parameters live - it just would be nice to have a workflow for this out of the box.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Perhaps
+I had some advantage coming from a board that was already split.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Why is this is case when these columns
+use the same finger?<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Initially when I made this plot I made it for males only. The data sets are separated by gender. Against males I am in the 60th percentile for length and the 6th for breadth. So I definitely have a more unusual shape compared with men only. Later I realised this was a mistake since ergonomic keyboards shouldn’t be designed for men only.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>For someone in the US Army. Compared with warriors of the keyboard kind I expect I’d be a bit more normal.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>To ZSA’s credit they actually sent me some of these for feedback, so this may be a work in progress. In the meantime if anyone would like a paper template for the Moonlander or Ergodox, let me know.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Returns are made to Taiwan. From Australia this is quite cheap. I think I paid AUD $24. Elsewhere in the world it is much more cost prohibitive.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>For now I have an eye on the Corne and the Gergo keyboards. The low profile idea appeals to me as a smaller step from what I am comfortable with on the Sculpt.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2509,7 +2722,8 @@ Figure 7: My hand trying to reproduce my natural typing position on the Moonland
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

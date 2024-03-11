@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: Project as an R package: An okay idea</title>
 
@@ -65,7 +134,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg","project_as_an_r_package_files/bowser-1.9.3/bowser.min.js","project_as_an_r_package_files/distill-2.2.21/template.v2.js","project_as_an_r_package_files/header-attrs-2.3/header-attrs.js","project_as_an_r_package_files/jquery-1.11.3/jquery.min.js","project_as_an_r_package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,7 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2176,7 +2276,15 @@ li::marker {
 
 <div class="d-title">
 <h1>Project as an R package: An okay idea</h1>
-<p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:workflow" class="dt-tag">workflow</a>
+  <a href="../../index.html#category:data_science" class="dt-tag">data science</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p></p>
 </div>
 
 <div class="d-byline">
@@ -2234,10 +2342,10 @@ pointless artifacts
 <li>The <code>Authors</code> of the project are already tracked and displayed on GitHub</li>
 <li><code>Title</code> and <code>Description</code> are made redundant by your README</li>
 <li><code>URL</code> and <code>BugReports</code> are useless because that’s the GitHub repo you work out of.</li>
-<li><code>Version</code> can be a git tag (GitHub release) <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li><code>Version</code> can be a git tag (GitHub release) <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 </ul>
-<p><code>Imports</code>, <code>Depends</code>, and <code>Suggests</code> describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn’t on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<p>To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. To do this you use a lockfile or a dockerfile or both. Let’s say you use a lockfile created with <code>{renv}</code>. You now have a second place in your project repository that lists R package dependencies and version numbers.</p>
+<p><code>Imports</code>, <code>Depends</code>, and <code>Suggests</code> describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn’t on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. To do this you use a lockfile or a dockerfile or both. Let’s say you use a lockfile created with <code>{renv}</code>. You now have a second place in your project repository that lists R package dependencies and version numbers.</p>
 <p>What’s worse is that these two statements of version dependence can easily become out of sync. This happens since lockfiles are typically generated by an automated snapshot process that examines your environment, while your DESCRIPTION is updated manually. Lockfiles obsolete dependencies in DESCRIPTION.</p>
 <h2 id="pointless-artifacts">Pointless artifacts</h2>
 <p>Pointless artifacts are things that must exist for your project to be a valid package by CRAN’s policies but serve no purpose for a project that isn’t going to be publicly released on CRAN.</p>
@@ -2248,111 +2356,108 @@ pointless artifacts
 <p>Every function call made in an R package that is not part of the base language needs to be tied to an appropriate namespace. The community has settled on the noisiest but most flexible approach to do this as standard, using the <code>::</code> operator.</p>
 <p>I dug up a real snippet of code from a recent project to demonstrate the difference.</p>
 <p>Here’s the standard for project as a package:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    dplyr::filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    dplyr::group_by(IncidentTypeCategory) %&gt;%
-    dplyr::mutate(total_hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    dplyr::mutate(
-      month = tsibble::yearmonth(floor_date(date, &quot;month&quot;)),
-      category = forcats::fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    dplyr::group_by(month, category) %&gt;%
-    dplyr::summarise(hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    tsibble::as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot2::ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    ggplot2::geom_path() +
-    ggplot2::scale_x_date() +
-    ggplot2::expand_limits(y = 0) +
-    ggplot2::facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    ggplot2::theme_minimal() +
-    ggplot2::labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    ggplot2::geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  plot_data <span class="ot">&lt;-</span> daily_work <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(IncidentTypeCategory <span class="sc">%in%</span> incident_type_categories) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># determine ordering for category factor</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(IncidentTypeCategory) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">total_hours =</span> <span class="fu">sum</span>(hours)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">month =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(<span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">category =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        IncidentTypeCategory,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        total_hours,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(month, category) <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">hours =</span> <span class="fu">sum</span>(hours)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>(<span class="at">index =</span> month, <span class="at">key =</span> <span class="st">&quot;category&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    tsibble<span class="sc">::</span><span class="fu">fill_gaps</span>(<span class="at">hours =</span> <span class="dv">0</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> hours, <span class="at">colour =</span> category)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_x_date</span>() <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span>category,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;QFES monthly vehicle hours&quot;</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">&quot;vehicle hours&quot;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p>and here’s what my team actually had:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    group_by(IncidentTypeCategory) %&gt;%
-    mutate(total_hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    mutate(
-      month = yearmonth(floor_date(date, &quot;month&quot;)),
-      category = fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    group_by(month, category) %&gt;%
-    summarise(hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    geom_path() +
-    scale_x_date() +
-    expand_limits(y = 0) +
-    facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    theme_minimal() +
-    labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  plot_data <span class="ot">&lt;-</span> daily_work <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(IncidentTypeCategory <span class="sc">%in%</span> incident_type_categories) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># determine ordering for category factor</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(IncidentTypeCategory) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total_hours =</span> <span class="fu">sum</span>(hours)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">month =</span> <span class="fu">yearmonth</span>(<span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">category =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        IncidentTypeCategory,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        total_hours,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(month, category) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">hours =</span> <span class="fu">sum</span>(hours)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tsibble</span>(<span class="at">index =</span> month, <span class="at">key =</span> <span class="st">&quot;category&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    tsibble<span class="sc">::</span><span class="fu">fill_gaps</span>(<span class="at">hours =</span> <span class="dv">0</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> hours, <span class="at">colour =</span> category)) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>() <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span>category,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;QFES monthly vehicle hours&quot;</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">&quot;vehicle hours&quot;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p>Note how we had <code>tsibble::fill_gaps</code> even in the second example even though we didn’t need to. This is sometimes done as a kindness for the reader when using lesser known functions.</p>
-<p>I find reading from a <code>%&gt;%</code> down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style <code>dplyr</code> flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>I find reading from a <code>%&gt;%</code> down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style <code>dplyr</code> flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>Surprisingly you must also use <code>::</code> to prefix functions from core namespaces that are loaded automatically by R. So that means <code>stats::</code>, <code>utils::</code>, and <code>tools::</code> etc with accompanying declarations in the <code>DESCRIPTION</code> file. A lot of commonly used functions are held in the core packages and I am regularly tripped up in package development trying to use functions without namespace prefixes that I thought were in the base language.</p>
-<p>Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like <code>EPSG_WEB_MERCATOR &lt;- 3857</code> so later in my code I can do <code>st_transform(sf_object, EPSG_WEB_MERCATOR)</code> instead of having the magic number <code>3857</code> appear from the ether.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like <code>EPSG_WEB_MERCATOR &lt;- 3857</code> so later in my code I can do <code>st_transform(sf_object, EPSG_WEB_MERCATOR)</code> instead of having the magic number <code>3857</code> appear from the ether.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>To do this in a package project I must introduce this odd looking side-effect function into my code:</p>
-<pre class="r"><code>
-globalVariables(c(&quot;EPSG_WEB_MERCATOR&quot;), &quot;my_package&quot;)
-WEBMERCATOR_EPSG &lt;- 3857</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;EPSG_WEB_MERCATOR&quot;</span>), <span class="st">&quot;my_package&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>WEBMERCATOR_EPSG <span class="ot">&lt;-</span> <span class="dv">3857</span></span></code></pre></div>
 <h1 id="dissecting-the-killer-features">Dissecting the killer features</h1>
 <p>From what fans of the project as a package workflow have said to me, the two killer features are:</p>
 <ol type="1">
 <li>Having an easily installable artifact that will install its own dependencies</li>
 <li>Easy on-ramp to automated testing on GitHub continuous integration services.</li>
 </ol>
-<p>With respect to 1. I’ve already debunked the dependencies aspect - making your project a package is not a robust form of dependency management<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. On sharing, I’d argue <code>git clone https://github.com/my_org/my_project</code> is a pretty nice way to share a project, equivalent to <code>install_github("my_org/my_project")</code>.</p>
+<p>With respect to 1. I’ve already debunked the dependencies aspect - making your project a package is not a robust form of dependency management<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. On sharing, I’d argue <code>git clone https://github.com/my_org/my_project</code> is a pretty nice way to share a project, equivalent to <code>install_github("my_org/my_project")</code>.</p>
 <p>Thinking about 2: Automated testing is great, and the package ecosystem has a nicely paved flow consisting of just a couple of <code>{usethis}</code> calls. But your automated tests are run within RMD check which adds overhead and a whole basket of compliance requirements that are pointless.</p>
 <p>I think people are missing the fact the that there is nothing spooky about the way <code>{testthat}</code> works. There is a function called <code>testthat::test_dir</code> that runs a folder of <code>testthat</code> tests in an environment that is setup by <code>testthat.R</code> . You could change a couple of lines in the <a href="https://github.com/r-lib/actions/tree/master/examples">GitHub action for CMD check</a>, swapping <code>rcmdcheck::rcmdcheck</code> for <code>testthat::test_dir</code> and you have your automated testing without the tyranny of the CMD check and R package structure.</p>
 <h1 id="weighing-the-cons">Weighing the cons</h1>
 <p>Okay so here’s where I go full subjective and get to the heart of why project as a package upsets me.</p>
-<p>As data scientists we work in a field where there are very few objectively right outcomes. It doesn’t matter how we wrote our code, or how many unit tests it has, or even if our models converged<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.</p>
-<p>And the key word is <em>convincing</em>. It’s not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
-<p>So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
+<p>As data scientists we work in a field where there are very few objectively right outcomes. It doesn’t matter how we wrote our code, or how many unit tests it has, or even if our models converged<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.</p>
+<p>And the key word is <em>convincing</em>. It’s not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<p>So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else <a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.</p>
 <p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend.</p>
 <p>People have said: “Yes but once you know how to make packages it actually makes things clearer”. I find this an inhumane response on a number of levels. It steepens the learning curve before collaborators can become contributors. This is cruel if there are less convoluted options that would suffice.</p>
 <p>My response to advocates of project as a package is: ==You’re wasting precious time making the wrong packages.==</p>
-<p>Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren’t you packaging tools that create the smooth <code>{devtools}</code>/<code>{usethis}</code> style experience for your own domain?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren’t you packaging tools that create the smooth <code>{devtools}</code>/<code>{usethis}</code> style experience for your own domain?<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <p>No really. Why. Aren’t. You. Doing. That?</p>
-<p>You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. Your domain, done in your style, under your rules.</p>
+<p>You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>. Your domain, done in your style, under your rules.</p>
 <h1 id="conclusions-caveats-concessions">Conclusions, caveats, concessions</h1>
 <p>My aim here has been to provide some balance to a discussion that felt a bit one sided. I fully accept that I have but one vantage point and others will evaluate the tradeoffs project as package makes differently from theirs.</p>
 <p>For my peers slugging away in industry data science roles, my argument essentially boils down to:</p>
-<p>The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as ‘pros’, most can be realised under alternative workflows<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.</p>
+<p>The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as ‘pros’, most can be realised under alternative workflows<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.</p>
 <p>I am more convinced of the R package approach for reproducible research objects. Although they may not be going to CRAN, they fully expect to be archived. In this case the DESCRIPTION file has more value. It also makes sense to adhere to a really common standard, since if the domain shifts over a very long period of time, it may actually aid comprehension of the work to be in a more general standard form.</p>
 <h1 id="where-to-next">Where to next</h1>
 <p>When I step back and look at what’s going on here I am <a href="https://www.gwern.net/Holy-wars">reminded of this very lucid article shared by Hadley Wickham</a> <a href="https://twitter.com/hadleywickham/status/1280340931657564160">on Twitter</a> recently. The article talks about the phenomenon of ‘bitrot’ and ‘bitcreep’ which are reciprocal software phenomena. In R, our collective tooling has seen significant <em>bitcreep</em> toward package development due to the amount and quality of developers who depend on these tools.</p>
@@ -2368,21 +2473,22 @@ WEBMERCATOR_EPSG &lt;- 3857</code></pre>
 <p>Nick Tierney and Dean Machiori for being a sounding board for some of my agruments.</p>
 <p>My team at QFES for being on board with putting clarity above all else, especially Anthony North.</p>
 <hr />
-<section class="footnotes">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>which you were probably doing anyway since it facilitates: <code>devtools::install_github("milesmcbain/slippymath@0.3.1)</code><a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>AND your dependencies dependencies dependencies…<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Speaking of <code>%&gt;%</code>, you’ll have noticed we don’t have to do <code>magrittr::%&gt;%</code> everywhere that is used. It is declared via <code>importFrom(magrittr,"%&gt;%")</code> in the package’s <code>NAMESPACE</code> file. <code>NAMESPACE</code> is arguably pointless artifact if the project as a package is never installed.<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Global <em>variables</em> are dangerous. Global <em>constants</em> are useful communication tools.<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>And if you don’t have proper dependency management, you are the dependency management!<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>Since misspecified models can converge to an answer that is not well founded.<a href="#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>With possible peers including our future selves in 3-6 months time.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>And I’m lucky enough to work with some people that share this view.<a href="#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>There are many examples of R developers doing this. Some prominent examples to consider are: <a href="https://jdblischak.github.io/workflowr/index.html">{workflowr}</a>, <a href="https://github.com/benmarwick/rrtools">{rrpkg}</a>, <a href="https://www.vaccineimpact.org/orderly/articles/orderly.html">{orderly}</a>. I have made my own efforts public as discussed in my previous blog post. <a href="#fnref10" class="footnote-back">↩</a></p></li>
-<li id="fn11"><p>To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.<a href="#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>If you like writing functions you owe it to yourself to give <code>{drake}</code> a look.<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>which you were probably doing anyway since it facilitates: <code>devtools::install_github("milesmcbain/slippymath@0.3.1)</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>AND your dependencies dependencies dependencies…<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Speaking of <code>%&gt;%</code>, you’ll have noticed we don’t have to do <code>magrittr::%&gt;%</code> everywhere that is used. It is declared via <code>importFrom(magrittr,"%&gt;%")</code> in the package’s <code>NAMESPACE</code> file. <code>NAMESPACE</code> is arguably pointless artifact if the project as a package is never installed.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Global <em>variables</em> are dangerous. Global <em>constants</em> are useful communication tools.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>And if you don’t have proper dependency management, you are the dependency management!<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Since misspecified models can converge to an answer that is not well founded.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>With possible peers including our future selves in 3-6 months time.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>And I’m lucky enough to work with some people that share this view.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>There are many examples of R developers doing this. Some prominent examples to consider are: <a href="https://jdblischak.github.io/workflowr/index.html">{workflowr}</a>, <a href="https://github.com/benmarwick/rrtools">{rrpkg}</a>, <a href="https://www.vaccineimpact.org/orderly/articles/orderly.html">{orderly}</a>. I have made my own efforts public as discussed in my previous blog post. <a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>If you like writing functions you owe it to yourself to give <code>{drake}</code> a look.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2416,7 +2522,8 @@ WEBMERCATOR_EPSG &lt;- 3857</code></pre>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

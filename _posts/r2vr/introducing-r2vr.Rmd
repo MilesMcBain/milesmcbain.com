@@ -42,7 +42,7 @@ knitr::include_graphics("acp_vegetation.png")
 We can arrive at this:
 
 ```{r, fig.cap = "Elevation, vegetation, and water in WebVR"}
-knitr::include_graphics("acp_3d-1png")
+knitr::include_graphics("acp_3d-1.png")
 ```
 
 And that's just for starters! We should be able to have some fun with this. Thanks for following along.

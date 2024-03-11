@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: R2VR: Shading Meshes in WebVR</title>
 
@@ -69,7 +138,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["acp_3d-1.png","aframe-inspector.png","csiro_acems_qut_aad.png","shading_meshes_in_webvr_files/bowser-1.9.3/bowser.min.js","shading_meshes_in_webvr_files/distill-2.2.21/template.v2.js","shading_meshes_in_webvr_files/header-attrs-2.3/header-attrs.js","shading_meshes_in_webvr_files/jquery-1.11.3/jquery.min.js","shading_meshes_in_webvr_files/webcomponents-2.0.0/webcomponents.js","textured_uluru.png","uluru_header.png","uluru_righted.png","uluru_smooth.png","uluru_sunset.png"]}
+  {"type":"character","attributes":{},"value":["acp_3d-1.png","aframe-inspector.png","csiro_acems_qut_aad.png","textured_uluru.png","uluru_header.png","uluru_righted.png","uluru_smooth.png","uluru_sunset.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -416,8 +485,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -787,9 +856,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -884,6 +965,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1645,6 +1731,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1722,8 +1814,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1749,12 +1842,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2032,8 +2126,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2181,6 +2280,13 @@ li::marker {
 
 <div class="d-title">
 <h1>R2VR: Shading Meshes in WebVR</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:R2VR" class="dt-tag">R2VR</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>In this post I’ll contiue to riff on the Uluru mesh, discussing how to colour a WebVR mesh by shading using a raster layer, or applying a texture.</p></p>
 </div>
 
@@ -2199,7 +2305,7 @@ li::marker {
 <h1 id="shading">Shading</h1>
 <p>The last post left off at this:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="uluru_righted.png" alt="The 'peach puddle' example" width="100%" />
 <p class="caption">
 Figure 1: The ‘peach puddle’ example
@@ -2208,7 +2314,7 @@ Figure 1: The ‘peach puddle’ example
 </div>
 <p>An iconic Australian landmark looking a little off-colour. There are several ways to improve this, and the first way we will consider is shading using a raster layer. This is quite useful if you have raster layers that describe distributions of variables of interest like say, vegetation cover. Indeed this is what is happening here in this map, from the introductory post to this series:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="acp_3d-1.png" alt="Elevation, vegetation, and water in WebVR" width="100%" />
 <p class="caption">
 Figure 2: Elevation, vegetation, and water in WebVR
@@ -2219,102 +2325,102 @@ Figure 2: Elevation, vegetation, and water in WebVR
 <p>Since Uluru doesn’t have much going on in terms of vegetation, I decided to use the original elevation raster as colour source as well. So the Uluru mesh will be coloured according to height. It sounds boring, but the results look quite arty if I do say so myself.</p>
 <p>I’ll omit the code we’ve discussed previously, but complete prerequisite code is present in the <a href="https://github.com/MilesMcBain/r2vr2_meshes_in_webvr">companion respository</a> for this post. Here’s the breakdown of how we can shade the mesh, assuming it is called <code>uluru_bbox_trimesh</code>:</p>
 <h3 id="setup">Setup</h3>
-<pre class="r"><code>
-## install latest r2vr using devtools
-## install_github(&#39;milesmcbain/r2vr&#39;)
-
-library(raster)
-library(scico)
-library(r2vr)
-library(tidyverse)
-
-## load JSON conversion helper function
-source(&quot;./helpers/trimesh_to_threejson.R&quot;)
-
-## load colour palette index helper function.
-source(&quot;./helpers/colour_from_scale.R&quot;)
-
-## load vertex to face colour conversion
-source(&quot;./helpers/vertex_to_face_colours.R&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install latest r2vr using devtools</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install_github(&#39;milesmcbain/r2vr&#39;)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r2vr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## load JSON conversion helper function</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./helpers/trimesh_to_threejson.R&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">## load colour palette index helper function.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./helpers/colour_from_scale.R&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="do">## load vertex to face colour conversion</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./helpers/vertex_to_face_colours.R&quot;</span>)</span></code></pre></div>
 <h3 id="extract-raster-data">Extract raster data</h3>
 <p>In this case we already have this data in <code>uluru_bbox_trimesh$P[,3]</code>, so this code is just for demonstration, to show what to do if using a new raster that isn’t height.</p>
-<pre class="r"><code>
-## Extract data from raster for each vertex (x,y) coord.
-colouring_raster_data &lt;-
-  raster::extract(nt_raster, uluru_bbox_trimesh$P[, 1:2])</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract data from raster for each vertex (x,y) coord.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>colouring_raster_data <span class="ot">&lt;-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  raster<span class="sc">::</span><span class="fu">extract</span>(nt_raster, uluru_bbox_trimesh<span class="sc">$</span>P[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code></pre></div>
 <h3 id="apply-colour-palette">Apply colour palette</h3>
-<p>We’re taking a vapourwave colour scheme from the ‘tokyo’ palette in Thomas Lin Pedersen’s <a href="https://github.com/thomasp85/scico"><code>scico</code></a> package. I’ve written a couple of helpers for arranging the colour data. <code>vec_pal_colours()</code> will take: * a numeric vector of values * a colour palette function * a number of colours and return:<br />
-* a vector of colours as integers * and a vector of indexes into the colour vector for each numeric value.</p>
+<p>We’re taking a vapourwave colour scheme from the ‘tokyo’ palette in Thomas Lin Pedersen’s <a href="https://github.com/thomasp85/scico"><code>scico</code></a> package. I’ve written a couple of helpers for arranging the colour data. <code>vec_pal_colours()</code> will take:
+* a numeric vector of values
+* a colour palette function
+* a number of colours
+and return:<br />
+* a vector of colours as integers
+* and a vector of indexes into the colour vector for each numeric value.</p>
 <p>Here we again run into the idea of using an index wherever possible to compress data structures that is common in 3D programming. Note the ‘trick’ of using <code>purrr::partial</code> to fill in the <code>palette</code> argument of <code>scico()</code>, so it can be blindly applied with just the number of colours argument.</p>
 <p>A second helper, <code>vertex_to_face_colours()</code>, is used to reshape the list of colour indexes: The 3D JSON format needed for WebVR wants a colour mapping per vertex per face, <code>vec_pal_colours()</code> only created a colour mapping per vertex. The helper takes the list of vertex colour indicies and the list of face vertex indices from <code>uluru_bbox_trimesh$T</code> and returns a 3 column matrix of face colour indicies, each column representing a vertex (1, 2, and 3), and each row representing a complete triangular face.</p>
-<pre class="r"><code>
-## Choose a palette function to transform to colours
-n_colours &lt;- 256
-palette_function &lt;-
-  purrr::partial(scico, palette = &quot;tokyo&quot;)
- 
-## Generate colours
-vertex_colour_data &lt;-
-  vec_pal_colours(colouring_raster_data, palette_function,
-                    n_colours, zero_index = TRUE)
-                    
-str(vertex_colour_data)
-# List of 2
-# $ colours: num [1:256] 1641779 1773107 1969716 2035765 2101303 ...
-# $ indexes: num [1:8913] 9 9 5 8 246 9 7 19 8 11 ...
-
-face_colours &lt;-
-  vertex_to_face_colours(vertex_colour_data$indexes,
-                         uluru_bbox_trimesh$T)
-                         
- str(face_colours)
- # num [1:17619, 1:3] 9 8 9 9 9 8 30 237 26 9 ...                      </code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Choose a palette function to transform to colours</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_colours <span class="ot">&lt;-</span> <span class="dv">256</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>palette_function <span class="ot">&lt;-</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">partial</span>(scico, <span class="at">palette =</span> <span class="st">&quot;tokyo&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate colours</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>vertex_colour_data <span class="ot">&lt;-</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vec_pal_colours</span>(colouring_raster_data, palette_function,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                    n_colours, <span class="at">zero_index =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vertex_colour_data)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># List of 2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># $ colours: num [1:256] 1641779 1773107 1969716 2035765 2101303 ...</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># $ indexes: num [1:8913] 9 9 5 8 246 9 7 19 8 11 ...</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>face_colours <span class="ot">&lt;-</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vertex_to_face_colours</span>(vertex_colour_data<span class="sc">$</span>indexes,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                         uluru_bbox_trimesh<span class="sc">$</span>T)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                         </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a> <span class="fu">str</span>(face_colours)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a> <span class="co"># num [1:17619, 1:3] 9 8 9 9 9 8 30 237 26 9 ...                      </span></span></code></pre></div>
 <h3 id="generate-mesh-json">Generate Mesh JSON</h3>
 <p>To generate the JSON we supply the list of all colours we want to use, and the face-wise vertex indicies into that list, as extra arguments to the <code>trimesh_to_threejson()</code> function we used in the previous post.</p>
-<pre class="r"><code>
-## Generate a shaded model JSON
-mesh_json &lt;-
-  trimesh_to_threejson(vertices = uluru_bbox_trimesh$P,
-                       face_vertices = uluru_bbox_trimesh$T,
-                       colours = vertex_colour_data$colours,
-                       face_vertex_colours = face_colours)
-
-## write JSON
-write_file(mesh_json, &quot;./data/uluru_mesh.json&quot;)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate a shaded model JSON</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mesh_json <span class="ot">&lt;-</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">trimesh_to_threejson</span>(<span class="at">vertices =</span> uluru_bbox_trimesh<span class="sc">$</span>P,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">face_vertices =</span> uluru_bbox_trimesh<span class="sc">$</span>T,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">colours =</span> vertex_colour_data<span class="sc">$</span>colours,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">face_vertex_colours =</span> face_colours)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## write JSON</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">write_file</span>(mesh_json, <span class="st">&quot;./data/uluru_mesh.json&quot;</span>)</span></code></pre></div>
 <h3 id="render-in-webvr">Render in WebVR</h3>
 <p>We create an asset to hold the JSON and a JSON model entity as per the previous peach puddle example. A couple of new entities are on display after that. We create a slightly more dramatic black backdrop entity in <code>sky</code>, and then add an entity that makes keyboard and mouse control slightly more convenient.</p>
-<pre class="r"><code>
-## Render in VR
-## Bigger than our previous &#39;puddle&#39;:
-scale_factor &lt;- 0.01 
-
-uluru_json &lt;-
-  a_asset(id = &quot;uluru&quot;,
-          src = &quot;./data/uluru_mesh.json&quot;)
-
-uluru &lt;-
-  a_json_model(src_asset = uluru_json,
-               scale = scale_factor * c(1, 1, 1),
-               position = c(0, 0 + height_correction * scale_factor, -15),
-               rotation = c(-90, 180, 0)
-               )
-
-sky &lt;- a_entity(tag = &quot;sky&quot;,
-                color = &quot;#000000&quot;)
-
-controls &lt;- a_pc_control_camera()
-
-aframe_scene &lt;-
-  a_scene(template = &quot;empty&quot;,
-          title = &quot;Uluru Mesh&quot;,
-          description = &quot;An A-Frame scene of Uluru&quot;,
-          children = list(uluru, sky, controls))
-
-aframe_scene$serve()
-browseURL(&quot;http://127.0.0.1:8080&quot;)
-
-## don&#39;t forget to:
-aframe_scene$stop()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Render in VR</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Bigger than our previous &#39;puddle&#39;:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>scale_factor <span class="ot">&lt;-</span> <span class="fl">0.01</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>uluru_json <span class="ot">&lt;-</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_asset</span>(<span class="at">id =</span> <span class="st">&quot;uluru&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">src =</span> <span class="st">&quot;./data/uluru_mesh.json&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>uluru <span class="ot">&lt;-</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_json_model</span>(<span class="at">src_asset =</span> uluru_json,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">scale =</span> scale_factor <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span> <span class="sc">+</span> height_correction <span class="sc">*</span> scale_factor, <span class="sc">-</span><span class="dv">15</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">rotation =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">0</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>               )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>sky <span class="ot">&lt;-</span> <span class="fu">a_entity</span>(<span class="at">tag =</span> <span class="st">&quot;sky&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#000000&quot;</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>controls <span class="ot">&lt;-</span> <span class="fu">a_pc_control_camera</span>()</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>aframe_scene <span class="ot">&lt;-</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_scene</span>(<span class="at">template =</span> <span class="st">&quot;empty&quot;</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Uluru Mesh&quot;</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">description =</span> <span class="st">&quot;An A-Frame scene of Uluru&quot;</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">children =</span> <span class="fu">list</span>(uluru, sky, controls))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>aframe_scene<span class="sc">$</span><span class="fu">serve</span>()</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">browseURL</span>(<span class="st">&quot;http://127.0.0.1:8080&quot;</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## don&#39;t forget to:</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>aframe_scene<span class="sc">$</span><span class="fu">stop</span>()</span></code></pre></div>
 <p>Resulting in:</p>
 <!-- Copy and Paste Me -->
 <div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
@@ -2323,27 +2429,26 @@ aframe_scene$stop()</code></pre>
 <p>Fullscreen link: <a href="https://plucky-pencil.glitch.me/" class="uri">https://plucky-pencil.glitch.me/</a></p>
 <h2 id="smoothing">Smoothing</h2>
 <p>Our mesh looks pretty ‘jaggy’ but precisely this low-poly look is kind of hip right now in WebVR land. If you don’t care about being hip, you can ask the user’s browser to compute a set of normal vectors for each vertex that their graphics card will use to interpolate a smooth 3D surface (so called ‘vertex normals’). Rendering smooth things is more computationally costly so use with caution. It is worth noting that these vectors are just estimated from the normal vectors of surrounding faces. So they can produce a result that departs from the ‘true’ object shape. Doing this in <code>r2vr</code> is just one extra argument to <code>a_json_model()</code>:</p>
-<pre class="r"><code>
-## Smooth using vertex normals
-uluru_smooth &lt;-
-  a_json_model(src_asset = uluru_json,
-               mesh_smooth = TRUE,
-               scale = scale_factor * c(1, 1, 1),
-               position = c(0, 0 + height_correction * scale_factor, -15),
-               rotation = c(-90, 180, 0))
-
-aframe_scene2 &lt;-
-  a_scene(template = &quot;empty&quot;,
-          title = &quot;Uluru Mesh&quot;,
-          description = &quot;An A-Frame scene of Uluru&quot;,
-          children = list(uluru_smooth, sky, controls))
-
-aframe_scene2$serve()
-
-## don&#39;t forget to:
-aframe_scene2$stop()</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Smooth using vertex normals</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>uluru_smooth <span class="ot">&lt;-</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_json_model</span>(<span class="at">src_asset =</span> uluru_json,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">mesh_smooth =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">scale =</span> scale_factor <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span> <span class="sc">+</span> height_correction <span class="sc">*</span> scale_factor, <span class="sc">-</span><span class="dv">15</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">rotation =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">0</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>aframe_scene2 <span class="ot">&lt;-</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_scene</span>(<span class="at">template =</span> <span class="st">&quot;empty&quot;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Uluru Mesh&quot;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">description =</span> <span class="st">&quot;An A-Frame scene of Uluru&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">children =</span> <span class="fu">list</span>(uluru_smooth, sky, controls))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>aframe_scene2<span class="sc">$</span><span class="fu">serve</span>()</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">## don&#39;t forget to:</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>aframe_scene2<span class="sc">$</span><span class="fu">stop</span>()</span></code></pre></div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="uluru_smooth.png" alt="Smoooooooth" width="100%" />
 <p class="caption">
 Figure 3: Smoooooooth
@@ -2357,92 +2462,90 @@ Figure 3: Smoooooooth
 <p>Once the texture coordinates are obtained, generating the JSON for the 3D model is again a straight call to <code>trimesh_to_threejson()</code>, but for one minor complication: When we pass a texture file to be referred to in a model, we have to keep in mind that its path needs to be expressed relative to the model location, not our own current working directory - If you think about this it is really the only way models + textures could be portable. Below are the two tranches of code to generate a textured mesh and render it in WebVR, making use of entities we already created.</p>
 <h2 id="build-textured-mesh">Build textured mesh</h2>
 <p>We’re taking advantage of <code>slippmymath</code> to conveniently fetch <a href="https://www.mapbox.com/">Mapbox</a> satellite imagery. If you reproduce this, be wary of terms of use.</p>
-<pre class="r"><code>
-library(fs)
-library(slippymath)
-library(curl)
-library(glue)
-
-## Fetch a tile from mapbox calculate the tiles with slippymath
-uluru_tiles &lt;- bb_to_tg(uluru_bbox, max_tiles = 40)
-
-mapbox_query_string &lt;-
-  paste0(&quot;https://api.mapbox.com/v4/mapbox.satellite/{zoom}/{x}/{y}.jpg90&quot;,
-         &quot;?access_token=&quot;,
-         Sys.getenv(&quot;MAPBOX_API_KEY&quot;))
-
-images &lt;-
-  pmap(uluru_tiles$tiles,
-       function(x, y, zoom){
-         outfile &lt;- glue(&quot;{x}_{y}.jpg&quot;)
-         curl_download(url = glue(mapbox_query_string),
-                       destfile = outfile) 
-         outfile 
-       },
-       zoom = uluru_tiles$zoom)
-
-## composite images with slippymath
-uluru_raster &lt;- tg_composite(uluru_tiles, images)
-
-## Crop the image
-uluru_raster &lt;- raster_crop_bbox(uluru_raster, uluru_bbox)
-
-## write to PNG (that&#39;s the only way we can texture map)
-texfile &lt;- &quot;./data/uluru_satellite.png&quot;
-raster_to_png(uluru_raster, texfile)
-
-## calculate the trimesh x and y in 0 - 1 space for texture coordinates
-## using r2vr.gis::range_scale
-xym &lt;- uluru_bbox_trimesh$P[,1:2]
-
-xyim &lt;- apply(xym, 2, range_scale)
-## This works because the image and the mesh have the same area and the area is
-## relatively small, so the won&#39;t be much opportunity for the texture to be
-## distorted by difference in projection.
-
-
-## generate JSON containing texture
-## pass just the name of the texture file so rendering process will look in the
-## same directory as JSON model
-uluru_tex_json &lt;-
-  trimesh_to_threejson(vertices = uluru_bbox_trimesh$P,
-                       face_vertices = uluru_bbox_trimesh$T,
-                       vertex_uvs = xyim,
-                       texture_file = fs::path_file(texfile)
-                       )
-
-## write JSON file
-readr::write_file(uluru_tex_json, &quot;./data/uluru_tex.json&quot;)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(slippymath)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Fetch a tile from mapbox calculate the tiles with slippymath</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>uluru_tiles <span class="ot">&lt;-</span> <span class="fu">bb_to_tg</span>(uluru_bbox, <span class="at">max_tiles =</span> <span class="dv">40</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>mapbox_query_string <span class="ot">&lt;-</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;https://api.mapbox.com/v4/mapbox.satellite/{zoom}/{x}/{y}.jpg90&quot;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;?access_token=&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         <span class="fu">Sys.getenv</span>(<span class="st">&quot;MAPBOX_API_KEY&quot;</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>images <span class="ot">&lt;-</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pmap</span>(uluru_tiles<span class="sc">$</span>tiles,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x, y, zoom){</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         outfile <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;{x}_{y}.jpg&quot;</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>         <span class="fu">curl_download</span>(<span class="at">url =</span> <span class="fu">glue</span>(mapbox_query_string),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                       <span class="at">destfile =</span> outfile) </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>         outfile </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>       },</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">zoom =</span> uluru_tiles<span class="sc">$</span>zoom)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="do">## composite images with slippymath</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>uluru_raster <span class="ot">&lt;-</span> <span class="fu">tg_composite</span>(uluru_tiles, images)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Crop the image</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>uluru_raster <span class="ot">&lt;-</span> <span class="fu">raster_crop_bbox</span>(uluru_raster, uluru_bbox)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">## write to PNG (that&#39;s the only way we can texture map)</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>texfile <span class="ot">&lt;-</span> <span class="st">&quot;./data/uluru_satellite.png&quot;</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">raster_to_png</span>(uluru_raster, texfile)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the trimesh x and y in 0 - 1 space for texture coordinates</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="do">## using r2vr.gis::range_scale</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>xym <span class="ot">&lt;-</span> uluru_bbox_trimesh<span class="sc">$</span>P[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>xyim <span class="ot">&lt;-</span> <span class="fu">apply</span>(xym, <span class="dv">2</span>, range_scale)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">## This works because the image and the mesh have the same area and the area is</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="do">## relatively small, so the won&#39;t be much opportunity for the texture to be</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="do">## distorted by difference in projection.</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="do">## generate JSON containing texture</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">## pass just the name of the texture file so rendering process will look in the</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="do">## same directory as JSON model</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>uluru_tex_json <span class="ot">&lt;-</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">trimesh_to_threejson</span>(<span class="at">vertices =</span> uluru_bbox_trimesh<span class="sc">$</span>P,</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                       <span class="at">face_vertices =</span> uluru_bbox_trimesh<span class="sc">$</span>T,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vertex_uvs =</span> xyim,</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                       <span class="at">texture_file =</span> fs<span class="sc">::</span><span class="fu">path_file</span>(texfile)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="do">## write JSON file</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_file</span>(uluru_tex_json, <span class="st">&quot;./data/uluru_tex.json&quot;</span>)</span></code></pre></div>
 <h2 id="render-in-webvr-1">Render in WebVR</h2>
 <p>Smoothing the mesh is good idea when applying a texture. Notice how we wrap the model and associated texture up in a single asset object.</p>
 <p><em>Note this example used Google map data, prior to them locking down their tile API</em></p>
-<pre class="r"><code>
-## The JSON references the satellite png file so it needs to be 
-## included in &#39;parts&#39; so R can serve it.
-uluru_tex &lt;- a_asset(src = &quot;./data/uluru_tex.json&quot;,
-                     id = &quot;uluru_tex&quot;,
-                     parts = &quot;./data/uluru_satellite.png&quot;)
-
-uluru &lt;-
-  a_json_model(src_asset = uluru_tex,
-               mesh_smooth = TRUE,
-               scale = scale_factor * c(1, 1, 1),
-               position = c(0, 0 + height_correction * scale_factor, -15),
-               rotation = c(-90, 180, 0))
-
-aframe_scene3 &lt;-
-  a_scene(template = &quot;empty&quot;,
-          title = &quot;Uluru Mesh&quot;,
-          description = &quot;An A-Frame scene of Uluru&quot;,
-          children = list(uluru, sky, controls))
-
-aframe_scene3$serve()
-
-## don&#39;t forget to:
-aframe_scene3$stop()</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The JSON references the satellite png file so it needs to be </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## included in &#39;parts&#39; so R can serve it.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>uluru_tex <span class="ot">&lt;-</span> <span class="fu">a_asset</span>(<span class="at">src =</span> <span class="st">&quot;./data/uluru_tex.json&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">id =</span> <span class="st">&quot;uluru_tex&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">parts =</span> <span class="st">&quot;./data/uluru_satellite.png&quot;</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>uluru <span class="ot">&lt;-</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_json_model</span>(<span class="at">src_asset =</span> uluru_tex,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">mesh_smooth =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">scale =</span> scale_factor <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span> <span class="sc">+</span> height_correction <span class="sc">*</span> scale_factor, <span class="sc">-</span><span class="dv">15</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">rotation =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">0</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>aframe_scene3 <span class="ot">&lt;-</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_scene</span>(<span class="at">template =</span> <span class="st">&quot;empty&quot;</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Uluru Mesh&quot;</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">description =</span> <span class="st">&quot;An A-Frame scene of Uluru&quot;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">children =</span> <span class="fu">list</span>(uluru, sky, controls))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>aframe_scene3<span class="sc">$</span><span class="fu">serve</span>()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="do">## don&#39;t forget to:</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>aframe_scene3<span class="sc">$</span><span class="fu">stop</span>()</span></code></pre></div>
 <p>The result:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="textured_uluru.png" alt="Map texture: Google, (c) 2018, CNES / Airbus, DigitalGlobe, Landsat / Copernicus" width="100%" />
 <p class="caption">
 Figure 4: Map texture: Google, (c) 2018, CNES / Airbus, DigitalGlobe, Landsat / Copernicus
@@ -2452,7 +2555,7 @@ Figure 4: Map texture: Google, (c) 2018, CNES / Airbus, DigitalGlobe, Landsat / 
 <h1 id="lighting">Lighting</h1>
 <p>One of the things you’ll quickly realise when playing around in VR is that lighting can have a huge impact on the mood of your scene. For example here’s an attempt at a sunrise/sunset vibe, created entirely by tweaking the colour, intensity, and position components of the two default lights:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="uluru_sunset.png" alt="Sunrise on the rock" width="100%" />
 <p class="caption">
 Figure 5: Sunrise on the rock
@@ -2463,7 +2566,7 @@ Figure 5: Sunrise on the rock
 <h2 id="using-the-a-frame-inspector">Using the A-Frame Inspector</h2>
 <p>A-Frame has something called the ‘A-Frame Inspector’ that allows you to add, remove, and tweak entity configuration whilst viewing the results live. It really is freaking awesome for creative tweak-sessions. Once you find something that looks great, it’s just a matter of translating that config back to your code, there’s even a helpful facility to copy entity config as HTML, which has a close mapping to <code>r2vr</code> syntax. Access the inspector in any scene with the keys <code>ctrl</code> + <code>alt</code> + <code>i</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="aframe-inspector.png" alt="Go go gadget lights!" width="100%" />
 <p class="caption">
 Figure 6: Go go gadget lights!
@@ -2482,6 +2585,7 @@ Figure 6: Go go gadget lights!
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="csiro_acems_qut_aad.png" width="100%" /></p>
 </div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2513,7 +2617,8 @@ Figure 6: Go go gadget lights!
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

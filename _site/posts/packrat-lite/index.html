@@ -18,6 +18,75 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: A workflow for lightweight R dependency management</title>
 
@@ -412,8 +481,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -783,9 +852,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -880,6 +961,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1641,6 +1727,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1718,8 +1810,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1745,12 +1838,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2028,8 +2122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2177,6 +2276,13 @@ li::marker {
 
 <div class="d-title">
 <h1>A workflow for lightweight R dependency management</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:reproducibility" class="dt-tag">reproducibility</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>Recently I proudly shared some code that was only weeks old and had maybe 40 dependencies… what could possibly go wrong right?</p></p>
 </div>
 
@@ -2199,8 +2305,7 @@ li::marker {
 <p>It turns out the kind of workflow I was looking for is possible, but you have to deviate from the default options and workflow advertised in the documentation. Here I describe the workflow I used to create <a href="https://github.com/milesmcbain/packrat_demo">this example repo</a>.</p>
 <h3 id="initialise-packrat">Initialise packrat</h3>
 <p>In this step we initialise a project-local library which will automatically have packrat installed into it. Crucially we instruct <code>packrat</code> to update our <code>.gitignore</code> so that the library itself excluded from our repository.</p>
-<pre><code>
-packrat::init(infer.dependencies = FALSE,
+<pre><code>packrat::init(infer.dependencies = FALSE,
               options = list(
                 vcs.ignore.lib = TRUE,
                 vcs.ignore.src = TRUE
@@ -2225,16 +2330,14 @@ packrat::init(infer.dependencies = FALSE,
 </code></pre>
 <h3 id="install.packages">install.packages</h3>
 <p>Next we install our packages into local library as we normally would with <code>install.packages()</code>. Why did we not let <code>packrat</code> do this for us? Installing many libraries at once can take a longish time and can occasionally throw errors we would like to know about or prompts we would like to answer. It’s also a nice check to confirm that our dependencies are really what we think they are - i.e. we don’t have stray <code>lib::</code> or <code>library(lib)</code> calls hiding in the code somewhere.</p>
-<pre><code>
-install.packages(c(&#39;drake&#39;, &#39;readr&#39;, &#39;dplyr&#39;, &#39;lubridate&#39;, &#39;rmarkdown&#39;, &#39;ggplot2&#39;))
+<pre><code>install.packages(c(&#39;drake&#39;, &#39;readr&#39;, &#39;dplyr&#39;, &#39;lubridate&#39;, &#39;rmarkdown&#39;, &#39;ggplot2&#39;))
 
 # ... installation guff ...
 </code></pre>
 <p>At this point we should test our code to make sure it runs without missing dependency errors.</p>
 <h3 id="snapshot-library">Snapshot library</h3>
 <p>In this step we create a metadata file, <code>packrat.lock</code>, that records our R version and all the versions of the packages in our project-local library. This is the thing we will check into our git repo so that others can regenerate our environment on their end when they clone it.</p>
-<pre><code>
-packrat::snapshot(ignore.stale = TRUE, 
+<pre><code>packrat::snapshot(ignore.stale = TRUE, 
                   snapshot.sources = FALSE,
                   infer.dependencies = FALSE)
 
@@ -2297,15 +2400,22 @@ packrat::snapshot(ignore.stale = TRUE,
 
 ## Snapshot written to &#39;/home/miles/repos/packrat_demo/packrat/packrat.lock&#39;</code></pre>
 <p>In case you are wondering this is a complete list of <em>recursive dependencies</em> - our dependencies’ dependencies.</p>
-<p>The reason for the non-default argument choices is as follows: * <code>ignore.stale</code> stops <code>packrat</code> from second guessing the us. We are saying just make a metadata file from the local library as it is right now, irrespective of what it looked like in the past. * <code>snapshot.sources</code> stops <code>packrat</code> downloading the source files for all our dependencies. We’re trusting CRAN to keep these available. * <code>infer.depenencies</code> is as in the previous step. We are in control and being explicit about what our dependencies are using <code>install.packages</code>.</p>
+<p>The reason for the non-default argument choices is as follows:
+* <code>ignore.stale</code> stops <code>packrat</code> from second guessing the us. We are saying just make a metadata file from the local library as it is right now, irrespective of what it looked like in the past.
+* <code>snapshot.sources</code> stops <code>packrat</code> downloading the source files for all our dependencies. We’re trusting CRAN to keep these available.
+* <code>infer.depenencies</code> is as in the previous step. We are in control and being explicit about what our dependencies are using <code>install.packages</code>.</p>
 <h3 id="commit-and-push-snapshot">Commit and push snapshot</h3>
-<p><code>packrat</code> has created/updated a number of files for us: * <code>.gitignore</code> has had entries added to ignore the packages in the project-local library. * <code>./packrat/packrat.lock</code> records versions of R and all the packages in the local library. * <code>./packrat/packrat.opt</code> records our options choices. * <code>./.Rprofile</code> will initialise the <code>packrat</code> local library for a user starting an R session in this project. If they’ve just cloned it will be empty. * <code>./packrat/init.R</code> is an automation script pointed to by <code>.Rprofile</code></p>
+<p><code>packrat</code> has created/updated a number of files for us:
+* <code>.gitignore</code> has had entries added to ignore the packages in the project-local library.
+* <code>./packrat/packrat.lock</code> records versions of R and all the packages in the local library.
+* <code>./packrat/packrat.opt</code> records our options choices.
+* <code>./.Rprofile</code> will initialise the <code>packrat</code> local library for a user starting an R session in this project. If they’ve just cloned it will be empty.
+* <code>./packrat/init.R</code> is an automation script pointed to by <code>.Rprofile</code></p>
 <p>Interestingly, of these only <code>packrat.lock</code> is strictly required. A user can restore the project library given only this file. The other files make it a slightly smoother process, in that restoration is a single function call instead of two - but this comes at the cost of some potentially surprising automation.</p>
 <p>I’m trying to keep my workflow lightweight so I only commit <code>./packrat/packrat.lock</code>. I add the others to my <code>.gitignore</code> - and make sure that is also committed.</p>
 <h3 id="restoring-from-a-fresh-clone">Restoring from a fresh clone</h3>
 <p>Assuming you committed <code>packrat.lock</code>, the local library can be restored with two function calls after opening an R session in a freshly cloned project directory:</p>
-<pre><code>
-&gt; packrat::restore()
+<pre><code>&gt; packrat::restore()
 # Installing BH (1.69.0-1) ... 
 #   OK (built source)
 # Installing R6 (2.4.0) ... 
@@ -2341,16 +2451,22 @@ packrat::snapshot(ignore.stale = TRUE,
 <h2 id="what-about-wrapping-packrat">What about wrapping packrat?</h2>
 <p>Initially I thought about wrapping up this workflow with a nicer API in a new package, maybe called <code>slackrat</code> or something, but then I remembered hearing that RStudio were working on a sequel to <code>packrat</code>: <a href="https://github.com/rstudio/renv"><code>renv</code></a> and it seems like they are proposing a very similar workflow. I am guessing this <code>renv</code> is a little ways off. We’ll see if I break in the meantime.</p>
 <h2 id="packrat-alternatives">Packrat alternatives</h2>
-<p><code>jetpack</code> looked really interesting and I had high hopes, but it is a bit new and rough around the edges for me. * I did like that it uses a DESCRIPTION file to store package dependencies. * I didn’t like that it uses a different set of commands to install packages instead of <code>install.packages</code>. * It gives very little feedback while working so I couldn’t tell if it had hung or not when using its install functions. * It has extremely scant documentation.</p>
+<p><code>jetpack</code> looked really interesting and I had high hopes, but it is a bit new and rough around the edges for me.
+* I did like that it uses a DESCRIPTION file to store package dependencies.
+* I didn’t like that it uses a different set of commands to install packages instead of <code>install.packages</code>.
+* It gives very little feedback while working so I couldn’t tell if it had hung or not when using its install functions.
+* It has extremely scant documentation.</p>
 <p><code>checkpoint</code> was the first thing I tried and it sort of worked, but the problem is that it needs to be included in the project source to do its magic - and that magic needs to happen every time the project runs. So what I found was it clashes with <code>drake</code>, since in that workflow what you want to be doing is calling <code>make()</code> frequently to take advantage of the cache, but <code>checkpoint</code> would spend a significant amount of time searching through all the project files for dependencies each time <code>make()</code> is called. It just slowed the flow too much.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Despite some awkwardness I found <code>packrat</code> still to be the best option for lightweight dependency management for R projects. Hopefully with <code>pak</code> and <code>renv</code> in development we’ll see something similar but much less janky available soon. Good luck making your projects reproducible!</p>
 <hr />
-<p><em>Header Image Credit: Image by Nadine Doerlé from Pixabay</em></p>
-<section class="footnotes" role="doc-endnotes">
+<p><em>Header Image Credit:
+Image by Nadine Doerlé from Pixabay</em></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>To add insult to injury my colleague is a JS developer with some fairly mad skillz and I proceeded to get schooled on <code>npm</code> and how he had just effortlessly deployed a custom-built front end of our geospatial models to production that had over <em>1500 package dependencies</em><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>To add insult to injury my colleague is a JS developer with some fairly mad skillz and I proceeded to get schooled on <code>npm</code> and how he had just effortlessly deployed a custom-built front end of our geospatial models to production that had over <em>1500 package dependencies</em><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2384,7 +2500,8 @@ packrat::snapshot(ignore.stale = TRUE,
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>

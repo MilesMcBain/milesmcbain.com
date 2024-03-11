@@ -20,26 +20,28 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,16 +50,17 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -71,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: A Public Service Data Science Stack: Collaboration</title>
@@ -134,7 +138,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["a_public_service_data_science_stack_collaboration_files/anchor-4.2.2/anchor.min.js","a_public_service_data_science_stack_collaboration_files/bowser-1.9.3/bowser.min.js","a_public_service_data_science_stack_collaboration_files/distill-2.2.21/template.v2.js","a_public_service_data_science_stack_collaboration_files/jquery-1.11.3/jquery.min.js","a_public_service_data_science_stack_collaboration_files/popper-2.6.0/popper.min.js","a_public_service_data_science_stack_collaboration_files/tippy-6.2.7/tippy-bundle.umd.min.js","a_public_service_data_science_stack_collaboration_files/tippy-6.2.7/tippy-light-border.css","a_public_service_data_science_stack_collaboration_files/tippy-6.2.7/tippy.css","a_public_service_data_science_stack_collaboration_files/tippy-6.2.7/tippy.umd.min.js","a_public_service_data_science_stack_collaboration_files/webcomponents-2.0.0/webcomponents.js","issue_with_plots.png","issues_list.png","outdated.PNG","project_board.png","repro_receipt.PNG","the_stack.png","vscode.png"]}
+  {"type":"character","attributes":{},"value":["issue_with_plots.png","issues_list.png","outdated.PNG","project_board.png","repro_receipt.PNG","the_stack.png","vscode.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -481,8 +485,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -852,9 +856,21 @@ d-article table.gt_table th {
   display: none !important;
 }
 
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
 d-article {
   padding-top: 2.5rem;
   padding-bottom: 30px;
+  border-top: none;
 }
 
 d-appendix {
@@ -949,6 +965,11 @@ d-article div.sourceCode pre {
 d-article div.sourceCode pre {
   padding-left: 18px;
   font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
 }
 
 d-article pre {
@@ -1710,6 +1731,12 @@ function init_distill() {
   // create d-title
   $('.d-title').changeElementType('d-title');
 
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
   // create d-byline
   var byline = $('<d-byline></d-byline>');
   $('.d-byline').replaceWith(byline);
@@ -1787,8 +1814,9 @@ function init_distill() {
   $('.distill-force-highlighting-css').parent().remove();
 
   // remove empty line numbers inserted by pandoc when using a
-  // custom syntax highlighting theme
-  $('code.sourceCode a:empty').remove();
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
   // load distill framework
   load_distill_framework();
@@ -1814,12 +1842,13 @@ function init_distill() {
     // add orcid ids
     $('.authors-affiliations').find('.author').each(function(i, el) {
       var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
       if (orcid_id) {
         var a = $('<a></a>');
         a.attr('href', 'https://orcid.org/' + orcid_id);
         var img = $('<img></img>');
         img.addClass('orcid-id');
-        img.attr('alt', 'ORCID ID');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
         img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
         a.append(img);
         $(this).append(a);
@@ -2097,7 +2126,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2250,6 +2280,7 @@ li::marker {
 
 <div class="d-title">
 <h1>A Public Service Data Science Stack: Collaboration</h1>
+
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
@@ -2259,7 +2290,7 @@ li::marker {
   <a href="../../index.html#category:runapp" class="dt-tag">runapp</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p>git, GitHub, {targets}, VSCode, and other tools that our data science team uses to collaborate.</p>
+<p><p>git, GitHub, {targets}, VSCode, and other tools that our data science team uses to collaborate.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2269,44 +2300,101 @@ li::marker {
 </div>
 
 <div class="d-article">
-<p>I recently gave a talk for the <a href="https://runapp-aus.github.io/runapp_website/">R User’s Network: Australian Public Policy (Runapp)</a> about the kinds of data science products we make at my work, and the stack of tools behind them. I was left with a bit to say on the tools side of things, so I decided to follow up here, also for the benefit of people outside the group.</p>
+<p>I recently gave a talk for the <a href="https://runapp-aus.github.io/runapp_website/">R User’s Network: Australian Public Policy (Runapp)</a>
+about the kinds of data science products we make at my work, and
+the stack of tools behind them. I was left with a bit to say on the tools
+side of things, so I decided to follow up here, also for the benefit of
+people outside the group.</p>
 <h1 id="introducing-the-stack">Introducing The Stack</h1>
-<p>After probably too much context setting, this was the map I presented of our tool stack:</p>
+<p>After probably too much context setting, this was the map I presented of our
+tool stack:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="the_stack.png" alt="A map of the tools we use for collaboration, data analysis, open source development, and mapping / geocomputation" width="775" />
 <p class="caption">
 Figure 1: A map of the tools we use for collaboration, data analysis, open source development, and mapping / geocomputation
 </p>
 </div>
 </div>
-<p>I’ve grouped things into 4 blobs. Imagine these blobs pushing up against eachother and kind of undulating organically. Things overlap and shift from project to project.</p>
-<p>My estimation is that probably the most novel / useful things I can share are in the <em>Collaboration</em> and <em>Mapping and geocomputation</em> blobs, so I am committing to write a blog post examining each of these. Maybe the others too if I really get fired up.</p>
-<p>For rest of this post I’ll be talking about our <em>Collaboration</em> stack, which has strong links to things I’ve written about before.</p>
+<p>I’ve grouped things into 4 blobs. Imagine these blobs pushing up against
+eachother and kind of undulating organically. Things overlap and shift from
+project to project.</p>
+<p>My estimation is that probably the most novel / useful things I can share are in the
+<em>Collaboration</em> and <em>Mapping and geocomputation</em> blobs, so I am committing to
+write a blog post examining each of these. Maybe the others too if I really
+get fired up.</p>
+<p>For rest of this post I’ll be talking about our <em>Collaboration</em> stack, which
+has strong links to things I’ve written about before.</p>
 <h1 id="collaboration">Collaboration</h1>
-<p>The bedrock of our collaboration is git and GitHub. We have a GitHub organisation our team works within - they’re free! Every data science project is a git project. We use the GitHub project management tools to organise. The main reason this works for us is because our projects are quite code heavy.</p>
+<p>The bedrock of our collaboration is git and GitHub. We have a GitHub
+organisation our team works within - they’re free! Every data science project
+is a git project. We use the GitHub project management tools to organise. The
+main reason this works for us is because our projects are quite code heavy.</p>
 <h2 id="git">Git</h2>
-<p>We use R to build pipelines that suck in data from a variety of sources and transform it into analytical reports designed to address specific questions. These reports and all our internal communications that involve data analysis are written with <code>{rmarkdown}</code> so they too can easily be source controlled with git.</p>
-<p>There are many benefits to this kind of ‘from code’ approach. I suspect anyone who reads this blog will be on board with many of them, so I am just going to mention two:</p>
+<p>We use R to build pipelines that suck in data from a variety of sources and
+transform it into analytical reports designed to address specific questions.
+These reports and all our internal communications that involve data analysis
+are written with <code>{rmarkdown}</code> so they too can easily be source controlled
+with git.</p>
+<p>There are many benefits to this kind of ‘from code’ approach. I suspect
+anyone who reads this blog will be on board with many of them, so I am just
+going to mention two:</p>
 <ul>
-<li>reproducibility: not just of results, but understanding. If we are having difficulty understanding the detail of a teammate’s approach - as invariably happens - we can go read their code.</li>
-<li>reuse: as we find ourselves wanting to reuse code from previous projects, we can easily lay hands on it, and refactor it out into functions in team packages. This ensures people are computing the same things the same way, and everyone’s work benefits from enhancements discovered over time.</li>
+<li>reproducibility: not just of results, but understanding. If we are having difficulty
+understanding the detail of a teammate’s approach - as invariably happens -
+we can go read their code.</li>
+<li>reuse: as we find ourselves wanting to reuse code from previous projects, we
+can easily lay hands on it, and refactor it out into functions in team
+packages. This ensures people are computing the same things the same way,
+and everyone’s work benefits from enhancements discovered over time.</li>
 </ul>
-<p>When taking the <em>from code</em> approach for a team, I can’t imagine not using git. How can you expect to reproduce something if there is any uncertainty as to the final source version that produced the output? The same uncertainty undermines reuse. If I can’t be sure how something was done, the safest option is to redo it from scratch.</p>
-<p>I’d be interested to hear from teams that don’t use git (or subversion etc.): How you do you manage multiple analysts contributing to the same projects?</p>
-<p>Git facilitates continuous integration of project work so that you can always be working on a project that contains up to date input from colleagues. Without git in the mix this becomes a delicate dance. I bet collaborating in a more manual way tends toward certain pathologies like:</p>
+<p>When taking the <em>from code</em> approach for a team, I can’t imagine not using
+git. How can you expect to reproduce something if there is any uncertainty as
+to the final source version that produced the output? The same uncertainty
+undermines reuse. If I can’t be sure how something was done, the safest option
+is to redo it from scratch.</p>
+<p>I’d be interested to hear from teams that don’t use git (or subversion
+etc.): How you do you manage multiple analysts contributing to the same projects?</p>
+<p>Git facilitates continuous integration of project work so that you can always
+be working on a project that contains up to date input from colleagues.
+Without git in the mix this becomes a delicate dance. I bet collaborating
+in a more manual way tends toward certain pathologies like:</p>
 <ul>
-<li>Team members working mainly in isolation for most of the project, followed by a painful <em>integration phase</em> where they try to make eachother’s work fit together in a rush at the end. Mistakes are made.</li>
-<li>Divergent coding styles and dependency usage due to above. The effect of which is people have trouble following eachother’s work. Reproducibility is challenged, and people tend want to rewrite the work of others in their style rather than bothering to understand it.</li>
+<li>Team members working mainly in isolation for most of the project, followed
+by a painful <em>integration phase</em> where they try to make eachother’s work fit
+together in a rush at the end. Mistakes are made.</li>
+<li>Divergent coding styles and dependency usage due to above. The effect of which is people have
+trouble following eachother’s work. Reproducibility is challenged, and
+people tend want to rewrite the work of others in their style rather than bothering to understand it.</li>
 </ul>
-<p>These are real things I have seen in teams that are not collaborating well. To inoculate against these pathologies, I think it’s obvious you need to have people seeing and using eachother’s work as it is developed, so there’s ample opportunity for questions to be asked and approaches to be harmonised.</p>
-<p>This can invite some micro-conflicts, but I think these are a healthy part of establishing the team’s norms - and preferable to the larger scale conflicts that ensue when things don’t fit together well in a final crunch.</p>
-<p>Git does not magically guarantee the this kind of collaboration for data science projects, but it makes it easier and thus more likely.</p>
+<p>These are real things I have seen in teams that are not collaborating well.
+To inoculate against these pathologies, I think it’s obvious you need to have
+people seeing and using eachother’s work as it is developed, so there’s ample
+opportunity for questions to be asked and approaches to be harmonised.</p>
+<p>This can invite some micro-conflicts, but I think these are a healthy part of
+establishing the team’s norms - and preferable to the larger scale
+conflicts that ensue when things don’t fit together well
+in a final crunch.</p>
+<p>Git does not magically guarantee the this kind of collaboration for data
+science projects, but it makes
+it easier and thus more likely.</p>
 <h2 id="github">GitHub</h2>
-<p>Initially my team was using hosted git repos on <a href="https://azure.microsoft.com/en-au/services/devops/">Azure Dev Ops</a>, because at that time GitHub organisations were not free, and we had access to Dev Ops via existing organisational licensing arrangements.</p>
-<p>We found Dev Ops generally buried information we wanted to see under too many clicks. Its project management tools are geared towards enterprise workflows. Complex workflows are made possible at the cost of making simple workflows complex <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. So instead of the built-in stuff we were using Microsoft Planner for project management and hating it. Things had to be manually kept in sync since there was no integration with our repositories.</p>
-<p>GitHub by contrast doesn’t give you highly configurable project management tools, however it feels like they hit a sweet spot for us where there is just enough flexibility to accommodate our needs. We switched to GitHub pretty much as soon as organisations became free.</p>
-<p>We’ve used <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-issues">GitHub issues</a> as general vehicles for project related stuff like:</p>
+<p>Initially my team was using hosted git repos on <a href="https://azure.microsoft.com/en-au/services/devops/">Azure Dev Ops</a>,
+because at that time GitHub organisations were not free, and we had access
+to Dev Ops via existing organisational licensing arrangements.</p>
+<p>We found Dev Ops generally buried information we wanted to see under
+too many clicks. Its project management tools are geared towards
+enterprise workflows. Complex workflows are
+made possible at the cost of making simple workflows complex <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.
+So instead of the built-in stuff we were using Microsoft Planner for
+project management and hating it. Things had to be manually kept in sync
+since there was no integration with our repositories.</p>
+<p>GitHub by contrast doesn’t give you highly configurable project management
+tools, however it feels like they hit a sweet spot for us where there is
+just enough flexibility to accommodate our needs. We switched to GitHub pretty
+much as soon as organisations became free.</p>
+<p>We’ve used <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-issues">GitHub issues</a>
+as general vehicles for project related stuff like:</p>
 <ul>
 <li>Describing requirements for tasks that need to be done</li>
 <li>Deciding on methodology</li>
@@ -2314,9 +2402,12 @@ Figure 1: A map of the tools we use for collaboration, data analysis, open sourc
 <li>Review comments</li>
 <li>Bug reports and feature requests for internal packages</li>
 </ul>
-<p>Of course a lot of this happens informally via face to face conversations or instant messenger, but we very much prefer issues to email. They keep project information centralised with the project code where it can add context, rather dispersed into inboxes where it can be lost.</p>
+<p>Of course a lot of this happens informally via face to
+face conversations or instant messenger, but we very much prefer issues to email.
+They keep project information centralised with the project code where it can
+add context, rather dispersed into inboxes where it can be lost.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="issues_list.png" alt="Some of our GitHub issues" width="961" />
 <p class="caption">
 Figure 2: Some of our GitHub issues
@@ -2324,17 +2415,24 @@ Figure 2: Some of our GitHub issues
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="issue_with_plots.png" alt="Code and analysis in an issue" width="961" />
 <p class="caption">
 Figure 3: Code and analysis in an issue
 </p>
 </div>
 </div>
-<p>For larger projects we use the <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards">GitHub project boards</a> feature to organise issues. So far we’ve kept this to a simple ‘To do’, ‘Doing’, ‘Done’ type setup. With sparing use of issue tags for certain important tasks. There’s some basic automation options available - for example closing issues that are moved to ‘Done’.</p>
-<p>Project boards can operate at the organisational level, potentially pulling in issues from multiple repositories, or at the repository level. We use both types, but not as a rule. We scale the level of project management to match the project.</p>
+<p>For larger projects we use the <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards">GitHub project boards</a>
+feature to organise issues. So far we’ve kept this to a simple ‘To do’,
+‘Doing’, ‘Done’ type setup. With sparing use of issue tags for certain
+important tasks. There’s some basic automation options available - for
+example closing issues that are moved to ‘Done’.</p>
+<p>Project boards can operate at the organisational level, potentially pulling
+in issues from multiple repositories, or at the repository level. We use both
+types, but not as a rule. We scale the level of project management to match
+the project.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="project_board.png" alt="A repo project board" width="740" />
 <p class="caption">
 Figure 4: A repo project board
@@ -2342,14 +2440,32 @@ Figure 4: A repo project board
 </div>
 </div>
 <h2 id="targets-drake">{targets} / {drake}</h2>
-<p>I’ve written <a href="https://milesmcbain.com/the-drake-post">at some length about our <code>{drake}</code>/<code>{targets}</code> workflow</a>, so I won’t rehash that here. I’ll make three extra observations:</p>
-<p>There are some nice interactions between git and pipeline tools that offer cache management like <code>{drake}/{targets}</code>. These tools take away the question of what code needs to be re-run when pulling or merging the work of others, and guarantees it will be as little as possible.</p>
-<p>I’ve seen this work to reduce ‘pull-hesitancy’ - where collaborators avoid pulling updated work from the main repository in order to avoid re-running long-running computations they feel they don’t have time for.</p>
-<p>Observation two is the the utility of the pipeline plan a high level map of the project. It allows team members to easily see where their work fits, and how it interacts with the work of others. I think this can help build shared understanding, and thus shared ownership of the project. Also helps with getting up to speed after a context switch.</p>
-<p>The final observation is how the dependency graph creates confidence when it comes to changing or fixing code written by collaborators. I can remember some bad old projects, where the global environment was used a little too recklessly, and the only way to truly know what changes were safe to make was to do a close reading of the entire source of the project. Either that or just make the change and hope you could find all the broken things.</p>
-<p>Those days feel forever behind us now. Both <code>{drake}</code> and <code>{targets}</code> can provide you with beautiful graphical representations of exactly what targets will be affected by a change, and that lets you know the precise list of places you need to check for unintended consequences, after which you’re D-O-N-E.</p>
+<p>I’ve written <a href="https://milesmcbain.com/the-drake-post">at some length about our <code>{drake}</code>/<code>{targets}</code> workflow</a>,
+so I won’t rehash that here. I’ll make three extra observations:</p>
+<p>There are some nice interactions between git and pipeline tools that offer
+cache management like <code>{drake}/{targets}</code>. These tools take away the question
+of what code needs to be re-run when pulling or merging the work of others,
+and guarantees it will be as little as possible.</p>
+<p>I’ve seen this work to reduce ‘pull-hesitancy’ - where collaborators avoid
+pulling updated work from the main repository in order to avoid re-running
+long-running computations they feel they don’t have time for.</p>
+<p>Observation two is the the utility of the pipeline plan a high level map of
+the project. It allows team members to easily see where their work fits,
+and how it interacts with the work of others. I think this can
+help build shared understanding, and thus shared ownership of the project.
+Also helps with getting up to speed after a context switch.</p>
+<p>The final observation is how the dependency graph creates confidence when
+it comes to changing or fixing code written by collaborators. I can remember
+some bad old projects, where the global environment was used a little too
+recklessly, and the only way to truly know what changes were safe to make was
+to do a close reading of the entire source of the project. Either that or
+just make the change and hope you could find all the broken things.</p>
+<p>Those days feel forever behind us now. Both <code>{drake}</code> and <code>{targets}</code> can
+provide you with beautiful graphical representations of exactly what targets
+will be affected by a change, and that lets you know the precise list of
+places you need to check for unintended consequences, after which you’re D-O-N-E.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="outdated.PNG" alt="A {drake} dependency graph with targets outdated by an earlier code change." width="545" />
 <p class="caption">
 Figure 5: A {drake} dependency graph with targets outdated by an earlier code change.
@@ -2357,49 +2473,96 @@ Figure 5: A {drake} dependency graph with targets outdated by an earlier code ch
 </div>
 </div>
 <h2 id="rmarkdown">{rmarkdown}</h2>
-<p>As I touched on before, <code>{rmarkdown}</code>’s value as a collaborative tool comes from the way it keeps analysis output in sync with the source code that generates it. This helps avoid inaccuracies creeping in due to rework, and means when ambiguity is discovered it can be resolved by consulting the source code that generated the document.</p>
-<p>To make the source-output link easy to follow we’ve adopted the practice of including a <a href="https://github.com/MilesMcBain/dflow/blob/master/inst/templates/blank.Rmd#L14">‘reproducibility receipt’ at the foot of our report source.</a></p>
+<p>As I touched on before, <code>{rmarkdown}</code>’s value as a collaborative tool comes
+from the way it keeps analysis output in sync with the source code that
+generates it. This helps avoid inaccuracies creeping in due to rework, and
+means when ambiguity is discovered it can be resolved by consulting the
+source code that generated the document.</p>
+<p>To make the source-output link easy to follow we’ve adopted the practice of
+including a <a href="https://github.com/MilesMcBain/dflow/blob/master/inst/templates/blank.Rmd#L14">‘reproducibility receipt’ at the foot of our report source.</a></p>
 <p>It looks like this in a report:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="repro_receipt.PNG" alt="A knitted reproducibility receipt, showing date, repo, and R environment." width="753" />
 <p class="caption">
 Figure 6: A knitted reproducibility receipt, showing date, repo, and R environment.
 </p>
 </div>
 </div>
-<p>With the receipt in place, you can always have a reference to the location and version of the report source.</p>
-<p>The classic scenario where this has proven very satisfying to have is when a document boomerangs on the team, usually with changes required on short notice for an important engagement. This has happened multiple times when the primary author of the report has been unavailable <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<p>The fact that, under duress, you can quickly pinpoint the exact source code that produced the document, which will be organised in clearly laid out pipeline plan, really takes the heat out of a potentially a stressful situation.</p>
+<p>With the receipt in place, you can always have a reference to the location
+and version of the report source.</p>
+<p>The classic scenario where this has proven very satisfying to have is when a
+document boomerangs on the team, usually with changes required on short
+notice for an important engagement. This has happened multiple times when the
+primary author of the report has been unavailable <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The fact that, under duress, you can quickly pinpoint the exact source code
+that produced the document, which will be organised in clearly laid out
+pipeline plan, really takes the heat out of a potentially a stressful
+situation.</p>
 <h2 id="visual-studio-code">Visual Studio Code</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="vscode.png" alt="VSCode being used for R development" width="640" />
 <p class="caption">
 Figure 7: VSCode being used for R development
 </p>
 </div>
 </div>
-<p>VSCode has <a href="https://github.com/Ikuyadeu/vscode-R">pretty great support for R</a>, it’s the most popular choice of daily driver in my team <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. It has one incredible draw-card feature for collaboration, and that is: <a href="https://visualstudio.microsoft.com/services/live-share/">Live Share</a>.</p>
-<p>This is collaborative Google-Docs-style editing. Everyone can see what everyone else is typing or highlighting in real time. Participants can chat via text or voice. The R session is run by the host who can allow guests to send commands to the host’s R terminal and view results.</p>
-<p>There are some rough edges, since the VSCode-R extension wasn’t built with this mode in mind, however at time of writing there is a very promising <a href="https://github.com/Ikuyadeu/vscode-R/pull/598">body of work underway to improve this that is nearing completion</a>. This will make shared views of things like plots and help ‘just work’.</p>
-<p>Even in its’ current state it’s very usable for pair programming. I spent 90 minutes or so just last week pairing with a colleague via Live Share to solve some data processing scaling issues. It was actually just heaps of fun. Possibly even superior to us both standing in front of a computer together, since there’s no awkwardness due to switching who’s driving or not being able to type for shit on someone else’s fancy keyboard. The session felt very fluid and productive.</p>
+<p>VSCode has <a href="https://github.com/Ikuyadeu/vscode-R">pretty great support for R</a>, it’s the most popular choice of daily driver in my team <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
+It has one incredible draw-card feature for collaboration, and that is: <a href="https://visualstudio.microsoft.com/services/live-share/">Live Share</a>.</p>
+<p>This is collaborative Google-Docs-style editing. Everyone can see what
+everyone else is typing or highlighting in real time. Participants can chat
+via text or voice. The R session is run by the host who can allow guests to
+send commands to the host’s R terminal and view results.</p>
+<p>There are some rough edges, since the VSCode-R extension wasn’t built with
+this mode in mind, however at time of writing there is a very promising <a href="https://github.com/Ikuyadeu/vscode-R/pull/598">body of work underway to improve this that is nearing completion</a>.
+This will make shared views of things like plots and help ‘just work’.</p>
+<p>Even in its’ current state it’s very usable for pair programming. I spent 90
+minutes or so just last week pairing with a colleague via Live Share to solve
+some data processing scaling issues. It was actually just heaps of fun.
+Possibly even superior to us both standing in front of a computer together,
+since there’s no awkwardness due to switching who’s driving or not being able
+to type for shit on someone else’s fancy keyboard. The session felt very
+fluid and productive.</p>
 <h2 id="microsoft-teams">Microsoft Teams</h2>
-<p>Teams cops a lot of flack for being either a shoddy Slack or a poor Zoom. I think to appreciate it at all, it has to be thought of as kind of a mash up of both of these tools that is better than neither in their niche, but excels at providing a blended medium that simplifies switching between text and video.</p>
-<p>I’ve come to appreciate this low effort video option to give head room to an instant message conversation that is being limited by text. The team really got into the groove of using it during 100% work from home periods of 2020. We started doing frequent unscheduled small group video chats for quick discussions, rather than scheduled fixtures. I do think this helped us stay productive.</p>
-<p>The screen sharing is solid so it’s good for demonstrating. You can grant teammates remote control of your screen too, but it’s a bit laggy and janky for pair programming - it’s completely inferior to VSCode Live Share for this purpose.</p>
+<p>Teams cops a lot of flack for being either a shoddy Slack or a poor Zoom. I
+think to appreciate it at all, it has to be thought of as kind of a mash up of
+both of these tools that is better than neither in their niche, but excels at
+providing a blended medium that simplifies switching between text and video.</p>
+<p>I’ve come to appreciate this low effort video option to give head room to an
+instant message conversation that is being limited by text. The team really
+got into the groove of using it during 100% work from home periods of 2020.
+We started doing frequent unscheduled small group video chats for quick
+discussions, rather than scheduled fixtures. I do think this helped us stay
+productive.</p>
+<p>The screen sharing is solid so it’s good for demonstrating. You can grant
+teammates remote control of your screen too, but it’s a bit laggy and janky
+for pair programming - it’s completely inferior to VSCode Live Share for this
+purpose.</p>
 <h1 id="wrapping-up">Wrapping up</h1>
-<p>So that was the main pieces in the collaboration stack. Underpinning the choice of tools is a team focus on reproducibility and visibility in the context of code-centric workflows. There’s also a distinct bias toward open source and free tools - we’re quite proud to be able to achieve what we do without charging exorbitant licenses to the public purse.</p>
-<p>In a this new work-from-home friendly world we’ve also found ourselves attracted to tools that allow voice, video, screen-share, pair programming etc to happen in adhoc ways, simulating interactions that would take place in the office.</p>
-<p>As always I am not trying to put us on a pedestal or suggesting that we have made the best choices in every regard. What we have seems to be working well, but I am very keen to hear tips from other people doing similar kinds of work for similarly constrained organisations. Please share in the comments below or tag me in the Runapp Slack channel.</p>
+<p>So that was the main pieces in the collaboration stack. Underpinning the
+choice of tools is a team focus on reproducibility and visibility in the
+context of code-centric workflows. There’s also a distinct bias toward open
+source and free tools - we’re quite proud to be able to achieve what we do
+without charging exorbitant licenses to the public purse.</p>
+<p>In a this new work-from-home friendly world we’ve also found ourselves
+attracted to tools that allow voice, video, screen-share, pair programming
+etc to happen in adhoc ways, simulating interactions that would take place
+in the office.</p>
+<p>As always I am not trying to put us on a pedestal or suggesting that we have
+made the best choices in every regard. What we have seems to be working well,
+but I am very keen to hear tips from other people doing similar kinds of work
+for similarly constrained organisations. Please share in the comments below or tag
+me in the Runapp Slack channel.</p>
 <p>See you in the next post where I’ll unpack our mapping stack!</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>This is also a problem with Jira + Confluence.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>And will to you too via Murphy’s Law<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>That’s not due to me, I was actually late to the party!<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>This is also a problem with Jira + Confluence.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>And will to you too via
+Murphy’s Law<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>That’s not due to me, I was actually late to the party!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2433,7 +2596,8 @@ Figure 7: VSCode being used for R development
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>
 <div class="distill-site-nav distill-site-footer">
-<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link verifies I am me in the Fediverse</a></p>
+<p><a rel="me" href="https://fosstodon.org/@milesmcbain">This link
+verifies I am me in the Fediverse</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 </body></html>
