@@ -68,11 +68,12 @@ making two pretty big assumptions in this discussion:
 
 It's in the name. Instead of redoing an analysis you know how to do from
 scratch you open up the project from last time and go ctrl-c ctrl-v wild. At
-first this may feel pretty good. Almonds like cheating. If you're clever you
-won't tell your boss / clients how much time you just saved. And not because
+first this may feel pretty good. Almost like cheating. If you're clever you
+won't tell your boss or clients how much time you just saved. And not because
 you're dishonest. No it's because what the ol' copypasta is actually doing is
 slowly accumulating a mountain of 'technical-debt' or
 'old-weird-stuff-we-don't-really-understand-anymore-but-keeps-coming-along-for-the-ride-and-now-we-can't-touch-it-without-ruining-everything'.
+
 Eventually the interest on that technical debt, paid in terms of 'time spent
 stuffing around trying to add an incremental improvement', eats all the
 productivity gains you got from the copy-paste in the first place. [^The interest on techincal debt is debited at the least opportune time.]
@@ -321,14 +322,14 @@ bad time, because it is.
 
 I've seen a similar (anti)pattern to 'one-package' play out with functions.
 This seems to catch out people who are transitioning out of a script-based
-workflow with lots of duplicated code, into style based on functional
+workflow with lots of duplicated code, into a style based on functional
 composition. 
 
 Massive functions get written with perhaps a dozen arguments, containing
-hundreds of lines of code, that are really not much more than:
+hundreds of lines of code, that are really not much more than `wrangle_data.script` rebadged as:
 
 ```
-wrangle_data.script` rebadged as `wrangle_data(x, y, z, cubits, flotsits, n_widgets, calibration_factor, tolerance, initial_state, start_date, end_date, output_path)
+wrangle_data(x, y, z, cubits, flotsits, n_widgets, calibration_factor, tolerance, initial_state, start_date, end_date, output_path)
 ```
 
 Sure we're using functions, but we're actually attempting to template the
@@ -354,7 +355,7 @@ We're getting to it now! When we were discussing the 'one-package' pattern we
 talked about how the pattern of breaking down data analysis code into reusable
 functions stored in packages is a recursively applicable method for managing
 complexity in reusable code - that is we can use the same idea to break down
-both analysis projects and monolithic packages into modular 'universe' of
+both analysis projects and monolithic packages into a modular 'universe' of
 packages that are interoperable. 
 
 A healthy universe will likely contain packages spread out along the 'ladder of
@@ -374,7 +375,7 @@ pipeline target. You can roll with a default quality check, or you can use
 `{checkurself}` directly to plug in your own.
 
 Other examples of lower level packages in your universe might be things that
-wrap up API endpoints or SQL queries to provide easy commonly used source data.
+wrap up API endpoints or SQL queries to provide easy access to commonly used source data.
 These might show up as dependencies for higher level packages that make
 frequently used visualisations of those data.
 
@@ -402,9 +403,9 @@ On the subject of identifying niches for internal packages, I really enjoyed
 on the topic, which introduces the idea that internally developed packages are
 kind of like extra expert team members.
 
-# You can give your software a graceful death
+## You can give your software a graceful death
 
-With the package universe,  the problem of 'easy to add difficult to remove'
+With the package universe, the problem of 'easy to add difficult to remove'
 that drives individual package bloat is a bit less severe. If a package becomes
 superseded or irrelevant, you can just stop taking a dependency on it, and
 forget about it. Unlike deprecated functions that have to live on guarded by
@@ -412,7 +413,7 @@ warnings, you're not going to be constantly reminded of a superseded package.
 You won't have to navigate around its source and documentation when they show
 up in your searches.[^Okay probably you are because you'll have that one colleague that will cling to it.]
 
-# Snap back to reality
+## Snap back to reality
 
 I've presented a shared universe of domain specific software packages as an
 idealised solution to data analysis code reuse. There are several problems with
@@ -445,15 +446,14 @@ making this happen.
 
 The second problem is that it's all well and good to have this universe of
 powerful tools at your disposal, but starting a known type of data analysis
-from scratch every time, typing out the same boilerplate to load your tools,
-and ingest the data can feel like a bit of a waste.
+from scratch every time, typing out the same boilerplate code to load your tools,
+and ingest the data can feel like a bit of a chore.
 
 This is where a little templating can go a long way. My advice is to avoid
 building the complete machine (no config!), and rather conceive a lightweight
 project skeleton, that includes boiler plate code, and implies the overall
 project structure[^It's a little appreciated fact that deciding how to structure things is actually the 'deciding how to name things' problem raised to a power],
-but leaves the user to flesh out the (hopefully) interesting
-parts.
+but leaves the user to flesh out the (hopefully) interesting parts.
 
 # Conclusion
 
