@@ -1,0 +1,20 @@
+---
+title: "Patterns and anti-patterns of data analysis reuse"
+description: |
+  Four patterns of data analysis reuse, most of them roads to heartbreak.
+author:
+  - name: Miles McBain
+    url: https://milesmcbain.com
+date: 2024-03-11
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
