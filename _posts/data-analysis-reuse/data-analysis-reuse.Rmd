@@ -351,7 +351,7 @@ templates apply ^[If a function starts taking YAML configuration files as argume
 Such a function is pretty much un-testable due to the combinatoric explosion of
 possible sets of inputs. And you can bet that the internals are not written in
 high level domain-specific code. When I look at that function signature I hear
-the screams of matrices being ground to a fine mist of bits through the conical
+the screams of matrices being ground to a fine powder of bits through the conical
 burrs of nested for loops, and laboured index arithmetic.
 
 Functions with these properties are hard to update with confidence, so they
