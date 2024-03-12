@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 Every data analysis / data scientist role I've worked in has had a strong theme
-of redoing variations  of the same analysis. I expect this is something of an
+of redoing variations of the same analysis. I expect this is something of an
 industry-wide trend. If you're in marketing you're ranking prospects, and A/B
 testing their responses. If you're in emergency services planning you're
 re-running the same kinds of simulations targeting the same kinds of KPIs
@@ -32,7 +32,7 @@ re-running the same kinds of simulations targeting the same kinds of KPIs
 The details change, but you see the same problem structure repeated over and
 over.
  
-Even when I was supporting researchers I saw often saw them cut and paste
+Even when I was supporting researchers I often saw them cut and paste
 methods from older works and 'adapt them' to whatever the current question was,
 using their favoured hammer to hit every nail.
  
