@@ -76,7 +76,7 @@ slowly accumulating a mountain of 'technical-debt' or
 
 Eventually the interest on that technical debt, paid in terms of 'time spent
 stuffing around trying to add an incremental improvement', eats all the
-productivity gains you got from the copy-paste in the first place. [^The interest on techincal debt is debited at the least opportune time.]
+productivity gains you got from the copy-paste in the first place. [^The interest on technical debt is debited at the least opportune time.]
 
 There are several ways this can happen. Here's a scenario.
 
@@ -128,7 +128,7 @@ for the right version in this every growing pile is the interest bill for your
 technical debt.^[Perhaps you can see why if you don't use something like Quarto
 to generate your documents, you increase the surface area for 'copy-paste gone
 wrong' type mistakes to occur on greatly, since you need to execute
-synhcronised copy-pastes in source code and document files.]
+synchronised copy-pastes in source code and document files.]
 
 # The one template to rule them all
 
@@ -175,7 +175,7 @@ do.
 The challenge you'll face in getting there is that there are always niggling
 little details of each new data set, and new context that require some special
 handling. To try to solve for this you can make the template configurable. You
-might even employ metaprogramming techniques to conditionally change the way
+might even employ meta-programming techniques to conditionally change the way
 your outputs look.
 
 So because the word 'configure' was spoken, someone will suggest using YAML or
@@ -277,7 +277,7 @@ a scalable technique for managing complexity. And it has been complexity, in
 various guises, that has wrought havoc on the reuse techniques mentioned up
 until this point.
 
-## Caution: Oversize
+## Caution: Oversized
 
 I'm going to warn you about a pitfall here, but unfortunately it probably won't
 save you. Every workplace I have seen turn toward software packaging as a tool
@@ -315,7 +315,7 @@ unwittingly violate assumptions made elsewhere, making more work for yourself.
 By contrast, in a modular system of tightly focused software packages, it is
 more obvious that knowledge relating to implementation details should not
 influence code across package boundaries. To do so would imply the two packages
-have to be updated in a syncronised fashion, and that sounds like an awkward
+have to be updated in a synchronised fashion, and that sounds like an awkward
 bad time, because it is.
 
 ## Related: One function to rule them all
@@ -334,9 +334,9 @@ wrangle_data(x, y, z, cubits, flotsits, n_widgets, calibration_factor, tolerance
 
 Sure we're using functions, but we're actually attempting to template the
 entire solution using the function's arguments. Many of the pitfalls of
-templates apply [^if a function starts taking yaml configuration files as arguments you are on borrowed time.]. 
+templates apply [^if a function starts taking YAML configuration files as arguments you are on borrowed time.]. 
 
-Such a function is pretty much untestable due to the combinatoric explosion of
+Such a function is pretty much un-testable due to the combinatoric explosion of
 possible sets of inputs. And you can bet that the internals are not written in
 high level domain-specific code. When I look at that function signature I hear
 the screams of matrices being ground to a fine mist of bits through the conical
@@ -367,7 +367,7 @@ Examples are probably useful here. In my current job we have a small package
 called `{checkurself}` that facilitates creating and running list of quality
 checks on a dataset. This package can be used directly, but it shows up as a
 dependency in a higher level package called `{tdctargets}` which contains
-macros[^ Okay in R, they're 'target factories' that depend on R's special flavour of metaprogramming.]
+macros[^ Okay in R, they're 'target factories' that depend on R's special flavour of meta-programming.]
 for pipeline construction. There are macros that
 define certain kinds of pipeline targets (inputs / outputs) that are quality
 checked, with the quality check results automatically becoming a separate
@@ -440,7 +440,7 @@ ratchet. Ideally the when the team 'clicks forward' we lock in capability in a
 way that can't be wound back.
 
 To lock in capability the tooling has to be well designed and built. So
-practices like 'dogfooding'[^that is 'eating your own dogfood' or using your own tools to understand their strengths and weeknesses], seeking peer feedback
+practices like 'dogfooding'[^that is 'eating your own dogfood' or using your own tools to understand their strengths and weaknesses], seeking peer feedback
 early, formal code review, and software testing become highly relevant to
 making this happen.
 
