@@ -1,0 +1,4 @@
+# redirects for old site which had no 'posts' folder
+[[redirects]]
+  from = "/*"
+  to = "/posts/:splat"

@@ -12,7 +12,18 @@
       <link>https://milesmcbain.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 23 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Patterns and anti-patterns of data analysis reuse</title>
+      <dc:creator>Miles McBain</dc:creator>
+      <link>https://milesmcbain.com/posts/data-analysis-reuse</link>
+      <description>"A speed-run through four stages of data analysis reuse, to the end game you probably guessed was coming."</description>
+      <category>data science</category>
+      <category>workflows</category>
+      <guid>https://milesmcbain.com/posts/data-analysis-reuse</guid>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://milesmcbain.com/posts/data-analysis-reuse/copy5.png" medium="image" type="image/png" width="1040" height="583"/>
+    </item>
     <item>
       <title>12 months and 2700km with the Tribe Evamos Longtail cargo ebike: Review</title>
       <dc:creator>Miles McBain</dc:creator>

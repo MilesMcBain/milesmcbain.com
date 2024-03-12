@@ -1,7 +1,7 @@
 ---
 title: "Patterns and anti-patterns of data analysis reuse"
 description: |
-  "A speed-run through four stages of data analysis reuse, to the end game you probably guessed was coming."
+  Four patterns of data analysis reuse, most of them roads to heartbreak.
 author:
   - name: Miles McBain
     url: https://milesmcbain.com
@@ -9,15 +9,11 @@ date: 2024-03-11
 output:
   distill::distill_article:
     self_contained: false
+draft: true
 categories:
   - data science
-  - workflows
-preview: copy5.png
 ---
 
-```{r, fig.cap = "Three projects share a common code library dependency. Re-use solved?", echo = FALSE}
-knitr::include_graphics("copy5.png")
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -36,19 +32,25 @@ Even when I was supporting researchers I saw often saw them cut and paste
 methods from older works and 'adapt them' to whatever the current question was,
 using their favoured hammer to hit every nail.
  
-It's _The Data Analyst's Curse_: You're keen to prove you can use
+It's a kind of curse of the data analyst: You're desperate to prove you can use
 these much-hyped skills to add value. But as soon as you do, you're stuck. Your
-value-add becomes business as usual (BAU). And good luck to you if you think
-you're going to shirk BAU to investigate more interesting data - that would
-be a value-subtract. And those make the well dressed people with
-soft-keyboard-covered-iPads under their arms very unhappy.
+value-add becomes business as usual. And good luck to you if you think you're
+going to pass up business as usual to investigate more interesting data - that
+would be a value-subtract. And those make the
+well-dressed-iPad-with-soft-keyboard-under-arm people very unhappy.
 
 Given your curse, your sanity now depends on re-using as much work as possible
 across these achingly-samey-but-subtlety-different projects. You and your team
 need to set yourselves up so you can re-cover old ground quickly, hopefully
 ensuring that you have plenty of time to build on capabilities you've already
 proven, rather than just executing and re-executing the same capability until
-you all get bored and quit.^[The sort of mind that will tolerate the guts of computers, and the various ways they can torture data, does so out of a kind of insatiable curiosity. That curiosity can be harnessed to great productive effect. But remove the opportunity to be curious, and curiosity will vest elsewhere, and morale will suffer.]
+you all get bored and quit.
+
+The sort of mind that will tolerate the guts of computers, and the various ways
+they can torture data, does so out of a kind of insatiable curiosity. That
+curiosity can be harnessed to great productive effect. But remove the
+opportunity to be curious, and exploratory with data problems, and morale
+suffers.
 
 So now lets look at the ways you can reuse your data analysis work. And I'm
 making two pretty big assumptions in this discussion:
@@ -56,7 +58,7 @@ making two pretty big assumptions in this discussion:
   1. Your work is written in code e.g. R, Python, Julia, Rust etc. 
     -  If you're using PowerBI, or god forbid Excel, you're largely limited to
       the first two less than ideal approaches I am about to discuss.
-   2. You use a technology like [Quarto](https://quarto.org/), or [Rmarkdown](https://rmarkdown.rstudio.com/), or [Shiny](https://shiny.posit.co/), such that
+   2. You use a technology like [Quarto], or [Rmarkdown], or [Shiny], such that
       any document-like products are generated from code.
 	 - If you don't do this there's a host of added pitfalls on top of what
 	   we'll discuss here, more than can sensibly be covered in one blog
@@ -74,7 +76,7 @@ slowly accumulating a mountain of 'technical-debt' or
 
 Eventually the interest on that technical debt, paid in terms of 'time spent
 stuffing around trying to add an incremental improvement', eats all the
-productivity gains you got from the copy-paste in the first place. ^[The interest on technical debt is debited at the least opportune time.]
+productivity gains you got from the copy-paste in the first place. [^The interest on techincal debt is debited at the least opportune time.]
 
 There are several ways this can happen. Here's a scenario.
 
@@ -107,6 +109,7 @@ knitr::include_graphics("copy3.png")
 What kind of damage can we expect from this?
 
 ```{r, fig.cap = "One of the copies still carries the bug."}
+
 knitr::include_graphics("copy4.png")
 ```
 
@@ -125,7 +128,7 @@ for the right version in this every growing pile is the interest bill for your
 technical debt.^[Perhaps you can see why if you don't use something like Quarto
 to generate your documents, you increase the surface area for 'copy-paste gone
 wrong' type mistakes to occur on greatly, since you need to execute
-synchronised copy-pastes in source code and document files.]
+synhcronised copy-pastes in source code and document files.]
 
 # The one template to rule them all
 
@@ -172,7 +175,7 @@ do.
 The challenge you'll face in getting there is that there are always niggling
 little details of each new data set, and new context that require some special
 handling. To try to solve for this you can make the template configurable. You
-might even employ meta-programming techniques to conditionally change the way
+might even employ metaprogramming techniques to conditionally change the way
 your outputs look.
 
 So because the word 'configure' was spoken, someone will suggest using YAML or
@@ -211,9 +214,7 @@ Effect](https://en.wikipedia.org/wiki/Inner-platform_effect)* and I learned
 about it the hard way in my first job. I also like to remix [Greenspun's tenth rule of programming](https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule)
 for this occasion:
 
-    Any sufficiently complicated plain text configuration scheme contains an ad
-    hoc, informally-specified, bug-ridden, slow implementation of half of
-    Common Lisp.
+    Any sufficiently complicated plain text configuration scheme contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of Common Lisp.
 
 Templates are, at best, a partial solution to data analysis reuse. In a similar
 way to the copy-paste strategy, they can feel very productive initially, but if
@@ -276,7 +277,7 @@ a scalable technique for managing complexity. And it has been complexity, in
 various guises, that has wrought havoc on the reuse techniques mentioned up
 until this point.
 
-## Caution: Oversized
+## Caution: Oversize
 
 I'm going to warn you about a pitfall here, but unfortunately it probably won't
 save you. Every workplace I have seen turn toward software packaging as a tool
@@ -314,7 +315,7 @@ unwittingly violate assumptions made elsewhere, making more work for yourself.
 By contrast, in a modular system of tightly focused software packages, it is
 more obvious that knowledge relating to implementation details should not
 influence code across package boundaries. To do so would imply the two packages
-have to be updated in a synchronised fashion, and that sounds like an awkward
+have to be updated in a syncronised fashion, and that sounds like an awkward
 bad time, because it is.
 
 ## Related: One function to rule them all
@@ -327,28 +328,15 @@ composition.
 Massive functions get written with perhaps a dozen arguments, containing
 hundreds of lines of code, that are really not much more than `wrangle_data.script` rebadged as:
 
-```{r, eval = FALSE, echo = TRUE}
-wrangle_data(
-  x, 
-  y, 
-  z, 
-  cubits, 
-  flotsits, 
-  n_widgets, 
-  calibration_factor,
-  tolerance, 
-  initial_state, 
-  start_date, 
-  end_date, 
-  output_path
-  )
+```
+wrangle_data(x, y, z, cubits, flotsits, n_widgets, calibration_factor, tolerance, initial_state, start_date, end_date, output_path)
 ```
 
 Sure we're using functions, but we're actually attempting to template the
 entire solution using the function's arguments. Many of the pitfalls of
-templates apply ^[If a function starts taking YAML configuration files as arguments you are on borrowed time.]. 
+templates apply [^if a function starts taking yaml configuration files as arguments you are on borrowed time.]. 
 
-Such a function is pretty much un-testable due to the combinatoric explosion of
+Such a function is pretty much untestable due to the combinatoric explosion of
 possible sets of inputs. And you can bet that the internals are not written in
 high level domain-specific code. When I look at that function signature I hear
 the screams of matrices being ground to a fine mist of bits through the conical
@@ -379,7 +367,7 @@ Examples are probably useful here. In my current job we have a small package
 called `{checkurself}` that facilitates creating and running list of quality
 checks on a dataset. This package can be used directly, but it shows up as a
 dependency in a higher level package called `{tdctargets}` which contains
-macros^[ Okay in R, they're 'target factories' that depend on R's special flavour of meta-programming.]
+macros[^ Okay in R, they're 'target factories' that depend on R's special flavour of metaprogramming.]
 for pipeline construction. There are macros that
 define certain kinds of pipeline targets (inputs / outputs) that are quality
 checked, with the quality check results automatically becoming a separate
@@ -423,7 +411,7 @@ superseded or irrelevant, you can just stop taking a dependency on it, and
 forget about it. Unlike deprecated functions that have to live on guarded by
 warnings, you're not going to be constantly reminded of a superseded package.
 You won't have to navigate around its source and documentation when they show
-up in your searches.^[In reality you probably are because you'll have that one colleague that will cling to it.]
+up in your searches.[^Okay probably you are because you'll have that one colleague that will cling to it.]
 
 ## Snap back to reality
 
@@ -452,7 +440,7 @@ ratchet. Ideally the when the team 'clicks forward' we lock in capability in a
 way that can't be wound back.
 
 To lock in capability the tooling has to be well designed and built. So
-practices like 'dogfooding'^[that is 'eating your own dogfood' or using your own tools to understand their strengths and weaknesses], seeking peer feedback
+practices like 'dogfooding'[^that is 'eating your own dogfood' or using your own tools to understand their strengths and weeknesses], seeking peer feedback
 early, formal code review, and software testing become highly relevant to
 making this happen.
 
@@ -464,7 +452,7 @@ and ingest the data can feel like a bit of a chore.
 This is where a little templating can go a long way. My advice is to avoid
 building the complete machine (no config!), and rather conceive a lightweight
 project skeleton, that includes boiler plate code, and implies the overall
-project structure^[It's a little appreciated fact that deciding how to structure things is actually the 'deciding how to name things' problem raised to a power],
+project structure[^It's a little appreciated fact that deciding how to structure things is actually the 'deciding how to name things' problem raised to a power],
 but leaves the user to flesh out the (hopefully) interesting parts.
 
 # Conclusion
@@ -495,7 +483,3 @@ resources, and progressing through the stages.
 
 Perhaps you have seen teams even further along this march than I have. I'd be
 eager to hear what lies beyond!
-
----
-
-_Presented with thanks to [Nick Tierney](https://www.njtierney.com/) for reviewing this post. It runs with some ideas from [a talk I gave in 2022](https://github.com/MilesMcBain/really_useful_engines)._
