@@ -2633,7 +2633,11 @@ frequently used visualisations of those data.</p>
 <p>In my last job we were endlessly plotting fire stations on maps. So it made
 sense build out tooling to the point where you could just do something like:</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>qfesdata<span class="sc">::</span><span class="fu">get_station_locations</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  snapbox<span class="sc">::</span><span class="fu">layer_mapbox</span>(<span class="at">geometry =</span> <span class="fu">st_bbox</span>(area_of_interest)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  qfesvis<span class="sc">::</span><span class="fu">layer_stations</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># some kind of analysis layer</span></span></code></pre></div>
 </div>
 <p><code>{qfesdata}</code>, <code>{snapbox}</code>, and <code>{qfesvis}</code> were the in-house built packages
 that wrapped up a surprisingly large amount stuff: database queries, API calls,
@@ -2717,7 +2721,7 @@ resources, and progressing through the stages.</p>
 eager to hear what lies beyond!</p>
 <hr />
 <p><em>Presented with thanks to <a href="https://www.njtierney.com/">Nick Tierney</a> for reviewing this post. It runs with some ideas from <a href="https://github.com/MilesMcBain/really_useful_engines">a talk I gave in 2022</a>.</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>

@@ -394,7 +394,7 @@ frequently used visualisations of those data.
 In my last job we were endlessly plotting fire stations on maps. So it made
 sense build out tooling to the point where you could just do something like:
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 qfesdata::get_station_locations() |>
   ggplot() +
   snapbox::layer_mapbox(geometry = st_bbox(area_of_interest)) +
