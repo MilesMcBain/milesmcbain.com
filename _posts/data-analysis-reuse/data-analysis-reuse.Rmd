@@ -411,7 +411,7 @@ We also retained the flexibility to build off in new directions on top of what
 we had, without the weight of copying hundreds of lines of code around.
 
 On the subject of identifying niches for internal packages, I really enjoyed
-[Emily Reiderer's essay](https://www.emilyriederer.com/post/team-of-packages/)
+[Emily Riederer's essay](https://www.emilyriederer.com/post/team-of-packages/)
 on the topic, which introduces the idea that internally developed packages are
 kind of like extra expert team members.
 
