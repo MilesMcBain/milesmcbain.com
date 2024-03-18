@@ -80,7 +80,7 @@ There are several ways this can happen. Here's a scenario.
 
 The client really liked the dynamics evident in the event stream plot on
 project BLUE. So for project ORANGE it's only natural to pull that plot and
-it's data processing dependencies in via copy-paste.
+its data processing dependencies in via copy-paste.
 
 ```{r, fig.cap = "A copy of a data analysis directory is made."}
 knitr::include_graphics("copy1.png")
@@ -411,7 +411,7 @@ We also retained the flexibility to build off in new directions on top of what
 we had, without the weight of copying hundreds of lines of code around.
 
 On the subject of identifying niches for internal packages, I really enjoyed
-[Emily Reiderer's essay](https://www.emilyriederer.com/post/team-of-packages/)
+[Emily Riederer's essay](https://www.emilyriederer.com/post/team-of-packages/)
 on the topic, which introduces the idea that internally developed packages are
 kind of like extra expert team members.
 
